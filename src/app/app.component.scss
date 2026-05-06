@@ -1,0 +1,412 @@
+@use 'sass:color';
+
+// ─── Google Fonts Import ───
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+// ─── Global Reset ───
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+// ─── Dashboard Shell ───
+.dashboard {
+  min-height: 100vh;
+  background: #0E0E14;
+  color: #E8E8F0;
+  padding: 28px 32px 48px;
+  font-family: 'Sora', sans-serif;
+}
+
+// ─── Header ───
+.dash-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .logo-mark {
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(135deg, #7C6FFF, #C26FFF);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    box-shadow: 0 4px 18px rgba(124, 111, 255, 0.27);
+  }
+
+  h1 {
+    font-family: 'Space Mono', monospace;
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.5px;
+  }
+
+  .subtitle {
+    font-size: 12px;
+    color: #666;
+    margin-top: 2px;
+    letter-spacing: 0.5px;
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .last-update {
+    font-size: 11px;
+    color: #00C6A2;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    &::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: #00C6A2;
+      border-radius: 50%;
+      display: inline-block;
+      animation: pulse 2s infinite;
+    }
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+// ─── Period Buttons ───
+.period-group {
+  display: flex;
+  background: #18181F;
+  border: 1px solid #2a2a36;
+  border-radius: 10px;
+  overflow: hidden;
+  gap: 2px;
+  padding: 3px;
+}
+
+.period-btn {
+  &.k-button {
+    font-family: 'Sora', sans-serif !important;
+    font-size: 12px !important;
+    padding: 6px 14px !important;
+    color: #666 !important;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 7px !important;
+    transition: all 0.2s;
+
+    &.k-selected {
+      background: #7C6FFF !important;
+      color: #fff !important;
+    }
+  }
+}
+
+// ─── KPI Grid ───
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.kpi-card {
+  background: #18181F;
+  border: 1px solid #22222E;
+  border-radius: 16px;
+  padding: 22px 20px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  .kpi-bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    border-radius: 16px 0 0 16px;
+  }
+
+  .kpi-icon {
+    font-size: 26px;
+    background: #0E0E14;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 1px solid #2a2a36;
+  }
+
+  .kpi-body {
+    flex: 1;
+  }
+
+  .kpi-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #666;
+    margin-bottom: 6px;
+  }
+
+  .kpi-value {
+    font-family: 'Space Mono', monospace;
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+
+  .kpi-change {
+    font-size: 12px;
+
+    &.up   { color: #00C6A2; }
+    &.down { color: #FF6B6B; }
+
+    .arrow { font-size: 14px; }
+  }
+}
+
+// ─── Charts Row ───
+.charts-row {
+  display: grid;
+  grid-template-columns: 1fr 300px 300px;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.chart-card {
+  background: #18181F;
+  border: 1px solid #22222E;
+  border-radius: 16px;
+  padding: 22px;
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+
+    h2 {
+      font-size: 14px;
+      font-weight: 600;
+      color: #ccc;
+      letter-spacing: 0.3px;
+    }
+  }
+
+  .kendo-chart {
+    height: 220px;
+    background: transparent !important;
+  }
+
+  .donut-chart {
+    height: 220px;
+  }
+}
+
+.badge {
+  font-size: 10px;
+  background: #2a2a36;
+  color: #888;
+  padding: 3px 9px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+}
+
+// ─── Grid Section ───
+.grid-section {
+  background: #18181F;
+  border: 1px solid #22222E;
+  border-radius: 16px;
+  padding: 22px;
+  overflow: hidden;
+}
+
+.grid-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+
+  h2 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #ccc;
+  }
+}
+
+// ─── Kendo Grid Override ───
+::ng-deep {
+  .k-grid {
+    background: transparent;
+    border: none;
+    font-family: 'Sora', sans-serif;
+    font-size: 13px;
+    color: #ccc;
+
+    .k-table-thead .k-table-row {
+      background: transparent;
+    }
+
+    .k-column-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #555;
+      font-weight: 600;
+    }
+
+    .k-table-th {
+      background: #0E0E14;
+      border-color: #22222E;
+    }
+
+    .k-table-td {
+      border-color: #1c1c26;
+      background: transparent;
+      padding: 12px 16px;
+    }
+
+    .k-table-row:hover .k-table-td {
+      background: #1e1e28 !important;
+    }
+
+    .top-row .k-table-td {
+      background: #1a1a24 !important;
+    }
+
+    .k-grid-content {
+      background: transparent;
+    }
+
+    .k-scrollbar {
+      display: none;
+    }
+  }
+
+  // Chart styling
+  .k-chart {
+    background: transparent !important;
+
+    .k-chart-surface {
+      background: transparent !important;
+    }
+  }
+
+  // Button overrides
+  .k-button {
+    cursor: pointer;
+  }
+}
+
+// ─── Custom Cells ───
+.rank-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: 'Space Mono', monospace;
+  background: #2a2a36;
+  color: #888;
+
+  &.rank-1 { background: rgba(255, 215, 0, 0.13);  color: #FFD700; border: 1px solid rgba(255, 215, 0, 0.27); }
+  &.rank-2 { background: rgba(192, 192, 192, 0.13); color: #C0C0C0; border: 1px solid rgba(192, 192, 192, 0.27); }
+  &.rank-3 { background: rgba(205, 127, 50, 0.13);  color: #CD7F32; border: 1px solid rgba(205, 127, 50, 0.27); }
+}
+
+.seller-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  .avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: rgba(124, 111, 255, 0.27);
+    border: 1px solid rgba(124, 111, 255, 0.27);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: #b0a0ff;
+  }
+}
+
+.revenue-cell {
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  color: #00C6A2;
+}
+
+.progress-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  .progress-track {
+    flex: 1;
+    height: 5px;
+    background: #2a2a36;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.4s ease;
+  }
+
+  .progress-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    min-width: 36px;
+    text-align: right;
+  }
+}
+
+// ─── Responsive ───
+@media (max-width: 1100px) {
+  .kpi-grid   { grid-template-columns: repeat(2, 1fr); }
+  .charts-row {
+    grid-template-columns: 1fr 1fr;
+    .wide { grid-column: 1 / -1; }
+  }
+}
+
+@media (max-width: 680px) {
+  .kpi-grid   { grid-template-columns: 1fr 1fr; }
+  .charts-row { grid-template-columns: 1fr; }
+  .dashboard  { padding: 16px; }
+}

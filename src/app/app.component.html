@@ -1,0 +1,176 @@
+<div class="dashboard">
+
+  <!-- HEADER -->
+  <header class="dash-header">
+    <div class="header-left">
+      <div class="logo-mark">▲</div>
+      <div>
+        <h1>Dashboard de Vendas</h1>
+        <p class="subtitle"> · 2026</p>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="period-group">
+        <button kendoButton [toggleable]="true" [selected]="selectedPeriod==='weekly'"
+          (click)="selectedPeriod='weekly'" fillMode="flat" class="period-btn">Semana</button>
+        <button kendoButton [toggleable]="true" [selected]="selectedPeriod==='monthly'"
+          (click)="selectedPeriod='monthly'" fillMode="flat" class="period-btn">Mensal</button>
+        <button kendoButton [toggleable]="true" [selected]="selectedPeriod==='yearly'"
+          (click)="selectedPeriod='yearly'" fillMode="flat" class="period-btn">Anual</button>
+      </div>
+      <div class="last-update">Atualizado agora</div>
+    </div>
+  </header>
+
+  <!-- KPI CARDS -->
+  <section class="kpi-grid">
+    <div class="kpi-card" *ngFor="let kpi of kpis" [style.--accent]="kpi.color">
+      <div class="kpi-icon">{{ kpi.icon }}</div>
+      <div class="kpi-body">
+        <div class="kpi-title">{{ kpi.title }}</div>
+        <div class="kpi-value">{{ kpi.value }}</div>
+        <div class="kpi-change" [ngClass]="kpi.up ? 'up' : 'down'">
+          <span class="arrow">{{ kpi.up ? '↑' : '↓' }}</span> {{ kpi.change }} vs mês anterior
+        </div>
+      </div>
+      <div class="kpi-bar" [style.background]="kpi.color"></div>
+    </div>
+  </section>
+
+  <!-- CHARTS ROW -->
+  <section class="charts-row">
+
+    <!-- Revenue Line Chart -->
+    <div class="chart-card wide">
+      <div class="card-header">
+        <h2>Receita Mensal</h2>
+        <span class="badge">2024</span>
+      </div>
+      <kendo-chart class="kendo-chart">
+        <kendo-chart-legend position="bottom" orientation="horizontal"></kendo-chart-legend>
+        <kendo-chart-tooltip format="{0:C0}"></kendo-chart-tooltip>
+        <kendo-chart-value-axis>
+          <kendo-chart-value-axis-item [labels]="{ format: 'R#{0:N0}', color: '#aaa', font: '11px Sora' }">
+          </kendo-chart-value-axis-item>
+        </kendo-chart-value-axis>
+        <kendo-chart-category-axis>
+          <kendo-chart-category-axis-item [categories]="revenueCategories"
+            [labels]="{ color: '#aaa', font: '11px Sora' }">
+          </kendo-chart-category-axis-item>
+        </kendo-chart-category-axis>
+        <kendo-chart-series>
+          <kendo-chart-series-item type="area" [data]="revenueSeries" name="Receita"
+            color="#7C6FFF" [opacity]="0.15" [line]="{ color: '#7C6FFF', width: 2 }">
+          </kendo-chart-series-item>
+          <kendo-chart-series-item type="line" [data]="metaSeries" name="Meta"
+            color="#FFA94D" [dashType]="'dash'" [width]="2">
+          </kendo-chart-series-item>
+        </kendo-chart-series>
+      </kendo-chart>
+    </div>
+
+    <!-- Donut Chart -->
+    <div class="chart-card narrow">
+      <div class="card-header">
+        <h2>Por Categoria</h2>
+        <span class="badge">%</span>
+      </div>
+      <kendo-chart class="kendo-chart donut-chart">
+        <kendo-chart-legend position="bottom" orientation="vertical"></kendo-chart-legend>
+        <kendo-chart-tooltip format="{0}%"></kendo-chart-tooltip>
+        <kendo-chart-series>
+          <kendo-chart-series-item type="donut" [data]="categoryData"
+            field="value" categoryField="category"
+            [holeSize]="60"
+            >
+          </kendo-chart-series-item>
+        </kendo-chart-series>
+      </kendo-chart>
+    </div>
+
+    <!-- Bar Chart Weekday -->
+    <div class="chart-card narrow">
+      <div class="card-header">
+        <h2>Vendas por Dia</h2>
+        <span class="badge">Semana</span>
+      </div>
+      <kendo-chart class="kendo-chart">
+        <kendo-chart-tooltip format="{0} pedidos"></kendo-chart-tooltip>
+        <kendo-chart-value-axis>
+          <kendo-chart-value-axis-item [labels]="{ color: '#aaa', font: '11px Sora' }">
+          </kendo-chart-value-axis-item>
+        </kendo-chart-value-axis>
+        <kendo-chart-category-axis>
+          <kendo-chart-category-axis-item [categories]="weekdayCategories"
+            [labels]="{ color: '#aaa', font: '11px Sora' }">
+          </kendo-chart-category-axis-item>
+        </kendo-chart-category-axis>
+        <kendo-chart-series>
+          <kendo-chart-series-item type="column" [data]="weekdaySales"
+            color="#00C6A2" [border]="{ width: 0 }" [gap]="0.4">
+          </kendo-chart-series-item>
+        </kendo-chart-series>
+      </kendo-chart>
+    </div>
+
+  </section>
+
+  <!-- GRID -->
+  <section class="grid-section">
+    <div class="card-header grid-header">
+      <h2>Top Vendedores</h2>
+      <span class="badge">Dezembro 2024</span>
+    </div>
+
+    <kendo-grid [data]="topSellers" [rowClass]="rowCallback" [height]="380">
+
+      <kendo-grid-column field="rank" title="#" [width]="55">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <span class="rank-badge" [ngClass]="'rank-' + dataItem.rank">{{ dataItem.rank }}</span>
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column field="name" title="Vendedor" [width]="200">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div class="seller-cell">
+            <div class="avatar">{{ dataItem.name[0] }}</div>
+            <span>{{ dataItem.name }}</span>
+          </div>
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column field="region" title="Região" [width]="160">
+      </kendo-grid-column>
+
+      <kendo-grid-column field="vendas" title="Vendas" [width]="100">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <strong>{{ dataItem.vendas }}</strong>
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column field="receita" title="Receita" [width]="140">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <span class="revenue-cell">{{ dataItem.receita }}</span>
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column field="meta" title="Meta %" [width]="180">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div class="progress-cell">
+            <div class="progress-track">
+              <div class="progress-fill"
+                [style.width.%]="dataItem.meta"
+                [style.background]="getMetaColor(dataItem.meta)">
+              </div>
+            </div>
+            <span class="progress-label" [style.color]="getMetaColor(dataItem.meta)">
+              {{ dataItem.meta }}%
+            </span>
+          </div>
+        </ng-template>
+      </kendo-grid-column>
+
+    </kendo-grid>
+  </section>
+
+</div>
