@@ -1,5 +1,4 @@
 import {
-  BreadCrumbComponent,
   color_default,
   drawing_exports,
   exportImage,
@@ -9,7 +8,10 @@ import {
   parseColor,
   support_default,
   throttle
-} from "./chunk-4AVP4IM2.js";
+} from "./chunk-R66PIJQH.js";
+import {
+  BreadCrumbComponent
+} from "./chunk-JWTLBTGT.js";
 import {
   IntlService
 } from "./chunk-BYJC23ZO.js";
@@ -21,9 +23,9 @@ import {
   arrowLeftIcon,
   arrowRightIcon,
   homeIcon
-} from "./chunk-N6QNG3E2.js";
-import "./chunk-DTBDDRYO.js";
+} from "./chunk-ISGH2VDR.js";
 import "./chunk-666KVM5K.js";
+import "./chunk-DTBDDRYO.js";
 import "./chunk-LGADJBGU.js";
 import {
   PreventableEvent,
@@ -41655,8 +41657,8 @@ var ChartComponent = class _ChartComponent {
     consts: () => {
       let i18n_0;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_CHARTS_FESM2022_PROGRESS_KENDO_ANGULAR_CHARTS_MJS_0 = goog.getMsg("No data available");
-        i18n_0 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_CHARTS_FESM2022_PROGRESS_KENDO_ANGULAR_CHARTS_MJS_0;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_CHARTS_FESM2022_PROGRESS_KENDO_ANGULAR_CHARTS_MJS_0 = goog.getMsg("No data available");
+        i18n_0 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_CHARTS_FESM2022_PROGRESS_KENDO_ANGULAR_CHARTS_MJS_0;
       } else {
         i18n_0 = $localize`:kendo.chart.noData|The message to display when no series are defined, or all series are empty:No data available`;
       }
@@ -53580,8 +53582,8 @@ var SankeyComponent = class _SankeyComponent {
     consts: () => {
       let i18n_1;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_CHARTS_FESM2022_PROGRESS_KENDO_ANGULAR_CHARTS_MJS_1 = goog.getMsg("({0} units)");
-        i18n_1 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_CHARTS_FESM2022_PROGRESS_KENDO_ANGULAR_CHARTS_MJS_1;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_CHARTS_FESM2022_PROGRESS_KENDO_ANGULAR_CHARTS_MJS_1 = goog.getMsg("({0} units)");
+        i18n_1 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_CHARTS_FESM2022_PROGRESS_KENDO_ANGULAR_CHARTS_MJS_1;
       } else {
         i18n_1 = $localize`:kendo.sankey.tooltipUnitFormat|The format string to use when displaying node and link values in the tooltip:({0} units)`;
       }

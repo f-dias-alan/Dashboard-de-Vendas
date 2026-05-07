@@ -1,4030 +1,9 @@
 import {
-  AnimationBuilder,
-  ButtonComponent,
-  IconWrapperComponent,
-  IconsService,
-  chevronLeftIcon,
-  chevronRightIcon
-} from "./chunk-N6QNG3E2.js";
-import {
-  animate,
-  style
-} from "./chunk-666KVM5K.js";
-import {
-  Keys,
-  ResizeBatchService,
-  ResizeSensorComponent,
-  closestInScope,
-  focusableSelector,
-  isDocumentAvailable,
-  isPresent,
   parseInlineStyles
 } from "./chunk-5CGSL6PB.js";
 import {
-  AsyncPipe,
-  NgClass,
-  NgStyle,
-  NgTemplateOutlet
-} from "./chunk-QPKUD5DG.js";
-import {
-  L10N_PREFIX,
-  LocalizationService
-} from "./chunk-ZKU76E52.js";
-import {
-  A
-} from "./chunk-CNTCTXXQ.js";
-import {
-  ChangeDetectorRef,
-  Component,
-  ContentChild,
-  ContentChildren,
-  Directive,
-  ElementRef,
-  EventEmitter,
-  Host,
-  HostBinding,
-  Input,
-  NgModule,
-  NgZone,
-  Optional,
-  Output,
-  Renderer2,
-  ReplaySubject,
-  Subject,
-  Subscription,
-  TemplateRef,
-  ViewChild,
-  ViewChildren,
-  filter,
-  forwardRef,
-  fromEvent,
-  isDevMode,
-  map,
-  merge,
-  setClassMetadata,
-  share,
-  startWith,
-  take,
-  ɵɵNgOnChangesFeature,
-  ɵɵProvidersFeature,
-  ɵɵadvance,
-  ɵɵattribute,
-  ɵɵclassMap,
-  ɵɵclassProp,
-  ɵɵconditional,
-  ɵɵcontentQuery,
-  ɵɵdefineComponent,
-  ɵɵdefineDirective,
-  ɵɵdefineInjector,
-  ɵɵdefineNgModule,
-  ɵɵdirectiveInject,
-  ɵɵelement,
-  ɵɵelementContainer,
-  ɵɵelementEnd,
-  ɵɵelementStart,
-  ɵɵgetCurrentView,
-  ɵɵlistener,
-  ɵɵloadQuery,
-  ɵɵnextContext,
-  ɵɵpipe,
-  ɵɵpipeBind1,
-  ɵɵprojection,
-  ɵɵprojectionDef,
-  ɵɵproperty,
-  ɵɵpureFunction1,
-  ɵɵpureFunction2,
-  ɵɵpureFunction5,
-  ɵɵqueryRefresh,
-  ɵɵreference,
-  ɵɵrepeater,
-  ɵɵrepeaterCreate,
-  ɵɵrepeaterTrackByIdentity,
-  ɵɵresetView,
-  ɵɵrestoreView,
-  ɵɵsanitizeUrl,
-  ɵɵstyleMap,
-  ɵɵstyleProp,
-  ɵɵtemplate,
-  ɵɵtemplateRefExtractor,
-  ɵɵtext,
-  ɵɵtextInterpolate,
-  ɵɵtextInterpolate1,
-  ɵɵviewQuery
-} from "./chunk-QYSYK2KG.js";
-import {
-  __export,
-  __spreadValues
+  __export
 } from "./chunk-XWLXMCJQ.js";
-
-// node_modules/@progress/kendo-angular-navigation/fesm2022/progress-kendo-angular-navigation.mjs
-var _c0 = ["*"];
-var _c1 = ["kendoActionSheetItem", ""];
-var _c2 = (a0) => ({
-  $implicit: a0
-});
-function ActionSheetItemComponent_Conditional_0_ng_template_0_Template(rf, ctx) {
-}
-function ActionSheetItemComponent_Conditional_0_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵtemplate(0, ActionSheetItemComponent_Conditional_0_ng_template_0_Template, 0, 0, "ng-template", 0);
-  }
-  if (rf & 2) {
-    const ctx_r0 = ɵɵnextContext();
-    ɵɵproperty("ngTemplateOutlet", ctx_r0.itemTemplate)("ngTemplateOutletContext", ɵɵpureFunction1(2, _c2, ctx_r0.item));
-  }
-}
-function ActionSheetItemComponent_Conditional_1_Conditional_1_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵelementStart(0, "span", 2);
-    ɵɵelement(1, "kendo-icon-wrapper", 4);
-    ɵɵelementEnd();
-  }
-  if (rf & 2) {
-    const ctx_r0 = ɵɵnextContext(2);
-    ɵɵadvance();
-    ɵɵstyleMap(ctx_r0.manageIconStyles(ctx_r0.item));
-    ɵɵclassMap(ctx_r0.manageIconClasses(ctx_r0.item));
-    ɵɵproperty("name", ctx_r0.item.icon)("customFontClass", ctx_r0.item.iconClass)("svgIcon", ctx_r0.item.svgIcon);
-  }
-}
-function ActionSheetItemComponent_Conditional_1_Conditional_2_Conditional_1_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵelementStart(0, "span", 5);
-    ɵɵtext(1);
-    ɵɵelementEnd();
-  }
-  if (rf & 2) {
-    const ctx_r0 = ɵɵnextContext(3);
-    ɵɵadvance();
-    ɵɵtextInterpolate(ctx_r0.item.title);
-  }
-}
-function ActionSheetItemComponent_Conditional_1_Conditional_2_Conditional_2_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵelementStart(0, "span", 6);
-    ɵɵtext(1);
-    ɵɵelementEnd();
-  }
-  if (rf & 2) {
-    const ctx_r0 = ɵɵnextContext(3);
-    ɵɵadvance();
-    ɵɵtextInterpolate(ctx_r0.item.description);
-  }
-}
-function ActionSheetItemComponent_Conditional_1_Conditional_2_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵelementStart(0, "span", 3);
-    ɵɵtemplate(1, ActionSheetItemComponent_Conditional_1_Conditional_2_Conditional_1_Template, 2, 1, "span", 5)(2, ActionSheetItemComponent_Conditional_1_Conditional_2_Conditional_2_Template, 2, 1, "span", 6);
-    ɵɵelementEnd();
-  }
-  if (rf & 2) {
-    const ctx_r0 = ɵɵnextContext(2);
-    ɵɵadvance();
-    ɵɵconditional(ctx_r0.item.title ? 1 : -1);
-    ɵɵadvance();
-    ɵɵconditional(ctx_r0.item.description ? 2 : -1);
-  }
-}
-function ActionSheetItemComponent_Conditional_1_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵelementStart(0, "span", 1);
-    ɵɵtemplate(1, ActionSheetItemComponent_Conditional_1_Conditional_1_Template, 2, 7, "span", 2)(2, ActionSheetItemComponent_Conditional_1_Conditional_2_Template, 3, 2, "span", 3);
-    ɵɵelementEnd();
-  }
-  if (rf & 2) {
-    const ctx_r0 = ɵɵnextContext();
-    ɵɵadvance();
-    ɵɵconditional(ctx_r0.item.icon || ctx_r0.item.iconClass || ctx_r0.item.svgIcon ? 1 : -1);
-    ɵɵadvance();
-    ɵɵconditional(ctx_r0.item.title || ctx_r0.item.description ? 2 : -1);
-  }
-}
-var _c3 = ["kendoActionSheetList", ""];
-function ActionSheetListComponent_For_1_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵelement(0, "span", 1);
-  }
-  if (rf & 2) {
-    const item_r1 = ctx.$implicit;
-    const ctx_r1 = ɵɵnextContext();
-    ɵɵclassProp("k-actionsheet-item", true)("k-disabled", item_r1.disabled);
-    ɵɵproperty("ngClass", item_r1.cssClass)("ngStyle", item_r1.cssStyle)("itemTemplate", ctx_r1.itemTemplate)("item", item_r1);
-    ɵɵattribute("aria-disabled", item_r1.disabled)("kendo-actionsheet-item-index", ctx_r1.setAttrIndex(item_r1));
-  }
-}
-var _c4 = ["childContainer"];
-var _c5 = [[["kendo-actionsheet-view"]]];
-var _c6 = ["kendo-actionsheet-view"];
-var _c7 = (a0, a1) => [a0, a1, "k-actions", "k-actionsheet-footer"];
-function ActionSheetComponent_Conditional_0_Conditional_5_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵprojection(0);
-  }
-}
-function ActionSheetComponent_Conditional_0_Conditional_6_Conditional_1_ng_template_0_Template(rf, ctx) {
-}
-function ActionSheetComponent_Conditional_0_Conditional_6_Conditional_1_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵtemplate(0, ActionSheetComponent_Conditional_0_Conditional_6_Conditional_1_ng_template_0_Template, 0, 0, "ng-template", 6);
-  }
-  if (rf & 2) {
-    const ctx_r1 = ɵɵnextContext(3);
-    ɵɵproperty("ngTemplateOutlet", ctx_r1.actionSheetTemplate == null ? null : ctx_r1.actionSheetTemplate.templateRef);
-  }
-}
-function ActionSheetComponent_Conditional_0_Conditional_6_Conditional_2_Conditional_0_Conditional_1_ng_template_0_Template(rf, ctx) {
-}
-function ActionSheetComponent_Conditional_0_Conditional_6_Conditional_2_Conditional_0_Conditional_1_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵtemplate(0, ActionSheetComponent_Conditional_0_Conditional_6_Conditional_2_Conditional_0_Conditional_1_ng_template_0_Template, 0, 0, "ng-template", 6);
-  }
-  if (rf & 2) {
-    const ctx_r1 = ɵɵnextContext(5);
-    ɵɵproperty("ngTemplateOutlet", ctx_r1.headerTemplate == null ? null : ctx_r1.headerTemplate.templateRef);
-  }
-}
-function ActionSheetComponent_Conditional_0_Conditional_6_Conditional_2_Conditional_0_Conditional_2_Conditional_2_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵelementStart(0, "div", 12);
-    ɵɵtext(1);
-    ɵɵelementEnd();
-  }
-  if (rf & 2) {
-    const ctx_r1 = ɵɵnextContext(6);
-    ɵɵadvance();
-    ɵɵtextInterpolate(ctx_r1.title);
-  }
-}
-function ActionSheetComponent_Conditional_0_Conditional_6_Conditional_2_Conditional_0_Conditional_2_Conditional_3_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵelementStart(0, "div", 13);
-    ɵɵtext(1);
-    ɵɵelementEnd();
-  }
-  if (rf & 2) {
-    const ctx_r1 = ɵɵnextContext(6);
-    ɵɵadvance();
-    ɵɵtextInterpolate(ctx_r1.subtitle);
-  }
-}
-function ActionSheetComponent_Conditional_0_Conditional_6_Conditional_2_Conditional_0_Conditional_2_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵelementStart(0, "div", 10)(1, "div", 11);
-    ɵɵtemplate(2, ActionSheetComponent_Conditional_0_Conditional_6_Conditional_2_Conditional_0_Conditional_2_Conditional_2_Template, 2, 1, "div", 12)(3, ActionSheetComponent_Conditional_0_Conditional_6_Conditional_2_Conditional_0_Conditional_2_Conditional_3_Template, 2, 1, "div", 13);
-    ɵɵelementEnd()();
-  }
-  if (rf & 2) {
-    const ctx_r1 = ɵɵnextContext(5);
-    ɵɵadvance();
-    ɵɵproperty("id", ctx_r1.titleId);
-    ɵɵadvance();
-    ɵɵconditional(ctx_r1.title ? 2 : -1);
-    ɵɵadvance();
-    ɵɵconditional(ctx_r1.subtitle ? 3 : -1);
-  }
-}
-function ActionSheetComponent_Conditional_0_Conditional_6_Conditional_2_Conditional_0_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵelementStart(0, "div", 7);
-    ɵɵtemplate(1, ActionSheetComponent_Conditional_0_Conditional_6_Conditional_2_Conditional_0_Conditional_1_Template, 1, 1, null, 6)(2, ActionSheetComponent_Conditional_0_Conditional_6_Conditional_2_Conditional_0_Conditional_2_Template, 4, 3, "div", 10);
-    ɵɵelementEnd();
-  }
-  if (rf & 2) {
-    const ctx_r1 = ɵɵnextContext(4);
-    ɵɵadvance();
-    ɵɵconditional(ctx_r1.headerTemplate ? 1 : 2);
-  }
-}
-function ActionSheetComponent_Conditional_0_Conditional_6_Conditional_2_Conditional_1_Conditional_1_ng_template_0_Template(rf, ctx) {
-}
-function ActionSheetComponent_Conditional_0_Conditional_6_Conditional_2_Conditional_1_Conditional_1_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵtemplate(0, ActionSheetComponent_Conditional_0_Conditional_6_Conditional_2_Conditional_1_Conditional_1_ng_template_0_Template, 0, 0, "ng-template", 6);
-  }
-  if (rf & 2) {
-    const ctx_r1 = ɵɵnextContext(5);
-    ɵɵproperty("ngTemplateOutlet", ctx_r1.contentTemplate == null ? null : ctx_r1.contentTemplate.templateRef);
-  }
-}
-function ActionSheetComponent_Conditional_0_Conditional_6_Conditional_2_Conditional_1_Conditional_2_Conditional_0_Template(rf, ctx) {
-  if (rf & 1) {
-    const _r3 = ɵɵgetCurrentView();
-    ɵɵelementStart(0, "div", 16);
-    ɵɵlistener("itemClick", function ActionSheetComponent_Conditional_0_Conditional_6_Conditional_2_Conditional_1_Conditional_2_Conditional_0_Template_div_itemClick_0_listener($event) {
-      ɵɵrestoreView(_r3);
-      const ctx_r1 = ɵɵnextContext(6);
-      return ɵɵresetView(ctx_r1.onItemClick($event));
-    });
-    ɵɵelementEnd();
-  }
-  if (rf & 2) {
-    const ctx_r1 = ɵɵnextContext(6);
-    ɵɵproperty("groupItems", ctx_r1.topGroupItems)("allItems", ctx_r1.items)("itemTemplate", ctx_r1.itemTemplate == null ? null : ctx_r1.itemTemplate.templateRef);
-  }
-}
-function ActionSheetComponent_Conditional_0_Conditional_6_Conditional_2_Conditional_1_Conditional_2_Conditional_1_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵelement(0, "hr", 15);
-  }
-}
-function ActionSheetComponent_Conditional_0_Conditional_6_Conditional_2_Conditional_1_Conditional_2_Conditional_2_Template(rf, ctx) {
-  if (rf & 1) {
-    const _r4 = ɵɵgetCurrentView();
-    ɵɵelementStart(0, "div", 16);
-    ɵɵlistener("itemClick", function ActionSheetComponent_Conditional_0_Conditional_6_Conditional_2_Conditional_1_Conditional_2_Conditional_2_Template_div_itemClick_0_listener($event) {
-      ɵɵrestoreView(_r4);
-      const ctx_r1 = ɵɵnextContext(6);
-      return ɵɵresetView(ctx_r1.onItemClick($event));
-    });
-    ɵɵelementEnd();
-  }
-  if (rf & 2) {
-    const ctx_r1 = ɵɵnextContext(6);
-    ɵɵproperty("groupItems", ctx_r1.bottomGroupItems)("allItems", ctx_r1.items)("itemTemplate", ctx_r1.itemTemplate == null ? null : ctx_r1.itemTemplate.templateRef);
-  }
-}
-function ActionSheetComponent_Conditional_0_Conditional_6_Conditional_2_Conditional_1_Conditional_2_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵtemplate(0, ActionSheetComponent_Conditional_0_Conditional_6_Conditional_2_Conditional_1_Conditional_2_Conditional_0_Template, 1, 3, "div", 14)(1, ActionSheetComponent_Conditional_0_Conditional_6_Conditional_2_Conditional_1_Conditional_2_Conditional_1_Template, 1, 0, "hr", 15)(2, ActionSheetComponent_Conditional_0_Conditional_6_Conditional_2_Conditional_1_Conditional_2_Conditional_2_Template, 1, 3, "div", 14);
-  }
-  if (rf & 2) {
-    const ctx_r1 = ɵɵnextContext(5);
-    ɵɵconditional(ctx_r1.topGroupItems ? 0 : -1);
-    ɵɵadvance();
-    ɵɵconditional(ctx_r1.shouldRenderSeparator ? 1 : -1);
-    ɵɵadvance();
-    ɵɵconditional(ctx_r1.bottomGroupItems ? 2 : -1);
-  }
-}
-function ActionSheetComponent_Conditional_0_Conditional_6_Conditional_2_Conditional_1_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵelementStart(0, "div", 8);
-    ɵɵtemplate(1, ActionSheetComponent_Conditional_0_Conditional_6_Conditional_2_Conditional_1_Conditional_1_Template, 1, 1, null, 6)(2, ActionSheetComponent_Conditional_0_Conditional_6_Conditional_2_Conditional_1_Conditional_2_Template, 3, 3);
-    ɵɵelementEnd();
-  }
-  if (rf & 2) {
-    const ctx_r1 = ɵɵnextContext(4);
-    ɵɵadvance();
-    ɵɵconditional(ctx_r1.contentTemplate ? 1 : 2);
-  }
-}
-function ActionSheetComponent_Conditional_0_Conditional_6_Conditional_2_Conditional_2_Conditional_1_ng_template_0_Template(rf, ctx) {
-}
-function ActionSheetComponent_Conditional_0_Conditional_6_Conditional_2_Conditional_2_Conditional_1_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵtemplate(0, ActionSheetComponent_Conditional_0_Conditional_6_Conditional_2_Conditional_2_Conditional_1_ng_template_0_Template, 0, 0, "ng-template", 6);
-  }
-  if (rf & 2) {
-    const ctx_r1 = ɵɵnextContext(5);
-    ɵɵproperty("ngTemplateOutlet", ctx_r1.footerTemplate == null ? null : ctx_r1.footerTemplate.templateRef);
-  }
-}
-function ActionSheetComponent_Conditional_0_Conditional_6_Conditional_2_Conditional_2_Conditional_2_For_1_Template(rf, ctx) {
-  if (rf & 1) {
-    const _r5 = ɵɵgetCurrentView();
-    ɵɵelementStart(0, "button", 18);
-    ɵɵlistener("click", function ActionSheetComponent_Conditional_0_Conditional_6_Conditional_2_Conditional_2_Conditional_2_For_1_Template_button_click_0_listener() {
-      const actionButton_r6 = ɵɵrestoreView(_r5).$implicit;
-      const ctx_r1 = ɵɵnextContext(6);
-      return ɵɵresetView(ctx_r1.action.emit(actionButton_r6));
-    });
-    ɵɵtext(1);
-    ɵɵelementEnd();
-  }
-  if (rf & 2) {
-    const actionButton_r6 = ctx.$implicit;
-    ɵɵproperty("icon", actionButton_r6.icon)("title", actionButton_r6.title)("svgIcon", actionButton_r6.svgIcon)("themeColor", actionButton_r6.themeColor)("fillMode", actionButton_r6.fillMode)("size", actionButton_r6.size);
-    ɵɵattribute("aria-label", actionButton_r6.text);
-    ɵɵadvance();
-    ɵɵtextInterpolate1(" ", actionButton_r6.text, " ");
-  }
-}
-function ActionSheetComponent_Conditional_0_Conditional_6_Conditional_2_Conditional_2_Conditional_2_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵrepeaterCreate(0, ActionSheetComponent_Conditional_0_Conditional_6_Conditional_2_Conditional_2_Conditional_2_For_1_Template, 2, 8, "button", 17, ɵɵrepeaterTrackByIdentity);
-  }
-  if (rf & 2) {
-    const ctx_r1 = ɵɵnextContext(5);
-    ɵɵrepeater(ctx_r1.actions);
-  }
-}
-function ActionSheetComponent_Conditional_0_Conditional_6_Conditional_2_Conditional_2_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵelementStart(0, "div", 9);
-    ɵɵtemplate(1, ActionSheetComponent_Conditional_0_Conditional_6_Conditional_2_Conditional_2_Conditional_1_Template, 1, 1, null, 6)(2, ActionSheetComponent_Conditional_0_Conditional_6_Conditional_2_Conditional_2_Conditional_2_Template, 2, 0);
-    ɵɵelementEnd();
-  }
-  if (rf & 2) {
-    const ctx_r1 = ɵɵnextContext(4);
-    ɵɵproperty("ngClass", ɵɵpureFunction2(3, _c7, ctx_r1.orientationClass, ctx_r1.alignmentClass));
-    ɵɵadvance();
-    ɵɵconditional(ctx_r1.footerTemplate ? 1 : -1);
-    ɵɵadvance();
-    ɵɵconditional(!ctx_r1.footerTemplate && ctx_r1.actions ? 2 : -1);
-  }
-}
-function ActionSheetComponent_Conditional_0_Conditional_6_Conditional_2_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵtemplate(0, ActionSheetComponent_Conditional_0_Conditional_6_Conditional_2_Conditional_0_Template, 3, 1, "div", 7)(1, ActionSheetComponent_Conditional_0_Conditional_6_Conditional_2_Conditional_1_Template, 3, 1, "div", 8)(2, ActionSheetComponent_Conditional_0_Conditional_6_Conditional_2_Conditional_2_Template, 3, 6, "div", 9);
-  }
-  if (rf & 2) {
-    const ctx_r1 = ɵɵnextContext(3);
-    ɵɵconditional(ctx_r1.title || ctx_r1.subtitle || ctx_r1.headerTemplate ? 0 : -1);
-    ɵɵadvance();
-    ɵɵconditional(ctx_r1.items || ctx_r1.contentTemplate ? 1 : -1);
-    ɵɵadvance();
-    ɵɵconditional(ctx_r1.footerTemplate || ctx_r1.actions ? 2 : -1);
-  }
-}
-function ActionSheetComponent_Conditional_0_Conditional_6_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵelementStart(0, "div", 5);
-    ɵɵtemplate(1, ActionSheetComponent_Conditional_0_Conditional_6_Conditional_1_Template, 1, 1, null, 6)(2, ActionSheetComponent_Conditional_0_Conditional_6_Conditional_2_Template, 3, 3);
-    ɵɵelementEnd();
-  }
-  if (rf & 2) {
-    const ctx_r1 = ɵɵnextContext(2);
-    ɵɵadvance();
-    ɵɵconditional(ctx_r1.actionSheetTemplate ? 1 : 2);
-  }
-}
-function ActionSheetComponent_Conditional_0_Template(rf, ctx) {
-  if (rf & 1) {
-    const _r1 = ɵɵgetCurrentView();
-    ɵɵelementStart(0, "div", 1);
-    ɵɵlistener("click", function ActionSheetComponent_Conditional_0_Template_div_click_0_listener() {
-      ɵɵrestoreView(_r1);
-      const ctx_r1 = ɵɵnextContext();
-      return ɵɵresetView(ctx_r1.onOverlayClick());
-    });
-    ɵɵelementEnd();
-    ɵɵelementStart(1, "div", 2)(2, "div", 3, 0)(4, "div", 4);
-    ɵɵtemplate(5, ActionSheetComponent_Conditional_0_Conditional_5_Template, 1, 0)(6, ActionSheetComponent_Conditional_0_Conditional_6_Template, 3, 1, "div", 5);
-    ɵɵelementEnd()()();
-  }
-  if (rf & 2) {
-    const ctx_r1 = ɵɵnextContext();
-    ɵɵadvance(2);
-    ɵɵstyleMap(ctx_r1.childContainerStyle);
-    ɵɵadvance(2);
-    ɵɵstyleProp("--kendo-actionsheet-view-current", (ctx_r1.actionSheetViews == null ? null : ctx_r1.actionSheetViews.length) > 0 ? ctx_r1.currentView : null);
-    ɵɵproperty("ngClass", ctx_r1.cssClass)("ngStyle", ctx_r1.cssStyle);
-    ɵɵattribute("aria-labelledby", ctx_r1.titleId);
-    ɵɵadvance();
-    ɵɵconditional((ctx_r1.actionSheetViews == null ? null : ctx_r1.actionSheetViews.length) > 0 ? 5 : -1);
-    ɵɵadvance();
-    ɵɵconditional((ctx_r1.actionSheetViews == null ? null : ctx_r1.actionSheetViews.length) === 0 ? 6 : -1);
-  }
-}
-function ActionSheetViewComponent_Conditional_0_ng_template_0_Template(rf, ctx) {
-}
-function ActionSheetViewComponent_Conditional_0_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵtemplate(0, ActionSheetViewComponent_Conditional_0_ng_template_0_Template, 0, 0, "ng-template", 0);
-  }
-  if (rf & 2) {
-    const ctx_r0 = ɵɵnextContext();
-    ɵɵproperty("ngTemplateOutlet", ctx_r0.actionSheetTemplate == null ? null : ctx_r0.actionSheetTemplate.templateRef);
-  }
-}
-function ActionSheetViewComponent_Conditional_1_Conditional_0_Conditional_1_ng_template_0_Template(rf, ctx) {
-}
-function ActionSheetViewComponent_Conditional_1_Conditional_0_Conditional_1_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵtemplate(0, ActionSheetViewComponent_Conditional_1_Conditional_0_Conditional_1_ng_template_0_Template, 0, 0, "ng-template", 0);
-  }
-  if (rf & 2) {
-    const ctx_r0 = ɵɵnextContext(3);
-    ɵɵproperty("ngTemplateOutlet", ctx_r0.headerTemplate.templateRef);
-  }
-}
-function ActionSheetViewComponent_Conditional_1_Conditional_0_Conditional_2_Conditional_2_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵelementStart(0, "div", 6);
-    ɵɵtext(1);
-    ɵɵelementEnd();
-  }
-  if (rf & 2) {
-    const ctx_r0 = ɵɵnextContext(4);
-    ɵɵadvance();
-    ɵɵtextInterpolate(ctx_r0.title);
-  }
-}
-function ActionSheetViewComponent_Conditional_1_Conditional_0_Conditional_2_Conditional_3_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵelementStart(0, "div", 7);
-    ɵɵtext(1);
-    ɵɵelementEnd();
-  }
-  if (rf & 2) {
-    const ctx_r0 = ɵɵnextContext(4);
-    ɵɵadvance();
-    ɵɵtextInterpolate(ctx_r0.subtitle);
-  }
-}
-function ActionSheetViewComponent_Conditional_1_Conditional_0_Conditional_2_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵelementStart(0, "div", 4)(1, "div", 5);
-    ɵɵtemplate(2, ActionSheetViewComponent_Conditional_1_Conditional_0_Conditional_2_Conditional_2_Template, 2, 1, "div", 6)(3, ActionSheetViewComponent_Conditional_1_Conditional_0_Conditional_2_Conditional_3_Template, 2, 1, "div", 7);
-    ɵɵelementEnd()();
-  }
-  if (rf & 2) {
-    const ctx_r0 = ɵɵnextContext(3);
-    ɵɵadvance();
-    ɵɵproperty("id", ctx_r0.titleId);
-    ɵɵadvance();
-    ɵɵconditional(ctx_r0.title ? 2 : -1);
-    ɵɵadvance();
-    ɵɵconditional(ctx_r0.subtitle ? 3 : -1);
-  }
-}
-function ActionSheetViewComponent_Conditional_1_Conditional_0_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵelementStart(0, "div", 1);
-    ɵɵtemplate(1, ActionSheetViewComponent_Conditional_1_Conditional_0_Conditional_1_Template, 1, 1, null, 0)(2, ActionSheetViewComponent_Conditional_1_Conditional_0_Conditional_2_Template, 4, 3, "div", 4);
-    ɵɵelementEnd();
-  }
-  if (rf & 2) {
-    const ctx_r0 = ɵɵnextContext(2);
-    ɵɵadvance();
-    ɵɵconditional(ctx_r0.headerTemplate ? 1 : 2);
-  }
-}
-function ActionSheetViewComponent_Conditional_1_Conditional_1_ng_template_1_Template(rf, ctx) {
-}
-function ActionSheetViewComponent_Conditional_1_Conditional_1_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵelementStart(0, "div", 2);
-    ɵɵtemplate(1, ActionSheetViewComponent_Conditional_1_Conditional_1_ng_template_1_Template, 0, 0, "ng-template", 0);
-    ɵɵelementEnd();
-  }
-  if (rf & 2) {
-    const ctx_r0 = ɵɵnextContext(2);
-    ɵɵadvance();
-    ɵɵproperty("ngTemplateOutlet", ctx_r0.contentTemplate.templateRef);
-  }
-}
-function ActionSheetViewComponent_Conditional_1_Conditional_2_ng_template_1_Template(rf, ctx) {
-}
-function ActionSheetViewComponent_Conditional_1_Conditional_2_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵelementStart(0, "div", 3);
-    ɵɵtemplate(1, ActionSheetViewComponent_Conditional_1_Conditional_2_ng_template_1_Template, 0, 0, "ng-template", 0);
-    ɵɵelementEnd();
-  }
-  if (rf & 2) {
-    const ctx_r0 = ɵɵnextContext(2);
-    ɵɵproperty("ngClass", ɵɵpureFunction2(2, _c7, ctx_r0.orientationClass, ctx_r0.alignmentClass));
-    ɵɵadvance();
-    ɵɵproperty("ngTemplateOutlet", ctx_r0.footerTemplate.templateRef);
-  }
-}
-function ActionSheetViewComponent_Conditional_1_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵtemplate(0, ActionSheetViewComponent_Conditional_1_Conditional_0_Template, 3, 1, "div", 1)(1, ActionSheetViewComponent_Conditional_1_Conditional_1_Template, 2, 1, "div", 2)(2, ActionSheetViewComponent_Conditional_1_Conditional_2_Template, 2, 5, "div", 3);
-  }
-  if (rf & 2) {
-    const ctx_r0 = ɵɵnextContext();
-    ɵɵconditional(ctx_r0.title || ctx_r0.subtitle || ctx_r0.headerTemplate ? 0 : -1);
-    ɵɵadvance();
-    ɵɵconditional(ctx_r0.contentTemplate ? 1 : -1);
-    ɵɵadvance();
-    ɵɵconditional(ctx_r0.footerTemplate ? 2 : -1);
-  }
-}
-var _c8 = ["kendoBottomNavigationItem", ""];
-function BottomNavigationItemComponent_Conditional_0_Conditional_0_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵelement(0, "kendo-icon-wrapper", 1);
-  }
-  if (rf & 2) {
-    const ctx_r0 = ɵɵnextContext(2);
-    ɵɵproperty("name", ctx_r0.item.icon)("customFontClass", ctx_r0.item.iconClass)("svgIcon", ctx_r0.item.svgIcon);
-  }
-}
-function BottomNavigationItemComponent_Conditional_0_Conditional_1_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵelementStart(0, "span", 2);
-    ɵɵtext(1);
-    ɵɵelementEnd();
-  }
-  if (rf & 2) {
-    const ctx_r0 = ɵɵnextContext(2);
-    ɵɵadvance();
-    ɵɵtextInterpolate(ctx_r0.item.text);
-  }
-}
-function BottomNavigationItemComponent_Conditional_0_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵtemplate(0, BottomNavigationItemComponent_Conditional_0_Conditional_0_Template, 1, 3, "kendo-icon-wrapper", 1)(1, BottomNavigationItemComponent_Conditional_0_Conditional_1_Template, 2, 1, "span", 2);
-  }
-  if (rf & 2) {
-    const ctx_r0 = ɵɵnextContext();
-    ɵɵconditional(ctx_r0.itemIcon ? 0 : -1);
-    ɵɵadvance();
-    ɵɵconditional(ctx_r0.item.text ? 1 : -1);
-  }
-}
-function BottomNavigationItemComponent_Conditional_1_ng_template_0_Template(rf, ctx) {
-}
-function BottomNavigationItemComponent_Conditional_1_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵtemplate(0, BottomNavigationItemComponent_Conditional_1_ng_template_0_Template, 0, 0, "ng-template", 0);
-  }
-  if (rf & 2) {
-    const ctx_r0 = ɵɵnextContext();
-    ɵɵproperty("ngTemplateOutlet", ctx_r0.itemTemplate == null ? null : ctx_r0.itemTemplate.templateRef)("ngTemplateOutletContext", ɵɵpureFunction1(2, _c2, ctx_r0.item));
-  }
-}
-function BottomNavigationComponent_Conditional_0_For_1_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵelement(0, "span", 0);
-  }
-  if (rf & 2) {
-    const item_r1 = ctx.$implicit;
-    const ɵ$index_2_r2 = ctx.$index;
-    const ctx_r2 = ɵɵnextContext(2);
-    ɵɵproperty("disabledComponent", ctx_r2.disabled)("item", item_r1)("index", ɵ$index_2_r2)("selectedIdx", ctx_r2.selectedIdx)("itemTemplate", ctx_r2.itemTemplate)("ngClass", item_r1.cssClass)("ngStyle", item_r1.cssStyle)("orientation", ctx_r2.itemFlow);
-    ɵɵattribute("data-kendo-bottomnavigation-index", ɵ$index_2_r2);
-  }
-}
-function BottomNavigationComponent_Conditional_0_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵrepeaterCreate(0, BottomNavigationComponent_Conditional_0_For_1_Template, 1, 9, "span", 0, ɵɵrepeaterTrackByIdentity);
-  }
-  if (rf & 2) {
-    const ctx_r2 = ɵɵnextContext();
-    ɵɵrepeater(ctx_r2.items);
-  }
-}
-var _c9 = ["kendoBreadCrumbItem", ""];
-var _c10 = [[["", "kendoBreadCrumbSeparator", ""]]];
-var _c11 = ["[kendoBreadCrumbSeparator]"];
-var _c12 = (a0, a1, a2, a3, a4) => ({
-  "k-breadcrumb-root-link": a0,
-  "k-breadcrumb-link": a1,
-  "k-breadcrumb-icontext-link": a2,
-  "k-breadcrumb-icon-link": a3,
-  "k-disabled": a4
-});
-var _c13 = (a0, a1) => ({
-  $implicit: a0,
-  index: a1
-});
-function BreadCrumbItemComponent_ng_template_0_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵprojection(0);
-  }
-}
-function BreadCrumbItemComponent_Conditional_2_ng_container_0_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵelementContainer(0);
-  }
-}
-function BreadCrumbItemComponent_Conditional_2_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵtemplate(0, BreadCrumbItemComponent_Conditional_2_ng_container_0_Template, 1, 0, "ng-container", 1);
-  }
-  if (rf & 2) {
-    ɵɵnextContext();
-    const separator_r1 = ɵɵreference(1);
-    ɵɵproperty("ngTemplateOutlet", separator_r1);
-  }
-}
-function BreadCrumbItemComponent_Conditional_3_Conditional_0_Conditional_1_Template(rf, ctx) {
-  if (rf & 1) {
-    const _r2 = ɵɵgetCurrentView();
-    ɵɵelementStart(0, "img", 7);
-    ɵɵlistener("load", function BreadCrumbItemComponent_Conditional_3_Conditional_0_Conditional_1_Template_img_load_0_listener() {
-      ɵɵrestoreView(_r2);
-      const ctx_r2 = ɵɵnextContext(3);
-      return ɵɵresetView(ctx_r2.onImageLoad());
-    });
-    ɵɵelementEnd();
-  }
-  if (rf & 2) {
-    const ctx_r2 = ɵɵnextContext(3);
-    ɵɵproperty("src", ctx_r2.item.data.imageUrl, ɵɵsanitizeUrl);
-  }
-}
-function BreadCrumbItemComponent_Conditional_3_Conditional_0_Conditional_2_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵelement(0, "kendo-icon-wrapper", 5);
-  }
-  if (rf & 2) {
-    const ctx_r2 = ɵɵnextContext(3);
-    ɵɵproperty("name", ctx_r2.item.data.icon)("customFontClass", ctx_r2.item.data.iconClass)("svgIcon", ctx_r2.item.data.svgIcon);
-  }
-}
-function BreadCrumbItemComponent_Conditional_3_Conditional_0_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵelementStart(0, "span", 2);
-    ɵɵtemplate(1, BreadCrumbItemComponent_Conditional_3_Conditional_0_Conditional_1_Template, 1, 1, "img", 4)(2, BreadCrumbItemComponent_Conditional_3_Conditional_0_Conditional_2_Template, 1, 3, "kendo-icon-wrapper", 5);
-    ɵɵelementStart(3, "span", 6);
-    ɵɵtext(4);
-    ɵɵelementEnd()();
-  }
-  if (rf & 2) {
-    const ctx_r2 = ɵɵnextContext(2);
-    ɵɵproperty("ngClass", ɵɵpureFunction5(8, _c12, ctx_r2.item.context.isFirst, ctx_r2.index !== 0, (!!ctx_r2.item.data.icon || !!ctx_r2.item.data.svgIcon) && !!ctx_r2.item.data.text, (!!ctx_r2.item.data.icon || !!ctx_r2.item.data.svgIcon) && !ctx_r2.item.data.text, ctx_r2.disabled))("title", ctx_r2.item.data.title || "")("tabindex", ctx_r2.disabled ? -1 : 0);
-    ɵɵattribute("aria-disabled", ctx_r2.disabled)("aria-current", ctx_r2.item.context.isLast ? "page" : null);
-    ɵɵadvance();
-    ɵɵconditional(ctx_r2.item.data.imageUrl ? 1 : -1);
-    ɵɵadvance();
-    ɵɵconditional(ctx_r2.item.data.icon || ctx_r2.item.data.iconClass || ctx_r2.item.data.svgIcon ? 2 : -1);
-    ɵɵadvance(2);
-    ɵɵtextInterpolate(ctx_r2.item.data.text);
-  }
-}
-function BreadCrumbItemComponent_Conditional_3_Conditional_1_ng_template_0_Template(rf, ctx) {
-}
-function BreadCrumbItemComponent_Conditional_3_Conditional_1_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵtemplate(0, BreadCrumbItemComponent_Conditional_3_Conditional_1_ng_template_0_Template, 0, 0, "ng-template", 3);
-  }
-  if (rf & 2) {
-    const ctx_r2 = ɵɵnextContext(2);
-    ɵɵproperty("ngTemplateOutlet", ctx_r2.itemTemplate)("ngTemplateOutletContext", ɵɵpureFunction2(2, _c13, ctx_r2.item.data, ctx_r2.index));
-  }
-}
-function BreadCrumbItemComponent_Conditional_3_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵtemplate(0, BreadCrumbItemComponent_Conditional_3_Conditional_0_Template, 5, 14, "span", 2)(1, BreadCrumbItemComponent_Conditional_3_Conditional_1_Template, 1, 5, null, 3);
-  }
-  if (rf & 2) {
-    const ctx_r2 = ɵɵnextContext();
-    ɵɵconditional(!ctx_r2.itemTemplate ? 0 : -1);
-    ɵɵadvance();
-    ɵɵconditional(ctx_r2.itemTemplate ? 1 : -1);
-  }
-}
-function BreadCrumbItemComponent_Conditional_4_ng_container_0_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵelementContainer(0);
-  }
-}
-function BreadCrumbItemComponent_Conditional_4_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵtemplate(0, BreadCrumbItemComponent_Conditional_4_ng_container_0_Template, 1, 0, "ng-container", 1);
-  }
-  if (rf & 2) {
-    ɵɵnextContext();
-    const separator_r1 = ɵɵreference(1);
-    ɵɵproperty("ngTemplateOutlet", separator_r1);
-  }
-}
-var _c14 = ["kendoBreadCrumbSeparator", ""];
-var _c15 = ["kendoBreadCrumbList", ""];
-function BreadCrumbListComponent_For_1_Conditional_0_Conditional_2_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵelement(0, "span", 2);
-  }
-  if (rf & 2) {
-    const ctx_r0 = ɵɵnextContext(3);
-    ɵɵproperty("icon", ctx_r0.separatorIcon)("svgIcon", ctx_r0.separatorSVGIcon);
-  }
-}
-function BreadCrumbListComponent_For_1_Conditional_0_Conditional_3_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵelement(0, "span", 2);
-  }
-  if (rf & 2) {
-    const ctx_r0 = ɵɵnextContext(3);
-    ɵɵproperty("icon", ctx_r0.separatorIcon)("svgIcon", ctx_r0.separatorSVGIcon);
-  }
-}
-function BreadCrumbListComponent_For_1_Conditional_0_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵelementStart(0, "li", 1, 0);
-    ɵɵtemplate(2, BreadCrumbListComponent_For_1_Conditional_0_Conditional_2_Template, 1, 2, "span", 2)(3, BreadCrumbListComponent_For_1_Conditional_0_Conditional_3_Template, 1, 2, "span", 2);
-    ɵɵelementEnd();
-  }
-  if (rf & 2) {
-    const ctx_r1 = ɵɵnextContext();
-    const item_r3 = ctx_r1.$implicit;
-    const ɵ$index_1_r4 = ctx_r1.$index;
-    const ɵ$count_1_r5 = ctx_r1.$count;
-    const ctx_r0 = ɵɵnextContext();
-    ɵɵproperty("item", item_r3)("index", ɵ$index_1_r4)("collapseMode", ctx_r0.collapseMode)("itemTemplate", ctx_r0.itemTemplate);
-    ɵɵattribute("data-kendo-breadcrumb-index", ɵ$index_1_r4);
-    ɵɵadvance(2);
-    ɵɵconditional(ctx_r0.collapseMode === "wrap" && !(ɵ$index_1_r4 === 0) ? 2 : -1);
-    ɵɵadvance();
-    ɵɵconditional(ctx_r0.collapseMode !== "wrap" && !(ɵ$index_1_r4 === ɵ$count_1_r5 - 1) && !((item_r3 == null ? null : item_r3.context.collapsed) && (ctx_r0.items[ɵ$index_1_r4 + 1] == null ? null : ctx_r0.items[ɵ$index_1_r4 + 1].context.collapsed)) ? 3 : -1);
-  }
-}
-function BreadCrumbListComponent_For_1_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵtemplate(0, BreadCrumbListComponent_For_1_Conditional_0_Template, 4, 7, "li", 1);
-  }
-  if (rf & 2) {
-    const ɵ$index_1_r4 = ctx.$index;
-    const ctx_r0 = ɵɵnextContext();
-    ɵɵconditional(!(ctx_r0.collapseMode === "wrap" && ɵ$index_1_r4 === 0) || ctx_r0.isRootItemContainer ? 0 : -1);
-  }
-}
-var _c16 = ["resizeSensor"];
-var _c17 = ["itemsContainer"];
-var _c18 = (a0, a1) => ({
-  "!k-flex-wrap": a0,
-  "k-flex-none": a1
-});
-function BreadCrumbComponent_Conditional_0_Template(rf, ctx) {
-  if (rf & 1) {
-    const _r2 = ɵɵgetCurrentView();
-    ɵɵelementStart(0, "ol", 5, 0);
-    ɵɵpipe(2, "async");
-    ɵɵlistener("itemClick", function BreadCrumbComponent_Conditional_0_Template_ol_itemClick_0_listener($event) {
-      ɵɵrestoreView(_r2);
-      const ctx_r2 = ɵɵnextContext();
-      return ɵɵresetView(ctx_r2.itemClick.emit($event));
-    });
-    ɵɵelementEnd();
-  }
-  if (rf & 2) {
-    const ctx_r2 = ɵɵnextContext();
-    ɵɵproperty("items", ɵɵpipeBind1(2, 5, ctx_r2.firstItem$))("itemTemplate", ctx_r2.itemTemplate == null ? null : ctx_r2.itemTemplate.templateRef)("collapseMode", ctx_r2.collapseMode)("separatorIcon", ctx_r2.separatorIcon)("separatorSVGIcon", ctx_r2.separatorSVGIcon);
-  }
-}
-var packageMetadata = {
-  name: "@progress/kendo-angular-navigation",
-  productName: "Kendo UI for Angular",
-  productCode: "KENDOUIANGULAR",
-  productCodes: ["KENDOUIANGULAR"],
-  publishDate: 1777036809,
-  version: "23.4.0",
-  licensingDocsUrl: "https://www.telerik.com/kendo-angular-ui/my-license/"
-};
-var DEFAULT_POSITION = "top";
-var DEFAULT_POSITION_MODE = "static";
-var AppBarComponent = class _AppBarComponent {
-  localizationService;
-  host;
-  renderer;
-  hostClass = true;
-  /**
-   * @hidden
-   */
-  direction;
-  /**
-   * Specifies the position of the AppBar
-   * ([see example](https://www.telerik.com/kendo-angular-ui/components/navigation/appbar/positioning#position)).
-   *
-   * @default 'top'
-   */
-  set position(position) {
-    const newPosition = position ? position : DEFAULT_POSITION;
-    this.handleHostClasses(newPosition, this.position);
-    this._position = newPosition;
-  }
-  get position() {
-    return this._position;
-  }
-  /**
-   * Sets the position mode of the AppBar ([see example](https://www.telerik.com/kendo-angular-ui/components/navigation/appbar/positioning#position-mode)).
-   *
-   * @default 'static'
-   */
-  set positionMode(positionMode) {
-    const newPositionMode = positionMode ? positionMode : DEFAULT_POSITION_MODE;
-    this.handleHostClasses(newPositionMode, this.positionMode);
-    this._positionMode = newPositionMode;
-  }
-  get positionMode() {
-    return this._positionMode;
-  }
-  /**
-   * Sets the theme color of the AppBar. The theme color is applied as the background color of the component. The default value is set by the Kendo theme.
-   */
-  set themeColor(themeColor) {
-    this.handleHostClasses(themeColor, this.themeColor);
-    this._themeColor = themeColor;
-  }
-  get themeColor() {
-    return this._themeColor;
-  }
-  dynamicRTLSubscription;
-  rtl = false;
-  _themeColor;
-  _position = DEFAULT_POSITION;
-  _positionMode = DEFAULT_POSITION_MODE;
-  constructor(localizationService, host, renderer) {
-    this.localizationService = localizationService;
-    this.host = host;
-    this.renderer = renderer;
-    A(packageMetadata);
-    this.dynamicRTLSubscription = this.localizationService.changes.subscribe(({
-      rtl
-    }) => {
-      this.rtl = rtl;
-      this.direction = this.rtl ? "rtl" : "ltr";
-    });
-  }
-  ngAfterViewInit() {
-    const stylingOptions = ["position", "positionMode", "themeColor"];
-    stylingOptions.forEach((input) => {
-      this.handleHostClasses(this[input]);
-    });
-  }
-  ngOnDestroy() {
-    if (this.dynamicRTLSubscription) {
-      this.dynamicRTLSubscription.unsubscribe();
-    }
-  }
-  handleHostClasses(newValue, previousValue) {
-    const elem = this.host.nativeElement;
-    if (previousValue && newValue === previousValue) {
-      return;
-    }
-    if (previousValue) {
-      this.renderer.removeClass(elem, `k-appbar-${previousValue}`);
-    }
-    if (newValue) {
-      this.renderer.addClass(elem, `k-appbar-${newValue}`);
-    }
-  }
-  static ɵfac = function AppBarComponent_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _AppBarComponent)(ɵɵdirectiveInject(LocalizationService), ɵɵdirectiveInject(ElementRef), ɵɵdirectiveInject(Renderer2));
-  };
-  static ɵcmp = ɵɵdefineComponent({
-    type: _AppBarComponent,
-    selectors: [["kendo-appbar"]],
-    hostVars: 3,
-    hostBindings: function AppBarComponent_HostBindings(rf, ctx) {
-      if (rf & 2) {
-        ɵɵattribute("dir", ctx.direction);
-        ɵɵclassProp("k-appbar", ctx.hostClass);
-      }
-    },
-    inputs: {
-      position: "position",
-      positionMode: "positionMode",
-      themeColor: "themeColor"
-    },
-    exportAs: ["kendoAppBar"],
-    features: [ɵɵProvidersFeature([LocalizationService, {
-      provide: L10N_PREFIX,
-      useValue: "kendo.appbar.component"
-    }])],
-    ngContentSelectors: _c0,
-    decls: 1,
-    vars: 0,
-    template: function AppBarComponent_Template(rf, ctx) {
-      if (rf & 1) {
-        ɵɵprojectionDef();
-        ɵɵprojection(0);
-      }
-    },
-    encapsulation: 2
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(AppBarComponent, [{
-    type: Component,
-    args: [{
-      exportAs: "kendoAppBar",
-      selector: "kendo-appbar",
-      template: `
-        <ng-content></ng-content>
-    `,
-      providers: [LocalizationService, {
-        provide: L10N_PREFIX,
-        useValue: "kendo.appbar.component"
-      }],
-      standalone: true
-    }]
-  }], () => [{
-    type: LocalizationService
-  }, {
-    type: ElementRef
-  }, {
-    type: Renderer2
-  }], {
-    hostClass: [{
-      type: HostBinding,
-      args: ["class.k-appbar"]
-    }],
-    direction: [{
-      type: HostBinding,
-      args: ["attr.dir"]
-    }],
-    position: [{
-      type: Input
-    }],
-    positionMode: [{
-      type: Input
-    }],
-    themeColor: [{
-      type: Input
-    }]
-  });
-})();
-var AppBarSectionComponent = class _AppBarSectionComponent {
-  hostClass = true;
-  static ɵfac = function AppBarSectionComponent_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _AppBarSectionComponent)();
-  };
-  static ɵcmp = ɵɵdefineComponent({
-    type: _AppBarSectionComponent,
-    selectors: [["kendo-appbar-section"]],
-    hostVars: 2,
-    hostBindings: function AppBarSectionComponent_HostBindings(rf, ctx) {
-      if (rf & 2) {
-        ɵɵclassProp("k-appbar-section", ctx.hostClass);
-      }
-    },
-    ngContentSelectors: _c0,
-    decls: 1,
-    vars: 0,
-    template: function AppBarSectionComponent_Template(rf, ctx) {
-      if (rf & 1) {
-        ɵɵprojectionDef();
-        ɵɵprojection(0);
-      }
-    },
-    encapsulation: 2
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(AppBarSectionComponent, [{
-    type: Component,
-    args: [{
-      selector: "kendo-appbar-section",
-      template: `
-        <ng-content></ng-content>
-    `,
-      standalone: true
-    }]
-  }], null, {
-    hostClass: [{
-      type: HostBinding,
-      args: ["class.k-appbar-section"]
-    }]
-  });
-})();
-var isPresent2 = (value) => value !== null && value !== void 0;
-var outerWidth = (element) => {
-  const style2 = getComputedStyle(element);
-  let width = parseFloat(style2.width);
-  width += (parseFloat(style2.marginLeft) || 0) + (parseFloat(style2.marginRight) || 0);
-  return width;
-};
-var getFirstAndLastFocusable = (parent) => {
-  const all = getAllFocusableChildren(parent);
-  const firstFocusable = all.length > 0 ? all[0] : parent;
-  const lastFocusable = all.length > 0 ? all[all.length - 1] : parent;
-  return [firstFocusable, lastFocusable];
-};
-var getAllFocusableChildren = (parent) => {
-  return parent.querySelectorAll(focusableSelector);
-};
-var idx = 0;
-var hexColorRegex = /^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/;
-var getId = (prefix) => {
-  return `${prefix}${++idx}`;
-};
-var ACTIONSHEET_ITEM_INDEX_ATTRIBUTE = "kendo-actionsheet-item-index";
-var getActionSheetItemIndex = (target, targetAttr, scope) => {
-  const item = closestItem$1(target, targetAttr, scope);
-  if (item) {
-    return itemIndex$1(item, targetAttr);
-  }
-};
-var itemIndex$1 = (item, indexAttr) => +item.getAttribute(indexAttr);
-var hasItemIndex$1 = (item, indexAttr) => isPresent2(item.getAttribute(indexAttr));
-var closestItem$1 = (target, targetAttr, scope) => closestInScope(target, (el) => hasItemIndex$1(el, targetAttr), scope);
-var AppBarSpacerComponent = class _AppBarSpacerComponent {
-  renderer;
-  element;
-  hostClass = true;
-  get sizedClass() {
-    return isPresent2(this.width);
-  }
-  /**
-   * Specifies the width of the AppBarSpacer.
-   *
-   * If not set, the AppBarSpacer will take all of the available space.
-   */
-  width;
-  constructor(renderer, element) {
-    this.renderer = renderer;
-    this.element = element;
-  }
-  ngAfterViewInit() {
-    if (isPresent2(this.width)) {
-      const element = this.element.nativeElement;
-      this.renderer.setStyle(element, "flexBasis", this.width);
-    }
-  }
-  static ɵfac = function AppBarSpacerComponent_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _AppBarSpacerComponent)(ɵɵdirectiveInject(Renderer2), ɵɵdirectiveInject(ElementRef));
-  };
-  static ɵcmp = ɵɵdefineComponent({
-    type: _AppBarSpacerComponent,
-    selectors: [["kendo-appbar-spacer"]],
-    hostVars: 4,
-    hostBindings: function AppBarSpacerComponent_HostBindings(rf, ctx) {
-      if (rf & 2) {
-        ɵɵclassProp("k-spacer", ctx.hostClass)("k-spacer-sized", ctx.sizedClass);
-      }
-    },
-    inputs: {
-      width: "width"
-    },
-    decls: 0,
-    vars: 0,
-    template: function AppBarSpacerComponent_Template(rf, ctx) {
-    },
-    encapsulation: 2
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(AppBarSpacerComponent, [{
-    type: Component,
-    args: [{
-      selector: "kendo-appbar-spacer",
-      template: ``,
-      standalone: true
-    }]
-  }], () => [{
-    type: Renderer2
-  }, {
-    type: ElementRef
-  }], {
-    hostClass: [{
-      type: HostBinding,
-      args: ["class.k-spacer"]
-    }],
-    sizedClass: [{
-      type: HostBinding,
-      args: ["class.k-spacer-sized"]
-    }],
-    width: [{
-      type: Input
-    }]
-  });
-})();
-var ActionSheetHeaderTemplateDirective = class _ActionSheetHeaderTemplateDirective {
-  templateRef;
-  constructor(templateRef) {
-    this.templateRef = templateRef;
-  }
-  static ɵfac = function ActionSheetHeaderTemplateDirective_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _ActionSheetHeaderTemplateDirective)(ɵɵdirectiveInject(TemplateRef, 8));
-  };
-  static ɵdir = ɵɵdefineDirective({
-    type: _ActionSheetHeaderTemplateDirective,
-    selectors: [["", "kendoActionSheetHeaderTemplate", ""]]
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(ActionSheetHeaderTemplateDirective, [{
-    type: Directive,
-    args: [{
-      selector: "[kendoActionSheetHeaderTemplate]",
-      standalone: true
-    }]
-  }], () => [{
-    type: TemplateRef,
-    decorators: [{
-      type: Optional
-    }]
-  }], null);
-})();
-var ActionSheetItemTemplateDirective = class _ActionSheetItemTemplateDirective {
-  templateRef;
-  constructor(templateRef) {
-    this.templateRef = templateRef;
-  }
-  static ɵfac = function ActionSheetItemTemplateDirective_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _ActionSheetItemTemplateDirective)(ɵɵdirectiveInject(TemplateRef, 8));
-  };
-  static ɵdir = ɵɵdefineDirective({
-    type: _ActionSheetItemTemplateDirective,
-    selectors: [["", "kendoActionSheetItemTemplate", ""]]
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(ActionSheetItemTemplateDirective, [{
-    type: Directive,
-    args: [{
-      selector: "[kendoActionSheetItemTemplate]",
-      standalone: true
-    }]
-  }], () => [{
-    type: TemplateRef,
-    decorators: [{
-      type: Optional
-    }]
-  }], null);
-})();
-var ActionSheetContentTemplateDirective = class _ActionSheetContentTemplateDirective {
-  templateRef;
-  constructor(templateRef) {
-    this.templateRef = templateRef;
-  }
-  static ɵfac = function ActionSheetContentTemplateDirective_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _ActionSheetContentTemplateDirective)(ɵɵdirectiveInject(TemplateRef, 8));
-  };
-  static ɵdir = ɵɵdefineDirective({
-    type: _ActionSheetContentTemplateDirective,
-    selectors: [["", "kendoActionSheetContentTemplate", ""]]
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(ActionSheetContentTemplateDirective, [{
-    type: Directive,
-    args: [{
-      selector: "[kendoActionSheetContentTemplate]",
-      standalone: true
-    }]
-  }], () => [{
-    type: TemplateRef,
-    decorators: [{
-      type: Optional
-    }]
-  }], null);
-})();
-var ActionSheetFooterTemplateDirective = class _ActionSheetFooterTemplateDirective {
-  templateRef;
-  constructor(templateRef) {
-    this.templateRef = templateRef;
-  }
-  static ɵfac = function ActionSheetFooterTemplateDirective_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _ActionSheetFooterTemplateDirective)(ɵɵdirectiveInject(TemplateRef, 8));
-  };
-  static ɵdir = ɵɵdefineDirective({
-    type: _ActionSheetFooterTemplateDirective,
-    selectors: [["", "kendoActionSheetFooterTemplate", ""]]
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(ActionSheetFooterTemplateDirective, [{
-    type: Directive,
-    args: [{
-      selector: "[kendoActionSheetFooterTemplate]",
-      standalone: true
-    }]
-  }], () => [{
-    type: TemplateRef,
-    decorators: [{
-      type: Optional
-    }]
-  }], null);
-})();
-var ActionSheetTemplateDirective = class _ActionSheetTemplateDirective {
-  templateRef;
-  constructor(templateRef) {
-    this.templateRef = templateRef;
-  }
-  static ɵfac = function ActionSheetTemplateDirective_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _ActionSheetTemplateDirective)(ɵɵdirectiveInject(TemplateRef, 8));
-  };
-  static ɵdir = ɵɵdefineDirective({
-    type: _ActionSheetTemplateDirective,
-    selectors: [["", "kendoActionSheetTemplate", ""]]
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(ActionSheetTemplateDirective, [{
-    type: Directive,
-    args: [{
-      selector: "[kendoActionSheetTemplate]",
-      standalone: true
-    }]
-  }], () => [{
-    type: TemplateRef,
-    decorators: [{
-      type: Optional
-    }]
-  }], null);
-})();
-function slideUp(duration, height) {
-  return [style({
-    overflow: "hidden",
-    display: "block",
-    height: 0
-  }), animate(`${duration}ms ease-in`, style({
-    height: `${height}`
-  }))];
-}
-function slideDown(duration, height) {
-  return [style({
-    overflow: "hidden",
-    height: `${height}`
-  }), animate(`${duration}ms ease-in`, style({
-    overflow: "hidden",
-    height: 0
-  }))];
-}
-var ActionSheetItemComponent = class _ActionSheetItemComponent {
-  itemTemplate;
-  item;
-  pointerClass = true;
-  manageIconClasses(item) {
-    const classes = ["k-actionsheet-item-icon"];
-    const isHexColor = isPresent2(item.iconColor) && hexColorRegex.test(item.iconColor);
-    const isThemeColor = isPresent2(item.iconColor) && item.iconColor !== "" && !isHexColor;
-    if (isThemeColor) {
-      classes.push(`k-text-${item.iconColor}`);
-    }
-    return classes.join(" ");
-  }
-  manageIconStyles(item) {
-    const isHexColor = isPresent2(item.iconColor) && hexColorRegex.test(item.iconColor);
-    const isSizeSet = isPresent2(item.iconSize) && item.iconSize !== "";
-    const styles = {};
-    if (isHexColor) {
-      styles.color = item.iconColor;
-    }
-    if (isSizeSet) {
-      styles.fontSize = item.iconSize;
-    }
-    return styles;
-  }
-  static ɵfac = function ActionSheetItemComponent_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _ActionSheetItemComponent)();
-  };
-  static ɵcmp = ɵɵdefineComponent({
-    type: _ActionSheetItemComponent,
-    selectors: [["", "kendoActionSheetItem", ""]],
-    hostVars: 2,
-    hostBindings: function ActionSheetItemComponent_HostBindings(rf, ctx) {
-      if (rf & 2) {
-        ɵɵclassProp("k-cursor-pointer", ctx.pointerClass);
-      }
-    },
-    inputs: {
-      itemTemplate: "itemTemplate",
-      item: "item"
-    },
-    attrs: _c1,
-    decls: 2,
-    vars: 1,
-    consts: [[3, "ngTemplateOutlet", "ngTemplateOutletContext"], [1, "k-actionsheet-action"], [1, "k-icon-wrap"], [1, "k-actionsheet-item-text"], [3, "name", "customFontClass", "svgIcon"], [1, "k-actionsheet-item-title"], [1, "k-actionsheet-item-description"]],
-    template: function ActionSheetItemComponent_Template(rf, ctx) {
-      if (rf & 1) {
-        ɵɵtemplate(0, ActionSheetItemComponent_Conditional_0_Template, 1, 4, null, 0)(1, ActionSheetItemComponent_Conditional_1_Template, 3, 2, "span", 1);
-      }
-      if (rf & 2) {
-        ɵɵconditional(ctx.itemTemplate ? 0 : 1);
-      }
-    },
-    dependencies: [NgTemplateOutlet, IconWrapperComponent],
-    encapsulation: 2
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(ActionSheetItemComponent, [{
-    type: Component,
-    args: [{
-      selector: "[kendoActionSheetItem]",
-      template: `
-        @if (itemTemplate) {
-          <ng-template
-            [ngTemplateOutlet]="itemTemplate"
-            [ngTemplateOutletContext]="{
-                $implicit: item
-            }">
-          </ng-template>
-        } @else {
-          <span class="k-actionsheet-action">
-            @if (item.icon || item.iconClass || item.svgIcon) {
-              <span class="k-icon-wrap">
-                <kendo-icon-wrapper
-                  [name]="item.icon"
-                  [customFontClass]="item.iconClass"
-                  [class]="manageIconClasses(item)"
-                  [svgIcon]="item.svgIcon"
-                  [style]="manageIconStyles(item)"
-                  >
-                </kendo-icon-wrapper>
-              </span>
-            }
-            @if (item.title || item.description) {
-              <span class="k-actionsheet-item-text">
-                @if (item.title) {
-                  <span class="k-actionsheet-item-title">{{item.title}}</span>
-                }
-                @if (item.description) {
-                  <span class="k-actionsheet-item-description">{{item.description}}</span>
-                }
-              </span>
-            }
-          </span>
-        }
-        `,
-      standalone: true,
-      imports: [NgTemplateOutlet, IconWrapperComponent]
-    }]
-  }], null, {
-    itemTemplate: [{
-      type: Input
-    }],
-    item: [{
-      type: Input
-    }],
-    pointerClass: [{
-      type: HostBinding,
-      args: ["class.k-cursor-pointer"]
-    }]
-  });
-})();
-var ActionSheetListComponent = class _ActionSheetListComponent {
-  renderer;
-  ngZone;
-  element;
-  groupItems = [];
-  allItems = [];
-  itemTemplate;
-  itemClick = new EventEmitter();
-  subscriptions = new Subscription();
-  constructor(renderer, ngZone, element) {
-    this.renderer = renderer;
-    this.ngZone = ngZone;
-    this.element = element;
-  }
-  ngAfterViewInit() {
-    this.initDomEvents();
-  }
-  ngOnDestroy() {
-    this.subscriptions.unsubscribe();
-  }
-  initDomEvents() {
-    if (!this.element) {
-      return;
-    }
-    this.ngZone.runOutsideAngular(() => {
-      const nativeElement = this.element.nativeElement;
-      this.subscriptions.add(this.renderer.listen(nativeElement, "click", this.clickHandler.bind(this)));
-    });
-  }
-  clickHandler(e) {
-    const itemIndex2 = getActionSheetItemIndex(e.target, ACTIONSHEET_ITEM_INDEX_ATTRIBUTE, this.element.nativeElement);
-    const item = this.allItems[itemIndex2];
-    if (!item) {
-      return;
-    }
-    if (item.disabled) {
-      e.preventDefault();
-      return;
-    }
-    this.ngZone.run(() => {
-      this.itemClick.emit({
-        item,
-        originalEvent: e
-      });
-    });
-  }
-  setAttrIndex(item) {
-    return this.allItems.indexOf(item);
-  }
-  static ɵfac = function ActionSheetListComponent_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _ActionSheetListComponent)(ɵɵdirectiveInject(Renderer2), ɵɵdirectiveInject(NgZone), ɵɵdirectiveInject(ElementRef));
-  };
-  static ɵcmp = ɵɵdefineComponent({
-    type: _ActionSheetListComponent,
-    selectors: [["", "kendoActionSheetList", ""]],
-    inputs: {
-      groupItems: "groupItems",
-      allItems: "allItems",
-      itemTemplate: "itemTemplate"
-    },
-    outputs: {
-      itemClick: "itemClick"
-    },
-    attrs: _c3,
-    decls: 2,
-    vars: 0,
-    consts: [["kendoActionSheetItem", "", "tabindex", "0", "role", "button", 3, "k-actionsheet-item", "k-disabled", "ngClass", "ngStyle", "itemTemplate", "item"], ["kendoActionSheetItem", "", "tabindex", "0", "role", "button", 3, "ngClass", "ngStyle", "itemTemplate", "item"]],
-    template: function ActionSheetListComponent_Template(rf, ctx) {
-      if (rf & 1) {
-        ɵɵrepeaterCreate(0, ActionSheetListComponent_For_1_Template, 1, 10, "span", 0, ɵɵrepeaterTrackByIdentity);
-      }
-      if (rf & 2) {
-        ɵɵrepeater(ctx.groupItems);
-      }
-    },
-    dependencies: [ActionSheetItemComponent, NgClass, NgStyle],
-    encapsulation: 2
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(ActionSheetListComponent, [{
-    type: Component,
-    args: [{
-      selector: "[kendoActionSheetList]",
-      template: `
-            @for (item of groupItems; track item) {
-              <span kendoActionSheetItem
-                tabindex="0"
-                role="button"
-                [attr.aria-disabled]="item.disabled"
-                [class.k-actionsheet-item]="true"
-                [attr.${ACTIONSHEET_ITEM_INDEX_ATTRIBUTE}]="setAttrIndex(item)"
-                [class.k-disabled]="item.disabled"
-                [ngClass]="item.cssClass"
-                [ngStyle]="item.cssStyle"
-                [itemTemplate]="itemTemplate"
-                [item]="item">
-              </span>
-            }
-            `,
-      standalone: true,
-      imports: [ActionSheetItemComponent, NgClass, NgStyle]
-    }]
-  }], () => [{
-    type: Renderer2
-  }, {
-    type: NgZone
-  }, {
-    type: ElementRef
-  }], {
-    groupItems: [{
-      type: Input
-    }],
-    allItems: [{
-      type: Input
-    }],
-    itemTemplate: [{
-      type: Input
-    }],
-    itemClick: [{
-      type: Output
-    }]
-  });
-})();
-var DEFAULT_ANIMATION_CONFIG = {
-  duration: 300
-};
-var FULLSCREEN_CLASS = "k-actionsheet-fullscreen";
-var ActionSheetComponent = class _ActionSheetComponent {
-  element;
-  ngZone;
-  renderer;
-  localizationService;
-  builder;
-  cdr;
-  /**
-   * @hidden
-   */
-  currentView = 1;
-  /**
-   * @hidden
-   */
-  get hostClass() {
-    return this.expanded;
-  }
-  /**
-   * @hidden
-   */
-  direction;
-  /**
-   * Specifies the action buttons displayed in the ActionSheet footer.
-   */
-  actions;
-  /**
-   * Configures the layout of the action buttons in the footer. By default, actions are arranged horizontally and stretched to fill the container.
-   */
-  actionsLayout = {
-    orientation: "horizontal",
-    alignment: "stretched"
-  };
-  /**
-   * Determines whether the ActionSheet closes when the overlay is clicked.
-   *
-   * @default false
-   */
-  overlayClickClose = false;
-  /**
-   * Sets the title text displayed in the ActionSheet header.
-   */
-  title;
-  /**
-   * Sets the subtitle text displayed below the title in the header.
-   */
-  subtitle;
-  /**
-   * Provides the collection of items rendered in the ActionSheet content area.
-   */
-  items;
-  /**
-   * Applies CSS classes to the inner ActionSheet element. Accepts any value supported by [`ngClass`](link:site.data.urls.angular['ngclassapi']).
-   */
-  set cssClass(value) {
-    this._cssClass = value;
-    this.isFullscreen = this.hasFullscreenClass(value);
-  }
-  get cssClass() {
-    return this._cssClass;
-  }
-  /**
-   * Applies inline styles to the inner ActionSheet element. Accepts any value supported by [`ngStyle`](link:site.data.urls.angular['ngstyleapi']).
-   */
-  cssStyle;
-  /**
-   * Configures the opening and closing animations for the ActionSheet ([see example](https://www.telerik.com/kendo-angular-ui/components/navigation/actionsheet/animations)).
-   *
-   * @default true
-   */
-  animation = true;
-  /**
-   * Controls whether the ActionSheet is expanded or collapsed.
-   *
-   * @default false
-   */
-  expanded = false;
-  /**
-   * Sets the `aria-labelledby` attribute of the ActionSheet wrapper element.
-   * Use this option when the built-in header element is replaced through the [`ActionSheetHeaderTemplate`](https://www.telerik.com/kendo-angular-ui/components/navigation/api/actionsheetheadertemplatedirective)
-   * or [`ActionSheetContentTemplate`](https://www.telerik.com/kendo-angular-ui/components/navigation/api/actionsheetcontenttemplatedirective).
-   *
-   * @remarks
-   * This property is related to accessibility.
-   */
-  titleId = getId("k-actionsheet-title");
-  /**
-   * @hidden
-   *
-   * Determines if the ActionSheet should focus the first focusable element when opened.
-   */
-  initialFocus = true;
-  /**
-   * Fires when the `expanded` property of the component is updated.
-   * You can use this event to provide two-way binding for the `expanded` property.
-   */
-  expandedChange = new EventEmitter();
-  /**
-   * Fires when any of the ActionSheet action buttons is clicked.
-   */
-  action = new EventEmitter();
-  /**
-   * Fires when the ActionSheet is expanded and its animation is complete.
-   */
-  expand = new EventEmitter();
-  /**
-   * Fires when the ActionSheet is collapsed and its animation is complete.
-   */
-  collapse = new EventEmitter();
-  /**
-   * Fires when an ActionSheet item is clicked.
-   */
-  itemClick = new EventEmitter();
-  /**
-   * Fires when the modal overlay is clicked.
-   */
-  overlayClick = new EventEmitter();
-  /**
-   * @hidden
-   */
-  childContainer;
-  /**
-   * @hidden
-   */
-  actionSheetViews;
-  /**
-   * @hidden
-   */
-  actionSheetTemplate;
-  /**
-   * @hidden
-   */
-  headerTemplate;
-  /**
-   * @hidden
-   */
-  contentTemplate;
-  /**
-   * @hidden
-   */
-  itemTemplate;
-  /**
-   * @hidden
-   */
-  footerTemplate;
-  _cssClass;
-  dynamicRTLSubscription;
-  rtl = false;
-  domSubs = new Subscription();
-  player;
-  animationEnd = new EventEmitter();
-  isFullscreen = false;
-  constructor(element, ngZone, renderer, localizationService, builder, cdr) {
-    this.element = element;
-    this.ngZone = ngZone;
-    this.renderer = renderer;
-    this.localizationService = localizationService;
-    this.builder = builder;
-    this.cdr = cdr;
-    A(packageMetadata);
-    this.dynamicRTLSubscription = this.localizationService.changes.subscribe(({
-      rtl
-    }) => {
-      this.rtl = rtl;
-      this.direction = this.rtl ? "rtl" : "ltr";
-    });
-  }
-  ngAfterViewInit() {
-    this.initDomEvents();
-    this.setCssVariables();
-  }
-  ngOnChanges(changes) {
-    if (changes["expanded"] && this.expanded) {
-      this.setExpanded(true);
-    }
-  }
-  ngOnDestroy() {
-    this.domSubs.unsubscribe();
-    if (this.dynamicRTLSubscription) {
-      this.dynamicRTLSubscription.unsubscribe();
-    }
-    if (this.player) {
-      this.player.destroy();
-    }
-  }
-  /**
-   * @hidden
-   * Navigates to the next view.
-   */
-  nextView() {
-    if (this.currentView < this.actionSheetViews.length) {
-      this.currentView += 1;
-    }
-  }
-  /**
-   * @hidden
-   * Navigates to the previous view.
-   */
-  prevView() {
-    if (this.currentView > 1) {
-      this.currentView -= 1;
-    }
-  }
-  /**
-   * Toggles the visibility of the ActionSheet.
-   *
-   * @param expanded? - Boolean. Specifies if the ActionSheet will be expanded or collapsed.
-   */
-  toggle(expanded2) {
-    const previous = this.expanded;
-    const current = isPresent(expanded2) ? expanded2 : !previous;
-    if (current === previous) {
-      return;
-    }
-    if (current === true) {
-      this.setExpanded(true);
-    } else if (current === false && !this.animation) {
-      this.setExpanded(false);
-    }
-    if (this.animation) {
-      this.animationEnd.pipe(take(1)).subscribe(() => {
-        this.onAnimationEnd(current);
-      });
-      this.playAnimation(current);
-    } else {
-      this[current ? "expand" : "collapse"].emit();
-    }
-  }
-  /**
-   * @hidden
-   */
-  get orientationClass() {
-    return this.actionsLayout.orientation ? `k-actions-${this.actionsLayout.orientation}` : "";
-  }
-  /**
-   * @hidden
-   */
-  get alignmentClass() {
-    return this.actionsLayout.alignment ? `k-actions-${this.actionsLayout.alignment}` : "";
-  }
-  /**
-   * @hidden
-   */
-  get topGroupItems() {
-    return this.items?.filter((item) => !item.group || item.group === "top");
-  }
-  /**
-   * @hidden
-   */
-  get bottomGroupItems() {
-    return this.items?.filter((item) => item.group === "bottom");
-  }
-  /**
-   * @hidden
-   */
-  onItemClick(ev) {
-    this.itemClick.emit(ev);
-  }
-  /**
-   * @hidden
-   */
-  onOverlayClick() {
-    this.overlayClick.emit();
-    if (this.overlayClickClose) {
-      this.toggle(false);
-    }
-  }
-  /**
-   * @hidden
-   */
-  get shouldRenderSeparator() {
-    return this.topGroupItems?.length > 0 && this.bottomGroupItems?.length > 0;
-  }
-  /**
-   * @hidden
-   */
-  get childContainerStyle() {
-    const baseStyle = "bottom: 0px; width: 100%;";
-    return this.isFullscreen ? `${baseStyle} height: 100%;` : baseStyle;
-  }
-  initDomEvents() {
-    if (!this.element) {
-      return;
-    }
-    this.ngZone.runOutsideAngular(() => {
-      this.domSubs.add(this.renderer.listen(this.element.nativeElement, "keydown", (ev) => {
-        this.onKeyDown(ev);
-      }));
-    });
-  }
-  setCssVariables() {
-    if (!this.element || !isDocumentAvailable()) {
-      return;
-    }
-    this.element.nativeElement.style.setProperty("--kendo-actionsheet-height", "auto");
-    this.element.nativeElement.style.setProperty("--kendo-actionsheet-max-height", "none");
-  }
-  hasFullscreenClass(cssClass) {
-    if (!cssClass) {
-      return false;
-    }
-    if (typeof cssClass === "string") {
-      return cssClass.split(/\s+/).includes(FULLSCREEN_CLASS);
-    }
-    if (cssClass instanceof Set) {
-      return cssClass.has(FULLSCREEN_CLASS);
-    }
-    if (Array.isArray(cssClass)) {
-      return cssClass.some((cls) => typeof cls === "string" && cls.split(/\s+/).includes(FULLSCREEN_CLASS));
-    }
-    return cssClass[FULLSCREEN_CLASS] === true;
-  }
-  onKeyDown(event) {
-    const target = event.target;
-    if (event.code === Keys.Tab) {
-      this.ngZone.run(() => {
-        this.keepFocusWithinComponent(target, event);
-      });
-    }
-    if (event.code === Keys.Escape) {
-      this.ngZone.run(() => {
-        this.overlayClick.emit();
-      });
-    }
-    if (event.code === Keys.Enter || event.code === Keys.NumpadEnter) {
-      this.ngZone.run(() => {
-        this.triggerItemClick(target, event);
-      });
-    }
-  }
-  handleInitialFocus() {
-    const [firstFocusable] = getFirstAndLastFocusable(this.element.nativeElement);
-    if (firstFocusable && this.initialFocus) {
-      firstFocusable.focus();
-    }
-  }
-  keepFocusWithinComponent(target, event) {
-    const wrapper = this.element.nativeElement;
-    const [firstFocusable, lastFocusable] = getFirstAndLastFocusable(wrapper);
-    const tabAfterLastFocusable = !event.shiftKey && target === lastFocusable;
-    const shiftTabAfterFirstFocusable = event.shiftKey && target === firstFocusable;
-    if (tabAfterLastFocusable) {
-      event.preventDefault();
-      firstFocusable.focus();
-    }
-    if (shiftTabAfterFirstFocusable) {
-      event.preventDefault();
-      lastFocusable.focus();
-    }
-  }
-  triggerItemClick(target, event) {
-    const itemIndex2 = getActionSheetItemIndex(target, ACTIONSHEET_ITEM_INDEX_ATTRIBUTE, this.element.nativeElement);
-    const item = isPresent(itemIndex2) ? this.items[itemIndex2] : null;
-    if (!item || item.disabled) {
-      return;
-    }
-    this.itemClick.emit({
-      item,
-      originalEvent: event
-    });
-  }
-  setExpanded(value) {
-    this.expanded = value;
-    this.expandedChange.emit(value);
-    if (this.expanded) {
-      this.cdr.detectChanges();
-      this.handleInitialFocus();
-    }
-  }
-  onAnimationEnd(currentExpanded) {
-    if (currentExpanded) {
-      this.expand.emit();
-    } else {
-      this.setExpanded(false);
-      this.collapse.emit();
-    }
-  }
-  playAnimation(expanded2) {
-    const duration = typeof this.animation !== "boolean" && this.animation.duration ? this.animation.duration : DEFAULT_ANIMATION_CONFIG.duration;
-    const contentHeight = getComputedStyle(this.childContainer.nativeElement).height;
-    const animation = expanded2 ? slideUp(duration, contentHeight) : slideDown(duration, contentHeight);
-    const factory = this.builder.build(animation);
-    this.player = factory.create(this.childContainer.nativeElement);
-    this.player.onDone(() => {
-      if (this.player) {
-        this.animationEnd.emit();
-        this.player.destroy();
-        this.player = null;
-      }
-    });
-    this.player.play();
-  }
-  static ɵfac = function ActionSheetComponent_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _ActionSheetComponent)(ɵɵdirectiveInject(ElementRef), ɵɵdirectiveInject(NgZone), ɵɵdirectiveInject(Renderer2), ɵɵdirectiveInject(LocalizationService), ɵɵdirectiveInject(AnimationBuilder), ɵɵdirectiveInject(ChangeDetectorRef));
-  };
-  static ɵcmp = ɵɵdefineComponent({
-    type: _ActionSheetComponent,
-    selectors: [["kendo-actionsheet"]],
-    contentQueries: function ActionSheetComponent_ContentQueries(rf, ctx, dirIndex) {
-      if (rf & 1) {
-        ɵɵcontentQuery(dirIndex, ActionSheetTemplateDirective, 5);
-        ɵɵcontentQuery(dirIndex, ActionSheetHeaderTemplateDirective, 5);
-        ɵɵcontentQuery(dirIndex, ActionSheetContentTemplateDirective, 5);
-        ɵɵcontentQuery(dirIndex, ActionSheetItemTemplateDirective, 5);
-        ɵɵcontentQuery(dirIndex, ActionSheetFooterTemplateDirective, 5);
-        ɵɵcontentQuery(dirIndex, ActionSheetViewComponent, 4);
-      }
-      if (rf & 2) {
-        let _t;
-        ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx.actionSheetTemplate = _t.first);
-        ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx.headerTemplate = _t.first);
-        ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx.contentTemplate = _t.first);
-        ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx.itemTemplate = _t.first);
-        ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx.footerTemplate = _t.first);
-        ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx.actionSheetViews = _t);
-      }
-    },
-    viewQuery: function ActionSheetComponent_Query(rf, ctx) {
-      if (rf & 1) {
-        ɵɵviewQuery(_c4, 5);
-      }
-      if (rf & 2) {
-        let _t;
-        ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx.childContainer = _t.first);
-      }
-    },
-    hostVars: 3,
-    hostBindings: function ActionSheetComponent_HostBindings(rf, ctx) {
-      if (rf & 2) {
-        ɵɵattribute("dir", ctx.direction);
-        ɵɵclassProp("k-actionsheet-container", ctx.hostClass);
-      }
-    },
-    inputs: {
-      actions: "actions",
-      actionsLayout: "actionsLayout",
-      overlayClickClose: "overlayClickClose",
-      title: "title",
-      subtitle: "subtitle",
-      items: "items",
-      cssClass: "cssClass",
-      cssStyle: "cssStyle",
-      animation: "animation",
-      expanded: "expanded",
-      titleId: "titleId",
-      initialFocus: "initialFocus"
-    },
-    outputs: {
-      expandedChange: "expandedChange",
-      action: "action",
-      expand: "expand",
-      collapse: "collapse",
-      itemClick: "itemClick",
-      overlayClick: "overlayClick"
-    },
-    exportAs: ["kendoActionSheet"],
-    features: [ɵɵProvidersFeature([LocalizationService, {
-      provide: L10N_PREFIX,
-      useValue: "kendo.actionsheet.component"
-    }]), ɵɵNgOnChangesFeature],
-    ngContentSelectors: _c6,
-    decls: 1,
-    vars: 1,
-    consts: [["childContainer", ""], [1, "k-overlay", 3, "click"], [1, "k-animation-container", "k-animation-container-shown"], [1, "k-child-animation-container"], ["role", "dialog", "aria-modal", "true", 1, "k-actionsheet", "k-actionsheet-bottom", 3, "ngClass", "ngStyle"], [1, "k-actionsheet-view"], [3, "ngTemplateOutlet"], [1, "k-actionsheet-titlebar"], [1, "k-actionsheet-content"], [3, "ngClass"], [1, "k-actionsheet-titlebar-group", "k-hbox"], [1, "k-actionsheet-title", 3, "id"], [1, "k-text-center"], [1, "k-actionsheet-subtitle", "k-text-center"], ["kendoActionSheetList", "", "role", "group", 1, "k-list-ul", 3, "groupItems", "allItems", "itemTemplate"], [1, "k-hr"], ["kendoActionSheetList", "", "role", "group", 1, "k-list-ul", 3, "itemClick", "groupItems", "allItems", "itemTemplate"], ["kendoButton", "", "type", "button", 3, "icon", "title", "svgIcon", "themeColor", "fillMode", "size"], ["kendoButton", "", "type", "button", 3, "click", "icon", "title", "svgIcon", "themeColor", "fillMode", "size"]],
-    template: function ActionSheetComponent_Template(rf, ctx) {
-      if (rf & 1) {
-        ɵɵprojectionDef(_c5);
-        ɵɵtemplate(0, ActionSheetComponent_Conditional_0_Template, 7, 9);
-      }
-      if (rf & 2) {
-        ɵɵconditional(ctx.expanded ? 0 : -1);
-      }
-    },
-    dependencies: [NgStyle, NgClass, NgTemplateOutlet, ActionSheetListComponent, ButtonComponent],
-    encapsulation: 2
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(ActionSheetComponent, [{
-    type: Component,
-    args: [{
-      exportAs: "kendoActionSheet",
-      selector: "kendo-actionsheet",
-      template: `
-        @if (expanded) {
-          <div class="k-overlay" (click)="onOverlayClick()"></div>
-          <div class="k-animation-container k-animation-container-shown">
-            <div #childContainer class="k-child-animation-container" [style]="childContainerStyle">
-              <div
-                class="k-actionsheet k-actionsheet-bottom"
-                [ngClass]="cssClass"
-                [ngStyle]="cssStyle"
-                role="dialog"
-                aria-modal="true"
-                [attr.aria-labelledby]="titleId"
-                [style.--kendo-actionsheet-view-current]="actionSheetViews?.length > 0 ? currentView : null"
-                >
-                @if (actionSheetViews?.length > 0) {
-                  <ng-content select="kendo-actionsheet-view"></ng-content>
-                }
-                @if (actionSheetViews?.length === 0) {
-                  <div class="k-actionsheet-view">
-                    @if (actionSheetTemplate) {
-                      <ng-template
-                        [ngTemplateOutlet]="actionSheetTemplate?.templateRef">
-                      </ng-template>
-                    } @else {
-                      @if (title || subtitle || headerTemplate) {
-                        <div class="k-actionsheet-titlebar">
-                          @if (headerTemplate) {
-                            <ng-template
-                              [ngTemplateOutlet]="headerTemplate?.templateRef">
-                            </ng-template>
-                          } @else {
-                            <div class="k-actionsheet-titlebar-group k-hbox">
-                              <div class="k-actionsheet-title" [id]="titleId">
-                                @if (title) {
-                                  <div class="k-text-center">{{title}}</div>
-                                }
-                                @if (subtitle) {
-                                  <div class="k-actionsheet-subtitle k-text-center">{{subtitle}}</div>
-                                }
-                              </div>
-                            </div>
-                          }
-                        </div>
-                      }
-                      @if (items || contentTemplate) {
-                        <div class="k-actionsheet-content">
-                          @if (contentTemplate) {
-                            <ng-template
-                              [ngTemplateOutlet]="contentTemplate?.templateRef">
-                            </ng-template>
-                          } @else {
-                            @if (topGroupItems) {
-                              <div kendoActionSheetList
-                                class="k-list-ul"
-                                role="group"
-                                [groupItems]="topGroupItems"
-                                [allItems]="items"
-                                [itemTemplate]="itemTemplate?.templateRef"
-                                (itemClick)="onItemClick($event)">
-                              </div>
-                            }
-                            @if (shouldRenderSeparator) {
-                              <hr class="k-hr"/>
-                            }
-                            @if (bottomGroupItems) {
-                              <div kendoActionSheetList
-                                class="k-list-ul"
-                                role="group"
-                                [groupItems]="bottomGroupItems"
-                                [allItems]="items"
-                                [itemTemplate]="itemTemplate?.templateRef"
-                                (itemClick)="onItemClick($event)">
-                              </div>
-                            }
-                          }
-                        </div>
-                      }
-                      @if (footerTemplate || actions) {
-                        <div [ngClass]="[orientationClass, alignmentClass, 'k-actions', 'k-actionsheet-footer']">
-                          @if (footerTemplate) {
-                            <ng-template
-                              [ngTemplateOutlet]="footerTemplate?.templateRef">
-                            </ng-template>
-                          }
-                          @if (!footerTemplate && actions) {
-                            @for (actionButton of actions; track actionButton) {
-                              <button
-                                kendoButton
-                                type="button"
-                                [icon]="actionButton.icon"
-                                [title]="actionButton.title"
-                                [svgIcon]="actionButton.svgIcon"
-                                [themeColor]="actionButton.themeColor"
-                                [fillMode]="actionButton.fillMode"
-                                [size]="actionButton.size"
-                                [attr.aria-label]="actionButton.text"
-                                (click)="action.emit(actionButton)"
-                                >
-                                {{ actionButton.text }}
-                              </button>
-                            }
-                          }
-                        </div>
-                      }
-                    }
-                  </div>
-                }
-              </div>
-            </div>
-          </div>
-        }
-        `,
-      providers: [LocalizationService, {
-        provide: L10N_PREFIX,
-        useValue: "kendo.actionsheet.component"
-      }],
-      standalone: true,
-      imports: [NgStyle, NgClass, NgTemplateOutlet, ActionSheetListComponent, ButtonComponent]
-    }]
-  }], () => [{
-    type: ElementRef
-  }, {
-    type: NgZone
-  }, {
-    type: Renderer2
-  }, {
-    type: LocalizationService
-  }, {
-    type: AnimationBuilder
-  }, {
-    type: ChangeDetectorRef
-  }], {
-    hostClass: [{
-      type: HostBinding,
-      args: ["class.k-actionsheet-container"]
-    }],
-    direction: [{
-      type: HostBinding,
-      args: ["attr.dir"]
-    }],
-    actions: [{
-      type: Input
-    }],
-    actionsLayout: [{
-      type: Input
-    }],
-    overlayClickClose: [{
-      type: Input
-    }],
-    title: [{
-      type: Input
-    }],
-    subtitle: [{
-      type: Input
-    }],
-    items: [{
-      type: Input
-    }],
-    cssClass: [{
-      type: Input
-    }],
-    cssStyle: [{
-      type: Input
-    }],
-    animation: [{
-      type: Input
-    }],
-    expanded: [{
-      type: Input
-    }],
-    titleId: [{
-      type: Input
-    }],
-    initialFocus: [{
-      type: Input
-    }],
-    expandedChange: [{
-      type: Output
-    }],
-    action: [{
-      type: Output
-    }],
-    expand: [{
-      type: Output
-    }],
-    collapse: [{
-      type: Output
-    }],
-    itemClick: [{
-      type: Output
-    }],
-    overlayClick: [{
-      type: Output
-    }],
-    childContainer: [{
-      type: ViewChild,
-      args: ["childContainer"]
-    }],
-    actionSheetViews: [{
-      type: ContentChildren,
-      args: [forwardRef(() => ActionSheetViewComponent)]
-    }],
-    actionSheetTemplate: [{
-      type: ContentChild,
-      args: [ActionSheetTemplateDirective]
-    }],
-    headerTemplate: [{
-      type: ContentChild,
-      args: [ActionSheetHeaderTemplateDirective]
-    }],
-    contentTemplate: [{
-      type: ContentChild,
-      args: [ActionSheetContentTemplateDirective]
-    }],
-    itemTemplate: [{
-      type: ContentChild,
-      args: [ActionSheetItemTemplateDirective]
-    }],
-    footerTemplate: [{
-      type: ContentChild,
-      args: [ActionSheetFooterTemplateDirective]
-    }]
-  });
-})();
-var ActionSheetViewComponent = class _ActionSheetViewComponent {
-  actionSheet;
-  renderer;
-  host;
-  zone;
-  title;
-  subtitle;
-  titleId = getId("k-actionsheet-title");
-  hostClass = true;
-  transitionDuration = "500ms";
-  transitionProperty = "transform";
-  headerTemplate;
-  contentTemplate;
-  footerTemplate;
-  actionSheetTemplate;
-  ngAfterViewInit() {
-    this.zone.onStable.pipe(take(1)).subscribe(() => {
-      if (this.actionSheet?.actionSheetViews?.length > 1) {
-        this.renderer.addClass(this.host.nativeElement, "k-actionsheet-view-animated");
-      }
-    });
-  }
-  constructor(actionSheet, renderer, host, zone) {
-    this.actionSheet = actionSheet;
-    this.renderer = renderer;
-    this.host = host;
-    this.zone = zone;
-  }
-  get orientationClass() {
-    return this.actionSheet?.orientationClass;
-  }
-  get alignmentClass() {
-    return this.actionSheet?.alignmentClass;
-  }
-  static ɵfac = function ActionSheetViewComponent_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _ActionSheetViewComponent)(ɵɵdirectiveInject(ActionSheetComponent, 9), ɵɵdirectiveInject(Renderer2), ɵɵdirectiveInject(ElementRef), ɵɵdirectiveInject(NgZone));
-  };
-  static ɵcmp = ɵɵdefineComponent({
-    type: _ActionSheetViewComponent,
-    selectors: [["kendo-actionsheet-view"]],
-    contentQueries: function ActionSheetViewComponent_ContentQueries(rf, ctx, dirIndex) {
-      if (rf & 1) {
-        ɵɵcontentQuery(dirIndex, ActionSheetHeaderTemplateDirective, 5);
-        ɵɵcontentQuery(dirIndex, ActionSheetContentTemplateDirective, 5);
-        ɵɵcontentQuery(dirIndex, ActionSheetFooterTemplateDirective, 5);
-        ɵɵcontentQuery(dirIndex, ActionSheetTemplateDirective, 5);
-      }
-      if (rf & 2) {
-        let _t;
-        ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx.headerTemplate = _t.first);
-        ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx.contentTemplate = _t.first);
-        ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx.footerTemplate = _t.first);
-        ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx.actionSheetTemplate = _t.first);
-      }
-    },
-    hostVars: 6,
-    hostBindings: function ActionSheetViewComponent_HostBindings(rf, ctx) {
-      if (rf & 2) {
-        ɵɵstyleProp("transition-duration", ctx.transitionDuration)("transition-property", ctx.transitionProperty);
-        ɵɵclassProp("k-actionsheet-view", ctx.hostClass);
-      }
-    },
-    inputs: {
-      title: "title",
-      subtitle: "subtitle",
-      titleId: "titleId"
-    },
-    decls: 2,
-    vars: 1,
-    consts: [[3, "ngTemplateOutlet"], [1, "k-actionsheet-titlebar"], [1, "k-actionsheet-content"], [3, "ngClass"], [1, "k-actionsheet-titlebar-group", "k-hbox"], [1, "k-actionsheet-title", 3, "id"], [1, "k-text-center"], [1, "k-actionsheet-subtitle", "k-text-center"]],
-    template: function ActionSheetViewComponent_Template(rf, ctx) {
-      if (rf & 1) {
-        ɵɵtemplate(0, ActionSheetViewComponent_Conditional_0_Template, 1, 1, null, 0)(1, ActionSheetViewComponent_Conditional_1_Template, 3, 3);
-      }
-      if (rf & 2) {
-        ɵɵconditional(ctx.actionSheetTemplate ? 0 : 1);
-      }
-    },
-    dependencies: [NgClass, NgTemplateOutlet],
-    encapsulation: 2
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(ActionSheetViewComponent, [{
-    type: Component,
-    args: [{
-      selector: "kendo-actionsheet-view",
-      template: `
-        @if (actionSheetTemplate) {
-          <ng-template
-            [ngTemplateOutlet]="actionSheetTemplate?.templateRef">
-          </ng-template>
-        } @else {
-          @if (title || subtitle || headerTemplate) {
-            <div class="k-actionsheet-titlebar">
-              @if (headerTemplate) {
-                <ng-template [ngTemplateOutlet]="headerTemplate.templateRef">
-                </ng-template>
-              } @else {
-                <div class="k-actionsheet-titlebar-group k-hbox">
-                  <div class="k-actionsheet-title" [id]="titleId">
-                    @if (title) {
-                      <div class="k-text-center">{{title}}</div>
-                    }
-                    @if (subtitle) {
-                      <div class="k-actionsheet-subtitle k-text-center">{{subtitle}}</div>
-                    }
-                  </div>
-                </div>
-              }
-            </div>
-          }
-          @if (contentTemplate) {
-            <div class="k-actionsheet-content">
-              <ng-template [ngTemplateOutlet]="contentTemplate.templateRef">
-              </ng-template>
-            </div>
-          }
-          @if (footerTemplate) {
-            <div [ngClass]="[orientationClass, alignmentClass, 'k-actions', 'k-actionsheet-footer']">
-              <ng-template [ngTemplateOutlet]="footerTemplate.templateRef">
-              </ng-template>
-            </div>
-          }
-        }
-        
-        `,
-      standalone: true,
-      imports: [NgClass, NgTemplateOutlet]
-    }]
-  }], () => [{
-    type: ActionSheetComponent,
-    decorators: [{
-      type: Optional
-    }, {
-      type: Host
-    }]
-  }, {
-    type: Renderer2
-  }, {
-    type: ElementRef
-  }, {
-    type: NgZone
-  }], {
-    title: [{
-      type: Input
-    }],
-    subtitle: [{
-      type: Input
-    }],
-    titleId: [{
-      type: Input
-    }],
-    hostClass: [{
-      type: HostBinding,
-      args: ["class.k-actionsheet-view"]
-    }],
-    transitionDuration: [{
-      type: HostBinding,
-      args: ["style.transition-duration"]
-    }],
-    transitionProperty: [{
-      type: HostBinding,
-      args: ["style.transition-property"]
-    }],
-    headerTemplate: [{
-      type: ContentChild,
-      args: [ActionSheetHeaderTemplateDirective]
-    }],
-    contentTemplate: [{
-      type: ContentChild,
-      args: [ActionSheetContentTemplateDirective]
-    }],
-    footerTemplate: [{
-      type: ContentChild,
-      args: [ActionSheetFooterTemplateDirective]
-    }],
-    actionSheetTemplate: [{
-      type: ContentChild,
-      args: [ActionSheetTemplateDirective]
-    }]
-  });
-})();
-var PreventableEvent = class {
-  prevented = false;
-  /**
-   * Prevents the default action for a specified event.
-   * In this way, the source component suppresses
-   * the built-in behavior that follows the event.
-   */
-  preventDefault() {
-    this.prevented = true;
-  }
-  /**
-   * Returns `true` if the event was prevented
-   * by any of its subscribers.
-   *
-   * @returns `true` if the default action was prevented.
-   * Otherwise, returns `false`.
-   */
-  isDefaultPrevented() {
-    return this.prevented;
-  }
-  /**
-   * @hidden
-   */
-  constructor(args) {
-    Object.assign(this, args);
-  }
-};
-var BottomNavigationSelectEvent = class extends PreventableEvent {
-  /**
-   * Represents the index of the selected item in the `items` collection.
-   */
-  index;
-  /**
-   * Represents the selected BottomNavigation item.
-   */
-  item;
-  /**
-   * Provides the DOM event that triggered the selection.
-   */
-  originalEvent;
-  /**
-   * Provides a reference to the BottomNavigation instance that triggered the event.
-   */
-  sender;
-  /**
-   * @hidden
-   */
-  constructor(args) {
-    super();
-    Object.assign(this, args);
-  }
-};
-var BottomNavigationItemTemplateDirective = class _BottomNavigationItemTemplateDirective {
-  templateRef;
-  constructor(templateRef) {
-    this.templateRef = templateRef;
-  }
-  static ɵfac = function BottomNavigationItemTemplateDirective_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _BottomNavigationItemTemplateDirective)(ɵɵdirectiveInject(TemplateRef, 8));
-  };
-  static ɵdir = ɵɵdefineDirective({
-    type: _BottomNavigationItemTemplateDirective,
-    selectors: [["", "kendoBottomNavigationItemTemplate", ""]]
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(BottomNavigationItemTemplateDirective, [{
-    type: Directive,
-    args: [{
-      selector: "[kendoBottomNavigationItemTemplate]",
-      standalone: true
-    }]
-  }], () => [{
-    type: TemplateRef,
-    decorators: [{
-      type: Optional
-    }]
-  }], null);
-})();
-var closestInScope2 = (target, targetAttr, predicate, scope) => {
-  while (target && target !== scope && !predicate(target, targetAttr)) {
-    target = target.parentNode;
-  }
-  if (target !== scope) {
-    return target;
-  }
-};
-var hasItemIndex = (item, indexAttr) => isPresent2(item.getAttribute(indexAttr));
-var itemIndex = (item, indexAttr) => +item.getAttribute(indexAttr);
-var closestItem = (target, targetAttr, scope) => closestInScope2(target, targetAttr, hasItemIndex, scope);
-var BOTTOMNAVIGATION_ITEM_INDEX = "data-kendo-bottomnavigation-index";
-var colors = ["primary", "secondary", "tertiary", "info", "success", "warning", "error", "dark", "light", "inverse"];
-var fills = ["solid", "flat"];
-var BottomNavigationItemComponent = class _BottomNavigationItemComponent {
-  itemTemplate;
-  item;
-  index;
-  disabledComponent;
-  selectedIdx;
-  orientation;
-  get disabledClass() {
-    return this.item.disabled;
-  }
-  get label() {
-    return this.item.text ? this.item.text : null;
-  }
-  get tabindex() {
-    return this.item.tabIndex ? this.item.tabIndex : 0;
-  }
-  get selectedClass() {
-    return this.selectedIdx ? this.selectedIdx === this.index : this.item.selected;
-  }
-  get itemIcon() {
-    return Boolean(this.item.icon || this.item.iconClass || this.item.svgIcon);
-  }
-  get iconClasses() {
-    const kendoIcon = this.item.icon ? `k-icon k-i-${this.item.icon}` : "";
-    const customIcon = this.item.iconClass ? this.item.iconClass : "";
-    return `${kendoIcon} ${customIcon}`;
-  }
-  static ɵfac = function BottomNavigationItemComponent_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _BottomNavigationItemComponent)();
-  };
-  static ɵcmp = ɵɵdefineComponent({
-    type: _BottomNavigationItemComponent,
-    selectors: [["", "kendoBottomNavigationItem", ""]],
-    hostVars: 8,
-    hostBindings: function BottomNavigationItemComponent_HostBindings(rf, ctx) {
-      if (rf & 2) {
-        ɵɵattribute("aria-disabled", ctx.disabledClass)("aria-label", ctx.label)("tabindex", ctx.tabindex)("aria-current", ctx.selectedClass);
-        ɵɵclassProp("k-disabled", ctx.disabledClass)("k-selected", ctx.selectedClass);
-      }
-    },
-    inputs: {
-      itemTemplate: "itemTemplate",
-      item: "item",
-      index: "index",
-      disabledComponent: "disabledComponent",
-      selectedIdx: "selectedIdx",
-      orientation: "orientation"
-    },
-    attrs: _c8,
-    decls: 2,
-    vars: 2,
-    consts: [[3, "ngTemplateOutlet", "ngTemplateOutletContext"], ["innerCssClass", "k-bottom-nav-item-icon", "size", "xlarge", 3, "name", "customFontClass", "svgIcon"], [1, "k-bottom-nav-item-text"]],
-    template: function BottomNavigationItemComponent_Template(rf, ctx) {
-      if (rf & 1) {
-        ɵɵtemplate(0, BottomNavigationItemComponent_Conditional_0_Template, 2, 2)(1, BottomNavigationItemComponent_Conditional_1_Template, 1, 4, null, 0);
-      }
-      if (rf & 2) {
-        ɵɵconditional(!ctx.itemTemplate ? 0 : -1);
-        ɵɵadvance();
-        ɵɵconditional(ctx.itemTemplate ? 1 : -1);
-      }
-    },
-    dependencies: [IconWrapperComponent, NgTemplateOutlet],
-    encapsulation: 2
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(BottomNavigationItemComponent, [{
-    type: Component,
-    args: [{
-      selector: "[kendoBottomNavigationItem]",
-      template: `
-        @if (!itemTemplate) {
-          @if (itemIcon) {
-            <kendo-icon-wrapper
-              innerCssClass="k-bottom-nav-item-icon"
-              size="xlarge"
-              [name]="item.icon"
-              [customFontClass]="item.iconClass"
-            [svgIcon]="item.svgIcon"></kendo-icon-wrapper>
-          }
-          @if (item.text) {
-            <span class="k-bottom-nav-item-text">{{item.text}}</span>
-          }
-        }
-        @if (itemTemplate) {
-          <ng-template
-            [ngTemplateOutlet]="itemTemplate?.templateRef"
-            [ngTemplateOutletContext]="{ $implicit: item }">
-          </ng-template>
-        }
-        `,
-      standalone: true,
-      imports: [IconWrapperComponent, NgTemplateOutlet]
-    }]
-  }], null, {
-    itemTemplate: [{
-      type: Input
-    }],
-    item: [{
-      type: Input
-    }],
-    index: [{
-      type: Input
-    }],
-    disabledComponent: [{
-      type: Input
-    }],
-    selectedIdx: [{
-      type: Input
-    }],
-    orientation: [{
-      type: Input
-    }],
-    disabledClass: [{
-      type: HostBinding,
-      args: ["attr.aria-disabled"]
-    }, {
-      type: HostBinding,
-      args: ["class.k-disabled"]
-    }],
-    label: [{
-      type: HostBinding,
-      args: ["attr.aria-label"]
-    }],
-    tabindex: [{
-      type: HostBinding,
-      args: ["attr.tabindex"]
-    }],
-    selectedClass: [{
-      type: HostBinding,
-      args: ["attr.aria-current"]
-    }, {
-      type: HostBinding,
-      args: ["class.k-selected"]
-    }]
-  });
-})();
-var BottomNavigationComponent = class _BottomNavigationComponent {
-  localization;
-  hostElement;
-  ngZone;
-  changeDetector;
-  renderer;
-  /**
-   * Provides the collection of items rendered in the BottomNavigation ([see example](https://www.telerik.com/kendo-angular-ui/components/navigation/bottomnavigation/items)).
-   */
-  items;
-  /**
-   * Shows a top border on the BottomNavigation ([see example](https://www.telerik.com/kendo-angular-ui/components/navigation/bottomnavigation/appearance)).
-   *
-   * @default false
-   */
-  border = false;
-  /**
-   * Disables the entire BottomNavigation.
-   *
-   * @default false
-   */
-  disabled = false;
-  /**
-   * Sets the fill style of the BottomNavigation ([see example](https://www.telerik.com/kendo-angular-ui/components/navigation/bottomnavigation/appearance)). The default value is set by the Kendo theme.
-   */
-  set fill(fill) {
-    const newFill = fills.find((color) => color === fill);
-    this.renderer.removeClass(this._nativeHostElement, `k-bottom-nav-${this.fill}`);
-    this.renderer.removeClass(this._nativeHostElement, `k-bottom-nav-${this.themeColor}`);
-    if (newFill) {
-      this._fill = fill;
-      this.renderer.addClass(this._nativeHostElement, `k-bottom-nav-${this._fill}`);
-      this.themeColor && this.renderer.addClass(this._nativeHostElement, `k-bottom-nav-${this.themeColor}`);
-    }
-  }
-  get fill() {
-    return this._fill;
-  }
-  /**
-   * Controls how the icon and text label are positioned in the BottomNavigation items.
-   *
-   * @default 'vertical'
-   */
-  set itemFlow(itemFlow) {
-    this.renderer.removeClass(this._nativeHostElement, `k-bottom-nav-item-flow-${this.itemFlow}`);
-    this._itemFlow = itemFlow === "horizontal" ? "horizontal" : "vertical";
-    this.renderer.addClass(this._nativeHostElement, `k-bottom-nav-item-flow-${this._itemFlow}`);
-  }
-  get itemFlow() {
-    return this._itemFlow;
-  }
-  /**
-   * Sets the position and behavior of the BottomNavigation when the page is scrollable ([see example](https://www.telerik.com/kendo-angular-ui/components/navigation/bottomnavigation/position-mode)).
-   *
-   * @default 'fixed'
-   */
-  set positionMode(positionMode) {
-    this.renderer.removeClass(this._nativeHostElement, `k-pos-${this.positionMode}`);
-    this._positionMode = positionMode === "sticky" ? "sticky" : "fixed";
-    this.renderer.addClass(this._nativeHostElement, `k-pos-${this._positionMode}`);
-  }
-  get positionMode() {
-    return this._positionMode;
-  }
-  /**
-   * Sets the theme color of the BottomNavigation ([see example](https://www.telerik.com/kendo-angular-ui/components/navigation/bottomnavigation/appearance)).
-   */
-  set themeColor(themeColor) {
-    const newColor = colors.find((color) => color === themeColor);
-    if (newColor) {
-      this.renderer.removeClass(this._nativeHostElement, `k-bottom-nav-${this._themeColor}`);
-      this._themeColor = themeColor;
-      this.renderer.addClass(this._nativeHostElement, `k-bottom-nav-${this._themeColor}`);
-    }
-  }
-  get themeColor() {
-    return this._themeColor;
-  }
-  /**
-   * Fires when a user selects an item. This event is preventable.
-   */
-  select = new EventEmitter();
-  /**
-   * @hidden
-   */
-  hostClass = true;
-  /**
-   * @hidden
-   */
-  get borderClass() {
-    return this.border;
-  }
-  /**
-   * @hidden
-   */
-  get disabledClass() {
-    return this.disabled;
-  }
-  /**
-   * @hidden
-   */
-  role = "navigation";
-  /**
-   * @hidden
-   */
-  direction;
-  /**
-   * @hidden
-   */
-  itemTemplate;
-  /**
-   * @hidden
-   */
-  selectedIdx;
-  _fill;
-  _itemFlow = "vertical";
-  _positionMode = "fixed";
-  _themeColor;
-  _nativeHostElement;
-  dynamicRTLSubscription;
-  subscriptions = new Subscription();
-  rtl = false;
-  constructor(localization, hostElement, ngZone, changeDetector, renderer) {
-    this.localization = localization;
-    this.hostElement = hostElement;
-    this.ngZone = ngZone;
-    this.changeDetector = changeDetector;
-    this.renderer = renderer;
-    A(packageMetadata);
-    this._nativeHostElement = this.hostElement.nativeElement;
-    this.dynamicRTLSubscription = this.localization.changes.subscribe(({
-      rtl
-    }) => {
-      this.rtl = rtl;
-      this.direction = this.rtl ? "rtl" : "ltr";
-    });
-  }
-  /**
-   * @hidden
-   */
-  ngOnInit() {
-    this.initDomEvents();
-  }
-  /**
-   * @hidden
-   */
-  ngAfterViewInit() {
-    this.applyClasses();
-  }
-  /**
-   * @hidden
-   */
-  ngOnDestroy() {
-    if (this.dynamicRTLSubscription) {
-      this.dynamicRTLSubscription.unsubscribe();
-    }
-    this.subscriptions.unsubscribe();
-  }
-  /**
-   * @hidden
-   */
-  selectItem(idx2, args) {
-    const eventArgs = new BottomNavigationSelectEvent(__spreadValues({}, args));
-    this.select.emit(eventArgs);
-    if (!eventArgs.isDefaultPrevented()) {
-      this.selectedIdx = idx2;
-    }
-  }
-  applyClasses() {
-    this.fill && this.renderer.addClass(this._nativeHostElement, `k-bottom-nav-${this.fill}`);
-    this.renderer.addClass(this._nativeHostElement, `k-bottom-nav-item-flow-${this.itemFlow}`);
-    this.renderer.addClass(this._nativeHostElement, `k-pos-${this.positionMode}`);
-    this.themeColor && this.renderer.addClass(this._nativeHostElement, `k-bottom-nav-${this.themeColor}`);
-  }
-  initDomEvents() {
-    if (!this.hostElement) {
-      return;
-    }
-    this.ngZone.runOutsideAngular(() => {
-      this.subscriptions.add(this.renderer.listen(this._nativeHostElement, "click", this.clickHandler.bind(this)));
-      this.subscriptions.add(this.renderer.listen(this._nativeHostElement, "keydown", this.keyDownHandler.bind(this)));
-    });
-  }
-  clickHandler(e) {
-    const itemIdx = this.getBottomNavigationItemIndex(e.target);
-    const item = this.items[itemIdx];
-    if (!item) {
-      return;
-    }
-    if (item.disabled) {
-      e.preventDefault();
-      return;
-    }
-    const args = {
-      index: itemIdx,
-      item,
-      originalEvent: e,
-      sender: this
-    };
-    this.ngZone.run(() => {
-      this.selectItem(itemIdx, args);
-      this.changeDetector.markForCheck();
-    });
-  }
-  keyDownHandler(e) {
-    const isEnterOrSpace = e.code === Keys.Enter || e.code === Keys.NumpadEnter || e.code === Keys.Space;
-    if (!isEnterOrSpace) {
-      return;
-    }
-    this.clickHandler(e);
-  }
-  getBottomNavigationItemIndex(target) {
-    const item = closestItem(target, BOTTOMNAVIGATION_ITEM_INDEX, this._nativeHostElement);
-    if (item) {
-      return itemIndex(item, BOTTOMNAVIGATION_ITEM_INDEX);
-    }
-  }
-  static ɵfac = function BottomNavigationComponent_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _BottomNavigationComponent)(ɵɵdirectiveInject(LocalizationService), ɵɵdirectiveInject(ElementRef), ɵɵdirectiveInject(NgZone), ɵɵdirectiveInject(ChangeDetectorRef), ɵɵdirectiveInject(Renderer2));
-  };
-  static ɵcmp = ɵɵdefineComponent({
-    type: _BottomNavigationComponent,
-    selectors: [["kendo-bottomnavigation"]],
-    contentQueries: function BottomNavigationComponent_ContentQueries(rf, ctx, dirIndex) {
-      if (rf & 1) {
-        ɵɵcontentQuery(dirIndex, BottomNavigationItemTemplateDirective, 5);
-      }
-      if (rf & 2) {
-        let _t;
-        ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx.itemTemplate = _t.first);
-      }
-    },
-    hostVars: 8,
-    hostBindings: function BottomNavigationComponent_HostBindings(rf, ctx) {
-      if (rf & 2) {
-        ɵɵattribute("role", ctx.role)("dir", ctx.direction);
-        ɵɵclassProp("k-bottom-nav", ctx.hostClass)("k-bottom-nav-border", ctx.borderClass)("k-disabled", ctx.disabledClass);
-      }
-    },
-    inputs: {
-      items: "items",
-      border: "border",
-      disabled: "disabled",
-      fill: "fill",
-      itemFlow: "itemFlow",
-      positionMode: "positionMode",
-      themeColor: "themeColor"
-    },
-    outputs: {
-      select: "select"
-    },
-    exportAs: ["kendoBottomNavigation"],
-    features: [ɵɵProvidersFeature([LocalizationService, {
-      provide: L10N_PREFIX,
-      useValue: "kendo.bottomnavigation"
-    }])],
-    decls: 1,
-    vars: 1,
-    consts: [["kendoBottomNavigationItem", "", "role", "link", 1, "k-bottom-nav-item", 3, "disabledComponent", "item", "index", "selectedIdx", "itemTemplate", "ngClass", "ngStyle", "orientation"]],
-    template: function BottomNavigationComponent_Template(rf, ctx) {
-      if (rf & 1) {
-        ɵɵtemplate(0, BottomNavigationComponent_Conditional_0_Template, 2, 0);
-      }
-      if (rf & 2) {
-        ɵɵconditional(ctx.items ? 0 : -1);
-      }
-    },
-    dependencies: [BottomNavigationItemComponent, NgClass, NgStyle],
-    encapsulation: 2
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(BottomNavigationComponent, [{
-    type: Component,
-    args: [{
-      exportAs: "kendoBottomNavigation",
-      selector: "kendo-bottomnavigation",
-      providers: [LocalizationService, {
-        provide: L10N_PREFIX,
-        useValue: "kendo.bottomnavigation"
-      }],
-      template: `
-        @if (items) {
-          @for (item of items; track item; let idx = $index) {
-            <span kendoBottomNavigationItem
-              role="link"
-              class="k-bottom-nav-item"
-              [disabledComponent]="disabled"
-              [item]="item"
-              [index]="idx"
-              [selectedIdx]="selectedIdx"
-              [itemTemplate]="itemTemplate"
-              [attr.${BOTTOMNAVIGATION_ITEM_INDEX}]="idx"
-              [ngClass]="item.cssClass"
-              [ngStyle]="item.cssStyle"
-              [orientation]="itemFlow">
-            </span>
-          }
-        }
-        `,
-      standalone: true,
-      imports: [BottomNavigationItemComponent, NgClass, NgStyle]
-    }]
-  }], () => [{
-    type: LocalizationService
-  }, {
-    type: ElementRef
-  }, {
-    type: NgZone
-  }, {
-    type: ChangeDetectorRef
-  }, {
-    type: Renderer2
-  }], {
-    items: [{
-      type: Input
-    }],
-    border: [{
-      type: Input
-    }],
-    disabled: [{
-      type: Input
-    }],
-    fill: [{
-      type: Input
-    }],
-    itemFlow: [{
-      type: Input
-    }],
-    positionMode: [{
-      type: Input
-    }],
-    themeColor: [{
-      type: Input
-    }],
-    select: [{
-      type: Output
-    }],
-    hostClass: [{
-      type: HostBinding,
-      args: ["class.k-bottom-nav"]
-    }],
-    borderClass: [{
-      type: HostBinding,
-      args: ["class.k-bottom-nav-border"]
-    }],
-    disabledClass: [{
-      type: HostBinding,
-      args: ["class.k-disabled"]
-    }],
-    role: [{
-      type: HostBinding,
-      args: ["attr.role"]
-    }],
-    direction: [{
-      type: HostBinding,
-      args: ["attr.dir"]
-    }],
-    itemTemplate: [{
-      type: ContentChild,
-      args: [BottomNavigationItemTemplateDirective, {
-        static: false
-      }]
-    }]
-  });
-})();
-var BreadCrumbItemTemplateDirective = class _BreadCrumbItemTemplateDirective {
-  templateRef;
-  constructor(templateRef) {
-    this.templateRef = templateRef;
-  }
-  static ɵfac = function BreadCrumbItemTemplateDirective_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _BreadCrumbItemTemplateDirective)(ɵɵdirectiveInject(TemplateRef, 8));
-  };
-  static ɵdir = ɵɵdefineDirective({
-    type: _BreadCrumbItemTemplateDirective,
-    selectors: [["", "kendoBreadCrumbItemTemplate", ""]]
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(BreadCrumbItemTemplateDirective, [{
-    type: Directive,
-    args: [{
-      selector: "[kendoBreadCrumbItemTemplate]",
-      standalone: true
-    }]
-  }], () => [{
-    type: TemplateRef,
-    decorators: [{
-      type: Optional
-    }]
-  }], null);
-})();
-var BREADCRUMB_ITEM_INDEX = "data-kendo-breadcrumb-index";
-var SIZES = {
-  small: "sm",
-  medium: "md",
-  large: "lg"
-};
-var getStylingClasses = (stylingOption, previousValue, newValue) => {
-  switch (stylingOption) {
-    case "size": {
-      return {
-        toRemove: previousValue ? `k-breadcrumb-${SIZES[previousValue]}` : null,
-        toAdd: newValue ? `k-breadcrumb-${SIZES[newValue]}` : null
-      };
-    }
-    default:
-      break;
-  }
-};
-var BreadCrumbItemComponent = class _BreadCrumbItemComponent {
-  el;
-  item;
-  collapseMode;
-  index = -1;
-  itemTemplate;
-  hostClasses = true;
-  get isRootItem() {
-    return this.item.context.isFirst;
-  }
-  get isDisabled() {
-    return this.disabled || null;
-  }
-  get isLastItem() {
-    return this.item.context.isLast;
-  }
-  width;
-  disabled = false;
-  constructor(el) {
-    this.el = el;
-  }
-  ngOnInit() {
-    this.disabled = this.item.data && (this.item.data.disabled || this.item.context.isLast);
-  }
-  ngAfterViewInit() {
-    if (isDocumentAvailable()) {
-      this.width = outerWidth(this.el.nativeElement);
-    }
-  }
-  onImageLoad() {
-    if (isDocumentAvailable()) {
-      this.width = outerWidth(this.el.nativeElement);
-    }
-  }
-  static ɵfac = function BreadCrumbItemComponent_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _BreadCrumbItemComponent)(ɵɵdirectiveInject(ElementRef));
-  };
-  static ɵcmp = ɵɵdefineComponent({
-    type: _BreadCrumbItemComponent,
-    selectors: [["", "kendoBreadCrumbItem", ""]],
-    hostVars: 7,
-    hostBindings: function BreadCrumbItemComponent_HostBindings(rf, ctx) {
-      if (rf & 2) {
-        ɵɵattribute("aria-disabled", ctx.isDisabled);
-        ɵɵclassProp("k-breadcrumb-item", ctx.hostClasses)("k-breadcrumb-root-item", ctx.isRootItem)("k-breadcrumb-last-item", ctx.isLastItem);
-      }
-    },
-    inputs: {
-      item: "item",
-      collapseMode: "collapseMode",
-      index: "index",
-      itemTemplate: "itemTemplate"
-    },
-    attrs: _c9,
-    ngContentSelectors: _c11,
-    decls: 5,
-    vars: 3,
-    consts: [["separator", ""], [4, "ngTemplateOutlet"], ["role", "link", 3, "ngClass", "title", "tabindex"], [3, "ngTemplateOutlet", "ngTemplateOutletContext"], ["role", "presentation", 1, "k-image", 3, "src"], [3, "name", "customFontClass", "svgIcon"], [1, "k-breadcrumb-item-text"], ["role", "presentation", 1, "k-image", 3, "load", "src"]],
-    template: function BreadCrumbItemComponent_Template(rf, ctx) {
-      if (rf & 1) {
-        ɵɵprojectionDef(_c10);
-        ɵɵtemplate(0, BreadCrumbItemComponent_ng_template_0_Template, 1, 0, "ng-template", null, 0, ɵɵtemplateRefExtractor)(2, BreadCrumbItemComponent_Conditional_2_Template, 1, 1, "ng-container")(3, BreadCrumbItemComponent_Conditional_3_Template, 2, 2)(4, BreadCrumbItemComponent_Conditional_4_Template, 1, 1, "ng-container");
-      }
-      if (rf & 2) {
-        ɵɵadvance(2);
-        ɵɵconditional(ctx.collapseMode === "wrap" ? 2 : -1);
-        ɵɵadvance();
-        ɵɵconditional(!ctx.item.context.collapsed ? 3 : -1);
-        ɵɵadvance();
-        ɵɵconditional(ctx.collapseMode !== "wrap" ? 4 : -1);
-      }
-    },
-    dependencies: [NgTemplateOutlet, NgClass, IconWrapperComponent],
-    encapsulation: 2
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(BreadCrumbItemComponent, [{
-    type: Component,
-    args: [{
-      selector: "[kendoBreadCrumbItem]",
-      template: `
-        <ng-template #separator>
-          <ng-content select="[kendoBreadCrumbSeparator]"></ng-content>
-        </ng-template>
-        
-        @if (collapseMode === 'wrap') {
-          <ng-container *ngTemplateOutlet="separator"></ng-container>
-        }
-        
-        @if (!item.context.collapsed) {
-          @if (!itemTemplate) {
-            <span
-                [ngClass]="{
-                    'k-breadcrumb-root-link': item.context.isFirst,
-                    'k-breadcrumb-link': index !== 0,
-                    'k-breadcrumb-icontext-link': (!!item.data.icon || !!item.data.svgIcon) && !!item.data.text,
-                    'k-breadcrumb-icon-link': (!!item.data.icon || !!item.data.svgIcon) && !item.data.text,
-                    'k-disabled': disabled
-                }"
-              [title]="item.data.title || ''"
-              [tabindex]="disabled ? -1 : 0"
-              [attr.aria-disabled]="disabled"
-              [attr.aria-current]="item.context.isLast ? 'page' : null"
-              role="link"
-              >
-              @if (item.data.imageUrl) {
-                <img (load)="onImageLoad()" [src]="item.data.imageUrl" class="k-image" role="presentation" />
-              }
-              @if (item.data.icon || item.data.iconClass || item.data.svgIcon) {
-                <kendo-icon-wrapper
-                  [name]="item.data.icon"
-                  [customFontClass]="item.data.iconClass"
-                  [svgIcon]="item.data.svgIcon"
-                  >
-                </kendo-icon-wrapper>
-              }
-              <span class="k-breadcrumb-item-text">{{ item.data.text }}</span>
-            </span>
-          }
-          @if (itemTemplate) {
-            <ng-template
-              [ngTemplateOutlet]="itemTemplate"
-                [ngTemplateOutletContext]="{
-                    $implicit: item.data,
-                    index: index
-                }"
-            ></ng-template>
-          }
-        }
-        
-        @if (collapseMode !== 'wrap') {
-          <ng-container *ngTemplateOutlet="separator"></ng-container>
-        }
-        `,
-      standalone: true,
-      imports: [NgTemplateOutlet, NgClass, IconWrapperComponent]
-    }]
-  }], () => [{
-    type: ElementRef
-  }], {
-    item: [{
-      type: Input
-    }],
-    collapseMode: [{
-      type: Input
-    }],
-    index: [{
-      type: Input
-    }],
-    itemTemplate: [{
-      type: Input
-    }],
-    hostClasses: [{
-      type: HostBinding,
-      args: ["class.k-breadcrumb-item"]
-    }],
-    isRootItem: [{
-      type: HostBinding,
-      args: ["class.k-breadcrumb-root-item"]
-    }],
-    isDisabled: [{
-      type: HostBinding,
-      args: ["attr.aria-disabled"]
-    }],
-    isLastItem: [{
-      type: HostBinding,
-      args: ["class.k-breadcrumb-last-item"]
-    }]
-  });
-})();
-var DEFAULT_ICON = "chevron-right";
-var DEFAULT_RTL_ICON = "chevron-left";
-var DEFAULT_SVG_ICON = chevronRightIcon;
-var DEFAULT_RTL_SVG_ICON = chevronLeftIcon;
-var BreadCrumbSeparatorDirective = class _BreadCrumbSeparatorDirective {
-  el;
-  localization;
-  set icon(icon) {
-    if (isPresent2(icon)) {
-      this._icon = icon;
-      this.hasDefaultIcon = false;
-    } else {
-      this._icon = this.direction === "ltr" ? DEFAULT_ICON : DEFAULT_RTL_ICON;
-      this.hasDefaultIcon = true;
-    }
-  }
-  get icon() {
-    return this._icon;
-  }
-  set svgIcon(svgIcon) {
-    if (isPresent2(svgIcon)) {
-      this._svgIcon = svgIcon;
-      this.hasDefaultSvgIcon = false;
-    } else {
-      this._svgIcon = this.direction === "ltr" ? DEFAULT_SVG_ICON : DEFAULT_RTL_SVG_ICON;
-      this.hasDefaultSvgIcon = true;
-    }
-  }
-  get svgIcon() {
-    return this._svgIcon;
-  }
-  ariaHidden = true;
-  _icon;
-  _svgIcon;
-  hasDefaultIcon;
-  hasDefaultSvgIcon;
-  direction = "ltr";
-  localizationChangesSubscription;
-  constructor(el, localization) {
-    this.el = el;
-    this.localization = localization;
-    this.direction = this.localization.rtl ? "rtl" : "ltr";
-  }
-  ngOnInit() {
-    this.localizationChangesSubscription = this.localization.changes.subscribe(({
-      rtl
-    }) => {
-      this.direction = rtl ? "rtl" : "ltr";
-      if (this.hasDefaultIcon) {
-        this.icon = void 0;
-      }
-      if (this.hasDefaultSvgIcon) {
-        this.svgIcon = void 0;
-      }
-    });
-  }
-  ngOnDestroy() {
-    this.localizationChangesSubscription.unsubscribe();
-  }
-  static ɵfac = function BreadCrumbSeparatorDirective_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _BreadCrumbSeparatorDirective)(ɵɵdirectiveInject(ElementRef), ɵɵdirectiveInject(LocalizationService));
-  };
-  static ɵcmp = ɵɵdefineComponent({
-    type: _BreadCrumbSeparatorDirective,
-    selectors: [["", "kendoBreadCrumbSeparator", ""]],
-    hostVars: 1,
-    hostBindings: function BreadCrumbSeparatorDirective_HostBindings(rf, ctx) {
-      if (rf & 2) {
-        ɵɵattribute("aria-hidden", ctx.ariaHidden);
-      }
-    },
-    inputs: {
-      icon: "icon",
-      svgIcon: "svgIcon"
-    },
-    attrs: _c14,
-    decls: 1,
-    vars: 2,
-    consts: [["size", "xsmall", "innerCssClass", "k-breadcrumb-delimiter-icon", 3, "name", "svgIcon"]],
-    template: function BreadCrumbSeparatorDirective_Template(rf, ctx) {
-      if (rf & 1) {
-        ɵɵelement(0, "kendo-icon-wrapper", 0);
-      }
-      if (rf & 2) {
-        ɵɵproperty("name", ctx.icon)("svgIcon", ctx.svgIcon);
-      }
-    },
-    dependencies: [IconWrapperComponent],
-    encapsulation: 2
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(BreadCrumbSeparatorDirective, [{
-    type: Component,
-    args: [{
-      selector: "[kendoBreadCrumbSeparator]",
-      template: `
-        <kendo-icon-wrapper
-            size='xsmall'
-            [name]="icon"
-            [svgIcon]="svgIcon"
-            innerCssClass="k-breadcrumb-delimiter-icon"
-        >
-        </kendo-icon-wrapper>
-    `,
-      standalone: true,
-      imports: [IconWrapperComponent]
-    }]
-  }], () => [{
-    type: ElementRef
-  }, {
-    type: LocalizationService
-  }], {
-    icon: [{
-      type: Input
-    }],
-    svgIcon: [{
-      type: Input
-    }],
-    ariaHidden: [{
-      type: HostBinding,
-      args: ["attr.aria-hidden"]
-    }]
-  });
-})();
-var BreadCrumbListComponent = class _BreadCrumbListComponent {
-  el;
-  zone;
-  items = [];
-  itemTemplate;
-  collapseMode = "auto";
-  separatorIcon;
-  separatorSVGIcon;
-  itemClick = new EventEmitter();
-  renderedItems;
-  isRootItemContainer;
-  domEventsSubscription;
-  constructor(el, zone) {
-    this.el = el;
-    this.zone = zone;
-    const element = this.el.nativeElement;
-    this.isRootItemContainer = element.classList.contains("k-breadcrumb-root-item-container");
-    this.zone.runOutsideAngular(() => {
-      const click$ = fromEvent(element, "click");
-      const enterKey$ = fromEvent(element, "keydown").pipe(filter((ev) => ev.code === Keys.Enter || ev.code === Keys.NumpadEnter));
-      this.domEventsSubscription = merge(click$, enterKey$).pipe(
-        map((ev) => ev.target),
-        filter((e) => !e.classList.contains("k-breadcrumb-delimiter-icon")),
-        // do not trigger handler when a separator is clicked
-        map((e) => this.getItemIndex(e)),
-        filter(isPresent2),
-        map((i) => parseInt(i, 10)),
-        map((i) => this.items[i]),
-        filter((item) => !item.data.disabled && !item.context.isLast),
-        map((item) => item.data)
-      ).subscribe((el2) => {
-        this.zone.run(() => this.itemClick.emit(el2));
-      });
-    });
-  }
-  ngOnDestroy() {
-    this.domEventsSubscription.unsubscribe();
-  }
-  getItemIndex(target) {
-    const item = closestItem(target, BREADCRUMB_ITEM_INDEX, this.el.nativeElement);
-    if (item) {
-      return itemIndex(item, BREADCRUMB_ITEM_INDEX);
-    }
-  }
-  static ɵfac = function BreadCrumbListComponent_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _BreadCrumbListComponent)(ɵɵdirectiveInject(ElementRef), ɵɵdirectiveInject(NgZone));
-  };
-  static ɵcmp = ɵɵdefineComponent({
-    type: _BreadCrumbListComponent,
-    selectors: [["", "kendoBreadCrumbList", ""]],
-    viewQuery: function BreadCrumbListComponent_Query(rf, ctx) {
-      if (rf & 1) {
-        ɵɵviewQuery(BreadCrumbItemComponent, 5);
-      }
-      if (rf & 2) {
-        let _t;
-        ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx.renderedItems = _t);
-      }
-    },
-    inputs: {
-      items: "items",
-      itemTemplate: "itemTemplate",
-      collapseMode: "collapseMode",
-      separatorIcon: "separatorIcon",
-      separatorSVGIcon: "separatorSVGIcon"
-    },
-    outputs: {
-      itemClick: "itemClick"
-    },
-    attrs: _c15,
-    decls: 2,
-    vars: 0,
-    consts: [["renderedItem", ""], ["kendoBreadCrumbItem", "", 3, "item", "index", "collapseMode", "itemTemplate"], ["kendoBreadCrumbSeparator", "", 3, "icon", "svgIcon"]],
-    template: function BreadCrumbListComponent_Template(rf, ctx) {
-      if (rf & 1) {
-        ɵɵrepeaterCreate(0, BreadCrumbListComponent_For_1_Template, 1, 1, null, null, ɵɵrepeaterTrackByIdentity);
-      }
-      if (rf & 2) {
-        ɵɵrepeater(ctx.items);
-      }
-    },
-    dependencies: [BreadCrumbItemComponent, BreadCrumbSeparatorDirective],
-    encapsulation: 2
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(BreadCrumbListComponent, [{
-    type: Component,
-    args: [{
-      selector: "[kendoBreadCrumbList]",
-      template: `
-        @for (item of items; track item; let i = $index; let isFirst = $first; let isLast = $last) {
-          @if (!(collapseMode === 'wrap' && isFirst) || isRootItemContainer) {
-            <li
-              #renderedItem
-              kendoBreadCrumbItem
-              [attr.${BREADCRUMB_ITEM_INDEX}]="i"
-              [item]="item"
-              [index]="i"
-              [collapseMode]="collapseMode"
-              [itemTemplate]="itemTemplate"
-              >
-              @if (collapseMode === 'wrap' && !isFirst) {
-                <span kendoBreadCrumbSeparator [icon]="separatorIcon" [svgIcon]="separatorSVGIcon"></span>
-              }
-              @if (collapseMode !== 'wrap' && !isLast && !(item?.context.collapsed && items[i + 1]?.context.collapsed)) {
-                <span
-                  kendoBreadCrumbSeparator
-                  [icon]="separatorIcon"
-                  [svgIcon]="separatorSVGIcon"
-                ></span>
-              }
-            </li>
-          }
-        }
-        `,
-      standalone: true,
-      imports: [BreadCrumbItemComponent, BreadCrumbSeparatorDirective]
-    }]
-  }], () => [{
-    type: ElementRef
-  }, {
-    type: NgZone
-  }], {
-    items: [{
-      type: Input
-    }],
-    itemTemplate: [{
-      type: Input
-    }],
-    collapseMode: [{
-      type: Input
-    }],
-    separatorIcon: [{
-      type: Input
-    }],
-    separatorSVGIcon: [{
-      type: Input
-    }],
-    itemClick: [{
-      type: Output
-    }],
-    renderedItems: [{
-      type: ViewChildren,
-      args: [BreadCrumbItemComponent]
-    }]
-  });
-})();
-var getCollapsed = (itemComponent) => itemComponent.item.context.collapsed;
-var collapsed = (itemComponent) => getCollapsed(itemComponent) === true;
-var expanded = (itemComponent) => getCollapsed(itemComponent) === false;
-var toggleFirst = (collapsed2) => (itemComponents) => itemComponents.find((ic) => getCollapsed(ic) === collapsed2).item.context.collapsed = !collapsed2;
-var collapseFirst = toggleFirst(false);
-var expandFirst = toggleFirst(true);
-var BreadCrumbComponent = class _BreadCrumbComponent {
-  localization;
-  el;
-  cdr;
-  zone;
-  renderer;
-  /**
-   * Configures the collection of items that will be rendered in the Breadcrumb.
-   */
-  set items(items) {
-    this._items = items || [];
-    this.updateItems.next(this._items);
-  }
-  get items() {
-    return this._items;
-  }
-  /**
-   * Specifies the name of a [built-in font icon](https://www.telerik.com/kendo-angular-ui/components/icons/icon/icon-list) in a Kendo UI theme to be rendered as a separator.
-   */
-  separatorIcon;
-  /**
-   * Defines an [`SVGIcon`](https://www.telerik.com/kendo-angular-ui/components/icons/api/svgicon) to be rendered as a separator.
-   */
-  separatorSVGIcon;
-  /**
-   * Controls the collapse mode of the Breadcrumb.
-   * For more information and example, refer to the [Collapse Modes](https://www.telerik.com/kendo-angular-ui/components/navigation/breadcrumb/collapse-modes) article.
-   *
-   * @default `auto`
-   */
-  set collapseMode(mode) {
-    if (isDevMode() && ["auto", "wrap", "none"].indexOf(mode) < 0) {
-      throw new Error('Invalid collapse mode. Allowed values are "auto", "wrap" or "none". \nFor more details see https://www.telerik.com/kendo-angular-ui/components/navigation/api/BreadCrumbCollapseMode/');
-    }
-    this._collapseMode = mode || "auto";
-    this.updateItems.next(this.items);
-  }
-  get collapseMode() {
-    return this._collapseMode;
-  }
-  /**
-   * Determines the padding of all Breadcrumb elements. The default value is set by the Kendo theme.
-   */
-  set size(size) {
-    this.handleClasses(size, "size");
-    this._size = size;
-  }
-  get size() {
-    return this._size;
-  }
-  /**
-   * Fires when you click a Breadcrumb item. The event will not be fired by disabled items and the last item.
-   */
-  itemClick = new EventEmitter();
-  /**
-   * @hidden
-   */
-  resizeSensor;
-  /**
-   * @hidden
-   */
-  itemsContainers;
-  /**
-   * @hidden
-   */
-  listComponent;
-  /**
-   * @hidden
-   */
-  itemTemplate;
-  hostClasses = true;
-  get wrapMode() {
-    return this.collapseMode === "wrap";
-  }
-  hostAriaLabel = "Breadcrumb";
-  get getDir() {
-    return this.direction;
-  }
-  itemsData$;
-  firstItem$;
-  _items = [];
-  _collapseMode = "auto";
-  _size;
-  updateItems = new ReplaySubject();
-  afterViewInit = new Subject();
-  subscriptions = new Subscription();
-  direction = "ltr";
-  constructor(localization, el, cdr, zone, renderer) {
-    this.localization = localization;
-    this.el = el;
-    this.cdr = cdr;
-    this.zone = zone;
-    this.renderer = renderer;
-    A(packageMetadata);
-    const updateItems$ = this.updateItems.asObservable().pipe(startWith([]));
-    this.direction = localization.rtl ? "rtl" : "ltr";
-    this.itemsData$ = updateItems$.pipe(map((items) => items.filter(Boolean)), map((items) => items.map((item, index, collection) => ({
-      context: {
-        collapsed: false,
-        isLast: index === collection.length - 1,
-        isFirst: index === 0
-      },
-      data: item
-    }))), share());
-    this.firstItem$ = updateItems$.pipe(map((items) => {
-      if (items.length > 0) {
-        return [{
-          context: {
-            collapsed: false,
-            isLast: items.length === 1,
-            isFirst: true
-          },
-          data: items[0]
-        }];
-      }
-      return [];
-    }), share());
-  }
-  ngOnInit() {
-    this.subscriptions.add(this.localization.changes.subscribe(({
-      rtl
-    }) => this.direction = rtl ? "rtl" : "ltr"));
-    this.handleClasses(this.size, "size");
-  }
-  ngAfterViewInit() {
-    this.attachResizeHandler();
-    this.afterViewInit.next(void 0);
-  }
-  ngOnDestroy() {
-    this.subscriptions.unsubscribe();
-  }
-  handleResize() {
-    const autoCollapseCandidates = [...this.listComponent.renderedItems.toArray().filter((ri) => !ri.item.context.isFirst && !ri.item.context.isLast)];
-    const componentWidth = Math.floor(outerWidth(this.el.nativeElement));
-    const itemsContainerWidth = Math.round(this.itemsContainers.toArray().map((el) => outerWidth(el.nativeElement)).reduce((acc, curr) => acc + curr, 0));
-    const nextExpandWidth = Math.ceil(([...autoCollapseCandidates].reverse().find(collapsed) || {
-      width: 0
-    }).width);
-    if (componentWidth <= itemsContainerWidth && autoCollapseCandidates.find(expanded)) {
-      collapseFirst(autoCollapseCandidates);
-      this.cdr.detectChanges();
-      return this.handleResize();
-    }
-    if (componentWidth > itemsContainerWidth + nextExpandWidth && autoCollapseCandidates.find(collapsed)) {
-      expandFirst([...autoCollapseCandidates].reverse());
-      this.cdr.detectChanges();
-      return this.handleResize();
-    }
-  }
-  shouldResize() {
-    return isDocumentAvailable() && this.collapseMode === "auto";
-  }
-  attachResizeHandler() {
-    this.subscriptions.add(merge(this.resizeSensor.resize, this.itemsData$, this.afterViewInit.asObservable()).pipe(filter(() => this.shouldResize())).subscribe(() => {
-      this.resizeHandler();
-    }));
-  }
-  handleClasses(value, input) {
-    const elem = this.el.nativeElement;
-    const classes = getStylingClasses(input, this[input], value);
-    if (classes.toRemove) {
-      this.renderer.removeClass(elem, classes.toRemove);
-    }
-    if (classes.toAdd) {
-      this.renderer.addClass(elem, classes.toAdd);
-    }
-  }
-  resizeHandler = () => {
-    this.zone.runOutsideAngular(() => setTimeout(() => {
-      this.zone.run(() => {
-        if (this.listComponent) {
-          this.handleResize();
-          this.resizeSensor.acceptSize();
-        }
-      });
-    }));
-  };
-  static ɵfac = function BreadCrumbComponent_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _BreadCrumbComponent)(ɵɵdirectiveInject(LocalizationService), ɵɵdirectiveInject(ElementRef), ɵɵdirectiveInject(ChangeDetectorRef), ɵɵdirectiveInject(NgZone), ɵɵdirectiveInject(Renderer2));
-  };
-  static ɵcmp = ɵɵdefineComponent({
-    type: _BreadCrumbComponent,
-    selectors: [["kendo-breadcrumb"]],
-    contentQueries: function BreadCrumbComponent_ContentQueries(rf, ctx, dirIndex) {
-      if (rf & 1) {
-        ɵɵcontentQuery(dirIndex, BreadCrumbItemTemplateDirective, 5);
-      }
-      if (rf & 2) {
-        let _t;
-        ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx.itemTemplate = _t.first);
-      }
-    },
-    viewQuery: function BreadCrumbComponent_Query(rf, ctx) {
-      if (rf & 1) {
-        ɵɵviewQuery(_c16, 7);
-        ɵɵviewQuery(BreadCrumbListComponent, 7);
-        ɵɵviewQuery(_c17, 5, ElementRef);
-      }
-      if (rf & 2) {
-        let _t;
-        ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx.resizeSensor = _t.first);
-        ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx.listComponent = _t.first);
-        ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx.itemsContainers = _t);
-      }
-    },
-    hostVars: 6,
-    hostBindings: function BreadCrumbComponent_HostBindings(rf, ctx) {
-      if (rf & 2) {
-        ɵɵattribute("aria-label", ctx.hostAriaLabel)("dir", ctx.getDir);
-        ɵɵclassProp("k-breadcrumb", ctx.hostClasses)("k-breadcrumb-wrap", ctx.wrapMode);
-      }
-    },
-    inputs: {
-      items: "items",
-      separatorIcon: "separatorIcon",
-      separatorSVGIcon: "separatorSVGIcon",
-      collapseMode: "collapseMode",
-      size: "size"
-    },
-    outputs: {
-      itemClick: "itemClick"
-    },
-    exportAs: ["kendoBreadCrumb"],
-    features: [ɵɵProvidersFeature([LocalizationService, {
-      provide: L10N_PREFIX,
-      useValue: "kendo.breadcrumb"
-    }])],
-    decls: 6,
-    vars: 13,
-    consts: [["itemsContainer", ""], ["resizeSensor", ""], ["kendoBreadCrumbList", "", 1, "k-breadcrumb-root-item-container", 3, "items", "itemTemplate", "collapseMode", "separatorIcon", "separatorSVGIcon"], ["kendoBreadCrumbList", "", 1, "k-breadcrumb-container", 3, "itemClick", "items", "itemTemplate", "collapseMode", "separatorIcon", "separatorSVGIcon", "ngClass"], [3, "rateLimit"], ["kendoBreadCrumbList", "", 1, "k-breadcrumb-root-item-container", 3, "itemClick", "items", "itemTemplate", "collapseMode", "separatorIcon", "separatorSVGIcon"]],
-    template: function BreadCrumbComponent_Template(rf, ctx) {
-      if (rf & 1) {
-        const _r1 = ɵɵgetCurrentView();
-        ɵɵtemplate(0, BreadCrumbComponent_Conditional_0_Template, 3, 7, "ol", 2);
-        ɵɵelementStart(1, "ol", 3, 0);
-        ɵɵpipe(3, "async");
-        ɵɵlistener("itemClick", function BreadCrumbComponent_Template_ol_itemClick_1_listener($event) {
-          ɵɵrestoreView(_r1);
-          return ɵɵresetView(ctx.itemClick.emit($event));
-        });
-        ɵɵelementEnd();
-        ɵɵelement(4, "kendo-resize-sensor", 4, 1);
-      }
-      if (rf & 2) {
-        ɵɵconditional(ctx.collapseMode === "wrap" ? 0 : -1);
-        ɵɵadvance();
-        ɵɵproperty("items", ɵɵpipeBind1(3, 8, ctx.itemsData$))("itemTemplate", ctx.itemTemplate == null ? null : ctx.itemTemplate.templateRef)("collapseMode", ctx.collapseMode)("separatorIcon", ctx.separatorIcon)("separatorSVGIcon", ctx.separatorSVGIcon)("ngClass", ɵɵpureFunction2(10, _c18, ctx.collapseMode === "wrap", ctx.collapseMode === "none"));
-        ɵɵadvance(3);
-        ɵɵproperty("rateLimit", 1e3);
-      }
-    },
-    dependencies: [BreadCrumbListComponent, NgClass, ResizeSensorComponent, AsyncPipe],
-    encapsulation: 2
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(BreadCrumbComponent, [{
-    type: Component,
-    args: [{
-      exportAs: "kendoBreadCrumb",
-      selector: "kendo-breadcrumb",
-      providers: [LocalizationService, {
-        provide: L10N_PREFIX,
-        useValue: "kendo.breadcrumb"
-      }],
-      template: `
-        @if (collapseMode === 'wrap') {
-          <ol
-            #itemsContainer
-            kendoBreadCrumbList
-            class="k-breadcrumb-root-item-container"
-            [items]="firstItem$ | async"
-            [itemTemplate]="itemTemplate?.templateRef"
-            [collapseMode]="collapseMode"
-            [separatorIcon]="separatorIcon"
-            [separatorSVGIcon]="separatorSVGIcon"
-            (itemClick)="itemClick.emit($event)"
-          ></ol>
-        }
-        <ol
-          #itemsContainer
-          kendoBreadCrumbList
-          class="k-breadcrumb-container"
-          [items]="itemsData$ | async"
-          [itemTemplate]="itemTemplate?.templateRef"
-          [collapseMode]="collapseMode"
-          [separatorIcon]="separatorIcon"
-          [separatorSVGIcon]="separatorSVGIcon"
-          (itemClick)="itemClick.emit($event)"
-          [ngClass]="{ '!k-flex-wrap': collapseMode === 'wrap', 'k-flex-none': collapseMode === 'none' }"
-        ></ol>
-        <kendo-resize-sensor [rateLimit]="1000" #resizeSensor></kendo-resize-sensor>
-        `,
-      standalone: true,
-      imports: [BreadCrumbListComponent, NgClass, ResizeSensorComponent, AsyncPipe]
-    }]
-  }], () => [{
-    type: LocalizationService
-  }, {
-    type: ElementRef
-  }, {
-    type: ChangeDetectorRef
-  }, {
-    type: NgZone
-  }, {
-    type: Renderer2
-  }], {
-    items: [{
-      type: Input
-    }],
-    separatorIcon: [{
-      type: Input
-    }],
-    separatorSVGIcon: [{
-      type: Input
-    }],
-    collapseMode: [{
-      type: Input
-    }],
-    size: [{
-      type: Input
-    }],
-    itemClick: [{
-      type: Output
-    }],
-    resizeSensor: [{
-      type: ViewChild,
-      args: ["resizeSensor", {
-        static: true
-      }]
-    }],
-    itemsContainers: [{
-      type: ViewChildren,
-      args: ["itemsContainer", {
-        read: ElementRef
-      }]
-    }],
-    listComponent: [{
-      type: ViewChild,
-      args: [BreadCrumbListComponent, {
-        static: true
-      }]
-    }],
-    itemTemplate: [{
-      type: ContentChild,
-      args: [BreadCrumbItemTemplateDirective]
-    }],
-    hostClasses: [{
-      type: HostBinding,
-      args: ["class.k-breadcrumb"]
-    }],
-    wrapMode: [{
-      type: HostBinding,
-      args: ["class.k-breadcrumb-wrap"]
-    }],
-    hostAriaLabel: [{
-      type: HostBinding,
-      args: ["attr.aria-label"]
-    }],
-    getDir: [{
-      type: HostBinding,
-      args: ["attr.dir"]
-    }]
-  });
-})();
-var KENDO_ACTIONSHEET = [ActionSheetComponent, ActionSheetViewComponent, ActionSheetHeaderTemplateDirective, ActionSheetItemTemplateDirective, ActionSheetContentTemplateDirective, ActionSheetFooterTemplateDirective, ActionSheetTemplateDirective];
-var KENDO_APPBAR = [AppBarComponent, AppBarSectionComponent, AppBarSpacerComponent];
-var KENDO_BOTTOMNAVIGATION = [BottomNavigationComponent, BottomNavigationItemTemplateDirective];
-var KENDO_BREADCRUMB = [BreadCrumbComponent, BreadCrumbItemTemplateDirective];
-var KENDO_NAVIGATION = [...KENDO_ACTIONSHEET, ...KENDO_APPBAR, ...KENDO_BOTTOMNAVIGATION, ...KENDO_BREADCRUMB];
-var AppBarModule = class _AppBarModule {
-  static ɵfac = function AppBarModule_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _AppBarModule)();
-  };
-  static ɵmod = ɵɵdefineNgModule({
-    type: _AppBarModule,
-    imports: [AppBarComponent, AppBarSectionComponent, AppBarSpacerComponent],
-    exports: [AppBarComponent, AppBarSectionComponent, AppBarSpacerComponent]
-  });
-  static ɵinj = ɵɵdefineInjector({});
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(AppBarModule, [{
-    type: NgModule,
-    args: [{
-      exports: [...KENDO_APPBAR],
-      imports: [...KENDO_APPBAR]
-    }]
-  }], null, null);
-})();
-var NavigationModule = class _NavigationModule {
-  static ɵfac = function NavigationModule_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _NavigationModule)();
-  };
-  static ɵmod = ɵɵdefineNgModule({
-    type: _NavigationModule,
-    imports: [ActionSheetComponent, ActionSheetViewComponent, ActionSheetHeaderTemplateDirective, ActionSheetItemTemplateDirective, ActionSheetContentTemplateDirective, ActionSheetFooterTemplateDirective, ActionSheetTemplateDirective, AppBarComponent, AppBarSectionComponent, AppBarSpacerComponent, BottomNavigationComponent, BottomNavigationItemTemplateDirective, BreadCrumbComponent, BreadCrumbItemTemplateDirective],
-    exports: [ActionSheetComponent, ActionSheetViewComponent, ActionSheetHeaderTemplateDirective, ActionSheetItemTemplateDirective, ActionSheetContentTemplateDirective, ActionSheetFooterTemplateDirective, ActionSheetTemplateDirective, AppBarComponent, AppBarSectionComponent, AppBarSpacerComponent, BottomNavigationComponent, BottomNavigationItemTemplateDirective, BreadCrumbComponent, BreadCrumbItemTemplateDirective]
-  });
-  static ɵinj = ɵɵdefineInjector({
-    providers: [IconsService, ResizeBatchService],
-    imports: [ActionSheetComponent, BottomNavigationComponent, BreadCrumbComponent]
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(NavigationModule, [{
-    type: NgModule,
-    args: [{
-      imports: [...KENDO_NAVIGATION],
-      exports: [...KENDO_NAVIGATION],
-      providers: [IconsService, ResizeBatchService]
-    }]
-  }], null, null);
-})();
-var BreadCrumbModule = class _BreadCrumbModule {
-  static ɵfac = function BreadCrumbModule_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _BreadCrumbModule)();
-  };
-  static ɵmod = ɵɵdefineNgModule({
-    type: _BreadCrumbModule,
-    imports: [BreadCrumbComponent, BreadCrumbItemTemplateDirective],
-    exports: [BreadCrumbComponent, BreadCrumbItemTemplateDirective]
-  });
-  static ɵinj = ɵɵdefineInjector({
-    providers: [IconsService, ResizeBatchService],
-    imports: [BreadCrumbComponent]
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(BreadCrumbModule, [{
-    type: NgModule,
-    args: [{
-      exports: [...KENDO_BREADCRUMB],
-      imports: [...KENDO_BREADCRUMB],
-      providers: [IconsService, ResizeBatchService]
-    }]
-  }], null, null);
-})();
-var BottomNavigationModule = class _BottomNavigationModule {
-  static ɵfac = function BottomNavigationModule_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _BottomNavigationModule)();
-  };
-  static ɵmod = ɵɵdefineNgModule({
-    type: _BottomNavigationModule,
-    imports: [BottomNavigationComponent, BottomNavigationItemTemplateDirective],
-    exports: [BottomNavigationComponent, BottomNavigationItemTemplateDirective]
-  });
-  static ɵinj = ɵɵdefineInjector({
-    providers: [IconsService],
-    imports: [BottomNavigationComponent]
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(BottomNavigationModule, [{
-    type: NgModule,
-    args: [{
-      exports: [...KENDO_BOTTOMNAVIGATION],
-      imports: [...KENDO_BOTTOMNAVIGATION],
-      providers: [IconsService]
-    }]
-  }], null, null);
-})();
-var ActionSheetModule = class _ActionSheetModule {
-  static ɵfac = function ActionSheetModule_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _ActionSheetModule)();
-  };
-  static ɵmod = ɵɵdefineNgModule({
-    type: _ActionSheetModule,
-    imports: [ActionSheetComponent, ActionSheetViewComponent, ActionSheetHeaderTemplateDirective, ActionSheetItemTemplateDirective, ActionSheetContentTemplateDirective, ActionSheetFooterTemplateDirective, ActionSheetTemplateDirective],
-    exports: [ActionSheetComponent, ActionSheetViewComponent, ActionSheetHeaderTemplateDirective, ActionSheetItemTemplateDirective, ActionSheetContentTemplateDirective, ActionSheetFooterTemplateDirective, ActionSheetTemplateDirective]
-  });
-  static ɵinj = ɵɵdefineInjector({
-    providers: [IconsService],
-    imports: [ActionSheetComponent]
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(ActionSheetModule, [{
-    type: NgModule,
-    args: [{
-      exports: [...KENDO_ACTIONSHEET],
-      imports: [...KENDO_ACTIONSHEET],
-      providers: [IconsService]
-    }]
-  }], null, null);
-})();
 
 // node_modules/@progress/kendo-drawing/dist/es/common/class.js
 var Class = class {
@@ -4047,8 +26,8 @@ var Observable = class extends Class {
       }
       return this;
     }
-    for (let idx2 = 0; idx2 < length; idx2++) {
-      const eventName2 = eventNames[idx2];
+    for (let idx = 0; idx < length; idx++) {
+      const eventName2 = eventNames[idx];
       let handler = handlersIsFunction ? handlers : handlers[eventName2];
       if (handler) {
         if (one) {
@@ -4071,8 +50,8 @@ var Observable = class extends Class {
   first(eventName, handlers) {
     const eventNames = getArray(eventName);
     const handlersIsFunction = isFunction(handlers);
-    for (let idx2 = 0, length = eventNames.length; idx2 < length; idx2++) {
-      const eventName2 = eventNames[idx2];
+    for (let idx = 0, length = eventNames.length; idx < length; idx++) {
+      const eventName2 = eventNames[idx];
       const handler = handlersIsFunction ? handlers : handlers[eventName2];
       if (handler) {
         const events2 = this._events[eventName2] = this._events[eventName2] || [];
@@ -4090,8 +69,8 @@ var Observable = class extends Class {
       e.preventDefault = preventDefault;
       e.isDefaultPrevented = isDefaultPrevented;
       events2 = events2.slice();
-      for (let idx2 = 0; idx2 < length; idx2++) {
-        events2[idx2].call(this, e);
+      for (let idx = 0; idx < length; idx++) {
+        events2[idx].call(this, e);
       }
       return e._defaultPrevented === true;
     }
@@ -4103,9 +82,9 @@ var Observable = class extends Class {
       this._events = {};
     } else if (events2) {
       if (handler) {
-        for (let idx2 = events2.length - 1; idx2 >= 0; idx2--) {
-          if (events2[idx2] === handler || events2[idx2].original === handler) {
-            events2.splice(idx2, 1);
+        for (let idx = events2.length - 1; idx >= 0; idx--) {
+          if (events2[idx] === handler || events2[idx].original === handler) {
+            events2.splice(idx, 1);
           }
         }
       } else {
@@ -4732,9 +711,9 @@ var Color = class _Color extends Class {
     if (arguments.length === 1) {
       const formats = _Color.formats;
       const resolvedColor = this.resolveColor(value);
-      for (let idx2 = 0; idx2 < formats.length; idx2++) {
-        const formatRegex = formats[idx2].re;
-        const processor = formats[idx2].process;
+      for (let idx = 0; idx < formats.length; idx++) {
+        const formatRegex = formats[idx].re;
+        const processor = formats[idx].process;
         const parts = formatRegex.exec(resolvedColor);
         if (parts) {
           const channels = processor(parts);
@@ -4870,8 +849,8 @@ var HasObservers = class extends Class {
   trigger(methodName, event) {
     const observers = this._observers;
     if (observers && !this._suspended) {
-      for (let idx2 = 0; idx2 < observers.length; idx2++) {
-        let observer = observers[idx2];
+      for (let idx = 0; idx < observers.length; idx++) {
+        let observer = observers[idx];
         if (observer[methodName]) {
           observer[methodName](event);
         }
@@ -5262,7 +1241,7 @@ function mergeSort(a, cmp) {
   if (a.length < 2) {
     return a.slice();
   }
-  function merge2(a2, b) {
+  function merge(a2, b) {
     var r = [], ai = 0, bi = 0, i = 0;
     while (ai < a2.length && bi < b.length) {
       if (cmp(a2[ai], b[bi]) <= 0) {
@@ -5288,7 +1267,7 @@ function mergeSort(a, cmp) {
     var right = a2.slice(m);
     left = sort(left);
     right = sort(right);
-    return merge2(left, right);
+    return merge(left, right);
   })(a);
 }
 
@@ -5323,8 +1302,8 @@ function valueOrDefault(value, defaultValue) {
 function bindEvents(element, events2) {
   for (let eventName in events2) {
     const eventNames = eventName.trim().split(" ");
-    for (let idx2 = 0; idx2 < eventNames.length; idx2++) {
-      element.addEventListener(eventNames[idx2], events2[eventName], false);
+    for (let idx = 0; idx < eventNames.length; idx++) {
+      element.addEventListener(eventNames[idx], events2[eventName], false);
     }
   }
 }
@@ -5342,11 +1321,11 @@ function elementOffset(element) {
 // node_modules/@progress/kendo-drawing/dist/es/util/element-styles.js
 function elementStyles2(element, styles) {
   const result = {};
-  const style2 = window.getComputedStyle(element) || {};
+  const style = window.getComputedStyle(element) || {};
   const stylesArray = Array.isArray(styles) ? styles : [styles];
-  for (let idx2 = 0; idx2 < stylesArray.length; idx2++) {
-    let field = stylesArray[idx2];
-    result[field] = style2[field];
+  for (let idx = 0; idx < stylesArray.length; idx++) {
+    let field = stylesArray[idx];
+    result[field] = style[field];
   }
   return result;
 }
@@ -5383,8 +1362,8 @@ function elementSize(element, size) {
 function unbindEvents(element, events2 = {}) {
   for (let name in events2) {
     const eventNames = name.trim().split(" ");
-    for (let idx2 = 0; idx2 < eventNames.length; idx2++) {
-      element.removeEventListener(eventNames[idx2], events2[name], false);
+    for (let idx = 0; idx < eventNames.length; idx++) {
+      element.removeEventListener(eventNames[idx], events2[name], false);
     }
   }
 }
@@ -5524,12 +1503,12 @@ var LRUCache = class extends Class {
     this._map = {};
   }
   put(key, value) {
-    const map2 = this._map;
+    const map = this._map;
     const entry = {
       key,
       value
     };
-    map2[key] = entry;
+    map[key] = entry;
     if (!this._head) {
       this._head = this._tail = entry;
     } else {
@@ -5538,7 +1517,7 @@ var LRUCache = class extends Class {
       this._tail = entry;
     }
     if (this._length >= this._size) {
-      map2[this._head.key] = null;
+      map[this._head.key] = null;
       this._head = this._head.newer;
       this._head.older = null;
     } else {
@@ -5621,11 +1600,11 @@ var TextMetrics = class extends Class {
     this._cache = new lru_cache_default(1e3);
     this.options = Object.assign({}, DEFAULT_OPTIONS, options2);
   }
-  measure(text, style2, options2 = {}) {
+  measure(text, style, options2 = {}) {
     if (typeof text === "undefined" || text === null) {
       return zeroSize();
     }
-    const styleKey = objectKey(style2);
+    const styleKey = objectKey(style);
     const cacheKey = hashKey(text + styleKey);
     const cachedResult = this._cache.get(cacheKey);
     if (cachedResult) {
@@ -5634,8 +1613,8 @@ var TextMetrics = class extends Class {
     const size = zeroSize();
     const measureBox = options2.box || defaultMeasureBox;
     const baselineMarker = this._baselineMarker().cloneNode(false);
-    for (let key in style2) {
-      let value = style2[key];
+    for (let key in style) {
+      let value = style[key];
       if (typeof value !== "undefined") {
         measureBox.style[key] = value;
       }
@@ -5669,8 +1648,8 @@ TextMetrics.current = new TextMetrics();
 var text_metrics_default = TextMetrics;
 
 // node_modules/@progress/kendo-drawing/dist/es/text-metrics/measure-text.js
-function measureText(text, style2, measureBox) {
-  return text_metrics_default.current.measure(text, style2, measureBox);
+function measureText(text, style, measureBox) {
+  return text_metrics_default.current.measure(text, style, measureBox);
 }
 
 // node_modules/@progress/kendo-drawing/dist/es/util/element-set-styles-safe.js
@@ -6320,8 +2299,8 @@ var Group = class extends traversable_default(element_default, "children") {
     if (this.visible()) {
       const children = this.children;
       const transform2 = this.currentTransform(parentTransform);
-      for (let idx2 = 0; idx2 < children.length; idx2++) {
-        if (children[idx2].containsPoint(point2, transform2)) {
+      for (let idx = 0; idx < children.length; idx++) {
+        if (children[idx].containsPoint(point2, transform2)) {
           return true;
         }
       }
@@ -6719,9 +2698,9 @@ var QuadRoot = class extends Class {
     const shapes = this.shapes;
     const length = shapes.length;
     const result = [];
-    for (let idx2 = 0; idx2 < length; idx2++) {
-      if (shapes[idx2].bbox.containsPoint(point2)) {
-        result.push(shapes[idx2].shape);
+    for (let idx = 0; idx < length; idx++) {
+      if (shapes[idx].bbox.containsPoint(point2)) {
+        result.push(shapes[idx].shape);
       }
     }
     return result;
@@ -6732,9 +2711,9 @@ var QuadRoot = class extends Class {
   remove(shape) {
     const shapes = this.shapes;
     const length = shapes.length;
-    for (let idx2 = 0; idx2 < length; idx2++) {
-      if (shapes[idx2].shape === shape) {
-        shapes.splice(idx2, 1);
+    for (let idx = 0; idx < length; idx++) {
+      if (shapes[idx].shape === shape) {
+        shapes.splice(idx, 1);
         break;
       }
     }
@@ -7239,9 +3218,9 @@ function hasRootsInRange(points3, point2, field, rootField, range) {
   const polynomial = toCubicPolynomial(points3, rootField);
   const roots = solveCubicEquation(polynomial[0], polynomial[1], polynomial[2], polynomial[3] - point2[rootField]);
   let intersection;
-  for (let idx2 = 0; idx2 < roots.length; idx2++) {
-    if (0 <= roots[idx2] && roots[idx2] <= 1) {
-      intersection = calculateCurveAt(roots[idx2], field, points3);
+  for (let idx = 0; idx < roots.length; idx++) {
+    if (0 <= roots[idx] && roots[idx] <= 1) {
+      intersection = calculateCurveAt(roots[idx], field, points3);
       if (Math.abs(intersection - point2[field]) <= range) {
         return true;
       }
@@ -7454,8 +3433,8 @@ var QuadNode = class _QuadNode extends quad_root_default {
     const children = this.children;
     const length = children.length;
     const result = super.pointShapes(point2);
-    for (let idx2 = 0; idx2 < length; idx2++) {
-      append(result, children[idx2].pointShapes(point2));
+    for (let idx = 0; idx < length; idx++) {
+      append(result, children[idx].pointShapes(point2));
     }
     return result;
   }
@@ -7469,8 +3448,8 @@ var QuadNode = class _QuadNode extends quad_root_default {
         if (!children.length) {
           this._initChildren();
         }
-        for (let idx2 = 0; idx2 < children.length; idx2++) {
-          if (children[idx2].insert(shape, bbox)) {
+        for (let idx = 0; idx < children.length; idx++) {
+          if (children[idx].insert(shape, bbox)) {
             inserted = true;
             break;
           }
@@ -7511,8 +3490,8 @@ var ShapesQuadTree = class extends Class {
   }
   clear() {
     const rootElements = this.rootElements;
-    for (let idx2 = 0; idx2 < rootElements.length; idx2++) {
-      this.remove(rootElements[idx2]);
+    for (let idx = 0; idx < rootElements.length; idx++) {
+      this.remove(rootElements[idx]);
     }
     this.initRoots();
   }
@@ -7525,9 +3504,9 @@ var ShapesQuadTree = class extends Class {
     const maxLevel = maxZindexLevel(result);
     this.assignZindex(result, maxLevel);
     result.sort(zIndexComparer);
-    for (let idx2 = 0; idx2 < result.length; idx2++) {
-      if (result[idx2].containsPoint(point2)) {
-        return result[idx2];
+    for (let idx = 0; idx < result.length; idx++) {
+      if (result[idx].containsPoint(point2)) {
+        return result[idx];
       }
     }
   }
@@ -7535,8 +3514,8 @@ var ShapesQuadTree = class extends Class {
     const initialLevelWeight = bigPow(LEVEL_STEP, BigInt(maxLevel));
     const zIndexes = [];
     const start = BigInt(0);
-    for (let idx2 = 0; idx2 < elements.length; idx2++) {
-      let element = elements[idx2];
+    for (let idx = 0; idx < elements.length; idx++) {
+      let element = elements[idx];
       let zIndex = start;
       let levelWeight = initialLevelWeight;
       let parents = [];
@@ -7549,12 +3528,12 @@ var ShapesQuadTree = class extends Class {
         zIndex += BigInt((element.parent ? element.parent.children : this.rootElements).indexOf(element) + 1) * levelWeight;
         levelWeight /= LEVEL_STEP;
       }
-      elements[idx2]._zIndex = zIndex;
+      elements[idx]._zIndex = zIndex;
       zIndexes.push(zIndex);
     }
     zIndexes.sort(sortAscComparer);
-    for (let idx2 = 0; idx2 < elements.length; idx2++) {
-      elements[idx2]._zIndex = zIndexes.indexOf(elements[idx2]._zIndex);
+    for (let idx = 0; idx < elements.length; idx++) {
+      elements[idx]._zIndex = zIndexes.indexOf(elements[idx]._zIndex);
     }
   }
   optionsChange(e) {
@@ -7567,8 +3546,8 @@ var ShapesQuadTree = class extends Class {
   }
   bboxChange(element) {
     if (element.nodeType === "Group") {
-      for (let idx2 = 0; idx2 < element.children.length; idx2++) {
-        this.bboxChange(element.children[idx2]);
+      for (let idx = 0; idx < element.children.length; idx++) {
+        this.bboxChange(element.children[idx]);
       }
     } else {
       if (element._quadNode) {
@@ -7584,8 +3563,8 @@ var ShapesQuadTree = class extends Class {
   }
   childrenChange(e) {
     if (e.action === "remove") {
-      for (let idx2 = 0; idx2 < e.items.length; idx2++) {
-        this.remove(e.items[idx2]);
+      for (let idx = 0; idx < e.items.length; idx++) {
+        this.remove(e.items[idx]);
       }
     } else {
       this._insert(Array.prototype.slice.call(e.items, 0));
@@ -7627,8 +3606,8 @@ var ShapesQuadTree = class extends Class {
     element.removeObserver(this);
     if (element.nodeType === "Group") {
       const children = element.children;
-      for (let idx2 = 0; idx2 < children.length; idx2++) {
-        this.remove(children[idx2]);
+      for (let idx = 0; idx < children.length; idx++) {
+        this.remove(children[idx]);
       }
     } else if (element._quadNode) {
       element._quadNode.remove(element);
@@ -7688,8 +3667,8 @@ function bigPow(base, exp) {
 }
 function maxZindexLevel(elements) {
   let maxLevel = 0;
-  for (let idx2 = 0; idx2 < elements.length; idx2++) {
-    let element = elements[idx2];
+  for (let idx = 0; idx < elements.length; idx++) {
+    let element = elements[idx];
     let parents = [];
     while (element) {
       parents.push(element);
@@ -7830,9 +3809,9 @@ var ElementsArray = class extends has_observers_default {
   }
   indexOf(element) {
     const length = this.length;
-    for (let idx2 = 0; idx2 < length; idx2++) {
-      if (this[idx2] === element) {
-        return idx2;
+    for (let idx = 0; idx < length; idx++) {
+      if (this[idx] === element) {
+        return idx;
       }
     }
     return -1;
@@ -7852,13 +3831,13 @@ var ElementsArray = class extends has_observers_default {
     this._change();
   }
   _setObserver(elements) {
-    for (let idx2 = 0; idx2 < elements.length; idx2++) {
-      elements[idx2].addObserver(this);
+    for (let idx = 0; idx < elements.length; idx++) {
+      elements[idx].addObserver(this);
     }
   }
   _clearObserver(elements) {
-    for (let idx2 = 0; idx2 < elements.length; idx2++) {
-      elements[idx2].removeObserver(this);
+    for (let idx = 0; idx < elements.length; idx++) {
+      elements[idx].removeObserver(this);
     }
   }
   _change() {
@@ -7949,8 +3928,8 @@ var Gradient = class extends has_observers_default {
   }
   _createStops(stops = []) {
     const result = [];
-    for (let idx2 = 0; idx2 < stops.length; idx2++) {
-      result.push(gradient_stop_default.create(stops[idx2]));
+    for (let idx = 0; idx < stops.length; idx++) {
+      result.push(gradient_stop_default.create(stops[idx]));
     }
     return result;
   }
@@ -8041,8 +4020,8 @@ function renderPath(ctx, path) {
 
 // node_modules/@progress/kendo-drawing/dist/es/canvas/path-node.js
 function addGradientStops(gradient, stops) {
-  for (let idx2 = 0; idx2 < stops.length; idx2++) {
-    let stop = stops[idx2];
+  for (let idx = 0; idx < stops.length; idx++) {
+    let stop = stops[idx];
     let color = parseColor(stop.color());
     color.a *= stop.opacity();
     gradient.addColorStop(stop.offset(), color.toCssRgba());
@@ -8312,13 +4291,13 @@ function pointsToCurve(pointsIn, closed) {
     initialControlPoint = firstControlPoint(tangent, p0, p1, X, Y);
   }
   let cp0 = initialControlPoint;
-  for (let idx2 = 0; idx2 <= length - 3; idx2++) {
-    removeDuplicates(idx2, points3);
+  for (let idx = 0; idx <= length - 3; idx++) {
+    removeDuplicates(idx, points3);
     length = points3.length;
-    if (idx2 + 3 <= length) {
-      p0 = points3[idx2];
-      p1 = points3[idx2 + 1];
-      p2 = points3[idx2 + 2];
+    if (idx + 3 <= length) {
+      p0 = points3[idx];
+      p1 = points3[idx + 1];
+      p2 = points3[idx + 2];
       const controlPoints = getControlPoints(p0, p1, p2);
       last(segments).controlOut(cp0);
       cp0 = controlPoints[1];
@@ -8342,9 +4321,9 @@ function pointsToCurve(pointsIn, closed) {
   }
   return segments;
 }
-function removeDuplicates(idx2, points3) {
-  while (points3[idx2 + 1] && (points3[idx2].equals(points3[idx2 + 1]) || points3[idx2 + 1].equals(points3[idx2 + 2]))) {
-    points3.splice(idx2 + 1, 1);
+function removeDuplicates(idx, points3) {
+  while (points3[idx + 1] && (points3[idx].equals(points3[idx + 1]) || points3[idx + 1].equals(points3[idx + 2]))) {
+    points3.splice(idx + 1, 1);
   }
 }
 function invertAxis(p0, p1, p2) {
@@ -8885,9 +4864,9 @@ var Path = class _Path extends paintable_default(measurable_default(element_defa
     const length = segments.length;
     let intersectionsCount = 0;
     let previous, current;
-    for (let idx2 = 1; idx2 < length; idx2++) {
-      previous = segments[idx2 - 1];
-      current = segments[idx2];
+    for (let idx = 1; idx < length; idx++) {
+      previous = segments[idx - 1];
+      current = segments[idx];
       intersectionsCount += previous._intersectionsTo(current, point2);
     }
     if (this.options.closed || !segments[0].anchor().equals(segments[length - 1].anchor())) {
@@ -8903,8 +4882,8 @@ var Path = class _Path extends paintable_default(measurable_default(element_defa
       if (segments[0]._isOnPathTo(segments[1], point2, pathWidth, "start")) {
         return true;
       }
-      for (let idx2 = 2; idx2 <= length - 2; idx2++) {
-        if (segments[idx2 - 1]._isOnPathTo(segments[idx2], point2, pathWidth)) {
+      for (let idx = 2; idx <= length - 2; idx++) {
+        if (segments[idx - 1]._isOnPathTo(segments[idx], point2, pathWidth)) {
           return true;
         }
       }
@@ -9060,8 +5039,8 @@ var MultiPath = class _MultiPath extends paintable_default(measurable_default(el
   }
   _containsPoint(point2) {
     const paths = this.paths;
-    for (let idx2 = 0; idx2 < paths.length; idx2++) {
-      if (paths[idx2]._containsPoint(point2)) {
+    for (let idx = 0; idx < paths.length; idx++) {
+      if (paths[idx]._containsPoint(point2)) {
         return true;
       }
     }
@@ -9070,8 +5049,8 @@ var MultiPath = class _MultiPath extends paintable_default(measurable_default(el
   _isOnPath(point2) {
     const paths = this.paths;
     const width = this.options.stroke.width;
-    for (let idx2 = 0; idx2 < paths.length; idx2++) {
-      if (paths[idx2]._isOnPath(point2, width)) {
+    for (let idx = 0; idx < paths.length; idx++) {
+      if (paths[idx]._isOnPath(point2, width)) {
         return true;
       }
     }
@@ -9252,8 +5231,8 @@ var Surface2 = class extends surface_default {
       this._searchTree = new shapes_quad_tree_default();
       const childNodes = this._root.childNodes;
       const rootElements = [];
-      for (let idx2 = 0; idx2 < childNodes.length; idx2++) {
-        rootElements.push(childNodes[idx2].srcElement);
+      for (let idx = 0; idx < childNodes.length; idx++) {
+        rootElements.push(childNodes[idx].srcElement);
       }
       this._searchTree.add(rootElements);
     }
@@ -9330,10 +5309,10 @@ function exportImage(group, options2) {
   }
   const surfaceOptions = Object.assign(defaults, options2);
   const container = document.createElement("div");
-  const style2 = container.style;
-  style2.display = "none";
-  style2.width = surfaceOptions.width;
-  style2.height = surfaceOptions.height;
+  const style = container.style;
+  style.display = "none";
+  style.width = surfaceOptions.width;
+  style.height = surfaceOptions.height;
   document.body.appendChild(container);
   const surface = new surface_default2(container, surfaceOptions);
   surface.suspendTracking();
@@ -9642,11 +5621,11 @@ var Node2 = class extends base_node_default {
   }
   mapStyle() {
     const options2 = this.srcElement.options;
-    const style2 = [["cursor", options2.cursor]];
+    const style = [["cursor", options2.cursor]];
     if (options2.visible === false) {
-      style2.push(["display", NONE]);
+      style.push(["display", NONE]);
     }
-    return style2;
+    return style;
   }
   renderStyle() {
     return renderAttr("style", renderStyle(this.mapStyle(true)));
@@ -9791,8 +5770,8 @@ var GradientNode = class extends node_default2 {
   loadStops() {
     const stops = this.srcElement.stops;
     const element = this.element;
-    for (let idx2 = 0; idx2 < stops.length; idx2++) {
-      let stopNode = new gradient_stop_node_default(stops[idx2]);
+    for (let idx = 0; idx < stops.length; idx++) {
+      let stopNode = new gradient_stop_node_default(stops[idx]);
       this.append(stopNode);
       if (element) {
         stopNode.attachTo(element);
@@ -10210,8 +6189,8 @@ var forEach = (elements, callback) => {
 };
 var forEachReverse = (elements, callback) => {
   const length = elements.length;
-  for (let idx2 = length - 1; idx2 >= 0; idx2--) {
-    callback(elements[idx2], idx2);
+  for (let idx = length - 1; idx >= 0; idx--) {
+    callback(elements[idx], idx);
   }
 };
 var Layout = class extends group_default {
@@ -10280,8 +6259,8 @@ var Layout = class extends group_default {
     const size = new size_default();
     let groupStart = alignStart(groupsSize, rect, options2.alignContent, groupsAxis, groupsSizeField);
     let elementStart, group, groupBox;
-    const arrangeElements = (bbox, idx2) => {
-      const element = group.elements[idx2];
+    const arrangeElements = (bbox, idx) => {
+      const element = group.elements[idx];
       elementOrigin[groupAxis] = elementStart;
       elementOrigin[groupsAxis] = alignStart(bbox.size[groupsSizeField], groupBox, options2.alignItems, groupsAxis, groupsSizeField);
       translateToPoint(elementOrigin, bbox, element);
@@ -10330,9 +6309,9 @@ var Layout = class extends group_default {
       groupsSize += group.lineSize + lineSpacing;
     };
     let groupsSize = -lineSpacing;
-    for (let idx2 = 0; idx2 < children.length; idx2++) {
-      let element = children[idx2];
-      let bbox = children[idx2].clippedBBox();
+    for (let idx = 0; idx < children.length; idx++) {
+      let element = children[idx];
+      let bbox = children[idx].clippedBBox();
       if (element._isBreakMarker) {
         if (group.bboxes.length > 0) {
           addGroup();
@@ -10487,12 +6466,12 @@ __export(drawing_exports, {
 
 // node_modules/@progress/kendo-drawing/dist/es/alignment/align-elements.js
 function alignElements(elements, rect, alignment, axis, sizeField) {
-  for (let idx2 = 0; idx2 < elements.length; idx2++) {
-    const bbox = elements[idx2].clippedBBox();
+  for (let idx = 0; idx < elements.length; idx++) {
+    const bbox = elements[idx].clippedBBox();
     if (bbox) {
       const point2 = bbox.origin.clone();
       point2[axis] = alignStart(bbox.size[sizeField], rect, alignment || "start", axis, sizeField);
-      translateToPoint(point2, bbox, elements[idx2]);
+      translateToPoint(point2, bbox, elements[idx]);
     }
   }
 }
@@ -10512,9 +6491,9 @@ function stackElements(elements, stackAxis, otherAxis, sizeField) {
   if (elements.length > 1) {
     const origin = new point_default();
     let previousBBox = elements[0].bbox;
-    for (let idx2 = 1; idx2 < elements.length; idx2++) {
-      let element = elements[idx2].element;
-      let bbox = elements[idx2].bbox;
+    for (let idx = 1; idx < elements.length; idx++) {
+      let element = elements[idx].element;
+      let bbox = elements[idx].bbox;
       origin[stackAxis] = previousBBox.origin[stackAxis] + previousBBox.size[sizeField];
       origin[otherAxis] = bbox.origin[otherAxis];
       translateToPoint(origin, bbox, element);
@@ -10527,8 +6506,8 @@ function stackElements(elements, stackAxis, otherAxis, sizeField) {
 // node_modules/@progress/kendo-drawing/dist/es/alignment/create-stack-elements.js
 function createStackElements(elements) {
   const stackElements2 = [];
-  for (let idx2 = 0; idx2 < elements.length; idx2++) {
-    let element = elements[idx2];
+  for (let idx = 0; idx < elements.length; idx++) {
+    let element = elements[idx];
     let bbox = element.clippedBBox();
     if (bbox) {
       stackElements2.push({
@@ -10563,8 +6542,8 @@ function getStacks(elements, rect, sizeField) {
       bbox
     });
   };
-  for (let idx2 = 0; idx2 < elements.length; idx2++) {
-    element = elements[idx2];
+  for (let idx = 0; idx < elements.length; idx++) {
+    element = elements[idx];
     bbox = element.clippedBBox();
     if (bbox) {
       let size = bbox.size[sizeField];
@@ -10595,8 +6574,8 @@ function wrapElements(elements, rect, axis, otherAxis, sizeField) {
   const stacks = getStacks(elements, rect, sizeField);
   const origin = rect.origin.clone();
   const result = [];
-  for (let idx2 = 0; idx2 < stacks.length; idx2++) {
-    let stack2 = stacks[idx2];
+  for (let idx = 0; idx < stacks.length; idx++) {
+    let stack2 = stacks[idx];
     let startElement = stack2[0];
     origin[otherAxis] = startElement.bbox.origin[otherAxis];
     translateToPoint(origin, startElement.bbox, startElement.element);
@@ -10604,7 +6583,7 @@ function wrapElements(elements, rect, axis, otherAxis, sizeField) {
     stackElements(stack2, axis, otherAxis, sizeField);
     result.push([]);
     for (let elementIdx = 0; elementIdx < stack2.length; elementIdx++) {
-      result[idx2].push(stack2[elementIdx].element);
+      result[idx].push(stack2[elementIdx].element);
     }
   }
   return result;
@@ -11352,13 +7331,13 @@ var TextNode2 = class extends path_node_default2 {
     super.optionsChange(e);
   }
   mapStyle(encode) {
-    const style2 = super.mapStyle(encode);
+    const style = super.mapStyle(encode);
     let font = this.srcElement.options.font;
     if (encode) {
       font = htmlEncode(font);
     }
-    style2.push(["font", font], ["white-space", "pre"]);
-    return style2;
+    style.push(["font", font], ["white-space", "pre"]);
+    return style;
   }
   pos() {
     const pos = this.srcElement.position();
@@ -11407,10 +7386,10 @@ function alignToScreen(element) {
   if (ctm) {
     const left = -ctm.e % 1;
     const top = -ctm.f % 1;
-    const style2 = element.style;
+    const style = element.style;
     if (left !== 0 || top !== 0) {
-      style2.left = left + "px";
-      style2.top = top + "px";
+      style.left = left + "px";
+      style.top = top + "px";
     }
   }
 }
@@ -11859,15 +7838,15 @@ function ucs2encode(array) {
 function atobUint8Array(base64) {
   const data = window.atob(base64);
   const result = new Uint8Array(data.length);
-  for (let idx2 = 0; idx2 < data.length; idx2++) {
-    result[idx2] = data.charCodeAt(idx2);
+  for (let idx = 0; idx < data.length; idx++) {
+    result[idx] = data.charCodeAt(idx);
   }
   return result;
 }
 function createUint8Array(data) {
   const result = new Uint8Array(data.length);
-  for (let idx2 = 0; idx2 < data.length; idx2++) {
-    result[idx2] = data[idx2];
+  for (let idx = 0; idx < data.length; idx++) {
+    result[idx] = data[idx];
   }
   return result;
 }
@@ -17893,11 +13872,11 @@ var PDFFont = class extends PDFDictionary {
   }
 };
 var PDFToUnicodeCmap = class extends PDFValue {
-  constructor(firstChar, lastChar, map2) {
+  constructor(firstChar, lastChar, map) {
     super();
     this.firstChar = firstChar;
     this.lastChar = lastChar;
-    this.map = map2;
+    this.map = map;
   }
   render(out) {
     out.indent("/CIDInit /ProcSet findresource begin");
@@ -17971,7 +13950,7 @@ function cacheOpacityGradientFunction(pdf, a1, a2) {
 function makeGradientFunctions(pdf, stops) {
   var hasAlpha = false;
   var opacities = [];
-  var colors2 = [];
+  var colors = [];
   var offsets = [];
   var encode = [];
   var i, prev, cur, prevColor, curColor;
@@ -17980,7 +13959,7 @@ function makeGradientFunctions(pdf, stops) {
     cur = stops[i];
     prevColor = prev.color;
     curColor = cur.color;
-    colors2.push(cacheColorGradientFunction(pdf, prevColor.r, prevColor.g, prevColor.b, curColor.r, curColor.g, curColor.b));
+    colors.push(cacheColorGradientFunction(pdf, prevColor.r, prevColor.g, prevColor.b, curColor.r, curColor.g, curColor.b));
     if (prevColor.a < 1 || curColor.a < 1) {
       hasAlpha = true;
     }
@@ -17999,7 +13978,7 @@ function makeGradientFunctions(pdf, stops) {
   offsets.pop();
   return {
     hasAlpha,
-    colors: assemble(colors2),
+    colors: assemble(colors),
     opacities: hasAlpha ? assemble(opacities) : null
   };
   function assemble(funcs) {
@@ -18428,17 +14407,17 @@ function parseFontDef(fontdef) {
     fontFamily: m[14].split(/\s*,\s*/g).map(unquote)
   };
 }
-function getFontURL(style2) {
+function getFontURL(style) {
   function mkFamily(name2) {
-    if (style2.bold) {
+    if (style.bold) {
       name2 += "|bold";
     }
-    if (style2.italic) {
+    if (style.italic) {
       name2 += "|italic";
     }
     return name2.toLowerCase();
   }
-  var fontFamily = style2.fontFamily;
+  var fontFamily = style.fontFamily;
   var name, url;
   if (fontFamily instanceof Array) {
     for (var i = 0; i < fontFamily.length; ++i) {
@@ -18624,8 +14603,8 @@ function render(group, callback) {
       images[url] = size;
     },
     Text: function(element) {
-      var style2 = parseFontDef(element.options.font);
-      var url = getFontURL(style2);
+      var style = parseFontDef(element.options.font);
+      var url = getFontURL(style);
       if (fonts.indexOf(url) < 0) {
         fonts.push(url);
       }
@@ -18991,13 +14970,13 @@ function drawArc(element, page, pdf) {
   maybeFillStroke(element, page, pdf);
 }
 function drawText(element, page) {
-  var style2 = parseFontDef(element.options.font);
+  var style = parseFontDef(element.options.font);
   var pos = element._position;
   var mode;
-  page.transform(1, 0, 0, -1, pos.x, pos.y + style2.fontSize);
+  page.transform(1, 0, 0, -1, pos.x, pos.y + style.fontSize);
   const draw = (renderMode) => {
     page.beginText();
-    page.setFont(getFontURL(style2), style2.fontSize);
+    page.setFont(getFontURL(style), style.fontSize);
     page.setTextRenderingMode(renderMode);
     page.showText(element.content(), element._pdfRect ? element._pdfRect.width() : null);
   };
@@ -19581,8 +15560,8 @@ function drawDOM(element, options2) {
       }
       var current = el;
       while (current && current !== copy) {
-        var style2 = getComputedStyle2(current);
-        if (getPropertyValue(style2, "display") === "none" || getPropertyValue(style2, "visibility") === "hidden") {
+        var style = getComputedStyle2(current);
+        if (getPropertyValue(style, "display") === "none" || getPropertyValue(style, "visibility") === "hidden") {
           return false;
         }
         current = current.parentNode;
@@ -19608,9 +15587,9 @@ function drawDOM(element, options2) {
       if (keepTogether(element3)) {
         return;
       }
-      var style2 = getComputedStyle2(element3);
-      var bottomPadding = parseFloat(getPropertyValue(style2, "padding-bottom"));
-      var bottomBorder = parseFloat(getPropertyValue(style2, "border-bottom-width"));
+      var style = getComputedStyle2(element3);
+      var bottomPadding = parseFloat(getPropertyValue(style, "padding-bottom"));
+      var bottomBorder = parseFloat(getPropertyValue(style, "border-bottom-width"));
       var saveAdjust = adjust;
       adjust += bottomPadding + bottomBorder;
       var isFirst = true;
@@ -20138,10 +16117,10 @@ function getFontFaces(doc) {
           doStylesheet(r.styleSheet);
           break;
         case 5:
-          var style2 = r.style;
-          var family = splitProperty(getPropertyValue(style2, "font-family"));
-          var bold = /^([56789]00|bold)$/i.test(getPropertyValue(style2, "font-weight"));
-          var italic = "italic" == getPropertyValue(style2, "font-style");
+          var style = r.style;
+          var family = splitProperty(getPropertyValue(style, "font-family"));
+          var bold = /^([56789]00|bold)$/i.test(getPropertyValue(style, "font-weight"));
+          var italic = "italic" == getPropertyValue(style, "font-style");
           var src = findFonts(r);
           if (src.length > 0) {
             addRule(styleSheet, family, bold, italic, src[0]);
@@ -20212,12 +16191,12 @@ function doCounters(a, f, def) {
     }
   }
 }
-function updateCounters(style2) {
-  var counterReset = getPropertyValue(style2, "counter-reset");
+function updateCounters(style) {
+  var counterReset = getPropertyValue(style, "counter-reset");
   if (counterReset) {
     doCounters(splitProperty(counterReset, /^\s+/), resetCounter, 0);
   }
-  var counterIncrement = getPropertyValue(style2, "counter-increment");
+  var counterIncrement = getPropertyValue(style, "counter-increment");
   if (counterIncrement) {
     doCounters(splitProperty(counterIncrement, /^\s+/), incCounter, 1);
   }
@@ -20322,20 +16301,20 @@ function alphaNumeral(n) {
   } while (n > 0);
   return result;
 }
-function pushNodeInfo(element, style2, group) {
+function pushNodeInfo(element, style, group) {
   nodeInfo = Object.create(nodeInfo);
   nodeInfo[element.tagName.toLowerCase()] = {
     element,
-    style: style2
+    style
   };
-  let decoration = getPropertyValue(style2, "text-decoration");
+  let decoration = getPropertyValue(style, "text-decoration");
   if (decoration && decoration != "none") {
     let color = resolveElementColor(element, "text-decoration-color");
     decoration.split(/\s+/g).forEach(function(name) {
       if (!nodeInfo[name]) {
         nodeInfo[name] = color;
         if (name == "underline") {
-          let offset = getPropertyValue(style2, "text-underline-offset");
+          let offset = getPropertyValue(style, "text-underline-offset");
           if (offset != "auto") {
             nodeInfo["underline-offset"] = parseFloat(offset);
           }
@@ -20343,7 +16322,7 @@ function pushNodeInfo(element, style2, group) {
       }
     });
   }
-  if (createsStackingContext(style2)) {
+  if (createsStackingContext(style)) {
     nodeInfo._stackingContext = {
       element,
       group
@@ -20372,9 +16351,9 @@ function emptyClipbox() {
     return cb.width() === 0 || cb.height() === 0;
   }
 }
-function createsStackingContext(style2) {
+function createsStackingContext(style) {
   function prop(name) {
-    return getPropertyValue(style2, name);
+    return getPropertyValue(style, name);
   }
   if (prop("transform") != "none" || prop("position") != "static" || prop("z-index") != "auto" || prop("opacity") < 1) {
     return true;
@@ -20383,17 +16362,17 @@ function createsStackingContext(style2) {
 function getComputedStyle2(element, pseudoElt) {
   return window.getComputedStyle(element, pseudoElt || null);
 }
-function getPropertyValue(style2, prop, defa) {
-  var val = style2.getPropertyValue(prop);
+function getPropertyValue(style, prop, defa) {
+  var val = style.getPropertyValue(prop);
   if (val == null || val === "") {
     if (browser4.webkit) {
-      val = style2.getPropertyValue("-webkit-" + prop);
+      val = style.getPropertyValue("-webkit-" + prop);
     } else if (browser4.mozilla) {
-      val = style2.getPropertyValue("-moz-" + prop);
+      val = style.getPropertyValue("-moz-" + prop);
     } else if (browser4.opera) {
-      val = style2.getPropertyValue("-o-" + prop);
+      val = style.getPropertyValue("-o-" + prop);
     } else if (microsoft) {
-      val = style2.getPropertyValue("-ms-" + prop);
+      val = style.getPropertyValue("-ms-" + prop);
     }
   }
   if (arguments.length > 2 && (val == null || val === "")) {
@@ -20402,27 +16381,27 @@ function getPropertyValue(style2, prop, defa) {
     return val;
   }
 }
-function pleaseSetPropertyValue(style2, prop, value, important) {
-  style2.setProperty(prop, value, important);
+function pleaseSetPropertyValue(style, prop, value, important) {
+  style.setProperty(prop, value, important);
   if (browser4.webkit) {
-    style2.setProperty("-webkit-" + prop, value, important);
+    style.setProperty("-webkit-" + prop, value, important);
   } else if (browser4.mozilla) {
-    style2.setProperty("-moz-" + prop, value, important);
+    style.setProperty("-moz-" + prop, value, important);
   } else if (browser4.opera) {
-    style2.setProperty("-o-" + prop, value, important);
+    style.setProperty("-o-" + prop, value, important);
   } else if (microsoft) {
-    style2.setProperty("-ms-" + prop, value, important);
+    style.setProperty("-ms-" + prop, value, important);
     prop = "ms" + prop.replace(/(^|-)([a-z])/g, function(s, p1, p2) {
       return p1 + p2.toUpperCase();
     });
-    style2[prop] = value;
+    style[prop] = value;
   }
 }
-function getBorder(element, style2, side) {
+function getBorder(element, style, side) {
   side = "border-" + side;
   return {
-    width: parseFloat(getPropertyValue(style2, side + "-width")),
-    style: getPropertyValue(style2, side + "-style"),
+    width: parseFloat(getPropertyValue(style, side + "-width")),
+    style: getPropertyValue(style, side + "-style"),
     color: resolveElementColor(element, side + "-color")
   };
 }
@@ -20432,8 +16411,8 @@ function saveStyle(element, func) {
   setStyle(element, prev);
   return result;
 }
-function getBorderRadius(style2, side) {
-  var r = getPropertyValue(style2, "border-" + side + "-radius").split(/\s+/g).map(parseFloat);
+function getBorderRadius(style, side) {
+  var r = getPropertyValue(style, "border-" + side + "-radius").split(/\s+/g).map(parseFloat);
   if (r.length == 1) {
     r.push(r[0]);
   }
@@ -20449,13 +16428,13 @@ function getContentBox(element) {
   return box;
 }
 function innerBox(box, prop, element) {
-  var style2, wt, wr, wb, wl;
+  var style, wt, wr, wb, wl;
   if (typeof prop == "string") {
-    style2 = getComputedStyle2(element);
-    wt = parseFloat(getPropertyValue(style2, prop.replace("*", "top")));
-    wr = parseFloat(getPropertyValue(style2, prop.replace("*", "right")));
-    wb = parseFloat(getPropertyValue(style2, prop.replace("*", "bottom")));
-    wl = parseFloat(getPropertyValue(style2, prop.replace("*", "left")));
+    style = getComputedStyle2(element);
+    wt = parseFloat(getPropertyValue(style, prop.replace("*", "top")));
+    wr = parseFloat(getPropertyValue(style, prop.replace("*", "right")));
+    wb = parseFloat(getPropertyValue(style, prop.replace("*", "bottom")));
+    wl = parseFloat(getPropertyValue(style, prop.replace("*", "left")));
   } else if (typeof prop == "number") {
     wt = wr = wb = wl = prop;
   }
@@ -20468,14 +16447,14 @@ function innerBox(box, prop, element) {
     height: box.bottom - box.top - wb - wt
   };
 }
-function getTransform(style2) {
-  var transform2 = getPropertyValue(style2, "transform");
+function getTransform(style) {
+  var transform2 = getPropertyValue(style, "transform");
   if (transform2 == "none") {
     return null;
   }
   var matrix = /^\s*matrix\(\s*(.*?)\s*\)\s*$/.exec(transform2);
   if (matrix) {
-    var origin = getPropertyValue(style2, "transform-origin");
+    var origin = getPropertyValue(style, "transform-origin");
     matrix = matrix[1].split(/\s*,\s*/g).map(parseFloat);
     origin = origin.split(/\s+/g).map(parseFloat);
     return {
@@ -20555,16 +16534,16 @@ function adjustBorderRadiusForBox(box, rTL, rTR, rBR, rBL) {
   };
 }
 function elementRoundBox(element, box, type) {
-  var style2 = getComputedStyle2(element);
-  var rTL = getBorderRadius(style2, "top-left");
-  var rTR = getBorderRadius(style2, "top-right");
-  var rBL = getBorderRadius(style2, "bottom-left");
-  var rBR = getBorderRadius(style2, "bottom-right");
+  var style = getComputedStyle2(element);
+  var rTL = getBorderRadius(style, "top-left");
+  var rTR = getBorderRadius(style, "top-right");
+  var rBL = getBorderRadius(style, "bottom-left");
+  var rBR = getBorderRadius(style, "bottom-right");
   if (type == "padding" || type == "content") {
-    var bt = getBorder(element, style2, "top");
-    var br = getBorder(element, style2, "right");
-    var bb = getBorder(element, style2, "bottom");
-    var bl = getBorder(element, style2, "left");
+    var bt = getBorder(element, style, "top");
+    var br = getBorder(element, style, "right");
+    var bb = getBorder(element, style, "bottom");
+    var bl = getBorder(element, style, "left");
     rTL.x -= bl.width;
     rTL.y -= bt.width;
     rTR.x -= br.width;
@@ -20574,10 +16553,10 @@ function elementRoundBox(element, box, type) {
     rBL.x -= bl.width;
     rBL.y -= bb.width;
     if (type == "content") {
-      var pt = parseFloat(getPropertyValue(style2, "padding-top"));
-      var pr = parseFloat(getPropertyValue(style2, "padding-right"));
-      var pb = parseFloat(getPropertyValue(style2, "padding-bottom"));
-      var pl = parseFloat(getPropertyValue(style2, "padding-left"));
+      var pt = parseFloat(getPropertyValue(style, "padding-top"));
+      var pr = parseFloat(getPropertyValue(style, "padding-right"));
+      var pb = parseFloat(getPropertyValue(style, "padding-bottom"));
+      var pl = parseFloat(getPropertyValue(style, "padding-left"));
       rTL.x -= pl;
       rTL.y -= pt;
       rTR.x -= pr;
@@ -20648,9 +16627,9 @@ function roundBox(box, rTL0, rTR0, rBR0, rBL0) {
   }
   return path.close();
 }
-function formatCounter(val, style2) {
+function formatCounter(val, style) {
   var str = String(parseFloat(val));
-  switch (style2) {
+  switch (style) {
     case "decimal-leading-zero":
       if (str.length < 2) {
         str = "0" + str;
@@ -20671,13 +16650,13 @@ function formatCounter(val, style2) {
   }
 }
 function evalPseudoElementContent(element, content) {
-  function displayCounter(name, style2, separator) {
+  function displayCounter(name, style, separator) {
     if (!separator) {
-      return formatCounter(getCounter(name) || 0, style2);
+      return formatCounter(getCounter(name) || 0, style);
     }
     separator = separator.replace(/^\s*(["'])(.*)\1\s*$/, "$2");
     return getAllCounters(name).map(function(val) {
-      return formatCounter(val, style2);
+      return formatCounter(val, style);
     }).join(separator);
   }
   var a = splitProperty(content, /^\s+/);
@@ -20702,13 +16681,13 @@ function evalPseudoElementContent(element, content) {
   });
   return result.join("");
 }
-function getCssText(style2) {
-  if (style2.cssText) {
-    return style2.cssText;
+function getCssText(style) {
+  if (style.cssText) {
+    return style.cssText;
   }
   var result = [];
-  for (var i = 0; i < style2.length; ++i) {
-    result.push(style2[i] + ": " + getPropertyValue(style2, style2[i]));
+  for (var i = 0; i < style.length; ++i) {
+    result.push(style[i] + ": " + getPropertyValue(style, style[i]));
   }
   return result.join(";\n");
 }
@@ -20719,11 +16698,11 @@ function _renderWithPseudoElements(element, group) {
   }
   let fake = [];
   function pseudo(kind, place) {
-    let style2 = getComputedStyle2(element, kind), content = style2.content;
-    updateCounters(style2);
-    if (content && content != "normal" && content != "none" && style2.width != "0px") {
+    let style = getComputedStyle2(element, kind), content = style.content;
+    updateCounters(style);
+    if (content && content != "normal" && content != "none" && style.width != "0px") {
       let psel = element.ownerDocument.createElement(KENDO_PSEUDO_ELEMENT);
-      setStyle(psel, getCssText(style2));
+      setStyle(psel, getCssText(style));
       psel.textContent = evalPseudoElementContent(element, content);
       element.insertBefore(psel, place);
       fake.push(psel);
@@ -20744,26 +16723,26 @@ function _renderWithPseudoElements(element, group) {
   }
 }
 function _renderElement(element, group) {
-  var style2 = getComputedStyle2(element);
-  var top = getBorder(element, style2, "top");
-  var right = getBorder(element, style2, "right");
-  var bottom = getBorder(element, style2, "bottom");
-  var left = getBorder(element, style2, "left");
-  var rTL0 = getBorderRadius(style2, "top-left");
-  var rTR0 = getBorderRadius(style2, "top-right");
-  var rBL0 = getBorderRadius(style2, "bottom-left");
-  var rBR0 = getBorderRadius(style2, "bottom-right");
-  var dir = getPropertyValue(style2, "direction");
+  var style = getComputedStyle2(element);
+  var top = getBorder(element, style, "top");
+  var right = getBorder(element, style, "right");
+  var bottom = getBorder(element, style, "bottom");
+  var left = getBorder(element, style, "left");
+  var rTL0 = getBorderRadius(style, "top-left");
+  var rTR0 = getBorderRadius(style, "top-right");
+  var rBL0 = getBorderRadius(style, "bottom-left");
+  var rBR0 = getBorderRadius(style, "bottom-right");
+  var dir = getPropertyValue(style, "direction");
   var backgroundColorValue = resolveElementColor(element, "background-color");
   var backgroundColor = parseColor3(backgroundColorValue);
-  var backgroundImage = parseBackgroundImage(getPropertyValue(style2, "background-image"));
-  var backgroundRepeat = splitProperty(getPropertyValue(style2, "background-repeat"));
-  var backgroundPosition = splitProperty(getPropertyValue(style2, "background-position"));
-  var backgroundOrigin = splitProperty(getPropertyValue(style2, "background-origin"));
-  var backgroundSize = splitProperty(getPropertyValue(style2, "background-size"));
+  var backgroundImage = parseBackgroundImage(getPropertyValue(style, "background-image"));
+  var backgroundRepeat = splitProperty(getPropertyValue(style, "background-repeat"));
+  var backgroundPosition = splitProperty(getPropertyValue(style, "background-position"));
+  var backgroundOrigin = splitProperty(getPropertyValue(style, "background-origin"));
+  var backgroundSize = splitProperty(getPropertyValue(style, "background-size"));
   var textOverflow, saveTextOverflow;
   if (microsoft) {
-    textOverflow = style2.textOverflow;
+    textOverflow = style.textOverflow;
     if (textOverflow == "ellipsis") {
       saveTextOverflow = element.style.textOverflow;
       element.style.textOverflow = "clip";
@@ -20774,7 +16753,7 @@ function _renderElement(element, group) {
   }
   var innerbox = innerBox(element.getBoundingClientRect(), "border-*-width", element);
   (function() {
-    var clip = getPropertyValue(style2, "clip");
+    var clip = getPropertyValue(style, "clip");
     var m = /^\s*rect\((.*)\)\s*$/.exec(clip);
     if (m) {
       var a = m[1].split(/[ ,]+/g);
@@ -20791,7 +16770,7 @@ function _renderElement(element, group) {
     }
   })();
   var boxes, i, cells;
-  var display = getPropertyValue(style2, "display");
+  var display = getPropertyValue(style, "display");
   if (display == "table-row") {
     boxes = [];
     for (i = 0, cells = element.children; i < cells.length; ++i) {
@@ -20838,11 +16817,11 @@ function _renderElement(element, group) {
     }
     if (isFormField(element)) {
       clipit();
-    } else if (/^(hidden|auto|scroll)/.test(getPropertyValue(style2, "overflow"))) {
+    } else if (/^(hidden|auto|scroll)/.test(getPropertyValue(style, "overflow"))) {
       clipit();
-    } else if (/^(hidden|auto|scroll)/.test(getPropertyValue(style2, "overflow-x"))) {
+    } else if (/^(hidden|auto|scroll)/.test(getPropertyValue(style, "overflow-x"))) {
       clipit();
-    } else if (/^(hidden|auto|scroll)/.test(getPropertyValue(style2, "overflow-y"))) {
+    } else if (/^(hidden|auto|scroll)/.test(getPropertyValue(style, "overflow-y"))) {
       clipit();
     }
   })();
@@ -21081,11 +17060,11 @@ function _renderElement(element, group) {
     }
   }
   function drawBullet() {
-    var listStyleType = getPropertyValue(style2, "list-style-type");
+    var listStyleType = getPropertyValue(style, "list-style-type");
     if (listStyleType == "none") {
       return;
     }
-    var listStylePosition = getPropertyValue(style2, "list-style-position");
+    var listStylePosition = getPropertyValue(style, "list-style-position");
     function _drawBullet(f) {
       saveStyle(element, function() {
         element.style.position = "relative";
@@ -21129,24 +17108,24 @@ function _renderElement(element, group) {
       case "decimal":
       case "decimal-leading-zero":
         _drawBullet(function(bullet) {
-          elementIndex(function(idx2) {
-            ++idx2;
-            if (listStyleType == "decimal-leading-zero" && idx2 < 10) {
-              idx2 = "0" + idx2;
+          elementIndex(function(idx) {
+            ++idx;
+            if (listStyleType == "decimal-leading-zero" && idx < 10) {
+              idx = "0" + idx;
             }
-            bullet.innerHTML = idx2 + ".";
+            bullet.innerHTML = idx + ".";
           });
         });
         break;
       case "lower-roman":
       case "upper-roman":
         _drawBullet(function(bullet) {
-          elementIndex(function(idx2) {
-            idx2 = arabicToRoman(idx2 + 1);
+          elementIndex(function(idx) {
+            idx = arabicToRoman(idx + 1);
             if (listStyleType == "upper-roman") {
-              idx2 = idx2.toUpperCase();
+              idx = idx.toUpperCase();
             }
-            bullet.innerHTML = idx2 + ".";
+            bullet.innerHTML = idx + ".";
           });
         });
         break;
@@ -21155,12 +17134,12 @@ function _renderElement(element, group) {
       case "upper-latin":
       case "upper-alpha":
         _drawBullet(function(bullet) {
-          elementIndex(function(idx2) {
-            idx2 = alphaNumeral(idx2);
+          elementIndex(function(idx) {
+            idx = alphaNumeral(idx);
             if (/^upper/i.test(listStyleType)) {
-              idx2 = idx2.toUpperCase();
+              idx = idx.toUpperCase();
             }
-            bullet.innerHTML = idx2 + ".";
+            bullet.innerHTML = idx + ".";
           });
         });
         break;
@@ -21442,7 +17421,7 @@ function getSelectedOption(element) {
   return element.options[element.selectedIndex];
 }
 function renderCheckbox(element, group) {
-  var style2 = getComputedStyle2(element);
+  var style = getComputedStyle2(element);
   var color = resolveElementColor(element, "color");
   var box = element.getBoundingClientRect();
   if (element.type == "checkbox") {
@@ -21547,9 +17526,9 @@ function renderContents(element, group) {
             }
             break;
           case 1:
-            var style2 = getComputedStyle2(i);
-            var floating = getPropertyValue(style2, "float");
-            var position = getPropertyValue(style2, "position");
+            var style = getComputedStyle2(i);
+            var floating = getPropertyValue(style, "float");
+            var position = getPropertyValue(style, "position");
             if (position != "static") {
               positioned.push(i);
             } else if (floating != "none") {
@@ -21575,8 +17554,8 @@ function renderText(element, node, group) {
   if (emptyClipbox()) {
     return;
   }
-  var style2 = getComputedStyle2(element);
-  if (parseFloat(getPropertyValue(style2, "text-indent")) < -500) {
+  var style = getComputedStyle2(element);
+  if (parseFloat(getPropertyValue(style, "text-indent")) < -500) {
     return;
   }
   var text = node.data;
@@ -21585,15 +17564,15 @@ function renderText(element, node, group) {
   if (!end) {
     return;
   }
-  var fontSize = getPropertyValue(style2, "font-size");
-  var lineHeight = getPropertyValue(style2, "line-height");
+  var fontSize = getPropertyValue(style, "font-size");
+  var lineHeight = getPropertyValue(style, "line-height");
   var font = [
-    getPropertyValue(style2, "font-style"),
-    getPropertyValue(style2, "font-variant"),
-    getPropertyValue(style2, "font-weight"),
+    getPropertyValue(style, "font-style"),
+    getPropertyValue(style, "font-variant"),
+    getPropertyValue(style, "font-weight"),
     fontSize,
     // no need for line height here; it breaks layout in FF
-    getPropertyValue(style2, "font-family")
+    getPropertyValue(style, "font-family")
   ].join(" ");
   fontSize = parseFloat(fontSize);
   lineHeight = parseFloat(lineHeight);
@@ -21602,11 +17581,11 @@ function renderText(element, node, group) {
   }
   var color = resolveElementColor(element, "color");
   var range = element.ownerDocument.createRange();
-  var align2 = getPropertyValue(style2, "text-align");
+  var align2 = getPropertyValue(style, "text-align");
   var isJustified = align2 == "justify";
-  var columnCount = getPropertyValue(style2, "column-count", 1);
-  var whiteSpace = getPropertyValue(style2, "white-space");
-  var textTransform = getPropertyValue(style2, "text-transform");
+  var columnCount = getPropertyValue(style, "column-count", 1);
+  var whiteSpace = getPropertyValue(style, "white-space");
+  var textTransform = getPropertyValue(style, "text-transform");
   var estimateLineLength = element.getBoundingClientRect().width / fontSize * 5;
   if (estimateLineLength === 0) {
     estimateLineLength = 500;
@@ -21829,23 +17808,23 @@ function groupInStackingContext(element, group, zIndex) {
   return tmp;
 }
 function renderElement(element, container) {
-  var style2 = getComputedStyle2(element);
-  updateCounters(style2);
+  var style = getComputedStyle2(element);
+  updateCounters(style);
   if (/^(style|script|link|meta|iframe|col|colgroup)$/i.test(element.tagName)) {
     return;
   }
   if (nodeInfo._clipbox == null) {
     return;
   }
-  var opacity = parseFloat(getPropertyValue(style2, "opacity"));
-  var visibility = getPropertyValue(style2, "visibility");
-  var display = getPropertyValue(style2, "display");
+  var opacity = parseFloat(getPropertyValue(style, "opacity"));
+  var visibility = getPropertyValue(style, "visibility");
+  var display = getPropertyValue(style, "display");
   if (opacity === 0 || visibility == "hidden" || display == "none") {
     return;
   }
-  var tr = getTransform(style2);
+  var tr = getTransform(style);
   var group;
-  var zIndex = getPropertyValue(style2, "z-index");
+  var zIndex = getPropertyValue(style, "z-index");
   if ((tr || opacity < 1) && zIndex == "auto") {
     zIndex = 0;
   }
@@ -21853,14 +17832,14 @@ function renderElement(element, container) {
   if (opacity < 1) {
     group.opacity(opacity * group.opacity());
   }
-  pushNodeInfo(element, style2, group);
+  pushNodeInfo(element, style, group);
   if (!tr) {
     _renderWithPseudoElements(element, group);
   } else {
     saveStyle(element, function() {
       pleaseSetPropertyValue(element.style, "transform", "none", "important");
       pleaseSetPropertyValue(element.style, "transition", "none", "important");
-      if (getPropertyValue(style2, "position") == "static") {
+      if (getPropertyValue(style, "position") == "static") {
         pleaseSetPropertyValue(element.style, "position", "relative", "important");
       }
       var bbox = element.getBoundingClientRect();
@@ -21883,13 +17862,6 @@ function mmul2(a, b) {
 }
 
 export {
-  ActionSheetHeaderTemplateDirective,
-  ActionSheetContentTemplateDirective,
-  ActionSheetFooterTemplateDirective,
-  ActionSheetTemplateDirective,
-  ActionSheetComponent,
-  ActionSheetViewComponent,
-  BreadCrumbComponent,
   logToConsole,
   support_default,
   throttle,
@@ -21910,4 +17882,4 @@ export {
   exportPDF,
   drawDOM
 };
-//# sourceMappingURL=chunk-4AVP4IM2.js.map
+//# sourceMappingURL=chunk-R66PIJQH.js.map

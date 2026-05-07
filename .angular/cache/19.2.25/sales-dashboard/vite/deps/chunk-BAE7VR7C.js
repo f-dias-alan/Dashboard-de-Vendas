@@ -1,8 +1,4 @@
 import {
-  BadgeComponent,
-  BadgeContainerComponent
-} from "./chunk-W2AVEUOB.js";
-import {
   ButtonComponent,
   ButtonGroupComponent,
   DropDownButtonComponent,
@@ -15,7 +11,7 @@ import {
   caretAltRightIcon,
   moreHorizontalIcon,
   moreVerticalIcon
-} from "./chunk-N6QNG3E2.js";
+} from "./chunk-ISGH2VDR.js";
 import {
   Keys,
   ResizeBatchService,
@@ -34,6 +30,10 @@ import {
   NgStyle,
   NgTemplateOutlet
 } from "./chunk-QPKUD5DG.js";
+import {
+  BadgeComponent,
+  BadgeContainerComponent
+} from "./chunk-W2AVEUOB.js";
 import {
   ComponentMessages,
   L10N_PREFIX,
@@ -3328,22 +3328,22 @@ var ToolBarComponent = class _ToolBarComponent {
     consts: () => {
       let i18n_0;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_TOOLBAR_FESM2022_PROGRESS_KENDO_ANGULAR_TOOLBAR_MJS_0 = goog.getMsg("More tools");
-        i18n_0 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_TOOLBAR_FESM2022_PROGRESS_KENDO_ANGULAR_TOOLBAR_MJS_0;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_TOOLBAR_FESM2022_PROGRESS_KENDO_ANGULAR_TOOLBAR_MJS_0 = goog.getMsg("More tools");
+        i18n_0 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_TOOLBAR_FESM2022_PROGRESS_KENDO_ANGULAR_TOOLBAR_MJS_0;
       } else {
         i18n_0 = $localize`:kendo.toolbar.moreToolsTitle|The title of the **more tools** button in a responsive ToolBar:More tools`;
       }
       let i18n_1;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_TOOLBAR_FESM2022_PROGRESS_KENDO_ANGULAR_TOOLBAR_MJS_1 = goog.getMsg("Scroll left");
-        i18n_1 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_TOOLBAR_FESM2022_PROGRESS_KENDO_ANGULAR_TOOLBAR_MJS_1;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_TOOLBAR_FESM2022_PROGRESS_KENDO_ANGULAR_TOOLBAR_MJS_1 = goog.getMsg("Scroll left");
+        i18n_1 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_TOOLBAR_FESM2022_PROGRESS_KENDO_ANGULAR_TOOLBAR_MJS_1;
       } else {
         i18n_1 = $localize`:kendo.toolbar.previousToolButton|The title for the **Previous Tool** button when the Toolbar is scrollable.:Scroll left`;
       }
       let i18n_2;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_TOOLBAR_FESM2022_PROGRESS_KENDO_ANGULAR_TOOLBAR_MJS_2 = goog.getMsg("Scroll right");
-        i18n_2 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_TOOLBAR_FESM2022_PROGRESS_KENDO_ANGULAR_TOOLBAR_MJS_2;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_TOOLBAR_FESM2022_PROGRESS_KENDO_ANGULAR_TOOLBAR_MJS_2 = goog.getMsg("Scroll right");
+        i18n_2 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_TOOLBAR_FESM2022_PROGRESS_KENDO_ANGULAR_TOOLBAR_MJS_2;
       } else {
         i18n_2 = $localize`:kendo.toolbar.nextToolButton|The title for the **Next Tool** button when the Toolbar is scrollable.:Scroll right`;
       }
@@ -6160,4 +6160,4 @@ export {
   KENDO_TOOLBAR,
   ToolBarModule
 };
-//# sourceMappingURL=chunk-L2MPCRNK.js.map
+//# sourceMappingURL=chunk-BAE7VR7C.js.map

@@ -1,115 +1,136 @@
 {
-  "hash": "fe12b62e",
-  "configHash": "a0d7f730",
-  "lockfileHash": "4f2b5a7d",
-  "browserHash": "af879a2f",
+  "hash": "7c8b89ab",
+  "configHash": "fdb885fa",
+  "lockfileHash": "4aa8422f",
+  "browserHash": "4e5b7ebf",
   "optimized": {
     "@angular/common": {
       "src": "../../../../../../node_modules/@angular/common/fesm2022/common.mjs",
       "file": "@angular_common.js",
-      "fileHash": "f6368d3d",
+      "fileHash": "031606c4",
       "needsInterop": false
     },
     "@angular/core": {
       "src": "../../../../../../node_modules/@angular/core/fesm2022/core.mjs",
       "file": "@angular_core.js",
-      "fileHash": "774e87e1",
+      "fileHash": "0d7d6922",
       "needsInterop": false
     },
     "@angular/localize/init": {
       "src": "../../../../../../node_modules/@angular/localize/fesm2022/init.mjs",
       "file": "@angular_localize_init.js",
-      "fileHash": "e29b4d6d",
+      "fileHash": "3e90b04b",
       "needsInterop": false
     },
     "@angular/platform-browser": {
       "src": "../../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
       "file": "@angular_platform-browser.js",
-      "fileHash": "9e7d3d9d",
+      "fileHash": "ff902007",
       "needsInterop": false
     },
     "@angular/platform-browser/animations": {
       "src": "../../../../../../node_modules/@angular/platform-browser/fesm2022/animations.mjs",
       "file": "@angular_platform-browser_animations.js",
-      "fileHash": "94fa5cb1",
+      "fileHash": "d879ddc4",
       "needsInterop": false
     },
     "@progress/kendo-angular-buttons": {
       "src": "../../../../../../node_modules/@progress/kendo-angular-buttons/fesm2022/progress-kendo-angular-buttons.mjs",
       "file": "@progress_kendo-angular-buttons.js",
-      "fileHash": "c0609d3a",
+      "fileHash": "4ec073c5",
       "needsInterop": false
     },
     "@progress/kendo-angular-charts": {
       "src": "../../../../../../node_modules/@progress/kendo-angular-charts/fesm2022/progress-kendo-angular-charts.mjs",
       "file": "@progress_kendo-angular-charts.js",
-      "fileHash": "1b9e24e3",
+      "fileHash": "3f12c586",
       "needsInterop": false
     },
     "@progress/kendo-angular-common": {
       "src": "../../../../../../node_modules/@progress/kendo-angular-common/fesm2022/progress-kendo-angular-common.mjs",
       "file": "@progress_kendo-angular-common.js",
-      "fileHash": "d2a2e42c",
+      "fileHash": "86c2d800",
+      "needsInterop": false
+    },
+    "@progress/kendo-angular-dateinputs": {
+      "src": "../../../../../../node_modules/@progress/kendo-angular-dateinputs/fesm2022/progress-kendo-angular-dateinputs.mjs",
+      "file": "@progress_kendo-angular-dateinputs.js",
+      "fileHash": "1fbb884f",
+      "needsInterop": false
+    },
+    "@progress/kendo-angular-dropdowns": {
+      "src": "../../../../../../node_modules/@progress/kendo-angular-dropdowns/fesm2022/progress-kendo-angular-dropdowns.mjs",
+      "file": "@progress_kendo-angular-dropdowns.js",
+      "fileHash": "ce4d4f82",
       "needsInterop": false
     },
     "@progress/kendo-angular-grid": {
       "src": "../../../../../../node_modules/@progress/kendo-angular-grid/fesm2022/progress-kendo-angular-grid.mjs",
       "file": "@progress_kendo-angular-grid.js",
-      "fileHash": "1c98be5b",
+      "fileHash": "64a5d36d",
       "needsInterop": false
     },
     "@progress/kendo-angular-indicators": {
       "src": "../../../../../../node_modules/@progress/kendo-angular-indicators/fesm2022/progress-kendo-angular-indicators.mjs",
       "file": "@progress_kendo-angular-indicators.js",
-      "fileHash": "22d890c5",
+      "fileHash": "1f5d86ce",
       "needsInterop": false
     },
     "@progress/kendo-angular-layout": {
       "src": "../../../../../../node_modules/@progress/kendo-angular-layout/fesm2022/progress-kendo-angular-layout.mjs",
       "file": "@progress_kendo-angular-layout.js",
-      "fileHash": "9d3692ac",
+      "fileHash": "81908f3c",
       "needsInterop": false
     },
     "@progress/kendo-angular-pager": {
       "src": "../../../../../../node_modules/@progress/kendo-angular-pager/fesm2022/progress-kendo-angular-pager.mjs",
       "file": "@progress_kendo-angular-pager.js",
-      "fileHash": "879b1647",
+      "fileHash": "56234adf",
       "needsInterop": false
     },
     "@progress/kendo-angular-toolbar": {
       "src": "../../../../../../node_modules/@progress/kendo-angular-toolbar/fesm2022/progress-kendo-angular-toolbar.mjs",
       "file": "@progress_kendo-angular-toolbar.js",
-      "fileHash": "a8c8f5bd",
+      "fileHash": "54198b5b",
       "needsInterop": false
     }
   },
   "chunks": {
-    "chunk-L2MPCRNK": {
-      "file": "chunk-L2MPCRNK.js"
+    "chunk-7B5OSSW3": {
+      "file": "chunk-7B5OSSW3.js"
     },
-    "chunk-MDODV6WX": {
-      "file": "chunk-MDODV6WX.js"
+    "chunk-LDN7IIXO": {
+      "file": "chunk-LDN7IIXO.js"
     },
-    "chunk-W2AVEUOB": {
-      "file": "chunk-W2AVEUOB.js"
+    "chunk-UH5IMQCL": {
+      "file": "chunk-UH5IMQCL.js"
     },
-    "chunk-VSDCNNTB": {
-      "file": "chunk-VSDCNNTB.js"
+    "chunk-R66PIJQH": {
+      "file": "chunk-R66PIJQH.js"
     },
-    "chunk-4AVP4IM2": {
-      "file": "chunk-4AVP4IM2.js"
+    "chunk-FAPPR755": {
+      "file": "chunk-FAPPR755.js"
+    },
+    "chunk-JWTLBTGT": {
+      "file": "chunk-JWTLBTGT.js"
+    },
+    "chunk-6M6JIU5X": {
+      "file": "chunk-6M6JIU5X.js"
     },
     "chunk-BYJC23ZO": {
       "file": "chunk-BYJC23ZO.js"
     },
-    "chunk-N6QNG3E2": {
-      "file": "chunk-N6QNG3E2.js"
+    "chunk-BAE7VR7C": {
+      "file": "chunk-BAE7VR7C.js"
     },
-    "chunk-DTBDDRYO": {
-      "file": "chunk-DTBDDRYO.js"
+    "chunk-ISGH2VDR": {
+      "file": "chunk-ISGH2VDR.js"
     },
     "chunk-666KVM5K": {
       "file": "chunk-666KVM5K.js"
+    },
+    "chunk-DTBDDRYO": {
+      "file": "chunk-DTBDDRYO.js"
     },
     "chunk-LGADJBGU": {
       "file": "chunk-LGADJBGU.js"
@@ -119,6 +140,9 @@
     },
     "chunk-QPKUD5DG": {
       "file": "chunk-QPKUD5DG.js"
+    },
+    "chunk-W2AVEUOB": {
+      "file": "chunk-W2AVEUOB.js"
     },
     "chunk-ZKU76E52": {
       "file": "chunk-ZKU76E52.js"

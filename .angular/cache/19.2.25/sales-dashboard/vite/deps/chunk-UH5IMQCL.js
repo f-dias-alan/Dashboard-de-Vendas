@@ -1,6 +1,4 @@
 import {
-  ActionSheetComponent,
-  ActionSheetTemplateDirective,
   MultiPath,
   Path,
   color_default,
@@ -12,7 +10,14 @@ import {
   named_colors_default,
   parseColor,
   surface_default
-} from "./chunk-4AVP4IM2.js";
+} from "./chunk-R66PIJQH.js";
+import {
+  AdaptiveService
+} from "./chunk-FAPPR755.js";
+import {
+  ActionSheetComponent,
+  ActionSheetTemplateDirective
+} from "./chunk-JWTLBTGT.js";
 import {
   IntlService
 } from "./chunk-BYJC23ZO.js";
@@ -38,8 +43,6 @@ import {
   caretAltExpandIcon,
   caretAltLeftIcon,
   caretAltRightIcon,
-  caretAltToLeftIcon,
-  caretAltToRightIcon,
   caretAltUpIcon,
   checkIcon,
   chevronDownIcon,
@@ -67,7 +70,7 @@ import {
   windowViewport,
   xCircleIcon,
   xIcon
-} from "./chunk-N6QNG3E2.js";
+} from "./chunk-ISGH2VDR.js";
 import {
   animate,
   keyframes,
@@ -95,9 +98,7 @@ import {
   ToggleButtonTabStopDirective,
   WatermarkOverlayComponent,
   anyChanged,
-  areObjectsEqual,
   closest,
-  contains,
   findFocusableChild,
   focusableSelector,
   getLicenseMessage,
@@ -108,11 +109,9 @@ import {
   isChanged,
   isControlRequired,
   isDocumentAvailable,
-  isFocusable,
   isObjectPresent,
   isPresent,
   isSafari,
-  isVisible,
   mobileOS,
   normalizeKeys,
   parseAttributes,
@@ -168,7 +167,6 @@ import {
   Optional,
   Output,
   Renderer2,
-  SkipSelf,
   Subject,
   Subscription,
   TemplateRef,
@@ -184,7 +182,6 @@ import {
   finalize,
   forwardRef,
   fromEvent,
-  inject,
   interval,
   isDevMode,
   map,
@@ -262,7 +259,6 @@ import {
   ɵɵtextInterpolate,
   ɵɵtextInterpolate1,
   ɵɵtextInterpolate2,
-  ɵɵtextInterpolate5,
   ɵɵtwoWayBindingSet,
   ɵɵtwoWayListener,
   ɵɵtwoWayProperty,
@@ -273,3114 +269,6 @@ import {
   __spreadProps,
   __spreadValues
 } from "./chunk-XWLXMCJQ.js";
-
-// node_modules/@progress/kendo-draggable-common/dist/es/algorithms/intersect.js
-var getRatio = function(element, target) {
-  var elementRect = element.getBoundingClientRect();
-  var targetRect = target.getBoundingClientRect();
-  var top = Math.max(targetRect.top, elementRect.top);
-  var left = Math.max(targetRect.left, elementRect.left);
-  var right = Math.min(targetRect.left + targetRect.width, elementRect.left + elementRect.width);
-  var bottom = Math.min(targetRect.top + targetRect.height, elementRect.top + elementRect.height);
-  var width = right - left;
-  var height = bottom - top;
-  if (left < right && top < bottom) {
-    var targetArea = targetRect.width * targetRect.height;
-    var entryArea = elementRect.width * elementRect.height;
-    var intersectionArea = width * height;
-    var intersectionRatio = intersectionArea / (targetArea + entryArea - intersectionArea);
-    return Number(intersectionRatio.toFixed(4));
-  }
-  return 0;
-};
-var intersect = function(element, candidates) {
-  var max = 0;
-  var result = null;
-  candidates.forEach(function(candidate) {
-    if (candidate && element) {
-      var ration = getRatio(element, candidate);
-      if (ration > max) {
-        max = ration;
-        result = candidate;
-      }
-    }
-  });
-  return result;
-};
-
-// node_modules/@progress/kendo-draggable-common/dist/es/utils/index.js
-var detectBrowser = function() {
-  var ua = window && window.navigator.userAgent;
-  if (!ua) {
-    return false;
-  }
-  var browser = false;
-  var match2 = [];
-  var browserRxs = {
-    edge: /(edge)[ \/]([\w.]+)/i,
-    webkit: /(chrome|crios)[ \/]([\w.]+)/i,
-    safari: /(webkit)[ \/]([\w.]+)/i,
-    opera: /(opera)(?:.*version|)[ \/]([\w.]+)/i,
-    msie: /(msie\s|trident.*? rv:)([\w.]+)/i,
-    mozilla: /(mozilla)(?:.*? rv:([\w.]+)|)/i
-  };
-  for (var agent in browserRxs) {
-    if (browserRxs.hasOwnProperty(agent)) {
-      match2 = ua.match(browserRxs[agent]);
-      if (match2) {
-        browser = {};
-        browser[agent] = true;
-        browser[match2[1].toLowerCase().split(" ")[0].split("/")[0]] = true;
-        browser.version = parseInt(document.DOCUMENT_NODE || match2[2], 10);
-        break;
-      }
-    }
-  }
-  return browser;
-};
-var getDocument = function(element) {
-  return element ? element.ownerDocument || window.document : window.document;
-};
-var getWindow = function(element) {
-  var document2 = getDocument(element);
-  return document2 ? document2.defaultView || window : window;
-};
-var scrollableRoot = function(element) {
-  var support = {
-    browser: detectBrowser()
-  };
-  var document2 = getDocument(element);
-  return support.browser.edge || support.browser.safari ? document2.body : document2.documentElement;
-};
-var isScrollable = function(el) {
-  if (el && el.className && typeof el.className === "string" && el.className.indexOf("k-auto-scrollable") > -1) {
-    return true;
-  }
-  var overflow = window.getComputedStyle(el, "overflow").overflow;
-  return overflow.indexOf("auto") > -1 || overflow.indexOf("scroll") > -1;
-};
-var getScrollableParent = function(el) {
-  var root = scrollableRoot(el);
-  if (!el || el === document.body || el === document.documentElement) {
-    return root;
-  }
-  var parent = el;
-  while (parent && parent !== document.body && parent.nodeType !== Node.DOCUMENT_FRAGMENT_NODE && parent.nodeType !== Node.DOCUMENT_NODE && !isScrollable(parent)) {
-    parent = parent.parentNode;
-  }
-  if (parent && (parent === document.body || parent.nodeType === Node.DOCUMENT_FRAGMENT_NODE)) {
-    return root;
-  }
-  return parent;
-};
-var autoScrollVelocity = function(mouseX, mouseY, rect) {
-  var velocity = {
-    x: 0,
-    y: 0
-  };
-  var AUTO_SCROLL_AREA = 50;
-  if (mouseX - rect.left < AUTO_SCROLL_AREA) {
-    velocity.x = -(AUTO_SCROLL_AREA - (mouseX - rect.left));
-  } else if (rect.right - mouseX < AUTO_SCROLL_AREA) {
-    velocity.x = AUTO_SCROLL_AREA - (rect.right - mouseX);
-  }
-  if (mouseY - rect.top < AUTO_SCROLL_AREA) {
-    velocity.y = -(AUTO_SCROLL_AREA - (mouseY - rect.top));
-  } else if (rect.bottom - mouseY < AUTO_SCROLL_AREA) {
-    velocity.y = AUTO_SCROLL_AREA - (rect.bottom - mouseY);
-  }
-  return velocity;
-};
-var scrollableViewPort = function(el, window2) {
-  var root = scrollableRoot(el);
-  if (el === root) {
-    return {
-      top: root.scrollTop,
-      left: root.scrollLeft,
-      bottom: root.scrollTop + window2.innerHeight,
-      right: root.scrollLeft + window2.innerWidth
-    };
-  } else {
-    var rect = el.getBoundingClientRect();
-    return {
-      bottom: rect.top + rect.height,
-      right: rect.left + rect.width,
-      left: rect.left,
-      top: rect.top
-    };
-  }
-};
-var isPointerInsideContainer = function(x, y, container) {
-  var rect = container.getBoundingClientRect();
-  return rect.top <= y && rect.left <= x && y <= rect.bottom && x <= rect.right;
-};
-
-// node_modules/@progress/kendo-draggable-common/dist/es/drag-n-drop.js
-var DRAG_AND_DROP_DISPATCH_ACTION;
-(function(DRAG_AND_DROP_DISPATCH_ACTION2) {
-  DRAG_AND_DROP_DISPATCH_ACTION2["POINTER_DOWN"] = "pointerdown";
-  DRAG_AND_DROP_DISPATCH_ACTION2["POINTER_MOVE"] = "pointermove";
-  DRAG_AND_DROP_DISPATCH_ACTION2["POINTER_UP"] = "pointerup";
-  DRAG_AND_DROP_DISPATCH_ACTION2["POINTER_CANCEL"] = "pointercancel";
-  DRAG_AND_DROP_DISPATCH_ACTION2["MOUSE_DOWN"] = "mousedown";
-  DRAG_AND_DROP_DISPATCH_ACTION2["MOUSE_MOVE"] = "mousemove";
-  DRAG_AND_DROP_DISPATCH_ACTION2["MOUSE_UP"] = "mouseup";
-  DRAG_AND_DROP_DISPATCH_ACTION2["CONTEXT_MENU"] = "contextmenu";
-  DRAG_AND_DROP_DISPATCH_ACTION2["TOUCH_START"] = "touchstart";
-  DRAG_AND_DROP_DISPATCH_ACTION2["TOUCH_MOVE"] = "touchmove";
-  DRAG_AND_DROP_DISPATCH_ACTION2["TOUCH_END"] = "touchend";
-  DRAG_AND_DROP_DISPATCH_ACTION2["TOUCH_CANCEL"] = "touchcancel";
-  DRAG_AND_DROP_DISPATCH_ACTION2["SCROLL"] = "scroll";
-  DRAG_AND_DROP_DISPATCH_ACTION2["START"] = "KENDO_DRAG_AND_DROP_START";
-  DRAG_AND_DROP_DISPATCH_ACTION2["MOVE"] = "KENDO_DRAG_AND_DROP_MOVE";
-  DRAG_AND_DROP_DISPATCH_ACTION2["END"] = "KENDO_DRAG_AND_DROP_END";
-  DRAG_AND_DROP_DISPATCH_ACTION2["CANCEL"] = "KENDO_DRAG_AND_DROP_CANCEL";
-})(DRAG_AND_DROP_DISPATCH_ACTION || (DRAG_AND_DROP_DISPATCH_ACTION = {}));
-var isTouchEvent = function(event) {
-  return /^touch/.test(event.type);
-};
-var isScrollEvent = function(event) {
-  return /^(scroll)/.test(event.type);
-};
-var normalizeEvent = function(event, state2) {
-  return isTouchEvent(event) ? {
-    pageX: event.changedTouches[0].pageX,
-    pageY: event.changedTouches[0].pageY,
-    clientX: event.changedTouches[0].clientX,
-    clientY: event.changedTouches[0].clientY,
-    scrollX: state2.scrollOffset.x,
-    scrollY: state2.scrollOffset.y,
-    offsetX: state2.offset.x,
-    offsetY: state2.offset.y,
-    type: event.type,
-    originalEvent: event,
-    isTouch: true,
-    altKey: false,
-    ctrlKey: false,
-    shiftKey: false,
-    metaKey: false
-  } : isScrollEvent(event) ? {
-    pageX: state2.pageOffset.x,
-    pageY: state2.pageOffset.y,
-    clientX: state2.clientOffset.x,
-    clientY: state2.clientOffset.y,
-    scrollX: state2.scrollOffset.x,
-    scrollY: state2.scrollOffset.y,
-    offsetX: state2.offset.x,
-    offsetY: state2.offset.y,
-    type: event.type,
-    originalEvent: event,
-    altKey: false,
-    ctrlKey: false,
-    shiftKey: false,
-    metaKey: false
-  } : {
-    pageX: event.pageX,
-    pageY: event.pageY,
-    clientX: event.clientX,
-    clientY: event.clientY,
-    offsetX: event.offsetX,
-    offsetY: event.offsetY,
-    scrollX: state2.scrollOffset.x,
-    scrollY: state2.scrollOffset.y,
-    type: event.type,
-    ctrlKey: event.ctrlKey,
-    shiftKey: event.shiftKey,
-    altKey: event.altKey,
-    metaKey: event.metaKey,
-    originalEvent: event
-  };
-};
-var noop = function() {
-};
-var dispatchDragAndDrop = function(state2, action, callbacks) {
-  if (callbacks === void 0) {
-    callbacks = {};
-  }
-  var _a2 = callbacks.onIsPressedChange, onIsPressedChange = _a2 === void 0 ? noop : _a2, _b = callbacks.onIsScrollingChange, onIsScrollingChange = _b === void 0 ? noop : _b, _c = callbacks.onVelocityChange, onVelocityChange = _c === void 0 ? noop : _c, _d = callbacks.onOffsetChange, onOffsetChange = _d === void 0 ? noop : _d, _e = callbacks.onPageOffsetChange, onPageOffsetChange = _e === void 0 ? noop : _e, _f = callbacks.onClientOffsetChange, onClientOffsetChange = _f === void 0 ? noop : _f, _g = callbacks.onScrollOffsetChange, onScrollOffsetChange = _g === void 0 ? noop : _g, _h = callbacks.onInitialScrollOffsetChange, onInitialScrollOffsetChange = _h === void 0 ? noop : _h;
-  var drag = action.payload;
-  var element = drag.element;
-  var hint = drag.hint;
-  var autoScrollDirection = state2.autoScrollDirection;
-  var overrideScrollableParent = state2.scrollableParent;
-  var event = normalizeEvent(action.event, state2);
-  switch (event.type) {
-    case DRAG_AND_DROP_DISPATCH_ACTION.POINTER_DOWN:
-      if (event.type === DRAG_AND_DROP_DISPATCH_ACTION.POINTER_DOWN && (!event.originalEvent.isPrimary || event.originalEvent.button !== 0)) {
-        break;
-      }
-    // In rare cases where the `which` attribute is available in the mouse event
-    // we check if the `left button` is explicitly clicked:
-    // https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/which#return_value
-    case DRAG_AND_DROP_DISPATCH_ACTION.MOUSE_DOWN:
-      if (event.type === DRAG_AND_DROP_DISPATCH_ACTION.MOUSE_DOWN && event.originalEvent.which && event.originalEvent.which > 1 || state2.ignoreMouse) {
-        break;
-      }
-    case DRAG_AND_DROP_DISPATCH_ACTION.TOUCH_START:
-      if (event.type === DRAG_AND_DROP_DISPATCH_ACTION.TOUCH_START && event.originalEvent.touches.length !== 1) {
-        break;
-      }
-    case DRAG_AND_DROP_DISPATCH_ACTION.START: {
-      var scrollableParent_1 = overrideScrollableParent || getScrollableParent(action.payload.element);
-      onInitialScrollOffsetChange(scrollableParent_1 instanceof Window ? {
-        x: scrollableParent_1.scrollX,
-        y: scrollableParent_1.scrollY
-      } : {
-        x: scrollableParent_1.scrollLeft,
-        y: scrollableParent_1.scrollTop
-      });
-      onClientOffsetChange({
-        x: event.clientX,
-        y: event.clientY
-      });
-      onPageOffsetChange({
-        x: event.pageX,
-        y: event.pageY
-      });
-      onOffsetChange({
-        x: event.offsetX,
-        y: event.offsetY
-      });
-      onIsPressedChange(true);
-      if (drag.onPress) {
-        drag.onPress(event);
-      }
-      break;
-    }
-    case DRAG_AND_DROP_DISPATCH_ACTION.SCROLL:
-      if (event.type === DRAG_AND_DROP_DISPATCH_ACTION.SCROLL && !state2.pressed) {
-        break;
-      }
-      var scrollableParent = overrideScrollableParent || getScrollableParent(element);
-      var scrollOffset = scrollableParent instanceof Window ? {
-        x: scrollableParent.scrollX,
-        y: scrollableParent.scrollY
-      } : {
-        x: scrollableParent.scrollLeft,
-        y: scrollableParent.scrollTop
-      };
-      event.scrollX = scrollOffset.x - state2.initialScrollOffset.x;
-      event.scrollY = scrollOffset.y - state2.initialScrollOffset.y;
-      onScrollOffsetChange({
-        x: event.scrollX,
-        y: event.scrollY
-      });
-    case DRAG_AND_DROP_DISPATCH_ACTION.POINTER_MOVE:
-      if (event.type === DRAG_AND_DROP_DISPATCH_ACTION.POINTER_MOVE && !event.originalEvent.isPrimary) {
-        break;
-      }
-    case DRAG_AND_DROP_DISPATCH_ACTION.MOUSE_MOVE:
-    case DRAG_AND_DROP_DISPATCH_ACTION.TOUCH_MOVE:
-      if (event.type === DRAG_AND_DROP_DISPATCH_ACTION.TOUCH_MOVE && event.originalEvent.touches.length !== 1) {
-        break;
-      }
-    case DRAG_AND_DROP_DISPATCH_ACTION.MOVE: {
-      if (state2.pressed) {
-        if (state2.autoScroll && event.originalEvent.type !== "scroll") {
-          if (element) {
-            var document_1 = getDocument(element);
-            var scrollableParent_2 = overrideScrollableParent || getScrollableParent(document_1.elementFromPoint(event.clientX, event.clientY));
-            var newVelocity = autoScrollVelocity(event.clientX, event.clientY, scrollableViewPort(scrollableParent_2, getWindow(element)));
-            onVelocityChange({
-              x: autoScrollDirection && autoScrollDirection.horizontal === false ? 0 : newVelocity.x,
-              y: autoScrollDirection && autoScrollDirection.vertical === false ? 0 : newVelocity.y
-            });
-            onIsScrollingChange(newVelocity.y !== 0 || newVelocity.x !== 0);
-          }
-        }
-        if (!state2.drag && drag.onDragStart) {
-          drag.onDragStart(event);
-        }
-        if (drag.onDrag) {
-          drag.onDrag(event);
-        }
-        var dropElement_1 = intersect(hint || element, state2.drops.map(function(drop2) {
-          return drop2 && drop2.element;
-        }).filter(function(d) {
-          return d !== (hint || element);
-        }));
-        var drop = state2.drops.find(function(drop2) {
-          return drop2.element === dropElement_1;
-        });
-        if (drop && dropElement_1 && isPointerInsideContainer(event.clientX, event.clientY, overrideScrollableParent || getScrollableParent(dropElement_1)) && dropElement_1 !== element) {
-          if ((state2.drop && state2.drop.element) !== dropElement_1) {
-            if (state2.drop && state2.drop.onDragLeave) {
-              state2.drop.onDragLeave(event);
-            }
-            if (drop.onDragEnter) {
-              drop.onDragEnter(event);
-            }
-          } else {
-            if (drop.onDragOver) {
-              drop.onDragOver(event);
-            }
-          }
-        } else if (state2.drop && state2.drop.onDragLeave) {
-          state2.drop.onDragLeave(event);
-        }
-      }
-      onClientOffsetChange({
-        x: event.clientX,
-        y: event.clientY
-      });
-      onPageOffsetChange({
-        x: event.pageX,
-        y: event.pageY
-      });
-      break;
-    }
-    case DRAG_AND_DROP_DISPATCH_ACTION.POINTER_UP:
-      if (event.type === DRAG_AND_DROP_DISPATCH_ACTION.POINTER_UP && !event.originalEvent.isPrimary) {
-        break;
-      }
-    case DRAG_AND_DROP_DISPATCH_ACTION.MOUSE_UP:
-    // the last finger has been lifted, and the user is not doing gesture.
-    // there might be a better way to handle this.
-    case DRAG_AND_DROP_DISPATCH_ACTION.TOUCH_END:
-      if (event.type === DRAG_AND_DROP_DISPATCH_ACTION.TOUCH_END && event.originalEvent.touches.length !== 1) {
-        break;
-      }
-    case DRAG_AND_DROP_DISPATCH_ACTION.END: {
-      onIsPressedChange(false);
-      onIsScrollingChange(false);
-      onScrollOffsetChange({
-        x: 0,
-        y: 0
-      });
-      if (drag.onRelease) {
-        drag.onRelease(event);
-      }
-      if (state2.drop && state2.drop.onDrop) {
-        state2.drop.onDrop(event);
-      }
-      if (state2.drag && drag.onDragEnd) {
-        drag.onDragEnd(event);
-      }
-      break;
-    }
-    case DRAG_AND_DROP_DISPATCH_ACTION.POINTER_CANCEL:
-    case DRAG_AND_DROP_DISPATCH_ACTION.CONTEXT_MENU:
-    case DRAG_AND_DROP_DISPATCH_ACTION.TOUCH_CANCEL:
-    case DRAG_AND_DROP_DISPATCH_ACTION.CANCEL: {
-      onIsPressedChange(false);
-      onIsScrollingChange(false);
-      onScrollOffsetChange({
-        x: 0,
-        y: 0
-      });
-      if (drag.onDragEnd) {
-        drag.onDragEnd(event);
-      }
-      if (state2.drop && state2.drop.onDragLeave) {
-        state2.drop.onDragLeave(event);
-      }
-      break;
-    }
-    default:
-      break;
-  }
-};
-
-// node_modules/@progress/kendo-draggable-common/dist/es/auto-scroll.js
-var autoScroll = function(scrollableParent, vel) {
-  if (!scrollableParent) {
-    return;
-  }
-  var yIsScrollable;
-  var xIsScrollable;
-  var isRootNode = scrollableParent === scrollableRoot(scrollableParent);
-  if (isRootNode) {
-    yIsScrollable = document.body.scrollHeight > window.innerHeight;
-    xIsScrollable = document.body.scrollWidth > window.innerWidth;
-  } else {
-    yIsScrollable = scrollableParent.offsetHeight <= scrollableParent.scrollHeight;
-    xIsScrollable = scrollableParent.offsetWidth <= scrollableParent.scrollWidth;
-  }
-  var yDelta = scrollableParent.scrollTop + vel.y;
-  var yInBounds = yIsScrollable && yDelta > 0 && yDelta < scrollableParent.scrollHeight;
-  var xDelta = scrollableParent.scrollLeft + vel.x;
-  var xInBounds = xIsScrollable && xDelta > 0 && xDelta < scrollableParent.scrollWidth;
-  if (yInBounds) {
-    scrollableParent.scrollTop += vel.y;
-  } else if (yIsScrollable && yDelta < 0) {
-    scrollableParent.scrollTop = 0;
-  }
-  if (xInBounds) {
-    scrollableParent.scrollLeft += vel.x;
-  } else if (xIsScrollable && xDelta < 0) {
-    scrollableParent.scrollLeft = 0;
-  }
-};
-
-// node_modules/@progress/kendo-angular-utils/fesm2022/progress-kendo-angular-utils.mjs
-var _c0 = (a0, a1, a2) => ({
-  $implicit: a0,
-  index: a1,
-  data: a2
-});
-var DragHandleDirective = class _DragHandleDirective {
-  element;
-  touchActionStyle = "none";
-  /**
-   * Sets the cursor style of the drag handle. Accepts same values as the [CSS `cursor` property](https://developer.mozilla.org/en-US/docs/Web/CSS/cursor#values).
-   *
-   * @default 'move'
-   */
-  cursorStyle = "move";
-  constructor(element) {
-    this.element = element;
-  }
-  static ɵfac = function DragHandleDirective_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _DragHandleDirective)(ɵɵdirectiveInject(ElementRef));
-  };
-  static ɵdir = ɵɵdefineDirective({
-    type: _DragHandleDirective,
-    selectors: [["", "kendoDragHandle", ""]],
-    hostVars: 4,
-    hostBindings: function DragHandleDirective_HostBindings(rf, ctx) {
-      if (rf & 2) {
-        ɵɵstyleProp("touch-action", ctx.touchActionStyle)("cursor", ctx.cursorStyle);
-      }
-    },
-    inputs: {
-      cursorStyle: "cursorStyle"
-    },
-    exportAs: ["kendoDragHandle"]
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(DragHandleDirective, [{
-    type: Directive,
-    args: [{
-      selector: "[kendoDragHandle]",
-      exportAs: "kendoDragHandle",
-      standalone: true
-    }]
-  }], () => [{
-    type: ElementRef
-  }], {
-    touchActionStyle: [{
-      type: HostBinding,
-      args: ["style.touch-action"]
-    }],
-    cursorStyle: [{
-      type: HostBinding,
-      args: ["style.cursor"]
-    }, {
-      type: Input
-    }]
-  });
-})();
-var packageMetadata = {
-  name: "@progress/kendo-angular-utils",
-  productName: "Kendo UI for Angular",
-  productCode: "KENDOUIANGULAR",
-  productCodes: ["KENDOUIANGULAR"],
-  publishDate: 1777036819,
-  version: "23.4.0",
-  licensingDocsUrl: "https://www.telerik.com/kendo-angular-ui/my-license/"
-};
-function isDocumentNode(container) {
-  return container.nodeType === 9;
-}
-var getAction = (event, draggable) => {
-  return {
-    event,
-    payload: draggable
-  };
-};
-var dragTargetTransition = "transform .3s ease-in-out";
-var isPresent2 = (value) => value !== null && value !== void 0;
-function closestBySelector(element, selector) {
-  if (element.closest) {
-    return element.closest(selector);
-  }
-  const matches2 = Element.prototype.matches ? (el, sel) => el.matches(sel) : (el, sel) => el.msMatchesSelector(sel);
-  let node = element;
-  while (node && !isDocumentNode(node)) {
-    if (matches2(node, selector)) {
-      return node;
-    }
-    node = node.parentNode;
-  }
-}
-var intersect2 = (element, candidates) => {
-  let max = 0;
-  let result = null;
-  candidates.forEach((candidate) => {
-    if (candidate && element) {
-      const ration = getRatio2(element, candidate);
-      if (ration > max) {
-        max = ration;
-        result = candidate;
-      }
-    }
-  });
-  return result;
-};
-var getRatio2 = (element, target) => {
-  const elementRect = element.getBoundingClientRect();
-  const targetRect = target.getBoundingClientRect();
-  const top = Math.max(targetRect.top, elementRect.top);
-  const left = Math.max(targetRect.left, elementRect.left);
-  const right = Math.min(targetRect.left + targetRect.width, elementRect.left + elementRect.width);
-  const bottom = Math.min(targetRect.top + targetRect.height, elementRect.top + elementRect.height);
-  const width = right - left;
-  const height = bottom - top;
-  if (left < right && top < bottom) {
-    const targetArea = targetRect.width * targetRect.height;
-    const entryArea = elementRect.width * elementRect.height;
-    const intersectionArea = width * height;
-    const intersectionRatio = intersectionArea / (targetArea + entryArea - intersectionArea);
-    return Number(intersectionRatio.toFixed(4));
-  }
-  return 0;
-};
-var setElementStyles = (renderer, elem, styles) => {
-  const props = Object.keys(styles);
-  props.forEach((p) => {
-    renderer.setStyle(elem, p, styles[p]);
-  });
-};
-var noop2 = () => {
-};
-var DragStateService = class _DragStateService {
-  constructor() {
-    this.setCallbacks();
-  }
-  dragTarget = null;
-  dropTarget = null;
-  dragTargets = [];
-  dropTargets = [];
-  pressed = false;
-  ignoreMouse = false;
-  autoScroll = true;
-  isScrolling = false;
-  scrollableParent = null;
-  autoScrollDirection = {
-    horizontal: true,
-    vertical: true
-  };
-  initialClientOffset = {
-    x: 0,
-    y: 0
-  };
-  clientOffset = {
-    x: 0,
-    y: 0
-  };
-  initialScrollOffset = {
-    x: 0,
-    y: 0
-  };
-  scrollOffset = {
-    x: 0,
-    y: 0
-  };
-  offset = {
-    x: 0,
-    y: 0
-  };
-  pageOffset = {
-    x: 0,
-    y: 0
-  };
-  velocity = {
-    x: 0,
-    y: 0
-  };
-  dragTargetDirective;
-  state;
-  dragIndex = null;
-  dropIndex = null;
-  dragData;
-  dragTargetId;
-  callbacks = {};
-  scrollInterval = null;
-  handleDragAndDrop(action) {
-    this.updateState();
-    dispatchDragAndDrop(this.state, action, this.callbacks);
-  }
-  setPressed(pressed) {
-    this.pressed = pressed;
-  }
-  setScrolling(isScrolling) {
-    this.isScrolling = isScrolling;
-    if (isScrolling) {
-      const scrollableParent = getScrollableParent(document.elementFromPoint(this.clientOffset.x, this.clientOffset.y));
-      window.clearInterval(this.scrollInterval);
-      this.scrollInterval = window.setInterval(() => {
-        autoScroll(scrollableParent, {
-          x: this.velocity.x,
-          y: this.velocity.y
-        });
-      }, 50);
-    } else {
-      if (this.scrollInterval) {
-        window.clearInterval(this.scrollInterval);
-        this.scrollInterval = null;
-      }
-    }
-  }
-  setVelocity(velocity) {
-    this.velocity = velocity;
-  }
-  setOffset(offset2) {
-    this.offset = offset2;
-  }
-  setClientOffset(clientOffset) {
-    this.clientOffset = clientOffset;
-  }
-  setPageOffset(pageOffset) {
-    this.pageOffset = pageOffset;
-  }
-  setInitialClientOffset(initialClientOffset) {
-    this.initialClientOffset = initialClientOffset;
-  }
-  setScrollOffset(scrollOffset) {
-    this.scrollOffset = scrollOffset;
-  }
-  setInitialScrollOffset(initialScrollOffset) {
-    this.initialScrollOffset = initialScrollOffset;
-  }
-  get dragTargetPresent() {
-    return isPresent2(this.dragTarget?.element);
-  }
-  get dropTargetPresent() {
-    return isPresent2(this.dropTarget?.element);
-  }
-  updateState() {
-    this.state = {
-      drag: this.dragTarget,
-      drop: this.dropTarget,
-      drags: this.dragTargets,
-      drops: this.dropTargets,
-      pressed: this.pressed,
-      ignoreMouse: this.ignoreMouse,
-      autoScroll: this.autoScroll,
-      isScrolling: this.isScrolling,
-      scrollableParent: this.scrollableParent,
-      autoScrollDirection: this.autoScrollDirection,
-      initialClientOffset: this.initialClientOffset,
-      clientOffset: this.clientOffset,
-      initialScrollOffset: this.initialScrollOffset,
-      scrollOffset: this.scrollOffset,
-      offset: this.offset,
-      pageOffset: this.pageOffset,
-      velocity: this.velocity
-    };
-  }
-  setCallbacks() {
-    this.callbacks = {
-      onVelocityChange: this.setVelocity.bind(this),
-      onOffsetChange: this.setOffset.bind(this),
-      onClientOffsetChange: this.setClientOffset.bind(this),
-      onPageOffsetChange: this.setPageOffset.bind(this),
-      onInitialClientOffsetChange: this.setInitialClientOffset.bind(this),
-      onScrollOffsetChange: this.setScrollOffset.bind(this),
-      onInitialScrollOffsetChange: this.setInitialScrollOffset.bind(this),
-      onIsPressedChange: this.setPressed.bind(this),
-      onIsScrollingChange: this.setScrolling.bind(this)
-    };
-  }
-  ngOnDestroy() {
-    if (this.scrollInterval) {
-      window.clearInterval(this.scrollInterval);
-      this.scrollInterval = null;
-    }
-  }
-  static ɵfac = function DragStateService_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _DragStateService)();
-  };
-  static ɵprov = ɵɵdefineInjectable({
-    token: _DragStateService,
-    factory: _DragStateService.ɵfac,
-    providedIn: "root"
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(DragStateService, [{
-    type: Injectable,
-    args: [{
-      providedIn: "root"
-    }]
-  }], () => [], null);
-})();
-var HintComponent = class _HintComponent {
-  element;
-  template;
-  directive;
-  targetIndex;
-  contextData;
-  customContext;
-  pointerEvents = "none";
-  constructor(element) {
-    this.element = element;
-  }
-  static ɵfac = function HintComponent_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _HintComponent)(ɵɵdirectiveInject(ElementRef));
-  };
-  static ɵcmp = ɵɵdefineComponent({
-    type: _HintComponent,
-    selectors: [["kendo-draghint"]],
-    hostVars: 2,
-    hostBindings: function HintComponent_HostBindings(rf, ctx) {
-      if (rf & 2) {
-        ɵɵstyleProp("pointer-events", ctx.pointerEvents);
-      }
-    },
-    inputs: {
-      template: "template",
-      directive: "directive",
-      targetIndex: "targetIndex",
-      contextData: "contextData",
-      customContext: "customContext"
-    },
-    decls: 1,
-    vars: 6,
-    consts: [[3, "ngTemplateOutlet", "ngTemplateOutletContext"]],
-    template: function HintComponent_Template(rf, ctx) {
-      if (rf & 1) {
-        ɵɵelementContainer(0, 0);
-      }
-      if (rf & 2) {
-        ɵɵproperty("ngTemplateOutlet", ctx.template)("ngTemplateOutletContext", ctx.customContext || ɵɵpureFunction3(2, _c0, ctx.directive, ctx.targetIndex, ctx.contextData));
-      }
-    },
-    dependencies: [NgTemplateOutlet],
-    encapsulation: 2
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(HintComponent, [{
-    type: Component,
-    args: [{
-      selector: "kendo-draghint",
-      template: `
-        <ng-container
-            [ngTemplateOutlet]="template"
-            [ngTemplateOutletContext]="customContext || { $implicit: this.directive, index: this.targetIndex, data: this.contextData }">
-        </ng-container>
-    `,
-      standalone: true,
-      imports: [NgTemplateOutlet]
-    }]
-  }], () => [{
-    type: ElementRef
-  }], {
-    template: [{
-      type: Input
-    }],
-    directive: [{
-      type: Input
-    }],
-    targetIndex: [{
-      type: Input
-    }],
-    contextData: [{
-      type: Input
-    }],
-    customContext: [{
-      type: Input
-    }],
-    pointerEvents: [{
-      type: HostBinding,
-      args: ["style.pointer-events"]
-    }]
-  });
-})();
-var DragTargetPressEvent = class {
-  /**
-   * The information related to the current drag event.
-   * This is the normalized drag event that contains details about the drag operation.
-   */
-  dragEvent;
-  /**
-   * The DOM element being dragged.
-   */
-  dragTarget;
-  /**
-   * The identifier passed to the `dragTargetId` input property of the `DragTarget` or `DragTargetContainer` directive.
-   */
-  dragTargetId;
-  /**
-   * The index of the current drag target in the collection of drag targets. Applies to `DragTargetContainer` directive.
-   */
-  dragTargetIndex;
-  /**
-   * Left for backward compatibility for the DragTarget deprecated events.
-   * @hidden
-   */
-  get normalizedEvent() {
-    return this.dragEvent;
-  }
-  /**
-   * Left for backward compatibility for the DragTarget deprecated events.
-   * @hidden
-   */
-  get hostElement() {
-    return this.dragTarget;
-  }
-  /**
-   * @hidden
-   */
-  constructor(args) {
-    Object.assign(this, args);
-  }
-};
-var DragTargetDragReadyEvent = class {
-  /**
-   * The information related to the current drag event.
-   * This is the normalized drag event that contains details about the drag operation.
-   */
-  dragEvent;
-  /**
-   * The DOM element being dragged.
-   */
-  dragTarget;
-  /**
-   * The identifier passed to the `dragTargetId` input property of the `DragTarget` or `DragTargetContainer` directive.
-   */
-  dragTargetId;
-  /**
-   * The index of the current drag target in the collection of drag targets. Applies to `DragTargetContainer` directive.
-   */
-  dragTargetIndex;
-  /**
-   * @hidden
-   */
-  constructor(args) {
-    Object.assign(this, args);
-  }
-};
-var DragTargetDragStartEvent = class extends PreventableEvent {
-  /**
-   * The information related to the current drag event.
-   * This is the normalized drag event that contains details about the drag operation.
-   */
-  dragEvent;
-  /**
-   * The DOM element being dragged.
-   */
-  dragTarget;
-  /**
-   * The identifier passed to the `dragTargetId` input property of the `DragTarget` or `DragTargetContainer` directive.
-   */
-  dragTargetId;
-  /**
-   * The index of the current drag target in the collection of drag targets. Applies to `DragTargetContainer` directive.
-   */
-  dragTargetIndex;
-  /**
-   * Left for backward compatibility for the DragTarget deprecated events.
-   * @hidden
-   */
-  get normalizedEvent() {
-    return this.dragEvent;
-  }
-  /**
-   * Left for backward compatibility for the DragTarget deprecated events.
-   * @hidden
-   */
-  get hostElement() {
-    return this.dragTarget;
-  }
-  /**
-   * @hidden
-   */
-  constructor(args) {
-    super();
-    Object.assign(this, args);
-  }
-};
-var DragTargetDragEndEvent = class {
-  /**
-   * The information related to the current drag event.
-   * This is the normalized drag event that contains details about the drag operation.
-   */
-  dragEvent;
-  /**
-   * The DOM element being dragged.
-   */
-  dragTarget;
-  /**
-   * The identifier passed to the `dragTargetId` input property of the `DragTarget` or `DragTargetContainer` directive.
-   */
-  dragTargetId;
-  /**
-   * The index of the current drag target in the collection of drag targets. Applies to `DragTargetContainer` directive.
-   */
-  dragTargetIndex;
-  /**
-   * Left for backward compatibility for the DragTarget deprecated events.
-   * @hidden
-   */
-  get normalizedEvent() {
-    return this.dragEvent;
-  }
-  /**
-   * Left for backward compatibility for the DragTarget deprecated events.
-   * @hidden
-   */
-  get hostElement() {
-    return this.dragTarget;
-  }
-  /**
-   * @hidden
-   */
-  constructor(args) {
-    Object.assign(this, args);
-  }
-};
-var DragTargetDragEvent = class extends PreventableEvent {
-  /**
-   * The information related to the current drag event.
-   * This is the normalized drag event that contains details about the drag operation.
-   */
-  dragEvent;
-  /**
-   * The DOM element being dragged.
-   */
-  dragTarget;
-  /**
-   * The hint element of the `DragTarget`.
-   */
-  hintElement;
-  /**
-   * The identifier passed to the `dragTargetId` input property of the `DragTarget` or `DragTargetContainer` directive.
-   */
-  dragTargetId;
-  /**
-   * The index of the current drag target in the collection of drag targets. Applies to `DragTargetContainer` directive.
-   */
-  dragTargetIndex;
-  /**
-   * Left for backward compatibility for the DragTarget deprecated events.
-   * @hidden
-   */
-  get normalizedEvent() {
-    return this.dragEvent;
-  }
-  /**
-   * Left for backward compatibility for the DragTarget deprecated events.
-   * @hidden
-   */
-  get hostElement() {
-    return this.dragTarget;
-  }
-  /**
-   * @hidden
-   */
-  constructor(args) {
-    super();
-    Object.assign(this, args);
-  }
-};
-var DragTargetReleaseEvent = class {
-  /**
-   * The information related to the current drag event.
-   * This is the normalized drag event that contains details about the drag operation.
-   */
-  dragEvent;
-  /**
-   * The DOM element being dragged.
-   */
-  dragTarget;
-  /**
-   * The identifier passed to the `dragTargetId` input property of the `DragTarget` or `DragTargetContainer` directive.
-   */
-  dragTargetId;
-  /**
-   * The index of the current drag target in the collection of drag targets. Applies to `DragTargetContainer` directive.
-   */
-  dragTargetIndex;
-  /**
-   * Left for backward compatibility for the DragTarget deprecated events.
-   * @hidden
-   */
-  get normalizedEvent() {
-    return this.dragEvent;
-  }
-  /**
-   * Left for backward compatibility for the DragTarget deprecated events.
-   * @hidden
-   */
-  get hostElement() {
-    return this.dragTarget;
-  }
-  /**
-   * @hidden
-   */
-  constructor(args) {
-    Object.assign(this, args);
-  }
-};
-var isDragStartPrevented$1 = false;
-var isDragPrevented$1 = false;
-var DragTargetContainerDirective = class _DragTargetContainerDirective {
-  wrapper;
-  ngZone;
-  renderer;
-  service;
-  viewContainer;
-  cdr;
-  /**
-   * Defines whether a hint will be used for dragging. By default, the hint is a copy of the current drag target. [See example](https://www.telerik.com/kendo-angular-ui/components/utils/draganddrop/hint).
-   *
-   * @default false
-   */
-  hint = false;
-  /**
-   * Sets a selector for elements in the container to make them draggable. The possible values include any
-   * DOM `selector`. [See example](https://www.telerik.com/kendo-angular-ui/components/utils/draganddrop/drag-container).
-   */
-  set dragTargetFilter(value) {
-    this._dragTargetFilter = value;
-    if (!this.dragDisabled) {
-      this.initializeDragTargets();
-    }
-  }
-  get dragTargetFilter() {
-    return this._dragTargetFilter;
-  }
-  /**
-   * Sets a selector for elements inside each drag target to use as drag handles.
-   */
-  dragHandle;
-  /**
-   * Sets the delay in milliseconds before dragging begins. [See example](https://www.telerik.com/kendo-angular-ui/components/utils/draganddrop/drag-container#events).
-   *
-   * @default 0
-   */
-  dragDelay = 0;
-  /**
-   * Sets the number of pixels the pointer must move before dragging starts. [See example](https://www.telerik.com/kendo-angular-ui/components/utils/draganddrop/threshold).
-   *
-   * @default 0
-   */
-  threshold = 0;
-  /**
-   * Sets a unique identifier for each drag target.
-   * It exposes the current drag target HTML element and its index in the collection of drag targets as arguments.
-   */
-  set dragTargetId(fn) {
-    if (isDevMode && typeof fn !== "function") {
-      throw new Error(`dragTargetId must be a function, but received ${JSON.stringify(fn)}.`);
-    }
-    this._dragTargetId = fn;
-  }
-  get dragTargetId() {
-    return this._dragTargetId;
-  }
-  /**
-   * Sets a callback function to return custom data for `DropTarget` events.
-   * It exposes the current `DragTarget` HTML element, its `dragTargetId`, and its index in the collection of drag targets as arguments.
-   */
-  set dragData(fn) {
-    if (isDevMode && typeof fn !== "function") {
-      throw new Error(`dragData must be a function, but received ${JSON.stringify(fn)}.`);
-    }
-    this._dragData = fn;
-  }
-  get dragData() {
-    return this._dragData;
-  }
-  /**
-   * Disables dragging of drag targets in the container when set to `true`.
-   *
-   * @default false
-   */
-  set dragDisabled(value) {
-    this._dragDisabled = value;
-    if (value) {
-      this.clearPreviousTargets();
-      this.removeListeners();
-      if (isPresent2(this.hintElem)) {
-        this.destroyHint();
-      }
-    } else {
-      if (isPresent2(this.wrapper) || isPresent2(this.currentDragTarget)) {
-        this.subscribe();
-      }
-      this.initializeDragTargets();
-    }
-  }
-  get dragDisabled() {
-    return this._dragDisabled;
-  }
-  /**
-   * Sets whether to use the default dragging behavior or handle it manually.
-   *
-   * @default 'auto'
-   */
-  mode = "auto";
-  /**
-   * Sets the cursor style of the drag targets. Accepts same values as the [CSS `cursor` property](https://developer.mozilla.org/en-US/docs/Web/CSS/cursor#values).
-   *
-   * @default 'move'
-   */
-  cursorStyle = "move";
-  /**
-   * @hidden
-   */
-  hintContext;
-  /**
-   * Fires when a drag target's `dragDelay` has passed and the user can drag the element.
-   */
-  onDragReady = new EventEmitter();
-  /**
-   * Fires when the user presses a drag target element.
-   */
-  onPress = new EventEmitter();
-  /**
-   * Fires when dragging of a drag target element begins.
-   */
-  onDragStart = new EventEmitter();
-  /**
-   * Fires while the user drags a drag target element.
-   */
-  onDrag = new EventEmitter();
-  /**
-   * Fires when the user releases a drag target element after pressing it.
-   */
-  onRelease = new EventEmitter();
-  /**
-   * Fires when dragging of a drag target ends and the element is released.
-   */
-  onDragEnd = new EventEmitter();
-  /**
-   * Notifies the `DragTargetContainer` that its content has changed.
-   */
-  notify() {
-    this.cdr.detectChanges();
-    this.initializeDragTargets();
-  }
-  currentDragTarget = null;
-  dragTimeout = null;
-  pressed = false;
-  dragStarted = false;
-  hintComponent = null;
-  defaultHint = null;
-  currentDragTargetElement = null;
-  scrollableParent = null;
-  previousDragTargets = [];
-  initialPosition = {
-    x: 0,
-    y: 0
-  };
-  position = {
-    x: 0,
-    y: 0
-  };
-  positionsMap = /* @__PURE__ */ new Map();
-  _dragTargetFilter = null;
-  _dragDisabled = false;
-  _dragData = () => null;
-  _dragTargetId = () => null;
-  prevUserSelect;
-  get allDragTargets() {
-    return this.queryHost(this.dragTargetFilter);
-  }
-  get dragHandles() {
-    return this.isHandleSelectorValid ? this.queryHost(this.dragHandle) : null;
-  }
-  get hintTemplate() {
-    return isPresent2(this.hint) && typeof this.hint === "object" ? this.hint.hintTemplate : null;
-  }
-  constructor(wrapper, ngZone, renderer, service, viewContainer, cdr) {
-    this.wrapper = wrapper;
-    this.ngZone = ngZone;
-    this.renderer = renderer;
-    this.service = service;
-    this.viewContainer = viewContainer;
-    this.cdr = cdr;
-    A(packageMetadata);
-  }
-  ngAfterViewInit() {
-    const isTargetPresent = isPresent2(this.wrapper) || isPresent2(this.currentDragTarget);
-    if (!this.dragDisabled && isTargetPresent) {
-      this.subscribe();
-    }
-    !this.dragDisabled && this.initializeDragTargets();
-  }
-  ngOnDestroy() {
-    this.removeListeners();
-  }
-  onPointerDown(event) {
-    const filterElement = closestBySelector(event.target, this.isHandleSelectorValid ? this.dragHandle : this.dragTargetFilter);
-    if (this.dragTargetFilter === "" || !isPresent2(filterElement)) {
-      return;
-    }
-    if (isPresent2(this.dragHandles) && !this.isDragHandle(event.target)) {
-      return;
-    }
-    const action = getAction(event, this.currentDragTarget);
-    this.service.handleDragAndDrop(action);
-    this.subscribe();
-  }
-  onTouchStart(event) {
-    const filterElement = closestBySelector(event.target, this.isHandleSelectorValid ? this.dragHandle : this.dragTargetFilter);
-    if (this.dragTargetFilter === "" || !isPresent2(filterElement)) {
-      return;
-    }
-    if (isPresent2(this.dragHandles) && !this.isDragHandle(event.target)) {
-      return;
-    }
-    event.preventDefault();
-    const action = getAction(event, this.currentDragTarget);
-    this.service.handleDragAndDrop(action);
-    this.subscribe();
-  }
-  onPointerMove(event) {
-    const action = getAction(event, this.currentDragTarget);
-    this.service.handleDragAndDrop(action);
-  }
-  onTouchMove(event) {
-    event.preventDefault();
-    const action = getAction(event, this.currentDragTarget);
-    this.service.handleDragAndDrop(action);
-  }
-  onPointerUp(event) {
-    const action = getAction(event, this.currentDragTarget);
-    this.service.handleDragAndDrop(action);
-    this.subscribe();
-  }
-  onContextMenu(event) {
-    event.preventDefault();
-    const action = getAction(event, this.currentDragTarget);
-    this.service.handleDragAndDrop(action);
-    this.subscribe();
-  }
-  handlePress(event) {
-    if (this.dragDelay > 0) {
-      this.dragTimeout = window.setTimeout(() => {
-        this.pressed = true;
-        this.emitZoneAwareEvent("onDragReady", event);
-      }, this.dragDelay);
-    } else {
-      this.pressed = true;
-    }
-    const eventTarget = event.originalEvent.target;
-    this.currentDragTargetElement = closestBySelector(eventTarget, this.dragTargetFilter);
-    this.currentDragTarget.element = this.currentDragTargetElement;
-    this.service.dragIndex = this.getDragIndex();
-    this.scrollableParent = this.hintTemplate ? document.body : this.currentDragTargetElement ? getScrollableParent(this.currentDragTargetElement) : null;
-    this.prevUserSelect = this.currentDragTargetElement.style.userSelect;
-    this.renderer.setStyle(this.currentDragTargetElement, "user-select", "none");
-    this.emitZoneAwareEvent("onPress", event);
-  }
-  handleDragStart(event) {
-    if (!this.pressed) {
-      if (this.dragTimeout) {
-        window.clearTimeout(this.dragTimeout);
-        this.dragTimeout = null;
-      }
-      return;
-    }
-    isDragStartPrevented$1 = this.emitZoneAwareEvent("onDragStart", event).isDefaultPrevented();
-    if (isDragStartPrevented$1) {
-      return;
-    }
-    this.position = this.positionsMap.has(this.currentDragTargetElement) ? this.positionsMap.get(this.currentDragTargetElement) : {
-      x: 0,
-      y: 0
-    };
-    if (this.hint) {
-      this.createHint();
-      if (this.mode === "auto") {
-        this.renderer.setStyle(this.currentDragTargetElement, "opacity", "0.7");
-      }
-    } else {
-      this.initialPosition = {
-        x: event.clientX - this.position.x,
-        y: event.clientY - this.position.y
-      };
-    }
-    this.dragStarted = this.threshold === 0;
-    this.service.dragTarget = this.currentDragTarget;
-    const targetIdArgs = {
-      dragTarget: this.currentDragTargetElement,
-      dragTargetIndex: this.service.dragIndex
-    };
-    this.service.dragTargetId = this.dragTargetId(targetIdArgs);
-    const targetDataArgs = Object.assign({
-      dragTargetId: this.service.dragTargetId
-    }, targetIdArgs);
-    this.service.dragData = this.dragData(targetDataArgs);
-  }
-  handleDrag(event) {
-    if (!this.pressed || isDragStartPrevented$1) {
-      return;
-    }
-    const elem = this.hint ? this.hintElem : this.currentDragTargetElement;
-    this.position = this.calculatePosition(elem, event);
-    const thresholdNotReached = Math.abs(this.position.x) < this.threshold && Math.abs(this.position.y) < this.threshold;
-    if (!this.dragStarted && thresholdNotReached) {
-      return;
-    }
-    if (!this.dragStarted && this.threshold > 0) {
-      this.dragStarted = true;
-    }
-    isDragPrevented$1 = this.emitZoneAwareEvent("onDrag", event).isDefaultPrevented();
-    if (isDragPrevented$1) {
-      return;
-    }
-    if (this.mode === "auto") {
-      this.performDrag();
-    } else {
-      this.dragStarted = true;
-    }
-  }
-  handleRelease(event) {
-    if (this.dragStarted) {
-      this.positionsMap.set(this.currentDragTargetElement, this.position);
-    }
-    if (this.dragTimeout) {
-      clearTimeout(this.dragTimeout);
-      this.dragTimeout = null;
-    }
-    this.pressed = false;
-    this.prevUserSelect ? this.renderer.setStyle(this.currentDragTargetElement, "user-select", this.prevUserSelect) : this.renderer.removeStyle(this.currentDragTargetElement, "user-select");
-    this.prevUserSelect = null;
-    this.emitZoneAwareEvent("onRelease", event);
-  }
-  handleDragEnd(event) {
-    if (!this.dragStarted) {
-      return;
-    }
-    if (this.mode === "auto") {
-      const isDroppedOverParentTarget = isPresent2(this.service.dropTarget) && !contains(this.service.dropTarget?.element, this.service.dragTarget?.element, true);
-      const elem = this.hint ? this.hintElem : this.currentDragTargetElement;
-      if (isDroppedOverParentTarget || this.service.dropTargets.length > 0 && isPresent2(elem)) {
-        this.renderer.removeStyle(elem, "transform");
-        setElementStyles(this.renderer, elem, {
-          transition: dragTargetTransition
-        });
-        this.positionsMap.delete(this.currentDragTargetElement);
-      }
-    }
-    if (this.hint && isPresent2(this.hintElem)) {
-      this.destroyHint();
-      if (this.mode === "auto") {
-        this.renderer.removeStyle(this.currentDragTargetElement, "opacity");
-      }
-    }
-    this.service.dragTarget = null;
-    this.service.dragIndex = null;
-    this.currentDragTarget.element = null;
-    this.emitZoneAwareEvent("onDragEnd", event);
-    if (isDragStartPrevented$1 || isDragPrevented$1) {
-      return;
-    }
-    this.dragStarted = false;
-  }
-  get nativeElement() {
-    return this.wrapper.nativeElement;
-  }
-  get hintElem() {
-    return this.hintTemplate && isPresent2(this.hintComponent) ? this.hintComponent.instance.element.nativeElement : this.defaultHint;
-  }
-  removeListeners() {
-    if (isPresent2(this.scrollableParent)) {
-      this.scrollableParent.removeEventListener("scroll", this.onPointerMove);
-    }
-    const element = this.nativeElement;
-    if (!isDocumentAvailable()) {
-      return;
-    }
-    document.removeEventListener("pointermove", this.onPointerMove);
-    document.removeEventListener("pointerup", this.onPointerUp, true);
-    document.removeEventListener("pointercancel", this.onPointerUp);
-    document.removeEventListener("contextmenu", this.onContextMenu);
-    window.removeEventListener("touchmove", noop2);
-    element.removeEventListener("touchmove", this.onTouchMove);
-    element.removeEventListener("touchend", this.onPointerUp);
-    document.removeEventListener("mousemove", this.onPointerMove);
-    document.removeEventListener("mouseup", this.onPointerUp);
-    document.removeEventListener("touchcancel", this.onPointerUp);
-    element.removeEventListener("pointerdown", this.onPointerDown);
-    element.removeEventListener("mousedown", this.onPointerDown);
-    element.removeEventListener("touchstart", this.onTouchStart);
-  }
-  get supportPointerEvent() {
-    return Boolean(typeof window !== "undefined" && window.PointerEvent);
-  }
-  subscribe() {
-    this.ngZone.runOutsideAngular(() => {
-      this.removeListeners();
-      if (!(isDocumentAvailable() && isPresent2(this.wrapper))) {
-        return;
-      }
-      this.onPointerMove = this.onPointerMove.bind(this);
-      this.onPointerUp = this.onPointerUp.bind(this);
-      this.onTouchMove = this.onTouchMove.bind(this);
-      this.onContextMenu = this.onContextMenu.bind(this);
-      this.onPointerDown = this.onPointerDown.bind(this);
-      this.onTouchStart = this.onTouchStart.bind(this);
-      const element = this.nativeElement;
-      if (this.supportPointerEvent) {
-        if (isPresent2(this.scrollableParent)) {
-          this.scrollableParent.addEventListener("scroll", this.onPointerMove, {
-            passive: true
-          });
-        }
-        element.addEventListener("pointerdown", this.onPointerDown, {
-          passive: true
-        });
-        if (this.pressed) {
-          document.addEventListener("pointermove", this.onPointerMove);
-          document.addEventListener("pointerup", this.onPointerUp, true);
-          document.addEventListener("contextmenu", this.onContextMenu);
-          document.addEventListener("pointercancel", this.onPointerUp, {
-            passive: true
-          });
-        }
-      } else {
-        window.addEventListener("touchmove", noop2, {
-          capture: false,
-          passive: false
-        });
-        element.addEventListener("mousedown", this.onPointerDown, {
-          passive: true
-        });
-        element.addEventListener("touchstart", this.onTouchStart, {
-          passive: true
-        });
-        if (this.pressed) {
-          document.addEventListener("mousemove", this.onPointerMove, {
-            passive: true
-          });
-          document.addEventListener("mouseup", this.onPointerUp, {
-            passive: true
-          });
-          element.addEventListener("touchmove", this.onTouchMove, {
-            passive: true
-          });
-          element.addEventListener("touchend", this.onPointerUp, {
-            passive: true
-          });
-        }
-      }
-    });
-  }
-  emitZoneAwareEvent(event, normalizedEvent) {
-    const targetIdArgs = {
-      dragTarget: this.currentDragTargetElement,
-      dragTargetIndex: this.service.dragIndex
-    };
-    const eventProps = {
-      dragTarget: this.currentDragTargetElement,
-      dragEvent: normalizedEvent,
-      dragTargetIndex: this.service.dragIndex,
-      dragTargetId: this.dragTargetId(targetIdArgs)
-    };
-    if (this.hint && isPresent2(this.hintElem)) {
-      eventProps.hintElement = this.hintElem;
-    }
-    let eventArgs;
-    switch (event) {
-      case "onDragReady":
-        eventArgs = new DragTargetDragReadyEvent(eventProps);
-        break;
-      case "onPress":
-        eventArgs = new DragTargetPressEvent(eventProps);
-        break;
-      case "onDragStart":
-        eventArgs = new DragTargetDragStartEvent(eventProps);
-        break;
-      case "onDrag":
-        eventArgs = new DragTargetDragEvent(eventProps);
-        break;
-      case "onRelease":
-        eventArgs = new DragTargetReleaseEvent(eventProps);
-        break;
-      case "onDragEnd":
-        eventArgs = new DragTargetDragEndEvent(eventProps);
-        break;
-      default:
-        break;
-    }
-    this.ngZone.run(() => {
-      this[event].emit(eventArgs);
-    });
-    return eventArgs;
-  }
-  createHint() {
-    if (!(isDocumentAvailable() && isPresent2(this.wrapper))) {
-      return;
-    }
-    if (isPresent2(this.hint) && typeof this.hint === "object") {
-      if (isPresent2(this.hint.hintTemplate)) {
-        this.createCustomHint();
-      } else {
-        this.createDefaultHint();
-      }
-    } else {
-      this.createDefaultHint();
-    }
-    this.currentDragTarget.hint = this.hintElem;
-    if (typeof this.hint === "object" && isPresent2(this.hint.appendTo)) {
-      this.hint.appendTo.element.nativeElement.appendChild(this.hintElem);
-    } else {
-      document.body.appendChild(this.hintElem);
-    }
-  }
-  createDefaultHint() {
-    this.defaultHint = this.currentDragTargetElement.cloneNode(true);
-    if (typeof this.hint === "object") {
-      if (isPresent2(this.hint.hintClass)) {
-        const hintClasses = parseCSSClassNames(this.hint.hintClass);
-        hintClasses.forEach((className) => this.renderer.addClass(this.defaultHint, className));
-      }
-    }
-  }
-  createCustomHint() {
-    if (isPresent2(this.hint.appendTo)) {
-      this.hintComponent = this.hint.appendTo.createComponent(HintComponent);
-    } else {
-      this.hintComponent = this.viewContainer.createComponent(HintComponent);
-    }
-    this.hintComponent.instance.template = this.hintTemplate;
-    this.hintComponent.instance.directive = this;
-    this.hintComponent.instance.targetIndex = this.service.dragIndex;
-    const targetDataArgs = {
-      dragTarget: this.currentDragTargetElement,
-      dragTargetId: this.service.dragTargetId,
-      dragTargetIndex: this.service.dragIndex
-    };
-    this.hintComponent.instance.contextData = this.dragData(targetDataArgs);
-    this.hintComponent.instance.customContext = this.hintContext;
-    this.hintComponent.changeDetectorRef.detectChanges();
-  }
-  destroyHint() {
-    if (isPresent2(this.hintTemplate)) {
-      this.hintComponent.destroy();
-      this.hintComponent.changeDetectorRef.detectChanges();
-      this.hintComponent = null;
-    } else {
-      document.body.removeChild(this.defaultHint);
-      this.defaultHint = null;
-    }
-    this.currentDragTarget.hint = null;
-  }
-  getDragIndex() {
-    return this.allDragTargets.indexOf(this.currentDragTargetElement);
-  }
-  initializeDragTargets() {
-    if (!isPresent2(this.allDragTargets)) {
-      if (this.previousDragTargets.length > 0) {
-        this.clearPreviousTargets();
-      }
-      return;
-    }
-    this.allDragTargets.forEach((dragTargetEl) => {
-      const isDragTargetInitialized = this.service.dragTargets.find((dt) => dt.element === dragTargetEl);
-      if (!isDragTargetInitialized) {
-        this.service.dragTargets.push({
-          element: dragTargetEl,
-          hint: null,
-          onPress: this.handlePress.bind(this),
-          onRelease: this.handleRelease.bind(this),
-          onDragStart: this.handleDragStart.bind(this),
-          onDrag: this.handleDrag.bind(this),
-          onDragEnd: this.handleDragEnd.bind(this)
-        });
-      }
-    });
-    if (this.previousDragTargets.length > 0) {
-      const dragTargetsToRemove = this.previousDragTargets.filter((dt) => !this.allDragTargets.includes(dt));
-      dragTargetsToRemove.forEach((dragTarget) => {
-        const idx = this.service.dragTargets.findIndex((serviceDragTarget) => serviceDragTarget.element === dragTarget);
-        if (idx > -1) {
-          this.service.dragTargets.splice(idx, 1);
-        }
-      });
-    }
-    this.previousDragTargets = this.allDragTargets;
-    this.currentDragTarget = {
-      element: null,
-      hint: null,
-      onPress: this.handlePress.bind(this),
-      onRelease: this.handleRelease.bind(this),
-      onDragStart: this.handleDragStart.bind(this),
-      onDrag: this.handleDrag.bind(this),
-      onDragEnd: this.handleDragEnd.bind(this)
-    };
-    this.setTargetStyles();
-  }
-  isDragHandle(el) {
-    return this.dragHandles.some((dh) => contains(dh, el, true));
-  }
-  get isHandleSelectorValid() {
-    return isPresent2(this.dragHandle) && this.dragHandle !== "";
-  }
-  setTargetStyles() {
-    if (!isDocumentAvailable()) {
-      return;
-    }
-    if (isPresent2(this.dragHandle) && this.dragHandle !== "") {
-      if (isPresent2(this.dragHandles) && this.dragHandles.length > 0) {
-        this.dragHandles.forEach((handle) => {
-          this.renderer.setStyle(handle, "cursor", this.cursorStyle);
-          this.renderer.setStyle(handle, "touch-action", "none");
-        });
-      }
-    } else {
-      this.allDragTargets.forEach((target) => {
-        this.renderer.setStyle(target, "cursor", this.cursorStyle);
-        this.renderer.setStyle(target, "touch-action", "none");
-      });
-    }
-  }
-  queryHost(selector) {
-    if (isPresent2(selector) && selector !== "") {
-      return Array.from(this.nativeElement.querySelectorAll(selector));
-    }
-  }
-  clearPreviousTargets() {
-    this.previousDragTargets.forEach((dragTarget) => {
-      const idx = this.service.dragTargets.findIndex((serviceDragTarget) => serviceDragTarget.element === dragTarget);
-      if (idx > -1) {
-        this.service.dragTargets.splice(idx, 1);
-      }
-    });
-    this.previousDragTargets = [];
-  }
-  performDrag() {
-    const elem = this.hint ? this.hintElem : this.currentDragTargetElement;
-    if (elem) {
-      const styles = this.getStylesPerElement(elem);
-      setElementStyles(this.renderer, elem, styles);
-    }
-  }
-  calculatePosition(element, event) {
-    let position = null;
-    if (!isDocumentAvailable()) {
-      return {
-        x: 0,
-        y: 0
-      };
-    }
-    if (element === this.hintElem) {
-      position = {
-        x: event.clientX + window.scrollX,
-        y: event.clientY + window.scrollY
-      };
-    } else {
-      position = {
-        x: event.clientX - this.initialPosition.x + event.scrollX,
-        y: event.clientY - this.initialPosition.y + event.scrollY
-      };
-    }
-    return position;
-  }
-  getStylesPerElement(element) {
-    if (element === this.hintElem) {
-      return {
-        top: `${this.position.y}px`,
-        left: `${this.position.x}px`,
-        transition: "none",
-        position: "absolute",
-        zIndex: 1999
-      };
-    } else {
-      const transform2 = `translate(${this.position.x}px, ${this.position.y}px)`;
-      return {
-        transform: transform2,
-        transition: "none"
-      };
-    }
-  }
-  static ɵfac = function DragTargetContainerDirective_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _DragTargetContainerDirective)(ɵɵdirectiveInject(ElementRef), ɵɵdirectiveInject(NgZone), ɵɵdirectiveInject(Renderer2), ɵɵdirectiveInject(DragStateService), ɵɵdirectiveInject(ViewContainerRef), ɵɵdirectiveInject(ChangeDetectorRef));
-  };
-  static ɵdir = ɵɵdefineDirective({
-    type: _DragTargetContainerDirective,
-    selectors: [["", "kendoDragTargetContainer", ""]],
-    inputs: {
-      hint: "hint",
-      dragTargetFilter: "dragTargetFilter",
-      dragHandle: "dragHandle",
-      dragDelay: "dragDelay",
-      threshold: "threshold",
-      dragTargetId: "dragTargetId",
-      dragData: "dragData",
-      dragDisabled: "dragDisabled",
-      mode: "mode",
-      cursorStyle: "cursorStyle",
-      hintContext: "hintContext"
-    },
-    outputs: {
-      onDragReady: "onDragReady",
-      onPress: "onPress",
-      onDragStart: "onDragStart",
-      onDrag: "onDrag",
-      onRelease: "onRelease",
-      onDragEnd: "onDragEnd"
-    },
-    exportAs: ["kendoDragTargetContainer"]
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(DragTargetContainerDirective, [{
-    type: Directive,
-    args: [{
-      selector: "[kendoDragTargetContainer]",
-      exportAs: "kendoDragTargetContainer",
-      standalone: true
-    }]
-  }], () => [{
-    type: ElementRef
-  }, {
-    type: NgZone
-  }, {
-    type: Renderer2
-  }, {
-    type: DragStateService
-  }, {
-    type: ViewContainerRef
-  }, {
-    type: ChangeDetectorRef
-  }], {
-    hint: [{
-      type: Input
-    }],
-    dragTargetFilter: [{
-      type: Input
-    }],
-    dragHandle: [{
-      type: Input
-    }],
-    dragDelay: [{
-      type: Input
-    }],
-    threshold: [{
-      type: Input
-    }],
-    dragTargetId: [{
-      type: Input
-    }],
-    dragData: [{
-      type: Input
-    }],
-    dragDisabled: [{
-      type: Input
-    }],
-    mode: [{
-      type: Input
-    }],
-    cursorStyle: [{
-      type: Input
-    }],
-    hintContext: [{
-      type: Input
-    }],
-    onDragReady: [{
-      type: Output
-    }],
-    onPress: [{
-      type: Output
-    }],
-    onDragStart: [{
-      type: Output
-    }],
-    onDrag: [{
-      type: Output
-    }],
-    onRelease: [{
-      type: Output
-    }],
-    onDragEnd: [{
-      type: Output
-    }]
-  });
-})();
-var isDragStartPrevented = false;
-var isDragPrevented = false;
-var DragTargetDirective = class _DragTargetDirective {
-  element;
-  renderer;
-  ngZone;
-  service;
-  viewContainer;
-  get touchActionStyle() {
-    return this.dragHandles.length > 0 ? null : "none";
-  }
-  /**
-   * Defines whether a hint will be used for dragging. By default, the hint is a copy of the drag target. ([see example](https://www.telerik.com/kendo-angular-ui/components/utils/draganddrop/hint)).
-   *
-   * @default false
-   */
-  hint = false;
-  /**
-   * Sets the number of pixels the pointer must move before dragging starts. Applies when `manualDrag` is `false`. [See example](https://www.telerik.com/kendo-angular-ui/components/utils/draganddrop/threshold).
-   *
-   * @default 0
-   */
-  threshold = 0;
-  /**
-   * Sets the automatic container scrolling behavior when close to the edge. [See example](https://www.telerik.com/kendo-angular-ui/components/utils/draganddrop/autoscroll).
-   *
-   * @default true
-   */
-  autoScroll = true;
-  /**
-   * Sets a unique identifier for the drag target.
-   */
-  dragTargetId;
-  /**
-   * Sets the delay in milliseconds before dragging begins. [See example](https://www.telerik.com/kendo-angular-ui/components/utils/draganddrop/delay).
-   *
-   * @default 0
-   */
-  dragDelay = 0;
-  /**
-   * Restricts dragging to horizontal or vertical only. Applies when `mode` is `auto`. [See example](https://www.telerik.com/kendo-angular-ui/components/utils/draganddrop/axis).
-   */
-  restrictByAxis;
-  /**
-   * Specifies whether to use the default dragging behavior or handle it manually.
-   *
-   * @default 'auto'
-   */
-  mode = "auto";
-  /**
-   * Defines a callback function used for attaching custom data to the drag target.
-   * The data is available in the events of the respective [`DropTarget`](https://www.telerik.com/kendo-angular-ui/components/utils/api/droptargetdirective) or [`DropTargetContainer`](https://www.telerik.com/kendo-angular-ui/components/utils/api/droptargetcontainerdirective) directives.
-   * The current DragTarget HTML element and its `dragTargetId` will be available as arguments.
-   */
-  set dragData(fn) {
-    if (isDevMode && typeof fn !== "function") {
-      throw new Error(`dragData must be a function, but received ${JSON.stringify(fn)}.`);
-    }
-    this._dragData = fn;
-  }
-  get dragData() {
-    return this._dragData;
-  }
-  /**
-   * Sets the cursor style of the drag target. Accepts same values as the [CSS `cursor` property](https://developer.mozilla.org/en-US/docs/Web/CSS/cursor#values).
-   *
-   * @default 'move'
-   */
-  cursorStyle = "move";
-  /**
-   * Fires when the user presses the drag target element.
-   */
-  onPress = new EventEmitter();
-  /**
-   * Fires when dragging of the drag target element begins.
-   */
-  onDragStart = new EventEmitter();
-  /**
-   * Fires while the user drags the drag target element.
-   */
-  onDrag = new EventEmitter();
-  /**
-   * Fires when the drag target's `dragDelay` has passed and the user can drag the element.
-   */
-  onDragReady = new EventEmitter();
-  /**
-   * Fires when `DragTarget` is released, either by dropping it on a drop target or by releasing the mouse button.
-   */
-  onRelease = new EventEmitter();
-  /**
-   * Fires when dragging of the drag target ends and the element is released.
-   */
-  onDragEnd = new EventEmitter();
-  dragTarget = null;
-  hintComponent = null;
-  dragStarted = false;
-  pressed = false;
-  dragReady = false;
-  dragTimeout = null;
-  initialPosition = {
-    x: 0,
-    y: 0
-  };
-  position = {
-    x: 0,
-    y: 0
-  };
-  scrollableParent = null;
-  defaultHint = null;
-  _dragData = () => null;
-  prevUserSelect;
-  get hintTemplate() {
-    return isPresent2(this.hint) && typeof this.hint === "object" ? this.hint.hintTemplate : null;
-  }
-  get nativeElement() {
-    return this.element.nativeElement;
-  }
-  get hintElem() {
-    return this.hintTemplate && isPresent2(this.hintComponent) ? this.hintComponent.instance.element.nativeElement : this.defaultHint;
-  }
-  onPointerDown(event) {
-    if (this.dragHandles.length && !this.isDragHandle(event.target)) {
-      return;
-    }
-    const action = getAction(event, this.dragTarget);
-    this.service.handleDragAndDrop(action);
-    this.service.autoScroll = typeof this.autoScroll === "object" ? this.autoScroll.enabled !== false : this.autoScroll;
-    this.service.scrollableParent = this.getAutoScrollContainer();
-    this.service.autoScrollDirection = typeof this.autoScroll === "object" ? this.autoScroll.direction : {
-      horizontal: true,
-      vertical: true
-    };
-    this.attachDomHandlers();
-  }
-  onTouchStart(event) {
-    if (this.dragHandles.length && !this.isDragHandle(event.target)) {
-      return;
-    }
-    event.preventDefault();
-    const action = getAction(event, this.dragTarget);
-    this.service.handleDragAndDrop(action);
-    this.service.autoScroll = typeof this.autoScroll === "object" ? this.autoScroll.enabled !== false : this.autoScroll;
-    this.service.scrollableParent = this.getAutoScrollContainer();
-    this.service.autoScrollDirection = typeof this.autoScroll === "object" ? this.autoScroll.direction : {
-      horizontal: true,
-      vertical: true
-    };
-    this.attachDomHandlers();
-  }
-  onPointerMove(event) {
-    const action = getAction(event, this.dragTarget);
-    this.service.handleDragAndDrop(action);
-  }
-  onTouchMove(event) {
-    event.preventDefault();
-    const action = getAction(event, this.dragTarget);
-    this.service.handleDragAndDrop(action);
-  }
-  onPointerUp(event) {
-    const action = getAction(event, this.dragTarget);
-    this.service.handleDragAndDrop(action);
-    this.attachDomHandlers();
-  }
-  onContextMenu(event) {
-    event.preventDefault();
-    const action = getAction(event, this.dragTarget);
-    this.service.handleDragAndDrop(action);
-    this.attachDomHandlers();
-  }
-  dragHandles;
-  constructor(element, renderer, ngZone, service, viewContainer) {
-    this.element = element;
-    this.renderer = renderer;
-    this.ngZone = ngZone;
-    this.service = service;
-    this.viewContainer = viewContainer;
-    A(packageMetadata);
-  }
-  ngOnInit() {
-    this.initializeDragTarget();
-  }
-  ngAfterContentInit() {
-    if (isPresent2(this.element) || isPresent2(this.dragTarget)) {
-      this.attachDomHandlers();
-      if (!this.dragHandles.length) {
-        this.renderer.setStyle(this.nativeElement, "cursor", this.cursorStyle);
-      }
-    }
-    this.service.dragTargets.push(this.dragTarget);
-  }
-  ngOnDestroy() {
-    this.removeListeners();
-    const currentDragTargetIndex = this.service.dragTargets.indexOf(this.dragTarget);
-    this.service.dragTargets.splice(currentDragTargetIndex, 1);
-  }
-  handlePress(event) {
-    this.pressed = true;
-    if (this.dragDelay > 0) {
-      this.dragTimeout = window.setTimeout(() => {
-        this.dragReady = true;
-        this.emitZoneAwareEvent("onDragReady", event);
-      }, this.dragDelay);
-    } else {
-      this.dragReady = true;
-    }
-    this.scrollableParent = this.dragTarget.element ? getScrollableParent(this.dragTarget.element) : null;
-    this.prevUserSelect = this.dragTarget.element.style.userSelect;
-    this.renderer.setStyle(this.dragTarget.element, "user-select", "none");
-    this.emitZoneAwareEvent("onPress", event);
-  }
-  handleDragStart(event) {
-    if (!this.pressed) {
-      if (this.dragTimeout) {
-        window.clearTimeout(this.dragTimeout);
-        this.dragTimeout = null;
-      }
-      return;
-    }
-    if (!this.dragReady) {
-      return;
-    }
-    isDragStartPrevented = this.emitZoneAwareEvent("onDragStart", event).isDefaultPrevented();
-    if (isDragStartPrevented) {
-      return;
-    }
-    if (this.hint) {
-      this.createHint();
-      if (this.mode === "auto") {
-        this.renderer.setStyle(this.nativeElement, "opacity", "0.7");
-      }
-      this.initialPosition = {
-        x: event.offsetX,
-        y: event.offsetY
-      };
-    } else {
-      this.initialPosition = {
-        x: event.clientX - this.position.x,
-        y: event.clientY - this.position.y
-      };
-    }
-    this.dragStarted = this.threshold === 0;
-    this.service.dragTarget = this.dragTarget;
-    this.service.dragTargetDirective = this;
-    this.service.dragData = this.dragData({
-      dragTarget: this.dragTarget.element,
-      dragTargetId: this.dragTargetIdResult,
-      dragTargetIndex: null
-    });
-  }
-  handleDrag(event) {
-    if (!this.pressed || !this.dragReady || isDragStartPrevented) {
-      return;
-    }
-    const elem = this.hint ? this.hintElem : this.nativeElement;
-    this.position = this.calculatePosition(elem, event);
-    const thresholdNotReached = Math.abs(this.position.x) < this.threshold && Math.abs(this.position.y) < this.threshold;
-    if (!this.dragStarted && thresholdNotReached) {
-      return;
-    }
-    if (!this.dragStarted && this.threshold > 0) {
-      this.dragStarted = true;
-    }
-    isDragPrevented = this.emitZoneAwareEvent("onDrag", event).isDefaultPrevented();
-    if (isDragPrevented) {
-      return;
-    }
-    if (this.mode === "auto") {
-      this.performDrag();
-    } else {
-      this.dragStarted = true;
-    }
-  }
-  handleRelease(event) {
-    if (this.dragTimeout) {
-      clearTimeout(this.dragTimeout);
-      this.dragTimeout = null;
-    }
-    this.pressed = false;
-    this.dragReady = false;
-    if (this.prevUserSelect) {
-      this.renderer.setStyle(this.dragTarget.element, "user-select", this.prevUserSelect);
-    } else {
-      this.renderer.removeStyle(this.dragTarget.element, "user-select");
-    }
-    this.prevUserSelect = null;
-    this.emitZoneAwareEvent("onRelease", event);
-  }
-  handleDragEnd(event) {
-    if (this.mode === "auto") {
-      const isDroppedOverParentTarget = isPresent2(this.service.dropTarget) && !contains(this.service.dropTarget?.element, this.service.dragTarget?.element, true);
-      const elem = this.hint ? this.hintElem : this.nativeElement;
-      if (isDroppedOverParentTarget || this.service.dropTargets.length > 0 && isPresent2(elem)) {
-        this.renderer.removeStyle(elem, "transform");
-        setElementStyles(this.renderer, elem, {
-          transition: dragTargetTransition
-        });
-        this.position = {
-          x: 0,
-          y: 0
-        };
-      }
-    }
-    if (this.hint && isPresent2(this.hintElem)) {
-      this.destroyHint();
-      if (this.mode === "auto") {
-        this.renderer.removeStyle(this.nativeElement, "opacity");
-      }
-    }
-    this.service.dragTarget = null;
-    this.service.dragTargetDirective = null;
-    if (!this.dragStarted || isDragStartPrevented || isDragPrevented) {
-      return;
-    }
-    this.emitZoneAwareEvent("onDragEnd", event);
-    this.dragStarted = false;
-  }
-  initializeDragTarget() {
-    this.dragTarget = {
-      element: this.nativeElement,
-      hint: null,
-      onPress: this.handlePress.bind(this),
-      onRelease: this.handleRelease.bind(this),
-      onDragStart: this.handleDragStart.bind(this),
-      onDrag: this.handleDrag.bind(this),
-      onDragEnd: this.handleDragEnd.bind(this)
-    };
-  }
-  get supportPointerEvent() {
-    return Boolean(typeof window !== "undefined" && window.PointerEvent);
-  }
-  removeListeners() {
-    if (isPresent2(this.scrollableParent)) {
-      this.scrollableParent.removeEventListener("scroll", this.onPointerMove);
-    }
-    const element = this.nativeElement;
-    if (!isDocumentAvailable()) {
-      return;
-    }
-    document.removeEventListener("pointermove", this.onPointerMove);
-    document.removeEventListener("pointerup", this.onPointerUp, true);
-    document.removeEventListener("contextmenu", this.onContextMenu);
-    document.removeEventListener("pointercancel", this.onPointerUp);
-    window.removeEventListener("touchmove", noop2);
-    element.removeEventListener("touchmove", this.onTouchMove);
-    element.removeEventListener("touchend", this.onPointerUp);
-    document.removeEventListener("mousemove", this.onPointerMove);
-    document.removeEventListener("mouseup", this.onPointerUp);
-    document.removeEventListener("touchcancel", this.onPointerUp);
-    element.removeEventListener("pointerdown", this.onPointerDown);
-    element.removeEventListener("mousedown", this.onPointerDown);
-    element.removeEventListener("touchstart", this.onTouchStart);
-  }
-  attachDomHandlers() {
-    this.ngZone.runOutsideAngular(() => {
-      this.removeListeners();
-      if (!(isDocumentAvailable() && isPresent2(this.element))) {
-        return;
-      }
-      this.onPointerMove = this.onPointerMove.bind(this);
-      this.onPointerUp = this.onPointerUp.bind(this);
-      this.onTouchMove = this.onTouchMove.bind(this);
-      this.onContextMenu = this.onContextMenu.bind(this);
-      this.onPointerDown = this.onPointerDown.bind(this);
-      this.onTouchStart = this.onTouchStart.bind(this);
-      const element = this.nativeElement;
-      if (this.supportPointerEvent) {
-        if (isPresent2(this.scrollableParent)) {
-          if (this.scrollableParent === document.getElementsByTagName("html")[0]) {
-            this.scrollableParent = window;
-          }
-          this.scrollableParent.addEventListener("scroll", this.onPointerMove, {
-            passive: true
-          });
-        }
-        element.addEventListener("pointerdown", this.onPointerDown, {
-          passive: true
-        });
-        if (this.pressed) {
-          document.addEventListener("pointermove", this.onPointerMove);
-          document.addEventListener("pointerup", this.onPointerUp, true);
-          document.addEventListener("contextmenu", this.onContextMenu);
-          document.addEventListener("pointercancel", this.onPointerUp, {
-            passive: true
-          });
-        }
-      } else {
-        window.addEventListener("touchmove", noop2, {
-          capture: false,
-          passive: false
-        });
-        element.addEventListener("mousedown", this.onPointerDown, {
-          passive: true
-        });
-        element.addEventListener("touchstart", this.onTouchStart, {
-          passive: true
-        });
-        if (this.pressed) {
-          document.addEventListener("mousemove", this.onPointerMove, {
-            passive: true
-          });
-          document.addEventListener("mouseup", this.onPointerUp, {
-            passive: true
-          });
-          element.addEventListener("touchmove", this.onTouchMove, {
-            passive: true
-          });
-          element.addEventListener("touchend", this.onPointerUp, {
-            passive: true
-          });
-        }
-      }
-    });
-  }
-  isDragHandle(el) {
-    return this.dragHandles.toArray().some((dh) => contains(dh.element.nativeElement, el, true));
-  }
-  getAutoScrollContainer() {
-    return typeof this.autoScroll === "object" && this.autoScroll.boundaryElementRef && this.autoScroll.boundaryElementRef.nativeElement ? this.autoScroll.boundaryElementRef.nativeElement : null;
-  }
-  createHint() {
-    if (!(isDocumentAvailable() && isPresent2(this.element))) {
-      return;
-    }
-    if (isPresent2(this.hint) && typeof this.hint === "object") {
-      if (isPresent2(this.hint.hintTemplate)) {
-        this.createCustomHint();
-      } else {
-        this.createDefaultHint();
-      }
-    } else {
-      this.createDefaultHint();
-    }
-    this.dragTarget.hint = this.hintElem;
-    if (typeof this.hint === "object" && isPresent2(this.hint.appendTo)) {
-      this.hint.appendTo.element.nativeElement.appendChild(this.hintElem);
-    } else {
-      document.body.appendChild(this.hintElem);
-    }
-  }
-  createDefaultHint() {
-    this.defaultHint = this.nativeElement.cloneNode(true);
-    if (typeof this.hint === "object") {
-      if (isPresent2(this.hint.hintClass)) {
-        const hintClasses = parseCSSClassNames(this.hint.hintClass);
-        hintClasses.forEach((className) => this.renderer.addClass(this.defaultHint, className));
-      }
-    }
-  }
-  createCustomHint() {
-    if (isPresent2(this.hint.appendTo)) {
-      this.hintComponent = this.hint.appendTo.createComponent(HintComponent);
-    } else {
-      this.hintComponent = this.viewContainer.createComponent(HintComponent);
-    }
-    this.hintComponent.instance.template = this.hintTemplate;
-    this.hintComponent.instance.directive = this;
-    this.hintComponent.changeDetectorRef.detectChanges();
-  }
-  destroyHint() {
-    if (isPresent2(this.hintTemplate)) {
-      this.hintComponent.destroy();
-      this.hintComponent.changeDetectorRef.detectChanges();
-      this.hintComponent = null;
-    } else {
-      if (typeof this.hint === "object" && isPresent2(this.hint.appendTo)) {
-        this.hint.appendTo.element.nativeElement.removeChild(this.defaultHint);
-      } else {
-        document.body.removeChild(this.defaultHint);
-      }
-      this.defaultHint = null;
-    }
-    this.dragTarget.hint = null;
-  }
-  emitZoneAwareEvent(event, normalizedEvent) {
-    const eventProps = {
-      dragTarget: this.nativeElement,
-      dragEvent: normalizedEvent
-    };
-    if (this.hint && isPresent2(this.hintElem)) {
-      eventProps.hintElement = this.hintElem;
-    }
-    if (this.dragTargetId && this.dragTargetId !== "") {
-      eventProps.dragTargetId = this.dragTargetIdResult;
-    }
-    let eventArgs;
-    switch (event) {
-      case "onDragReady":
-        eventArgs = new DragTargetDragReadyEvent(eventProps);
-        break;
-      case "onPress":
-        eventArgs = new DragTargetPressEvent(eventProps);
-        break;
-      case "onDragStart":
-        eventArgs = new DragTargetDragStartEvent(eventProps);
-        break;
-      case "onDrag":
-        eventArgs = new DragTargetDragEvent(eventProps);
-        break;
-      case "onRelease":
-        eventArgs = new DragTargetReleaseEvent(eventProps);
-        break;
-      case "onDragEnd":
-        eventArgs = new DragTargetDragEndEvent(eventProps);
-        break;
-      default:
-        break;
-    }
-    this.ngZone.run(() => {
-      this[event].emit(eventArgs);
-    });
-    return eventArgs;
-  }
-  get dragTargetIdResult() {
-    if (this.dragTargetId && this.dragTargetId !== "") {
-      return typeof this.dragTargetId === "string" ? this.dragTargetId : this.dragTargetId({
-        dragTarget: this.dragTarget.element,
-        dragTargetIndex: null
-      });
-    }
-  }
-  performDrag() {
-    const elem = this.hint ? this.hintElem : this.nativeElement;
-    if (elem) {
-      const styles = this.getStylesPerElement(elem);
-      setElementStyles(this.renderer, elem, styles);
-    }
-  }
-  calculatePosition(element, event) {
-    let position = null;
-    if (element === this.hintElem) {
-      position = {
-        x: event.clientX + window.scrollX,
-        y: event.clientY + window.scrollY
-      };
-    } else {
-      position = {
-        x: event.clientX - this.initialPosition.x + event.scrollX,
-        y: event.clientY - this.initialPosition.y + event.scrollY
-      };
-    }
-    if (this.restrictByAxis === "horizontal") {
-      position.y = 0;
-    } else if (this.restrictByAxis === "vertical") {
-      position.x = 0;
-    }
-    return position;
-  }
-  getStylesPerElement(element) {
-    if (element === this.hintElem) {
-      const hintCoordinates = {
-        x: this.position.x - this.initialPosition.x,
-        y: this.position.y - this.initialPosition.y
-      };
-      return {
-        top: `${hintCoordinates.y}px`,
-        left: `${hintCoordinates.x}px`,
-        transition: "none",
-        position: "absolute",
-        zIndex: 1999
-      };
-    } else {
-      const transform2 = `translate(${this.position.x}px, ${this.position.y}px)`;
-      return {
-        transform: transform2,
-        transition: "none"
-      };
-    }
-  }
-  static ɵfac = function DragTargetDirective_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _DragTargetDirective)(ɵɵdirectiveInject(ElementRef), ɵɵdirectiveInject(Renderer2), ɵɵdirectiveInject(NgZone), ɵɵdirectiveInject(DragStateService), ɵɵdirectiveInject(ViewContainerRef));
-  };
-  static ɵdir = ɵɵdefineDirective({
-    type: _DragTargetDirective,
-    selectors: [["", "kendoDragTarget", ""]],
-    contentQueries: function DragTargetDirective_ContentQueries(rf, ctx, dirIndex) {
-      if (rf & 1) {
-        ɵɵcontentQuery(dirIndex, DragHandleDirective, 5);
-      }
-      if (rf & 2) {
-        let _t;
-        ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx.dragHandles = _t);
-      }
-    },
-    hostVars: 2,
-    hostBindings: function DragTargetDirective_HostBindings(rf, ctx) {
-      if (rf & 2) {
-        ɵɵstyleProp("touch-action", ctx.touchActionStyle);
-      }
-    },
-    inputs: {
-      hint: "hint",
-      threshold: "threshold",
-      autoScroll: "autoScroll",
-      dragTargetId: "dragTargetId",
-      dragDelay: "dragDelay",
-      restrictByAxis: "restrictByAxis",
-      mode: "mode",
-      dragData: "dragData",
-      cursorStyle: "cursorStyle"
-    },
-    outputs: {
-      onPress: "onPress",
-      onDragStart: "onDragStart",
-      onDrag: "onDrag",
-      onDragReady: "onDragReady",
-      onRelease: "onRelease",
-      onDragEnd: "onDragEnd"
-    },
-    exportAs: ["kendoDragTarget"]
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(DragTargetDirective, [{
-    type: Directive,
-    args: [{
-      selector: "[kendoDragTarget]",
-      exportAs: "kendoDragTarget",
-      standalone: true
-    }]
-  }], () => [{
-    type: ElementRef
-  }, {
-    type: Renderer2
-  }, {
-    type: NgZone
-  }, {
-    type: DragStateService
-  }, {
-    type: ViewContainerRef
-  }], {
-    touchActionStyle: [{
-      type: HostBinding,
-      args: ["style.touch-action"]
-    }],
-    hint: [{
-      type: Input
-    }],
-    threshold: [{
-      type: Input
-    }],
-    autoScroll: [{
-      type: Input
-    }],
-    dragTargetId: [{
-      type: Input
-    }],
-    dragDelay: [{
-      type: Input
-    }],
-    restrictByAxis: [{
-      type: Input
-    }],
-    mode: [{
-      type: Input
-    }],
-    dragData: [{
-      type: Input
-    }],
-    cursorStyle: [{
-      type: Input
-    }],
-    onPress: [{
-      type: Output
-    }],
-    onDragStart: [{
-      type: Output
-    }],
-    onDrag: [{
-      type: Output
-    }],
-    onDragReady: [{
-      type: Output
-    }],
-    onRelease: [{
-      type: Output
-    }],
-    onDragEnd: [{
-      type: Output
-    }],
-    dragHandles: [{
-      type: ContentChildren,
-      args: [DragHandleDirective, {
-        descendants: true
-      }]
-    }]
-  });
-})();
-var DropTargetEvent = class {
-  /**
-   * The current drag target element.
-   */
-  dragTarget;
-  /**
-   * The current drop target element.
-   */
-  dropTarget;
-  /**
-   * The information related to the current drag event.
-   */
-  dragEvent;
-  /**
-   * The data passed to the `dragData` input property of the `DragTarget` or `DragTargetContainer` directive.
-   */
-  dragData;
-  /**
-   * The index of the current drop target in the collection of drop targets. Applies to `DropTargetContainer` directive.
-   */
-  dropTargetIndex;
-  /**
-   * The hint element of the `DragTarget`.
-   */
-  hintElement;
-  /**
-   * Left for backward compatibility for the DropTarget deprecated events.
-   * @hidden
-   */
-  get normalizedEvent() {
-    return this.dragEvent;
-  }
-  /**
-   * Left for backward compatibility for the DropTarget deprecated events.
-   * @hidden
-   */
-  get hostElement() {
-    return this.dropTarget;
-  }
-  /**
-   * @hidden
-   */
-  constructor(args) {
-    Object.assign(this, args);
-  }
-};
-var DropTargetContainerDirective = class _DropTargetContainerDirective {
-  service;
-  element;
-  ngZone;
-  cdr;
-  /**
-   * Sets a selector for elements in the container to make them drop targets. [See example](https://www.telerik.com/kendo-angular-ui/components/utils/draganddrop/drop-container).
-   */
-  set dropTargetFilter(value) {
-    this._dropTargetFilter = value;
-    if (!this.dropDisabled) {
-      this.initializeDropTargets();
-    }
-  }
-  get dropTargetFilter() {
-    return this._dropTargetFilter;
-  }
-  /**
-   * Specifies whether the drop targets within the container will emit the corresponding events upon interaction with a drag target.
-   */
-  set dropDisabled(value) {
-    this._dropDisabled = value;
-    if (value) {
-      this.clearPreviousTargets();
-    } else {
-      this.initializeDropTargets();
-    }
-  }
-  get dropDisabled() {
-    return this._dropDisabled;
-  }
-  /**
-   * Fires when a drag target enters a drop target.
-   */
-  onDragEnter = new EventEmitter();
-  /**
-   * Fires when a drag target is dragged over a drop target.
-   */
-  onDragOver = new EventEmitter();
-  /**
-   * Fires when a drag target leaves a drop target.
-   */
-  onDragLeave = new EventEmitter();
-  /**
-   * Fires when a drag target is dropped over a drop target.
-   */
-  onDrop = new EventEmitter();
-  /**
-   * Notifies the `DropTargetContainer` that its content has changed.
-   */
-  notify() {
-    this.cdr.detectChanges();
-    this.initializeDropTargets();
-  }
-  constructor(service, element, ngZone, cdr) {
-    this.service = service;
-    this.element = element;
-    this.ngZone = ngZone;
-    this.cdr = cdr;
-    A(packageMetadata);
-  }
-  currentDropTargetElement = null;
-  previousDropTargets = [];
-  _dropTargetFilter = null;
-  _dropDisabled = false;
-  get nativeElement() {
-    return this.element.nativeElement;
-  }
-  ngAfterViewInit() {
-    if (!this.dropDisabled) {
-      this.initializeDropTargets();
-    }
-  }
-  get allDropTargets() {
-    if (isPresent2(this.dropTargetFilter) && this.dropTargetFilter !== "") {
-      return Array.from(this.nativeElement.querySelectorAll(this.dropTargetFilter));
-    }
-  }
-  /**
-   * @hidden
-   */
-  handleDragEnter(event) {
-    if (!this.service.dragTargetPresent || this.service.dropTargetPresent) {
-      return;
-    }
-    const currDragTargetElement = this.service.dragTarget.hint || this.service.dragTarget.element;
-    const currDropTargetElem = intersect2(currDragTargetElement, this.allDropTargets);
-    const currDropTarget = this.service.dropTargets.find((dt) => dt.element === currDropTargetElem);
-    if (!isPresent2(currDropTargetElem) || !isPresent2(currDropTarget)) {
-      return;
-    }
-    this.currentDropTargetElement = currDropTargetElem;
-    this.service.dropTarget = currDropTarget;
-    this.service.dropIndex = this.getDropIndex();
-    this.emitZoneAwareEvent("onDragEnter", event);
-  }
-  /**
-   * @hidden
-   */
-  handleDragLeave(event) {
-    if (!this.service.dragTargetPresent || !this.service.dropTargetPresent) {
-      return;
-    }
-    this.emitZoneAwareEvent("onDragLeave", event);
-    this.currentDropTargetElement = null;
-    this.service.dropTarget = null;
-    this.service.dropIndex = null;
-  }
-  /**
-   * @hidden
-   */
-  handleDragOver(event) {
-    if (!this.service.dragTargetPresent || !this.service.dropTargetPresent) {
-      return;
-    }
-    this.emitZoneAwareEvent("onDragOver", event);
-  }
-  /**
-   * @hidden
-   */
-  handleDrop(event) {
-    if (!this.service.dragTargetPresent || !this.service.dropTargetPresent) {
-      return;
-    }
-    this.emitZoneAwareEvent("onDrop", event);
-    this.currentDropTargetElement = null;
-    this.service.dropTarget = null;
-    this.service.dropIndex = null;
-  }
-  initializeDropTargets() {
-    if (!isPresent2(this.allDropTargets)) {
-      if (this.previousDropTargets.length > 0) {
-        this.clearPreviousTargets();
-      }
-      return;
-    }
-    this.allDropTargets.forEach((dropTargetEl) => {
-      const isDropTargetInitialized = this.service.dropTargets.find((dt) => dt.element === dropTargetEl);
-      if (!isDropTargetInitialized) {
-        this.service.dropTargets.push({
-          element: dropTargetEl,
-          onDragEnter: this.handleDragEnter.bind(this),
-          onDragLeave: this.handleDragLeave.bind(this),
-          onDragOver: this.handleDragOver.bind(this),
-          onDrop: this.handleDrop.bind(this)
-        });
-      }
-    });
-    if (this.previousDropTargets.length > 0) {
-      const dropTargetsToRemove = this.previousDropTargets.filter((dt) => !this.allDropTargets.includes(dt));
-      dropTargetsToRemove.forEach((dropTarget) => {
-        const idx = this.service.dropTargets.findIndex((serviceDropTarget) => serviceDropTarget.element === dropTarget);
-        if (idx > -1) {
-          this.service.dropTargets.splice(idx, 1);
-        }
-      });
-    }
-    this.previousDropTargets = this.allDropTargets;
-  }
-  emitZoneAwareEvent(event, normalizedEvent) {
-    const eventProps = {
-      dragTarget: this.service.dragTarget?.element,
-      dropTarget: this.currentDropTargetElement,
-      dragData: this.service.dragData,
-      dragEvent: normalizedEvent,
-      dropTargetIndex: this.service.dropIndex
-    };
-    if (isPresent2(this.service.dragTarget?.hint)) {
-      eventProps.hintElement = this.service.dragTarget.hint;
-    }
-    const eventArgs = new DropTargetEvent(eventProps);
-    this.ngZone.run(() => {
-      this[event].emit(eventArgs);
-    });
-  }
-  getDropIndex() {
-    return this.allDropTargets.indexOf(this.currentDropTargetElement);
-  }
-  clearPreviousTargets() {
-    this.previousDropTargets.forEach((dropTarget) => {
-      const idx = this.service.dropTargets.findIndex((serviceDropTarget) => serviceDropTarget.element === dropTarget);
-      if (idx > -1) {
-        this.service.dropTargets.splice(idx, 1);
-      }
-    });
-    this.previousDropTargets = [];
-  }
-  static ɵfac = function DropTargetContainerDirective_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _DropTargetContainerDirective)(ɵɵdirectiveInject(DragStateService), ɵɵdirectiveInject(ElementRef), ɵɵdirectiveInject(NgZone), ɵɵdirectiveInject(ChangeDetectorRef));
-  };
-  static ɵdir = ɵɵdefineDirective({
-    type: _DropTargetContainerDirective,
-    selectors: [["", "kendoDropTargetContainer", ""]],
-    inputs: {
-      dropTargetFilter: "dropTargetFilter",
-      dropDisabled: "dropDisabled"
-    },
-    outputs: {
-      onDragEnter: "onDragEnter",
-      onDragOver: "onDragOver",
-      onDragLeave: "onDragLeave",
-      onDrop: "onDrop"
-    },
-    exportAs: ["kendoDropTargetContainer"]
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(DropTargetContainerDirective, [{
-    type: Directive,
-    args: [{
-      selector: "[kendoDropTargetContainer]",
-      exportAs: "kendoDropTargetContainer",
-      standalone: true
-    }]
-  }], () => [{
-    type: DragStateService
-  }, {
-    type: ElementRef
-  }, {
-    type: NgZone
-  }, {
-    type: ChangeDetectorRef
-  }], {
-    dropTargetFilter: [{
-      type: Input
-    }],
-    dropDisabled: [{
-      type: Input
-    }],
-    onDragEnter: [{
-      type: Output
-    }],
-    onDragOver: [{
-      type: Output
-    }],
-    onDragLeave: [{
-      type: Output
-    }],
-    onDrop: [{
-      type: Output
-    }]
-  });
-})();
-var DropTargetDirective = class _DropTargetDirective {
-  service;
-  element;
-  ngZone;
-  /**
-   * Fires when a drag target enters the drop target.
-   */
-  onDragEnter = new EventEmitter();
-  /**
-   * Fires when a drag target is dragged over the drop target.
-   */
-  onDragOver = new EventEmitter();
-  /**
-   * Fires when a drag target leaves the drop target.
-   */
-  onDragLeave = new EventEmitter();
-  /**
-   * Fires when a drag target is dropped over the drop target.
-   */
-  onDrop = new EventEmitter();
-  constructor(service, element, ngZone) {
-    this.service = service;
-    this.element = element;
-    this.ngZone = ngZone;
-    A(packageMetadata);
-  }
-  dropTarget;
-  ngOnInit() {
-    this.initializeDropTarget();
-    this.service.dropTargets.push(this.dropTarget);
-  }
-  ngOnDestroy() {
-    const currentDropTargetIndex = this.service.dropTargets.indexOf(this.dropTarget);
-    this.service.dropTargets.splice(currentDropTargetIndex, 1);
-  }
-  /**
-   * @hidden
-   */
-  handleDragEnter(event) {
-    if (!this.service.dragTarget) {
-      return;
-    }
-    this.service.dropTarget = this.dropTarget;
-    this.emitZoneAwareEvent("onDragEnter", event);
-  }
-  /**
-   * @hidden
-   */
-  handleDragLeave(event) {
-    this.service.dropTarget = null;
-    if (!this.service.dragTarget) {
-      return;
-    }
-    this.emitZoneAwareEvent("onDragLeave", event);
-  }
-  /**
-   * @hidden
-   */
-  handleDragOver(event) {
-    if (!this.service.dragTarget) {
-      return;
-    }
-    this.emitZoneAwareEvent("onDragOver", event);
-  }
-  /**
-   * @hidden
-   */
-  handleDrop(event) {
-    this.emitZoneAwareEvent("onDrop", event);
-    this.service.dropTarget = null;
-  }
-  initializeDropTarget() {
-    this.dropTarget = {
-      element: this.element.nativeElement,
-      onDragEnter: this.handleDragEnter.bind(this),
-      onDragLeave: this.handleDragLeave.bind(this),
-      onDragOver: this.handleDragOver.bind(this),
-      onDrop: this.handleDrop.bind(this)
-    };
-  }
-  emitZoneAwareEvent(event, normalizedEvent) {
-    const eventProps = {
-      dropTarget: this.element.nativeElement,
-      dragTarget: this.service.dragTarget?.element,
-      dragEvent: normalizedEvent,
-      dragData: this.service.dragData
-    };
-    if (isPresent2(this.service.dragTarget?.hint)) {
-      eventProps.hintElement = this.service.dragTarget.element;
-    }
-    const eventArgs = new DropTargetEvent(eventProps);
-    this.ngZone.run(() => {
-      this[event].emit(eventArgs);
-    });
-  }
-  static ɵfac = function DropTargetDirective_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _DropTargetDirective)(ɵɵdirectiveInject(DragStateService), ɵɵdirectiveInject(ElementRef), ɵɵdirectiveInject(NgZone));
-  };
-  static ɵdir = ɵɵdefineDirective({
-    type: _DropTargetDirective,
-    selectors: [["", "kendoDropTarget", ""]],
-    outputs: {
-      onDragEnter: "onDragEnter",
-      onDragOver: "onDragOver",
-      onDragLeave: "onDragLeave",
-      onDrop: "onDrop"
-    },
-    exportAs: ["kendoDropTarget"]
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(DropTargetDirective, [{
-    type: Directive,
-    args: [{
-      selector: "[kendoDropTarget]",
-      exportAs: "kendoDropTarget",
-      standalone: true
-    }]
-  }], () => [{
-    type: DragStateService
-  }, {
-    type: ElementRef
-  }, {
-    type: NgZone
-  }], {
-    onDragEnter: [{
-      type: Output
-    }],
-    onDragOver: [{
-      type: Output
-    }],
-    onDragLeave: [{
-      type: Output
-    }],
-    onDrop: [{
-      type: Output
-    }]
-  });
-})();
-var KENDO_DRAGANDDROP = [DragTargetDirective, DragHandleDirective, DropTargetDirective, DragTargetContainerDirective, DropTargetContainerDirective, HintComponent];
-var KENDO_UTILS = [...KENDO_DRAGANDDROP];
-var UtilsModule = class _UtilsModule {
-  static ɵfac = function UtilsModule_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _UtilsModule)();
-  };
-  static ɵmod = ɵɵdefineNgModule({
-    type: _UtilsModule,
-    imports: [DragTargetDirective, DragHandleDirective, DropTargetDirective, DragTargetContainerDirective, DropTargetContainerDirective, HintComponent],
-    exports: [DragTargetDirective, DragHandleDirective, DropTargetDirective, DragTargetContainerDirective, DropTargetContainerDirective, HintComponent]
-  });
-  static ɵinj = ɵɵdefineInjector({});
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(UtilsModule, [{
-    type: NgModule,
-    args: [{
-      exports: [...KENDO_UTILS],
-      imports: [...KENDO_UTILS]
-    }]
-  }], null, null);
-})();
-var DragAndDropModule = class _DragAndDropModule {
-  static ɵfac = function DragAndDropModule_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _DragAndDropModule)();
-  };
-  static ɵmod = ɵɵdefineNgModule({
-    type: _DragAndDropModule,
-    imports: [DragTargetDirective, DragHandleDirective, DropTargetDirective, DragTargetContainerDirective, DropTargetContainerDirective, HintComponent],
-    exports: [DragTargetDirective, DragHandleDirective, DropTargetDirective, DragTargetContainerDirective, DropTargetContainerDirective, HintComponent]
-  });
-  static ɵinj = ɵɵdefineInjector({});
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(DragAndDropModule, [{
-    type: NgModule,
-    args: [{
-      exports: [...KENDO_DRAGANDDROP],
-      imports: [...KENDO_DRAGANDDROP]
-    }]
-  }], null, null);
-})();
-var AdaptiveSettingsService = class _AdaptiveSettingsService {
-  /**
-   * @hidden
-   */
-  changes = new Subject();
-  /**
-   * Notifies subscribers that the adaptive settings have changed.
-   *
-   * @param adaptiveSettings - (Optional) A new value for the adaptive settings token.
-   */
-  notify(adaptiveSettings) {
-    this.changes.next(adaptiveSettings);
-  }
-  static ɵfac = function AdaptiveSettingsService_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _AdaptiveSettingsService)();
-  };
-  static ɵprov = ɵɵdefineInjectable({
-    token: _AdaptiveSettingsService,
-    factory: _AdaptiveSettingsService.ɵfac
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(AdaptiveSettingsService, [{
-    type: Injectable
-  }], null, null);
-})();
-var ADAPTIVE_SETTINGS = new InjectionToken("Kendo UI Adaptive-Settings token");
-var DEFAULT_ADAPTIVE_SETTINGS = {
-  small: 500,
-  medium: 768
-};
-var AdaptiveService = class _AdaptiveService {
-  _adaptiveSettings;
-  zone;
-  /**
-   * Notifies subscribers of the initial adaptive settings, and upon each call to `notify`.
-   * @hidden
-   */
-  changes = new BehaviorSubject(this.adaptiveSettings || {
-    small: 500,
-    medium: 700
-  });
-  /**
-   * Notifies subscribers when the window size changes to any of small, medium, or large depending on the set adaptive size breakpoints.
-   * @hidden
-   */
-  sizeChanges = new BehaviorSubject(this.size);
-  subs = new Subscription();
-  previousSize;
-  /**
-   * @hidden
-   */
-  constructor(_adaptiveSettings, adaptiveSettingsService, zone) {
-    this._adaptiveSettings = _adaptiveSettings;
-    this.zone = zone;
-    if (adaptiveSettingsService) {
-      this.subs.add(adaptiveSettingsService.changes.pipe(map((adaptiveSettings) => isPresent(adaptiveSettings) ? adaptiveSettings : this._adaptiveSettings), tap((adaptiveSettings) => this._adaptiveSettings = adaptiveSettings)).subscribe((adaptiveSettings) => this.changes.next(adaptiveSettings)));
-    }
-    if (isPresent(this.adaptiveSettings) && !areObjectsEqual(this.adaptiveSettings, DEFAULT_ADAPTIVE_SETTINGS)) {
-      this.changes.next(this.adaptiveSettings);
-    }
-    if (isDocumentAvailable()) {
-      this.zone.runOutsideAngular(() => {
-        this.subs.add(fromEvent(window, "resize").pipe(tap(() => !this.previousSize && (this.previousSize = this.size)), filter(() => this.previousSize !== this.size)).subscribe(() => {
-          this.previousSize = this.size;
-          this.zone.run(() => {
-            this.sizeChanges.next(this.size);
-          });
-        }));
-      });
-    }
-  }
-  /**
-   * @hidden
-   */
-  get adaptiveSettings() {
-    return this._adaptiveSettings;
-  }
-  /**
-   * @hidden
-   */
-  get size() {
-    if (!isDocumentAvailable()) {
-      return;
-    }
-    const settings = Object.assign(DEFAULT_ADAPTIVE_SETTINGS, this.adaptiveSettings);
-    if (window.innerWidth > settings.medium) {
-      return "large";
-    } else if (window.innerWidth > settings.small) {
-      return "medium";
-    } else {
-      return "small";
-    }
-  }
-  ngOnDestroy() {
-    this.subs.unsubscribe();
-  }
-  static ɵfac = function AdaptiveService_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _AdaptiveService)(ɵɵinject(ADAPTIVE_SETTINGS, 8), ɵɵinject(AdaptiveSettingsService, 8), ɵɵinject(NgZone));
-  };
-  static ɵprov = ɵɵdefineInjectable({
-    token: _AdaptiveService,
-    factory: _AdaptiveService.ɵfac,
-    providedIn: "root"
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(AdaptiveService, [{
-    type: Injectable,
-    args: [{
-      providedIn: "root"
-    }]
-  }], () => [{
-    type: void 0,
-    decorators: [{
-      type: Optional
-    }, {
-      type: Inject,
-      args: [ADAPTIVE_SETTINGS]
-    }]
-  }, {
-    type: AdaptiveSettingsService,
-    decorators: [{
-      type: Optional
-    }]
-  }, {
-    type: NgZone
-  }], null);
-})();
 
 // node_modules/@progress/kendo-inputs-common/dist/es/maskedtextbox/parsing/result.js
 var ResultType;
@@ -3855,7 +743,7 @@ var limitValue = _a.limitValue;
 var Point = geometry_exports.Point;
 var Rect = geometry_exports.Rect;
 var transform = geometry_exports.transform;
-var noop3 = function() {
+var noop = function() {
 };
 var DECIMAL_DIGITS = 3;
 var DEFAULT_COLOR = "#000";
@@ -3885,9 +773,9 @@ var SignaturePad = (
         color: DEFAULT_COLOR,
         backgroundColor: DEFAULT_BACKGROUND_COLOR,
         strokeWidth: DEFAULT_STROKE_WIDTH,
-        onChange: noop3,
-        onDraw: noop3,
-        onDrawEnd: noop3
+        onChange: noop,
+        onDraw: noop,
+        onDrawEnd: noop
       }, options, {
         color: this.color,
         backgroundColor: this.backgroundColor
@@ -4128,7 +1016,7 @@ function isMainButton(e) {
 }
 
 // node_modules/@progress/kendo-angular-dialog/fesm2022/progress-kendo-angular-dialog.mjs
-var _c02 = ["*"];
+var _c0 = ["*"];
 function DialogActionsComponent_Conditional_0_Template(rf, ctx) {
   if (rf & 1) {
     ɵɵprojection(0);
@@ -4576,7 +1464,7 @@ var DialogActionsComponent = class _DialogActionsComponent {
     outputs: {
       action: "action"
     },
-    ngContentSelectors: _c02,
+    ngContentSelectors: _c0,
     decls: 3,
     vars: 2,
     consts: [[3, "ngTemplateOutlet"], [1, "k-spacer"], ["type", "button", "kendoButton", "", 3, "disabled", "fillMode", "themeColor", "ngClass", "svgIcon", "icon"], ["type", "button", "kendoButton", "", 3, "click", "disabled", "fillMode", "themeColor", "ngClass", "svgIcon", "icon"]],
@@ -4920,14 +1808,14 @@ var DialogTitleBarComponent = class _DialogTitleBarComponent {
       provide: L10N_PREFIX,
       useValue: "kendo.dialog"
     }])],
-    ngContentSelectors: _c02,
+    ngContentSelectors: _c0,
     decls: 4,
     vars: 1,
     consts: () => {
       let i18n_0;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DIALOG_FESM2022_PROGRESS_KENDO_ANGULAR_DIALOG_MJS_0 = goog.getMsg("Close");
-        i18n_0 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DIALOG_FESM2022_PROGRESS_KENDO_ANGULAR_DIALOG_MJS_0;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DIALOG_FESM2022_PROGRESS_KENDO_ANGULAR_DIALOG_MJS_0 = goog.getMsg("Close");
+        i18n_0 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DIALOG_FESM2022_PROGRESS_KENDO_ANGULAR_DIALOG_MJS_0;
       } else {
         i18n_0 = $localize`:kendo.dialog.closeTitle|The title of the close button:Close`;
       }
@@ -5026,7 +1914,7 @@ var DialogTitleBarComponent = class _DialogTitleBarComponent {
     }]
   });
 })();
-var packageMetadata2 = {
+var packageMetadata = {
   name: "@progress/kendo-angular-dialog",
   productName: "Kendo UI for Angular",
   productCode: "KENDOUIANGULAR",
@@ -5035,7 +1923,7 @@ var packageMetadata2 = {
   version: "23.4.0",
   licensingDocsUrl: "https://www.telerik.com/kendo-angular-ui/my-license/"
 };
-var isPresent3 = (value) => value !== null && value !== void 0;
+var isPresent2 = (value) => value !== null && value !== void 0;
 var isTruthy = (value) => !!value;
 var toClassList = (classNames) => String(classNames).trim().split(" ");
 var focusableRegex = /^(?:a|input|select|textarea|button|object)$/i;
@@ -5047,14 +1935,14 @@ var hasClasses = (element, classNames) => {
   const namesList = toClassList(classNames);
   return Boolean(toClassList(element.className).find((className) => namesList.indexOf(className) >= 0));
 };
-var isVisible2 = (element) => {
+var isVisible = (element) => {
   if (!element?.getBoundingClientRect) {
     return false;
   }
   const rect = element.getBoundingClientRect();
   return !!(rect.width && rect.height) && window.getComputedStyle(element).visibility !== "hidden";
 };
-var isFocusable2 = (element, checkVisibility = true) => {
+var isFocusable = (element, checkVisibility = true) => {
   if (element.tagName) {
     const tagName = element.tagName.toLowerCase();
     const tabIndex = element.getAttribute("tabIndex");
@@ -5065,7 +1953,7 @@ var isFocusable2 = (element, checkVisibility = true) => {
     } else {
       focusable = validTabIndex;
     }
-    return focusable && (!checkVisibility || isVisible2(element));
+    return focusable && (!checkVisibility || isVisible(element));
   }
   return false;
 };
@@ -5117,7 +2005,7 @@ var preventDefault = ({
 var RESIZE_DIRECTIONS = ["n", "e", "s", "w", "se", "sw", "ne", "nw"];
 var OFFSET_STYLES = ["top", "left", "width", "height"];
 var isString = (value) => value instanceof String || typeof value === "string";
-var isObject = (value) => isPresent3(value) && !Array.isArray(value) && typeof value === "object";
+var isObject = (value) => isPresent2(value) && !Array.isArray(value) && typeof value === "object";
 var isNumber = (value) => typeof value === "number" && isFinite(value);
 var createValueWithUnit = (value) => value + (isNumber(value) ? "px" : "");
 var splitStringToArray = (value) => value.trim().replace(/\s+/g, " ").split(" ");
@@ -5407,8 +2295,8 @@ var DialogComponent = class _DialogComponent {
     this.cdr = cdr;
     this.ngZone = ngZone;
     this.builder = builder;
-    const isValid = A(packageMetadata2);
-    this.licenseMessage = getLicenseMessage(packageMetadata2);
+    const isValid = A(packageMetadata);
+    this.licenseMessage = getLicenseMessage(packageMetadata);
     this.showLicenseWatermark = shouldShowValidationUI(isValid);
     this.direction = localization.rtl ? "rtl" : "ltr";
     this.subscriptions.push(localization.changes.subscribe(({
@@ -5425,7 +2313,7 @@ var DialogComponent = class _DialogComponent {
       this.titlebarContent.first.closable = this.closable;
     } else {
       this.subscriptions.push(this.titlebarContent.changes.subscribe(() => {
-        if (isPresent3(this.titlebarContent.first)) {
+        if (isPresent2(this.titlebarContent.first)) {
           this.titlebarContent.first.id = this.titleId;
           this.titlebarContent.first.closable = this.closable;
           this.ngZone.onStable.pipe(take(1)).subscribe(() => {
@@ -5449,7 +2337,7 @@ var DialogComponent = class _DialogComponent {
       this.renderer.setAttribute(this.wrapper.nativeElement.querySelector(".k-dialog"), "aria-labelledby", this.titleId);
     } else {
       this.subscriptions.push(this.titlebarView.changes.subscribe(() => {
-        if (isPresent3(this.titlebarView.first)) {
+        if (isPresent2(this.titlebarView.first)) {
           this.titlebarView.first.id = this.titleId;
           this.ngZone.onStable.pipe(take(1)).subscribe(() => {
             this.bubble("close", this.titlebarView.first);
@@ -5480,7 +2368,7 @@ var DialogComponent = class _DialogComponent {
    */
   focus() {
     const wrapper = this.wrapper.nativeElement;
-    if (isPresent3(wrapper)) {
+    if (isPresent2(wrapper)) {
       wrapper.focus();
     }
   }
@@ -5593,7 +2481,7 @@ var DialogComponent = class _DialogComponent {
    * @hidden
    */
   shouldFocusPrimary(el) {
-    return isPresent3(el) && isFocusable2(el);
+    return isPresent2(el) && isFocusable(el);
   }
   /**
    * @hidden
@@ -5735,8 +2623,8 @@ var DialogComponent = class _DialogComponent {
     consts: () => {
       let i18n_1;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DIALOG_FESM2022_PROGRESS_KENDO_ANGULAR_DIALOG_MJS_1 = goog.getMsg("Close");
-        i18n_1 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DIALOG_FESM2022_PROGRESS_KENDO_ANGULAR_DIALOG_MJS_1;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DIALOG_FESM2022_PROGRESS_KENDO_ANGULAR_DIALOG_MJS_1 = goog.getMsg("Close");
+        i18n_1 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DIALOG_FESM2022_PROGRESS_KENDO_ANGULAR_DIALOG_MJS_1;
       } else {
         i18n_1 = $localize`:kendo.dialog.closeTitle|The title of the close button:Close`;
       }
@@ -6370,7 +3258,7 @@ var DragResizeService = class _DragResizeService {
   }) {
     this.options.left = startPosition.x + pageX - originalX;
     this.options.top = startPosition.y + pageY - originalY;
-    if (this.options.state === "minimized" && isPresent3(this.restoreOptions)) {
+    if (this.options.state === "minimized" && isPresent2(this.restoreOptions)) {
       this.restoreOptions.left = this.options.left;
       this.restoreOptions.top = this.options.top;
     }
@@ -6435,9 +3323,9 @@ var DragResizeService = class _DragResizeService {
         ev.left = newLeft;
       }
     }
-    if (isPresent3(ev.width) || isPresent3(ev.height)) {
+    if (isPresent2(ev.width) || isPresent2(ev.height)) {
       OFFSET_STYLES.forEach((style2) => {
-        if (isPresent3(ev[style2])) {
+        if (isPresent2(ev[style2])) {
           this.options[style2] = ev[style2];
         }
       });
@@ -6449,12 +3337,12 @@ var DragResizeService = class _DragResizeService {
     this.defaultState();
   }
   defaultState() {
-    if (isPresent3(this.restoreOptions)) {
+    if (isPresent2(this.restoreOptions)) {
       this.options = Object.assign({}, this.restoreOptions);
     }
     this.options.state = "default";
     this.ngZone.onStable.pipe(take(1)).subscribe(() => {
-      if (!isPresent3(this.options.left) || !isPresent3(this.options.top)) {
+      if (!isPresent2(this.options.left) || !isPresent2(this.options.top)) {
         this.center();
       }
     });
@@ -6520,7 +3408,7 @@ var DragResizeService = class _DragResizeService {
   }
   ensureWidth() {
     const windowOffset = offset(this.window.nativeElement);
-    if (!isPresent3(this.options.width)) {
+    if (!isPresent2(this.options.width)) {
       this.options.width = windowOffset.width;
       this.change.emit({
         width: windowOffset.width
@@ -6543,11 +3431,11 @@ var DragResizeService = class _DragResizeService {
     const wnd = this.windowViewPort;
     const wrapper = offset(this.window.nativeElement);
     const ev = {};
-    if (!isPresent3(this.options.left)) {
+    if (!isPresent2(this.options.left)) {
       this.options.left = scroll.x + Math.max(0, (wnd.width - wrapper.width) / 2);
       ev.left = this.options.left;
     }
-    if (!isPresent3(this.options.top)) {
+    if (!isPresent2(this.options.top)) {
       this.options.top = scroll.y + Math.max(0, (wnd.height - wrapper.height) / 2);
       ev.top = this.options.top;
     }
@@ -6577,7 +3465,7 @@ var DragResizeService = class _DragResizeService {
     this.options.top = wrapper.top;
   }
   setRestoreOption(style2, value) {
-    if (isPresent3(this.restoreOptions)) {
+    if (isPresent2(this.restoreOptions)) {
       this.restoreOptions[style2] = value;
     }
   }
@@ -6726,7 +3614,7 @@ var WindowTitleBarComponent = class _WindowTitleBarComponent {
   }
   ngAfterViewInit() {
     const element = this.el.nativeElement.querySelector(".k-window-title");
-    if (isPresent3(element)) {
+    if (isPresent2(element)) {
       element.setAttribute("id", this.id);
     }
   }
@@ -6791,7 +3679,7 @@ var WindowTitleBarComponent = class _WindowTitleBarComponent {
   handle(ev) {
     const target = ev.target;
     const state2 = this.service.options.state;
-    if (!hasClasses(target, "k-icon") && !isFocusable2(target, false) && this.service.options.resizable) {
+    if (!hasClasses(target, "k-icon") && !isFocusable(target, false) && this.service.options.resizable) {
       if (state2 === "default") {
         this.service.maximizeAction();
       } else if (state2 === "maximized") {
@@ -6825,7 +3713,7 @@ var WindowTitleBarComponent = class _WindowTitleBarComponent {
       template: "template",
       id: "id"
     },
-    ngContentSelectors: _c02,
+    ngContentSelectors: _c0,
     decls: 2,
     vars: 2,
     consts: [[3, "ngTemplateOutlet", "ngTemplateOutletContext"]],
@@ -6967,7 +3855,7 @@ var NavigationService = class _NavigationService {
       default:
         break;
     }
-    if (options.state === "minimized" && isPresent3(restoreOptions)) {
+    if (options.state === "minimized" && isPresent2(restoreOptions)) {
       restoreOptions.left = options.left;
       restoreOptions.top = options.top;
     }
@@ -7006,9 +3894,9 @@ var NavigationService = class _NavigationService {
       default:
         break;
     }
-    if (isPresent3(ev.width) || isPresent3(ev.height)) {
+    if (isPresent2(ev.width) || isPresent2(ev.height)) {
       OFFSET_STYLES.forEach((style2) => {
-        if (isPresent3(ev[style2])) {
+        if (isPresent2(ev[style2])) {
           this.window.options[style2] = ev[style2];
         }
       });
@@ -7097,7 +3985,7 @@ var WindowCloseActionDirective = class _WindowCloseActionDirective extends Butto
       useValue: "kendo.button"
     }]), ɵɵInheritDefinitionFeature],
     attrs: _c5,
-    ngContentSelectors: _c02,
+    ngContentSelectors: _c0,
     decls: 5,
     vars: 3,
     consts: [["innerCssClass", "k-button-icon", "name", "close", 3, "svgIcon"], [1, "k-button-icon", "k-icon"], [1, "k-button-icon", 3, "ngClass"], [1, "k-button-text"], ["role", "presentation", 1, "k-image", 3, "src"]],
@@ -7239,7 +4127,7 @@ var WindowRestoreActionDirective = class _WindowRestoreActionDirective extends B
       useValue: "kendo.button"
     }]), ɵɵInheritDefinitionFeature],
     attrs: _c6,
-    ngContentSelectors: _c02,
+    ngContentSelectors: _c0,
     decls: 5,
     vars: 3,
     consts: [["innerCssClass", "k-button-icon", "name", "window-restore", 3, "svgIcon"], [1, "k-button-icon", "k-icon"], [1, "k-button-icon", 3, "ngClass"], [1, "k-button-text"], ["role", "presentation", 1, "k-image", 3, "src"]],
@@ -7385,7 +4273,7 @@ var WindowMaximizeActionDirective = class _WindowMaximizeActionDirective extends
       useValue: "kendo.button"
     }]), ɵɵInheritDefinitionFeature],
     attrs: _c7,
-    ngContentSelectors: _c02,
+    ngContentSelectors: _c0,
     decls: 5,
     vars: 3,
     consts: [["innerCssClass", "k-button-icon", "name", "window", 3, "svgIcon"], [1, "k-button-icon", "k-icon"], [1, "k-button-icon", 3, "ngClass"], [1, "k-button-text"], ["role", "presentation", 1, "k-image", 3, "src"]],
@@ -7531,7 +4419,7 @@ var WindowMinimizeActionDirective = class _WindowMinimizeActionDirective extends
       useValue: "kendo.button"
     }]), ɵɵInheritDefinitionFeature],
     attrs: _c8,
-    ngContentSelectors: _c02,
+    ngContentSelectors: _c0,
     decls: 5,
     vars: 3,
     consts: [["innerCssClass", "k-button-icon", "name", "window-minimize", 3, "svgIcon"], [1, "k-button-icon", "k-icon"], [1, "k-button-icon", 3, "ngClass"], [1, "k-button-text"], ["role", "presentation", 1, "k-image", 3, "src"]],
@@ -7882,8 +4770,8 @@ var WindowComponent = class _WindowComponent {
     this.navigation = navigation;
     this.ngZone = ngZone;
     this.localization = localization;
-    const isValid = A(packageMetadata2);
-    this.licenseMessage = getLicenseMessage(packageMetadata2);
+    const isValid = A(packageMetadata);
+    this.licenseMessage = getLicenseMessage(packageMetadata);
     this.showLicenseWatermark = shouldShowValidationUI(isValid);
     this.direction = this.localization.rtl ? "rtl" : "ltr";
     this.localizationChangeSubscription = this.localization.changes.subscribe(({
@@ -7919,7 +4807,7 @@ var WindowComponent = class _WindowComponent {
       }
     });
     if (isChanged("draggable", changes)) {
-      const titleBar = isPresent3(this.titleBarContent) ? this.titleBarContent : this.titleBarView;
+      const titleBar = isPresent2(this.titleBarContent) ? this.titleBarContent : this.titleBarView;
       if (isTruthy(changes["draggable"].currentValue)) {
         titleBar.subscribeDrag();
       } else {
@@ -7927,7 +4815,7 @@ var WindowComponent = class _WindowComponent {
       }
     }
     if (isChanged("state", changes)) {
-      if (isPresent3(this.service.lastAction)) {
+      if (isPresent2(this.service.lastAction)) {
         this.service.lastAction = null;
       } else {
         this.service.applyManualState();
@@ -7949,7 +4837,7 @@ var WindowComponent = class _WindowComponent {
    */
   focus() {
     const wrapper = this.el.nativeElement;
-    if (isPresent3(wrapper)) {
+    if (isPresent2(wrapper)) {
       wrapper.focus({
         preventScroll: true
       });
@@ -7988,7 +4876,7 @@ var WindowComponent = class _WindowComponent {
     this.setStyle(offset2, value);
   }
   get showDefaultTitleBar() {
-    return !isPresent3(this.titleBarContent);
+    return !isPresent2(this.titleBarContent);
   }
   get styleMinWidth() {
     return this.minWidth + "px";
@@ -8058,7 +4946,7 @@ var WindowComponent = class _WindowComponent {
     }));
     this.windowSubscription.add(this.service.change.subscribe((ev) => {
       OFFSET_STYLES.forEach((style2) => {
-        if (isPresent3(ev[style2])) {
+        if (isPresent2(ev[style2])) {
           this.setStyle(style2, ev[style2]);
           if (this.state !== "maximized") {
             const emitter = this[style2 + "Change"];
@@ -8072,7 +4960,7 @@ var WindowComponent = class _WindowComponent {
       });
     }));
     this.windowSubscription.add(this.service.stateChange.subscribe((state2) => {
-      if (isPresent3(this.service.lastAction)) {
+      if (isPresent2(this.service.lastAction)) {
         this.updateAllOffset();
         this.stateChange.emit(state2);
       }
@@ -8114,7 +5002,7 @@ var WindowComponent = class _WindowComponent {
   setInitialOffset() {
     if (this.state !== "maximized") {
       this.updateAllOffset();
-      if (!isPresent3(this.left) || !isPresent3(this.top)) {
+      if (!isPresent2(this.left) || !isPresent2(this.top)) {
         this.service.center();
       }
     } else {
@@ -8127,7 +5015,7 @@ var WindowComponent = class _WindowComponent {
   }
   updateAllOffset() {
     OFFSET_STYLES.forEach((style2) => {
-      if (isPresent3(this[style2])) {
+      if (isPresent2(this[style2])) {
         this.setStyle(style2, this[style2]);
       } else {
         this.removeStyle(style2);
@@ -8260,29 +5148,29 @@ var WindowComponent = class _WindowComponent {
     consts: () => {
       let i18n_2;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DIALOG_FESM2022_PROGRESS_KENDO_ANGULAR_DIALOG_MJS_2 = goog.getMsg("Close");
-        i18n_2 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DIALOG_FESM2022_PROGRESS_KENDO_ANGULAR_DIALOG_MJS_2;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DIALOG_FESM2022_PROGRESS_KENDO_ANGULAR_DIALOG_MJS_2 = goog.getMsg("Close");
+        i18n_2 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DIALOG_FESM2022_PROGRESS_KENDO_ANGULAR_DIALOG_MJS_2;
       } else {
         i18n_2 = $localize`:kendo.window.closeTitle|The title of the close button:Close`;
       }
       let i18n_3;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DIALOG_FESM2022_PROGRESS_KENDO_ANGULAR_DIALOG_MJS_3 = goog.getMsg("Restore");
-        i18n_3 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DIALOG_FESM2022_PROGRESS_KENDO_ANGULAR_DIALOG_MJS_3;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DIALOG_FESM2022_PROGRESS_KENDO_ANGULAR_DIALOG_MJS_3 = goog.getMsg("Restore");
+        i18n_3 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DIALOG_FESM2022_PROGRESS_KENDO_ANGULAR_DIALOG_MJS_3;
       } else {
         i18n_3 = $localize`:kendo.window.restoreTitle|The title of the restore button:Restore`;
       }
       let i18n_4;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DIALOG_FESM2022_PROGRESS_KENDO_ANGULAR_DIALOG_MJS_4 = goog.getMsg("Maximize");
-        i18n_4 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DIALOG_FESM2022_PROGRESS_KENDO_ANGULAR_DIALOG_MJS_4;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DIALOG_FESM2022_PROGRESS_KENDO_ANGULAR_DIALOG_MJS_4 = goog.getMsg("Maximize");
+        i18n_4 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DIALOG_FESM2022_PROGRESS_KENDO_ANGULAR_DIALOG_MJS_4;
       } else {
         i18n_4 = $localize`:kendo.window.maximizeTitle|The title of the maximize button:Maximize`;
       }
       let i18n_5;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DIALOG_FESM2022_PROGRESS_KENDO_ANGULAR_DIALOG_MJS_5 = goog.getMsg("Minimize");
-        i18n_5 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DIALOG_FESM2022_PROGRESS_KENDO_ANGULAR_DIALOG_MJS_5;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DIALOG_FESM2022_PROGRESS_KENDO_ANGULAR_DIALOG_MJS_5 = goog.getMsg("Minimize");
+        i18n_5 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DIALOG_FESM2022_PROGRESS_KENDO_ANGULAR_DIALOG_MJS_5;
       } else {
         i18n_5 = $localize`:kendo.window.minimizeTitle|The title of the minimize button:Minimize`;
       }
@@ -8657,64 +5545,64 @@ var WindowService = class _WindowService {
     return windowRef;
   }
   applyOptions(instance, options) {
-    if (isPresent3(options.htmlAttributes)) {
+    if (isPresent2(options.htmlAttributes)) {
       instance.htmlAttributes = options.htmlAttributes;
     }
-    if (isPresent3(options.cssClass)) {
+    if (isPresent2(options.cssClass)) {
       instance.cssClass = options.cssClass;
     }
-    if (isPresent3(options.title)) {
+    if (isPresent2(options.title)) {
       instance.title = options.title;
     }
-    if (isPresent3(options.keepContent)) {
+    if (isPresent2(options.keepContent)) {
       instance.keepContent = options.keepContent;
     }
-    if (isPresent3(options.width)) {
+    if (isPresent2(options.width)) {
       instance.width = options.width;
     }
-    if (isPresent3(options.minWidth)) {
+    if (isPresent2(options.minWidth)) {
       instance.minWidth = options.minWidth;
     }
-    if (isPresent3(options.height)) {
+    if (isPresent2(options.height)) {
       instance.height = options.height;
     }
-    if (isPresent3(options.minHeight)) {
+    if (isPresent2(options.minHeight)) {
       instance.minHeight = options.minHeight;
     }
-    if (isPresent3(options.left)) {
+    if (isPresent2(options.left)) {
       instance.left = options.left;
     }
-    if (isPresent3(options.top)) {
+    if (isPresent2(options.top)) {
       instance.top = options.top;
     }
-    if (isPresent3(options.draggable)) {
+    if (isPresent2(options.draggable)) {
       instance.draggable = options.draggable;
     }
-    if (isPresent3(options.resizable)) {
+    if (isPresent2(options.resizable)) {
       instance.resizable = options.resizable;
     }
-    if (isPresent3(options.messages && options.messages.closeTitle)) {
+    if (isPresent2(options.messages && options.messages.closeTitle)) {
       instance.messages.closeTitle = options.messages.closeTitle;
     }
-    if (isPresent3(options.messages && options.messages.restoreTitle)) {
+    if (isPresent2(options.messages && options.messages.restoreTitle)) {
       instance.messages.restoreTitle = options.messages.restoreTitle;
     }
-    if (isPresent3(options.messages && options.messages.maximizeTitle)) {
+    if (isPresent2(options.messages && options.messages.maximizeTitle)) {
       instance.messages.maximizeTitle = options.messages.maximizeTitle;
     }
-    if (isPresent3(options.messages && options.messages.minimizeTitle)) {
+    if (isPresent2(options.messages && options.messages.minimizeTitle)) {
       instance.messages.minimizeTitle = options.messages.minimizeTitle;
     }
-    if (isPresent3(options.autoFocusedElement)) {
+    if (isPresent2(options.autoFocusedElement)) {
       instance.autoFocusedElement = options.autoFocusedElement;
     }
-    if (isPresent3(options.state)) {
+    if (isPresent2(options.state)) {
       instance.state = options.state;
       if (options.state === "minimized") {
         instance.keepContent = true;
       }
     }
-    if (isPresent3(options.themeColor)) {
+    if (isPresent2(options.themeColor)) {
       instance.themeColor = options.themeColor;
     }
     if (options.content instanceof TemplateRef) {
@@ -8935,7 +5823,7 @@ var DialogsModule = class _DialogsModule {
 })();
 
 // node_modules/@progress/kendo-angular-inputs/fesm2022/progress-kendo-angular-inputs.mjs
-var _c03 = ["wrap"];
+var _c02 = ["wrap"];
 var _c12 = ["track"];
 var _c22 = ["sliderSelection"];
 var _c32 = ["ticks"];
@@ -10524,11 +7412,11 @@ function FormFieldSetComponent_Conditional_0_Template(rf, ctx) {
     ɵɵtextInterpolate1(" ", ctx_r0.legend, " ");
   }
 }
-var isPresent4 = (value) => value !== null && value !== void 0;
+var isPresent3 = (value) => value !== null && value !== void 0;
 var areSame = (value1, value2) => value1 === value2 || value1 === null && value2 === void 0 || value1 === void 0 && value2 === null;
 var requiresZoneOnBlur = (ngControl) => ngControl && (!ngControl.touched || ngControl.control && ngControl.control.updateOn === "blur");
 var fitIntoBounds = (contender, min, max) => {
-  if (!isPresent4(contender) || isNaN(contender)) {
+  if (!isPresent3(contender) || isNaN(contender)) {
     return min;
   }
   return contender <= min ? min : contender >= max ? max : contender;
@@ -10657,7 +7545,7 @@ var calculateHandlePosition = ({
   value
 }) => {
   const step = trackWidth / Math.abs(max - min);
-  const pos = isPresent4(value) ? step * (value - min) : min;
+  const pos = isPresent3(value) ? step * (value - min) : min;
   return Math.floor(pos);
 };
 var decreaseValueToStep = (value, {
@@ -10870,7 +7758,7 @@ var SliderModelBase = class {
     return vertical ? element.clientHeight : element.clientWidth;
   }
   getTrackOffset() {
-    const showButtons = this.props.buttons && isPresent4(this.button);
+    const showButtons = this.props.buttons && isPresent3(this.button);
     if (!showButtons) {
       return 0;
     }
@@ -10927,7 +7815,7 @@ var closest2 = (node, predicate) => {
   }
   return node;
 };
-var packageMetadata3 = {
+var packageMetadata2 = {
   name: "@progress/kendo-angular-inputs",
   productName: "Kendo UI for Angular",
   productCode: "KENDOUIANGULAR",
@@ -11090,7 +7978,7 @@ var SliderBase = class _SliderBase {
     this.ngZone = ngZone;
     this.changeDetector = changeDetector;
     this.hostElement = hostElement;
-    A(packageMetadata3);
+    A(packageMetadata2);
     this.direction = localizationService.rtl ? "rtl" : "ltr";
   }
   /**
@@ -11189,7 +8077,7 @@ var SliderBase = class _SliderBase {
     },
     viewQuery: function SliderBase_Query(rf, ctx) {
       if (rf & 1) {
-        ɵɵviewQuery(_c03, 7);
+        ɵɵviewQuery(_c02, 7);
         ɵɵviewQuery(_c12, 7);
         ɵɵviewQuery(_c22, 7);
         ɵɵviewQuery(_c32, 5, ElementRef);
@@ -11663,7 +8551,7 @@ var SliderComponent = class _SliderComponent extends SliderBase {
    * @hidden
    */
   get currentValue() {
-    return isPresent4(this.value) ? this.value.toString() : "";
+    return isPresent3(this.value) ? this.value.toString() : "";
   }
   /**
    * @hidden
@@ -12062,22 +8950,22 @@ var SliderComponent = class _SliderComponent extends SliderBase {
     consts: () => {
       let i18n_0;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_0 = goog.getMsg("increment");
-        i18n_0 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_0;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_0 = goog.getMsg("increment");
+        i18n_0 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_0;
       } else {
         i18n_0 = $localize`:kendo.slider.increment|The title of the **Increase** button of the Slider.:increment`;
       }
       let i18n_1;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_1 = goog.getMsg("decrement");
-        i18n_1 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_1;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_1 = goog.getMsg("decrement");
+        i18n_1 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_1;
       } else {
         i18n_1 = $localize`:kendo.slider.decrement|The title of the **Decrease** button of the Slider.:decrement`;
       }
       let i18n_2;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_2 = goog.getMsg("Drag");
-        i18n_2 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_2;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_2 = goog.getMsg("Drag");
+        i18n_2 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_2;
       } else {
         i18n_2 = $localize`:kendo.slider.dragHandle|The title of the drag handle of the Slider.:Drag`;
       }
@@ -12454,7 +9342,7 @@ var RangeSliderComponent = class _RangeSliderComponent extends SliderBase {
     this.ngZone = ngZone;
     this.changeDetector = changeDetector;
     this.hostElement = hostElement;
-    A(packageMetadata3);
+    A(packageMetadata2);
   }
   /**
    * Focuses the RangeSlider.
@@ -12864,15 +9752,15 @@ var RangeSliderComponent = class _RangeSliderComponent extends SliderBase {
     consts: () => {
       let i18n_3;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_3 = goog.getMsg("Drag");
-        i18n_3 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_3;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_3 = goog.getMsg("Drag");
+        i18n_3 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_3;
       } else {
         i18n_3 = $localize`:kendo.rangeslider.dragHandleStart|The title of the **Start** drag handle of the Slider.:Drag`;
       }
       let i18n_4;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_4 = goog.getMsg("Drag");
-        i18n_4 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_4;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_4 = goog.getMsg("Drag");
+        i18n_4 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_4;
       } else {
         i18n_4 = $localize`:kendo.rangeslider.dragHandleEnd|The title of the **End** drag handle of the Slider.:Drag`;
       }
@@ -13288,7 +10176,7 @@ var SwitchComponent = class _SwitchComponent {
     this.injector = injector;
     this.changeDetector = changeDetector;
     this.ngZone = ngZone;
-    A(packageMetadata3);
+    A(packageMetadata2);
     this.direction = localizationService.rtl ? "rtl" : "ltr";
     this.keyDownHandler = this.keyDownHandler.bind(this);
     this.clickHandler = this.clickHandler.bind(this);
@@ -13595,15 +10483,15 @@ var SwitchComponent = class _SwitchComponent {
     consts: () => {
       let i18n_5;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_5 = goog.getMsg("ON");
-        i18n_5 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_5;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_5 = goog.getMsg("ON");
+        i18n_5 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_5;
       } else {
         i18n_5 = $localize`:kendo.switch.on|The **On** label of the Switch.:ON`;
       }
       let i18n_6;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_6 = goog.getMsg("OFF");
-        i18n_6 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_6;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_6 = goog.getMsg("OFF");
+        i18n_6 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_6;
       } else {
         i18n_6 = $localize`:kendo.switch.off|The **Off** label of the Switch.:OFF`;
       }
@@ -14214,7 +11102,7 @@ var TextAreaDirective = class _TextAreaDirective {
 })();
 var createMaxValidator = (maxValue) => {
   return (c) => {
-    if (!isPresent4(maxValue) || !isPresent4(c.value) || c.value <= maxValue) {
+    if (!isPresent3(maxValue) || !isPresent3(c.value) || c.value <= maxValue) {
       return null;
     }
     return {
@@ -14227,7 +11115,7 @@ var createMaxValidator = (maxValue) => {
 };
 var createMinValidator = (minValue) => {
   return (c) => {
-    if (!isPresent4(minValue) || !isPresent4(c.value) || c.value >= minValue) {
+    if (!isPresent3(minValue) || !isPresent3(c.value) || c.value >= minValue) {
       return null;
     }
     return {
@@ -14433,8 +11321,8 @@ var SharedInputEventsDirective = class _SharedInputEventsDirective {
         const element = args.target;
         const adornmentContainer = element.closest(".k-input-prefix") || element.closest(".k-input-suffix");
         if (adornmentContainer) {
-          const isFocusable4 = hasFocusableParent(element, adornmentContainer);
-          if (!isFocusable4) {
+          const isFocusable3 = hasFocusableParent(element, adornmentContainer);
+          if (!isFocusable3) {
             this.handleBlur.emit();
           }
         }
@@ -14859,7 +11747,7 @@ var NumericTextBoxComponent = class _NumericTextBoxComponent {
     this.ngZone = ngZone;
     this.changeDetector = changeDetector;
     this.hostElement = hostElement;
-    A(packageMetadata3);
+    A(packageMetadata2);
     this.direction = localizationService.rtl ? "rtl" : "ltr";
   }
   ngOnInit() {
@@ -15419,7 +12307,7 @@ var NumericTextBoxComponent = class _NumericTextBoxComponent {
   }
   restrictDecimals(value, round) {
     let result = value;
-    if (this.hasDecimals && isPresent4(value)) {
+    if (this.hasDecimals && isPresent3(value)) {
       const decimals = this.decimals;
       const stringValue = String(value);
       if (round || EXPONENT_REGEX.test(stringValue)) {
@@ -15635,15 +12523,15 @@ var NumericTextBoxComponent = class _NumericTextBoxComponent {
     consts: () => {
       let i18n_7;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_7 = goog.getMsg("Increase value");
-        i18n_7 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_7;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_7 = goog.getMsg("Increase value");
+        i18n_7 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_7;
       } else {
         i18n_7 = $localize`:kendo.numerictextbox.increment|The title for the **Increment** button in the NumericTextBox:Increase value`;
       }
       let i18n_8;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_8 = goog.getMsg("Decrease value");
-        i18n_8 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_8;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_8 = goog.getMsg("Decrease value");
+        i18n_8 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_8;
       } else {
         i18n_8 = $localize`:kendo.numerictextbox.decrement|The title for the **Decrement** button in the NumericTextBox:Decrease value`;
       }
@@ -16615,7 +13503,7 @@ var MaskedTextBoxComponent = class _MaskedTextBoxComponent {
     this.ngZone = ngZone;
     this.injector = injector;
     this.changeDetector = changeDetector;
-    A(packageMetadata3);
+    A(packageMetadata2);
     this.direction = rtl ? "rtl" : "ltr";
     this.updateService();
   }
@@ -16973,7 +13861,7 @@ var MaskedTextBoxComponent = class _MaskedTextBoxComponent {
     }
   }
   normalizeValue(value) {
-    const present = isPresent4(value);
+    const present = isPresent3(value);
     if (present && typeof value !== "string") {
       if (isDevMode()) {
         throw new Error("The MaskedTextBox component supports only string values.");
@@ -17752,7 +14640,7 @@ var CheckBoxComponent = class _CheckBoxComponent extends RadioCheckBoxBase {
     this.cdr = cdr;
     this.ngZone = ngZone;
     this.injector = injector;
-    A(packageMetadata3);
+    A(packageMetadata2);
   }
   ngAfterViewInit() {
     const stylingInputs = ["size", "rounded"];
@@ -18024,14 +14912,14 @@ var parseColor2 = (value, format, opacityEnabled = false, safe2 = true) => {
   if (allowedFormats.indexOf(format) === -1) {
     throw new Error(`Unsupported color output format '${format}'. The available options are 'hex', 'rgba' or 'name'.`);
   }
-  if (!isPresent4(value)) {
+  if (!isPresent3(value)) {
     return;
   }
   if (format === "name") {
     return nameFormat(value, safe2);
   }
   const parsedColor = parseColor(value.trim(), safe2);
-  if (!isPresent4(parsedColor)) {
+  if (!isPresent3(parsedColor)) {
     return;
   }
   const parsedColorResult = format === "hex" ? getHexValue(parsedColor, opacityEnabled) : parsedColor.toCssRgba();
@@ -18039,14 +14927,14 @@ var parseColor2 = (value, format, opacityEnabled = false, safe2 = true) => {
 };
 var getHSV = (value, safe2 = true) => {
   const parsed = parseColor(value, safe2);
-  if (!isPresent4(parsed)) {
+  if (!isPresent3(parsed)) {
     return {};
   }
   return parsed.toHSV();
 };
 var getRGBA = (value, safe2 = true) => {
   const parsed = parseColor(value, safe2);
-  if (!isPresent4(parsed)) {
+  if (!isPresent3(parsed)) {
     return {};
   }
   return parsed.toBytes();
@@ -18081,7 +14969,7 @@ var getColorFromRGBA = (rgba) => {
 };
 function nameFormat(value, safe2) {
   value = value.toLowerCase().trim();
-  if (isPresent4(named_colors_default[value])) {
+  if (isPresent3(named_colors_default[value])) {
     return value;
   }
   if (parseColor(value, safe2)) {
@@ -18755,7 +15643,7 @@ var TextBoxComponent = class _TextBoxComponent {
     this.renderer = renderer;
     this.injector = injector;
     this.hostElement = hostElement;
-    A(packageMetadata3);
+    A(packageMetadata2);
     this.direction = localizationService.rtl ? "rtl" : "ltr";
   }
   ngOnInit() {
@@ -19195,8 +16083,8 @@ var TextBoxComponent = class _TextBoxComponent {
     consts: () => {
       let i18n_9;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_9 = goog.getMsg("Clear");
-        i18n_9 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_9;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_9 = goog.getMsg("Clear");
+        i18n_9 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_9;
       } else {
         i18n_9 = $localize`:kendo.textbox.clear|The title for the **Clear** button in the TextBox.:Clear`;
       }
@@ -19618,7 +16506,7 @@ var ColorInputComponent = class _ColorInputComponent {
    * Returns `true` if any of the inputs are focused.
    */
   get isFocused() {
-    if (!(isDocumentAvailable() && isPresent4(this.host))) {
+    if (!(isDocumentAvailable() && isPresent3(this.host))) {
       return false;
     }
     const activeElement = document.activeElement;
@@ -19628,7 +16516,7 @@ var ColorInputComponent = class _ColorInputComponent {
    * Returns `true` if all RGBA inputs have values.
    */
   get rgbaInputValid() {
-    return Object.keys(this.rgba).every((key) => isPresent4(this.rgba[key]));
+    return Object.keys(this.rgba).every((key) => isPresent3(this.rgba[key]));
   }
   /**
    * @hidden
@@ -19650,7 +16538,7 @@ var ColorInputComponent = class _ColorInputComponent {
     }
   }
   ngOnChanges(changes) {
-    if (isPresent4(changes["value"]) && !this.isFocused) {
+    if (isPresent3(changes["value"]) && !this.isFocused) {
       this.hex = parseColor2(this.value, "hex", this.opacity);
       this.rgba = getRGBA(this.value);
       this.rgba.a = parseColor2(this.value, "rgba", this.opacity) ? this.rgba.a : 1;
@@ -19677,7 +16565,7 @@ var ColorInputComponent = class _ColorInputComponent {
   handleHexValueChange(hex) {
     this.hex = hex;
     const color = parseColor2(hex, "rgba", this.opacity);
-    if (!isPresent4(color) || color === this.value) {
+    if (!isPresent3(color) || color === this.value) {
       return;
     }
     this.value = color;
@@ -20221,7 +17109,7 @@ var ColorContrastSvgComponent = class _ColorContrastSvgComponent {
     });
   }
   ngOnChanges(changes) {
-    if (isPresent4(changes["backgroundColor"]) && this.metrics) {
+    if (isPresent3(changes["backgroundColor"]) && this.metrics) {
       this.setPaths();
     }
   }
@@ -20747,7 +17635,7 @@ var ColorGradientComponent = class _ColorGradientComponent {
    * @default 0
    */
   set tabindex(value) {
-    if (isPresent4(value)) {
+    if (isPresent3(value)) {
       const tabindex = Number(value);
       this._tabindex = !isNaN(tabindex) ? tabindex : 0;
     } else {
@@ -20783,7 +17671,7 @@ var ColorGradientComponent = class _ColorGradientComponent {
    * Returns `true` if the component or its content is focused.
    */
   get isFocused() {
-    if (!(isDocumentAvailable() && isPresent4(this.host))) {
+    if (!(isDocumentAvailable() && isPresent3(this.host))) {
       return false;
     }
     return this.host.nativeElement === document.activeElement || this.host.nativeElement.contains(document.activeElement);
@@ -20792,7 +17680,7 @@ var ColorGradientComponent = class _ColorGradientComponent {
    * @hidden
    */
   get alphaSliderValue() {
-    if (!(isPresent4(this.hsva.value) && isPresent4(this.hsva.value.a))) {
+    if (!(isPresent3(this.hsva.value) && isPresent3(this.hsva.value.a))) {
       return;
     }
     return this.hsva.value.a * 100;
@@ -20873,7 +17761,7 @@ var ColorGradientComponent = class _ColorGradientComponent {
     this.cdr = cdr;
     this.localizationService = localizationService;
     this.injector = injector;
-    A(packageMetadata3);
+    A(packageMetadata2);
     this.dynamicRTLSubscription = localizationService.changes.subscribe(({
       rtl
     }) => {
@@ -20931,7 +17819,7 @@ var ColorGradientComponent = class _ColorGradientComponent {
    * @hidden
    */
   handleDragPress(args) {
-    if (this.disabled || this.readonly || !isPresent4(args.originalEvent)) {
+    if (this.disabled || this.readonly || !isPresent3(args.originalEvent)) {
       return;
     }
     this.focus();
@@ -21047,7 +17935,7 @@ var ColorGradientComponent = class _ColorGradientComponent {
    */
   writeValue(value) {
     this.value = value;
-    if (isPresent4(this.gradientWrapper)) {
+    if (isPresent3(this.gradientWrapper)) {
       this.updateUI();
     }
     this.cdr.markForCheck();
@@ -21148,7 +18036,7 @@ var ColorGradientComponent = class _ColorGradientComponent {
     this.renderer.setStyle(dragHandle, "left", `${left}px`);
   }
   setAlphaSliderBackground(backgroundColor) {
-    if (!isPresent4(this.alphaSlider)) {
+    if (!isPresent3(this.alphaSlider)) {
       return;
     }
     const sliderTrack = this.alphaSlider.track.nativeElement;
@@ -21315,120 +18203,120 @@ var ColorGradientComponent = class _ColorGradientComponent {
     consts: () => {
       let i18n_10;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_10 = goog.getMsg("Colorgradient no color chosen");
-        i18n_10 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_10;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_10 = goog.getMsg("Colorgradient no color chosen");
+        i18n_10 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_10;
       } else {
         i18n_10 = $localize`:kendo.colorgradient.colorGradientNoColor|The aria-label applied to the ColorGradient component when the value is empty.:Colorgradient no color chosen`;
       }
       let i18n_11;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_11 = goog.getMsg("Choose color");
-        i18n_11 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_11;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_11 = goog.getMsg("Choose color");
+        i18n_11 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_11;
       } else {
         i18n_11 = $localize`:kendo.colorgradient.colorGradientHandle|The title for the gradient color drag handle chooser.:Choose color`;
       }
       let i18n_12;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_12 = goog.getMsg("Clear value");
-        i18n_12 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_12;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_12 = goog.getMsg("Clear value");
+        i18n_12 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_12;
       } else {
         i18n_12 = $localize`:kendo.colorgradient.clearButton|The title for the clear button.:Clear value`;
       }
       let i18n_13;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_13 = goog.getMsg("Set hue");
-        i18n_13 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_13;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_13 = goog.getMsg("Set hue");
+        i18n_13 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_13;
       } else {
         i18n_13 = $localize`:kendo.colorgradient.hueSliderHandle|The title for the hue slider handle.:Set hue`;
       }
       let i18n_14;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_14 = goog.getMsg("Set opacity");
-        i18n_14 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_14;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_14 = goog.getMsg("Set opacity");
+        i18n_14 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_14;
       } else {
         i18n_14 = $localize`:kendo.colorgradient.opacitySliderHandle|The title for the opacity slider handle.:Set opacity`;
       }
       let i18n_15;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_15 = goog.getMsg("Pass");
-        i18n_15 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_15;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_15 = goog.getMsg("Pass");
+        i18n_15 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_15;
       } else {
         i18n_15 = $localize`:kendo.colorgradient.passContrast|The pass message for the contrast tool.:Pass`;
       }
       let i18n_16;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_16 = goog.getMsg("Fail");
-        i18n_16 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_16;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_16 = goog.getMsg("Fail");
+        i18n_16 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_16;
       } else {
         i18n_16 = $localize`:kendo.colorgradient.failContrast|The fail message for the contrast tool.:Fail`;
       }
       let i18n_17;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_17 = goog.getMsg("Contrast ratio");
-        i18n_17 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_17;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_17 = goog.getMsg("Contrast ratio");
+        i18n_17 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_17;
       } else {
         i18n_17 = $localize`:kendo.colorgradient.contrastRatio|The contrast ratio message for the contrast tool.:Contrast ratio`;
       }
       let i18n_18;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_18 = goog.getMsg("Change color format");
-        i18n_18 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_18;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_18 = goog.getMsg("Change color format");
+        i18n_18 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_18;
       } else {
         i18n_18 = $localize`:kendo.colorgradient.formatButton|The message for the input format toggle button.:Change color format`;
       }
       let i18n_19;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_19 = goog.getMsg("Red channel");
-        i18n_19 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_19;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_19 = goog.getMsg("Red channel");
+        i18n_19 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_19;
       } else {
         i18n_19 = $localize`:kendo.colorgradient.redChannelLabel|The label of the NumericTextBox representing the red color channel.:Red channel`;
       }
       let i18n_20;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_20 = goog.getMsg("Green channel");
-        i18n_20 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_20;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_20 = goog.getMsg("Green channel");
+        i18n_20 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_20;
       } else {
         i18n_20 = $localize`:kendo.colorgradient.greenChannelLabel|The label of the NumericTextBox representing the green color channel.:Green channel`;
       }
       let i18n_21;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_21 = goog.getMsg("Blue channel");
-        i18n_21 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_21;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_21 = goog.getMsg("Blue channel");
+        i18n_21 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_21;
       } else {
         i18n_21 = $localize`:kendo.colorgradient.blueChannelLabel|The label of the NumericTextBox representing the blue color channel.:Blue channel`;
       }
       let i18n_22;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_22 = goog.getMsg("Alpha channel");
-        i18n_22 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_22;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_22 = goog.getMsg("Alpha channel");
+        i18n_22 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_22;
       } else {
         i18n_22 = $localize`:kendo.colorgradient.alphaChannelLabel|The label of the NumericTextBox representing the alpha color channel.:Alpha channel`;
       }
       let i18n_23;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_23 = goog.getMsg("R");
-        i18n_23 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_23;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_23 = goog.getMsg("R");
+        i18n_23 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_23;
       } else {
         i18n_23 = $localize`:kendo.colorgradient.redChannelLabel|The label of the NumericTextBox representing the red color channel.:R`;
       }
       let i18n_24;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_24 = goog.getMsg("G");
-        i18n_24 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_24;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_24 = goog.getMsg("G");
+        i18n_24 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_24;
       } else {
         i18n_24 = $localize`:kendo.colorgradient.greenInputPlaceholder|The placeholder for the green color input.:G`;
       }
       let i18n_25;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_25 = goog.getMsg("B");
-        i18n_25 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_25;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_25 = goog.getMsg("B");
+        i18n_25 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_25;
       } else {
         i18n_25 = $localize`:kendo.colorgradient.blueInputPlaceholder|The placeholder for the blue color input.:B`;
       }
       let i18n_26;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_26 = goog.getMsg("HEX");
-        i18n_26 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_26;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_26 = goog.getMsg("HEX");
+        i18n_26 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_26;
       } else {
         i18n_26 = $localize`:kendo.colorgradient.hexInputPlaceholder|The placeholder for the HEX color input.:HEX`;
       }
@@ -21946,7 +18834,7 @@ var ColorPaletteService = class _ColorPaletteService {
   colorRows = [];
   setColorMatrix(palette, columns) {
     this.colorRows = [];
-    if (!(isPresent4(palette) && palette.length)) {
+    if (!(isPresent3(palette) && palette.length)) {
       return;
     }
     columns = columns || palette.length;
@@ -21956,7 +18844,7 @@ var ColorPaletteService = class _ColorPaletteService {
     }
   }
   getCellCoordsFor(color) {
-    if (!isPresent4(color)) {
+    if (!isPresent3(color)) {
       return;
     }
     for (let row = 0; row < this.colorRows.length; row++) {
@@ -21971,13 +18859,13 @@ var ColorPaletteService = class _ColorPaletteService {
     }
   }
   getColorAt(cellCoords) {
-    if (!(isPresent4(cellCoords) && isPresent4(this.colorRows[cellCoords.row]))) {
+    if (!(isPresent3(cellCoords) && isPresent3(this.colorRows[cellCoords.row]))) {
       return;
     }
     return this.colorRows[cellCoords.row][cellCoords.col];
   }
   getNextCell(current, horizontalStep, verticalStep) {
-    if (!(isPresent4(current) && isPresent4(current.row) && isPresent4(current.col))) {
+    if (!(isPresent3(current) && isPresent3(current.row) && isPresent3(current.col))) {
       return {
         row: 0,
         col: 0
@@ -22080,10 +18968,10 @@ var ColorPaletteComponent = class _ColorPaletteComponent {
    * Sets the color palette to display. You can use a predefined palette preset (such as `office`, `basic`, or `apex`), string with comma-separated colors, or an array of string colors.
    */
   set palette(value) {
-    if (!isPresent4(value)) {
+    if (!isPresent3(value)) {
       value = DEFAULT_PRESET;
     }
-    if (typeof value === "string" && isPresent4(PALETTEPRESETS[value])) {
+    if (typeof value === "string" && isPresent3(PALETTEPRESETS[value])) {
       this.columns = this.columns || PALETTEPRESETS[value].columns;
       value = PALETTEPRESETS[value].colors;
     }
@@ -22220,7 +19108,7 @@ var ColorPaletteComponent = class _ColorPaletteComponent {
     this.renderer = renderer;
     this.localizationService = localizationService;
     this.ngZone = ngZone;
-    A(packageMetadata3);
+    A(packageMetadata2);
     this.dynamicRTLSubscription = localizationService.changes.subscribe(({
       rtl
     }) => {
@@ -22380,7 +19268,7 @@ var ColorPaletteComponent = class _ColorPaletteComponent {
    */
   reset() {
     this.focusedCell = null;
-    if (isPresent4(this.value)) {
+    if (isPresent3(this.value)) {
       this.handleValueChange(void 0);
     }
     this.selectedCell = void 0;
@@ -22404,7 +19292,7 @@ var ColorPaletteComponent = class _ColorPaletteComponent {
     this.focusedCell = this.selectedCell;
   }
   setRows() {
-    if (!isPresent4(this.palette)) {
+    if (!isPresent3(this.palette)) {
       return;
     }
     this.columns = this.columns || DEFAULT_COLUMNS_COUNT;
@@ -22425,7 +19313,7 @@ var ColorPaletteComponent = class _ColorPaletteComponent {
     this.renderer.setAttribute(this.host.nativeElement, "aria-label", `${this.value ? parsed : this.localizationService.get("colorPaletteNoColor")}`);
   }
   handleEnter() {
-    if (!isPresent4(this.focusedCell)) {
+    if (!isPresent3(this.focusedCell)) {
       return;
     }
     const selectedColor = this.service.getColorAt(this.focusedCell);
@@ -22495,8 +19383,8 @@ var ColorPaletteComponent = class _ColorPaletteComponent {
     consts: () => {
       let i18n_27;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_27 = goog.getMsg("Colorpalette no color chosen");
-        i18n_27 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_27;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_27 = goog.getMsg("Colorpalette no color chosen");
+        i18n_27 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_27;
       } else {
         i18n_27 = $localize`:kendo.colorpalette.colorPaletteNoColor|The aria-label applied to the ColorPalette component when the value is empty.:Colorpalette no color chosen`;
       }
@@ -23246,7 +20134,7 @@ var FlatColorPickerComponent = class _FlatColorPickerComponent {
    * @default 0
    */
   set tabindex(value) {
-    if (isPresent4(value)) {
+    if (isPresent3(value)) {
       const tabindex = Number(value);
       this._tabindex = !isNaN(tabindex) ? tabindex : 0;
     } else {
@@ -23393,7 +20281,7 @@ var FlatColorPickerComponent = class _FlatColorPickerComponent {
     this.renderer = renderer;
     this.ngZone = ngZone;
     this.injector = injector;
-    A(packageMetadata3);
+    A(packageMetadata2);
     this.dynamicRTLSubscription = this.localizationService.changes.subscribe(({
       rtl
     }) => {
@@ -23516,7 +20404,7 @@ var FlatColorPickerComponent = class _FlatColorPickerComponent {
    * Clears the value of the FlatColorPicker.
    */
   reset() {
-    if (!isPresent4(this.value)) {
+    if (!isPresent3(this.value)) {
       return;
     }
     this.value = void 0;
@@ -23645,7 +20533,7 @@ var FlatColorPickerComponent = class _FlatColorPickerComponent {
     this.setHostElementAriaLabel();
   }
   setActiveView() {
-    if (!isPresent4(this.activeView)) {
+    if (!isPresent3(this.activeView)) {
       this.activeView = this.views[0];
       return;
     }
@@ -23772,162 +20660,162 @@ var FlatColorPickerComponent = class _FlatColorPickerComponent {
     consts: () => {
       let i18n_28;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_28 = goog.getMsg("Flatcolorpicker no color chosen");
-        i18n_28 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_28;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_28 = goog.getMsg("Flatcolorpicker no color chosen");
+        i18n_28 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_28;
       } else {
         i18n_28 = $localize`:kendo.flatcolorpicker.flatColorPickerNoColor|The aria-label applied to the FlatColorPicker component when the value is empty.:Flatcolorpicker no color chosen`;
       }
       let i18n_29;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_29 = goog.getMsg("Colorgradient no color chosen");
-        i18n_29 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_29;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_29 = goog.getMsg("Colorgradient no color chosen");
+        i18n_29 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_29;
       } else {
         i18n_29 = $localize`:kendo.flatcolorpicker.colorGradientNoColor|The aria-label applied to the ColorGradient component when the value is empty.:Colorgradient no color chosen`;
       }
       let i18n_30;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_30 = goog.getMsg("Colorpalette no color chosen");
-        i18n_30 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_30;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_30 = goog.getMsg("Colorpalette no color chosen");
+        i18n_30 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_30;
       } else {
         i18n_30 = $localize`:kendo.flatcolorpicker.colorPaletteNoColor|The aria-label applied to the ColorPalette component when the value is empty.:Colorpalette no color chosen`;
       }
       let i18n_31;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_31 = goog.getMsg("Choose color");
-        i18n_31 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_31;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_31 = goog.getMsg("Choose color");
+        i18n_31 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_31;
       } else {
         i18n_31 = $localize`:kendo.flatcolorpicker.colorGradientHandle|The title for the gradient color drag handle chooser.:Choose color`;
       }
       let i18n_32;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_32 = goog.getMsg("Clear value");
-        i18n_32 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_32;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_32 = goog.getMsg("Clear value");
+        i18n_32 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_32;
       } else {
         i18n_32 = $localize`:kendo.flatcolorpicker.clearButton|The title for the clear button.:Clear value`;
       }
       let i18n_33;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_33 = goog.getMsg("Set hue");
-        i18n_33 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_33;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_33 = goog.getMsg("Set hue");
+        i18n_33 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_33;
       } else {
         i18n_33 = $localize`:kendo.flatcolorpicker.hueSliderHandle|The title for the hue slider handle.:Set hue`;
       }
       let i18n_34;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_34 = goog.getMsg("Set opacity");
-        i18n_34 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_34;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_34 = goog.getMsg("Set opacity");
+        i18n_34 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_34;
       } else {
         i18n_34 = $localize`:kendo.flatcolorpicker.opacitySliderHandle|The title for the opacity slider handle.:Set opacity`;
       }
       let i18n_35;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_35 = goog.getMsg("Contrast ratio");
-        i18n_35 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_35;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_35 = goog.getMsg("Contrast ratio");
+        i18n_35 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_35;
       } else {
         i18n_35 = $localize`:kendo.flatcolorpicker.contrastRatio|The contrast ratio message for the contrast tool.:Contrast ratio`;
       }
       let i18n_36;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_36 = goog.getMsg("Color preview");
-        i18n_36 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_36;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_36 = goog.getMsg("Color preview");
+        i18n_36 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_36;
       } else {
         i18n_36 = $localize`:kendo.flatcolorpicker.previewColor|The message for the color preview pane.:Color preview`;
       }
       let i18n_37;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_37 = goog.getMsg("Revert selection");
-        i18n_37 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_37;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_37 = goog.getMsg("Revert selection");
+        i18n_37 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_37;
       } else {
         i18n_37 = $localize`:kendo.flatcolorpicker.revertSelection|The message for the selected color pane.:Revert selection`;
       }
       let i18n_38;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_38 = goog.getMsg("Gradient view");
-        i18n_38 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_38;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_38 = goog.getMsg("Gradient view");
+        i18n_38 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_38;
       } else {
         i18n_38 = $localize`:kendo.flatcolorpicker.gradientView|The message for the gradient view button.:Gradient view`;
       }
       let i18n_39;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_39 = goog.getMsg("Palette view");
-        i18n_39 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_39;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_39 = goog.getMsg("Palette view");
+        i18n_39 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_39;
       } else {
         i18n_39 = $localize`:kendo.flatcolorpicker.paletteView|The message for the palette view button.:Palette view`;
       }
       let i18n_40;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_40 = goog.getMsg("Change color format");
-        i18n_40 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_40;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_40 = goog.getMsg("Change color format");
+        i18n_40 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_40;
       } else {
         i18n_40 = $localize`:kendo.flatcolorpicker.formatButton|The message for the input format toggle button.:Change color format`;
       }
       let i18n_41;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_41 = goog.getMsg("Apply");
-        i18n_41 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_41;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_41 = goog.getMsg("Apply");
+        i18n_41 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_41;
       } else {
         i18n_41 = $localize`:kendo.flatcolorpicker.applyButton|The message for the Apply action button.:Apply`;
       }
       let i18n_42;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_42 = goog.getMsg("Cancel");
-        i18n_42 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_42;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_42 = goog.getMsg("Cancel");
+        i18n_42 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_42;
       } else {
         i18n_42 = $localize`:kendo.flatcolorpicker.cancelButton|The message for the Cancel action button.:Cancel`;
       }
       let i18n_43;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_43 = goog.getMsg("Red channel");
-        i18n_43 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_43;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_43 = goog.getMsg("Red channel");
+        i18n_43 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_43;
       } else {
         i18n_43 = $localize`:kendo.flatcolorpicker.redChannelLabel|The label of the NumericTextBox representing the red color channel.:Red channel`;
       }
       let i18n_44;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_44 = goog.getMsg("Green channel");
-        i18n_44 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_44;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_44 = goog.getMsg("Green channel");
+        i18n_44 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_44;
       } else {
         i18n_44 = $localize`:kendo.flatcolorpicker.greenChannelLabel|The label of the NumericTextBox representing the green color channel.:Green channel`;
       }
       let i18n_45;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_45 = goog.getMsg("Blue channel");
-        i18n_45 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_45;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_45 = goog.getMsg("Blue channel");
+        i18n_45 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_45;
       } else {
         i18n_45 = $localize`:kendo.flatcolorpicker.blueChannelLabel|The label of the NumericTextBox representing the blue color channel.:Blue channel`;
       }
       let i18n_46;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_46 = goog.getMsg("Alpha channel");
-        i18n_46 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_46;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_46 = goog.getMsg("Alpha channel");
+        i18n_46 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_46;
       } else {
         i18n_46 = $localize`:kendo.flatcolorpicker.alphaChannelLabel|The label of the NumericTextBox representing the alpha color channel.:Alpha channel`;
       }
       let i18n_47;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_47 = goog.getMsg("R");
-        i18n_47 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_47;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_47 = goog.getMsg("R");
+        i18n_47 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_47;
       } else {
         i18n_47 = $localize`:kendo.flatcolorpicker.redChannelLabel|The label of the NumericTextBox representing the red color channel.:R`;
       }
       let i18n_48;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_48 = goog.getMsg("G");
-        i18n_48 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_48;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_48 = goog.getMsg("G");
+        i18n_48 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_48;
       } else {
         i18n_48 = $localize`:kendo.flatcolorpicker.greenInputPlaceholder|The placeholder for the green color input.:G`;
       }
       let i18n_49;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_49 = goog.getMsg("B");
-        i18n_49 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_49;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_49 = goog.getMsg("B");
+        i18n_49 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_49;
       } else {
         i18n_49 = $localize`:kendo.flatcolorpicker.blueInputPlaceholder|The placeholder for the blue color input.:B`;
       }
       let i18n_50;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_50 = goog.getMsg("HEX");
-        i18n_50 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_50;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_50 = goog.getMsg("HEX");
+        i18n_50 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_50;
       } else {
         i18n_50 = $localize`:kendo.flatcolorpicker.hexInputPlaceholder|The placeholder for the HEX color input.:HEX`;
       }
@@ -24819,7 +21707,7 @@ var ColorPickerComponent = class _ColorPickerComponent {
    * Returns the current open state. Returns `true` if the Popup (or ActionSheet in adaptive mode) is currently open.
    */
   get isOpen() {
-    return isPresent4(this.popupRef) || this.isActionSheetExpanded;
+    return isPresent3(this.popupRef) || this.isActionSheetExpanded;
   }
   /**
    * @hidden
@@ -24913,7 +21801,7 @@ var ColorPickerComponent = class _ColorPickerComponent {
     this.renderer = renderer;
     this.injector = injector;
     this.adaptiveService = adaptiveService;
-    A(packageMetadata3);
+    A(packageMetadata2);
     this.dynamicRTLSubscription = this.localizationService.changes.subscribe(({
       rtl
     }) => {
@@ -25059,7 +21947,7 @@ var ColorPickerComponent = class _ColorPickerComponent {
    * Clears the value of the ColorPicker.
    */
   reset() {
-    if (!isPresent4(this.value)) {
+    if (!isPresent3(this.value)) {
       return;
     }
     this._value = void 0;
@@ -25083,7 +21971,7 @@ var ColorPickerComponent = class _ColorPickerComponent {
     } else {
       this.closePopup();
     }
-    open = isPresent4(open) ? open : !this.isOpen;
+    open = isPresent3(open) ? open : !this.isOpen;
     if (open) {
       if (this.isAdaptive && !this.isActionSheetExpanded) {
         this.openActionSheet();
@@ -25463,190 +22351,190 @@ var ColorPickerComponent = class _ColorPickerComponent {
     consts: () => {
       let i18n_51;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_51 = goog.getMsg("Colorpicker no color chosen");
-        i18n_51 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_51;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_51 = goog.getMsg("Colorpicker no color chosen");
+        i18n_51 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_51;
       } else {
         i18n_51 = $localize`:kendo.colorpicker.colorPickerNoColor|The aria-label applied to the ColorPicker component when the value is empty.:Colorpicker no color chosen`;
       }
       let i18n_52;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_52 = goog.getMsg("Flatcolorpicker no color chosen");
-        i18n_52 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_52;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_52 = goog.getMsg("Flatcolorpicker no color chosen");
+        i18n_52 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_52;
       } else {
         i18n_52 = $localize`:kendo.colorpicker.flatColorPickerNoColor|The aria-label applied to the FlatColorPicker component when the value is empty.:Flatcolorpicker no color chosen`;
       }
       let i18n_53;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_53 = goog.getMsg("Colorgradient no color chosen");
-        i18n_53 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_53;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_53 = goog.getMsg("Colorgradient no color chosen");
+        i18n_53 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_53;
       } else {
         i18n_53 = $localize`:kendo.colorpicker.colorGradientNoColor|The aria-label applied to the ColorGradient component when the value is empty.:Colorgradient no color chosen`;
       }
       let i18n_54;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_54 = goog.getMsg("Colorpalette no color chosen");
-        i18n_54 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_54;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_54 = goog.getMsg("Colorpalette no color chosen");
+        i18n_54 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_54;
       } else {
         i18n_54 = $localize`:kendo.colorpicker.colorPaletteNoColor|The aria-label applied to the ColorPalette component when the value is empty.:Colorpalette no color chosen`;
       }
       let i18n_55;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_55 = goog.getMsg("Choose color");
-        i18n_55 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_55;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_55 = goog.getMsg("Choose color");
+        i18n_55 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_55;
       } else {
         i18n_55 = $localize`:kendo.colorpicker.colorGradientHandle|The title for the gradient color drag handle chooser.:Choose color`;
       }
       let i18n_56;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_56 = goog.getMsg("Clear value");
-        i18n_56 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_56;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_56 = goog.getMsg("Clear value");
+        i18n_56 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_56;
       } else {
         i18n_56 = $localize`:kendo.colorpicker.clearButton|The title for the clear button.:Clear value`;
       }
       let i18n_57;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_57 = goog.getMsg("Set hue");
-        i18n_57 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_57;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_57 = goog.getMsg("Set hue");
+        i18n_57 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_57;
       } else {
         i18n_57 = $localize`:kendo.colorpicker.hueSliderHandle|The title for the hue slider handle.:Set hue`;
       }
       let i18n_58;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_58 = goog.getMsg("Set opacity");
-        i18n_58 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_58;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_58 = goog.getMsg("Set opacity");
+        i18n_58 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_58;
       } else {
         i18n_58 = $localize`:kendo.colorpicker.opacitySliderHandle|The title for the opacity slider handle.:Set opacity`;
       }
       let i18n_59;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_59 = goog.getMsg("Contrast ratio");
-        i18n_59 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_59;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_59 = goog.getMsg("Contrast ratio");
+        i18n_59 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_59;
       } else {
         i18n_59 = $localize`:kendo.colorpicker.contrastRatio|The contrast ratio message for the contrast tool.:Contrast ratio`;
       }
       let i18n_60;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_60 = goog.getMsg("Color preview");
-        i18n_60 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_60;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_60 = goog.getMsg("Color preview");
+        i18n_60 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_60;
       } else {
         i18n_60 = $localize`:kendo.colorpicker.previewColor|The message for the color preview pane.:Color preview`;
       }
       let i18n_61;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_61 = goog.getMsg("Revert selection");
-        i18n_61 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_61;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_61 = goog.getMsg("Revert selection");
+        i18n_61 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_61;
       } else {
         i18n_61 = $localize`:kendo.colorpicker.revertSelection|The message for the selected color pane.:Revert selection`;
       }
       let i18n_62;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_62 = goog.getMsg("Gradient view");
-        i18n_62 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_62;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_62 = goog.getMsg("Gradient view");
+        i18n_62 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_62;
       } else {
         i18n_62 = $localize`:kendo.colorpicker.gradientView|The message for the gradient view button.:Gradient view`;
       }
       let i18n_63;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_63 = goog.getMsg("Palette view");
-        i18n_63 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_63;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_63 = goog.getMsg("Palette view");
+        i18n_63 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_63;
       } else {
         i18n_63 = $localize`:kendo.colorpicker.paletteView|The message for the palette view button.:Palette view`;
       }
       let i18n_64;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_64 = goog.getMsg("Change color format");
-        i18n_64 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_64;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_64 = goog.getMsg("Change color format");
+        i18n_64 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_64;
       } else {
         i18n_64 = $localize`:kendo.colorpicker.formatButton|The message for the input format toggle button.:Change color format`;
       }
       let i18n_65;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_65 = goog.getMsg("Apply");
-        i18n_65 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_65;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_65 = goog.getMsg("Apply");
+        i18n_65 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_65;
       } else {
         i18n_65 = $localize`:kendo.colorpicker.applyButton|The message for the Apply action button.:Apply`;
       }
       let i18n_66;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_66 = goog.getMsg("Cancel");
-        i18n_66 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_66;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_66 = goog.getMsg("Cancel");
+        i18n_66 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_66;
       } else {
         i18n_66 = $localize`:kendo.colorpicker.cancelButton|The message for the Cancel action button.:Cancel`;
       }
       let i18n_67;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_67 = goog.getMsg("Close");
-        i18n_67 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_67;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_67 = goog.getMsg("Close");
+        i18n_67 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_67;
       } else {
         i18n_67 = $localize`:kendo.colorpicker.adaptiveCloseButtonTitle|The title of the Close button of the ActionSheet that is rendered instead of the Popup when using small screen devices in adaptive mode.:Close`;
       }
       let i18n_68;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_68 = goog.getMsg("Choose Color");
-        i18n_68 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_68;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_68 = goog.getMsg("Choose Color");
+        i18n_68 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_68;
       } else {
         i18n_68 = $localize`:kendo.colorpicker.adaptiveTitle|The title for the ActionSheet when in adaptive mode.:Choose Color`;
       }
       let i18n_69;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_69 = goog.getMsg("Red channel");
-        i18n_69 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_69;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_69 = goog.getMsg("Red channel");
+        i18n_69 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_69;
       } else {
         i18n_69 = $localize`:kendo.colorpicker.redChannelLabel|The label of the NumericTextBox representing the red color channel.:Red channel`;
       }
       let i18n_70;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_70 = goog.getMsg("Green channel");
-        i18n_70 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_70;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_70 = goog.getMsg("Green channel");
+        i18n_70 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_70;
       } else {
         i18n_70 = $localize`:kendo.colorpicker.greenChannelLabel|The label of the NumericTextBox representing the green color channel.:Green channel`;
       }
       let i18n_71;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_71 = goog.getMsg("Blue channel");
-        i18n_71 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_71;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_71 = goog.getMsg("Blue channel");
+        i18n_71 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_71;
       } else {
         i18n_71 = $localize`:kendo.colorpicker.blueChannelLabel|The label of the NumericTextBox representing the blue color channel.:Blue channel`;
       }
       let i18n_72;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_72 = goog.getMsg("Alpha channel");
-        i18n_72 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_72;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_72 = goog.getMsg("Alpha channel");
+        i18n_72 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_72;
       } else {
         i18n_72 = $localize`:kendo.colorpicker.alphaChannelLabel|The label of the NumericTextBox representing the alpha color channel.:Alpha channel`;
       }
       let i18n_73;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_73 = goog.getMsg("R");
-        i18n_73 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_73;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_73 = goog.getMsg("R");
+        i18n_73 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_73;
       } else {
         i18n_73 = $localize`:kendo.colorpicker.redChannelLabel|The label of the NumericTextBox representing the red color channel.:R`;
       }
       let i18n_74;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_74 = goog.getMsg("G");
-        i18n_74 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_74;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_74 = goog.getMsg("G");
+        i18n_74 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_74;
       } else {
         i18n_74 = $localize`:kendo.colorpicker.greenInputPlaceholder|The placeholder for the green color input.:G`;
       }
       let i18n_75;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_75 = goog.getMsg("B");
-        i18n_75 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_75;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_75 = goog.getMsg("B");
+        i18n_75 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_75;
       } else {
         i18n_75 = $localize`:kendo.colorpicker.blueInputPlaceholder|The placeholder for the blue color input.:B`;
       }
       let i18n_76;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_76 = goog.getMsg("HEX");
-        i18n_76 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_76;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_76 = goog.getMsg("HEX");
+        i18n_76 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_76;
       } else {
         i18n_76 = $localize`:kendo.colorpicker.hexInputPlaceholder|The placeholder for the HEX color input.:HEX`;
       }
       let i18n_77;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_77 = goog.getMsg("Select color");
-        i18n_77 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_77;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_77 = goog.getMsg("Select color");
+        i18n_77 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_77;
       } else {
         i18n_77 = $localize`:kendo.colorpicker.toggleButtonLabel|The text set as aria-label on the toggle button.:Select color`;
       }
@@ -26175,7 +23063,7 @@ var ErrorComponent = class _ErrorComponent {
   });
 })();
 var serial = 0;
-var HintComponent2 = class _HintComponent {
+var HintComponent = class _HintComponent {
   /**
    * Sets the alignment of the hint message.
    *
@@ -26225,7 +23113,7 @@ var HintComponent2 = class _HintComponent {
   });
 };
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(HintComponent2, [{
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(HintComponent, [{
     type: Component,
     args: [{
       selector: "kendo-formhint",
@@ -26475,7 +23363,7 @@ var FormFieldComponent = class _FormFieldComponent {
     this.localizationService = localizationService;
     this.hostElement = hostElement;
     this.formService = formService;
-    A(packageMetadata3);
+    A(packageMetadata2);
     this.subscriptions.add(this.localizationService.changes.subscribe(({
       rtl
     }) => {
@@ -26631,7 +23519,7 @@ var FormFieldComponent = class _FormFieldComponent {
         ɵɵcontentQuery(dirIndex, NgControl, 5);
         ɵɵcontentQuery(dirIndex, NgControl, 5, ElementRef);
         ɵɵcontentQuery(dirIndex, ErrorComponent, 5);
-        ɵɵcontentQuery(dirIndex, HintComponent2, 5);
+        ɵɵcontentQuery(dirIndex, HintComponent, 5);
       }
       if (rf & 2) {
         let _t;
@@ -26758,7 +23646,7 @@ var FormFieldComponent = class _FormFieldComponent {
     }],
     hintChildren: [{
       type: ContentChildren,
-      args: [HintComponent2, {
+      args: [HintComponent, {
         descendants: true
       }]
     }],
@@ -26820,7 +23708,7 @@ var RadioButtonComponent = class _RadioButtonComponent extends RadioCheckBoxBase
     this.ngZone = ngZone;
     this.injector = injector;
     this.localizationService = localizationService;
-    A(packageMetadata3);
+    A(packageMetadata2);
     this.direction = localizationService.rtl ? "rtl" : "ltr";
   }
   ngOnInit() {
@@ -27030,7 +23918,7 @@ var RadioButtonDirective = class _RadioButtonDirective {
   constructor(renderer, hostElement) {
     this.renderer = renderer;
     this.hostElement = hostElement;
-    A(packageMetadata3);
+    A(packageMetadata2);
   }
   ngAfterViewInit() {
     const stylingInputs = ["size"];
@@ -27326,7 +24214,7 @@ var RatingComponent = class _RatingComponent {
     this.localizationService = localizationService;
     this.cdr = cdr;
     this.zone = zone;
-    A(packageMetadata3);
+    A(packageMetadata2);
   }
   ngOnInit() {
     this.subscriptions.add(this.localizationService.changes.subscribe(({
@@ -28079,7 +24967,7 @@ var LocalizedSignatureMessagesDirective = class _LocalizedSignatureMessagesDirec
     type: LocalizationService
   }], null);
 })();
-var noop4 = () => {
+var noop2 = () => {
 };
 var _id = 0;
 var nextId = () => "k-signature-focusable-" + _id++;
@@ -28388,8 +25276,8 @@ var SignatureComponent = class _SignatureComponent {
       readonly: this.readonly
     };
   }
-  notifyNgTouched = noop4;
-  notifyNgChanged = noop4;
+  notifyNgTouched = noop2;
+  notifyNgChanged = noop2;
   instance;
   _value;
   _tabindex = 0;
@@ -28403,7 +25291,7 @@ var SignatureComponent = class _SignatureComponent {
     this.cd = cd;
     this.localization = localization;
     this.cdr = cdr;
-    A(packageMetadata3);
+    A(packageMetadata2);
     this.direction = localization.rtl ? "rtl" : "ltr";
   }
   ngOnInit() {
@@ -28530,7 +25418,7 @@ var SignatureComponent = class _SignatureComponent {
    * Clears the value of the Signature.
    */
   reset() {
-    if (!isPresent4(this.value)) {
+    if (!isPresent3(this.value)) {
       return;
     }
     this.instance?.clear();
@@ -28548,7 +25436,7 @@ var SignatureComponent = class _SignatureComponent {
     if (this.disabled || this.readonly) {
       return;
     }
-    open = isPresent4(open) ? open : !this.isOpen;
+    open = isPresent3(open) ? open : !this.isOpen;
     this.isOpen = open;
   }
   /**
@@ -28577,7 +25465,7 @@ var SignatureComponent = class _SignatureComponent {
   applyHostClasses() {
     const classList = this.element.nativeElement.classList;
     this.hostClasses.forEach(([name]) => classList.remove(name));
-    this.hostClasses = [[`k-signature-${SIZE_MAP[this.size]}`, isPresent4(this.size)], [`k-input-${this.fillMode}`, isPresent4(this.fillMode)], [`k-rounded-${ROUNDED_MAP[this.rounded]}`, isPresent4(this.rounded)]];
+    this.hostClasses = [[`k-signature-${SIZE_MAP[this.size]}`, isPresent3(this.size)], [`k-input-${this.fillMode}`, isPresent3(this.fillMode)], [`k-rounded-${ROUNDED_MAP[this.rounded]}`, isPresent3(this.rounded)]];
     this.hostClasses.forEach(([name, enabled]) => classList.toggle(name, enabled));
   }
   readThemeColors() {
@@ -28775,29 +25663,29 @@ var SignatureComponent = class _SignatureComponent {
     consts: () => {
       let i18n_78;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_78 = goog.getMsg("Clear");
-        i18n_78 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_78;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_78 = goog.getMsg("Clear");
+        i18n_78 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_78;
       } else {
         i18n_78 = $localize`:kendo.signature.clear|The message for the Clear button.:Clear`;
       }
       let i18n_79;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_79 = goog.getMsg("Maximize");
-        i18n_79 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_79;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_79 = goog.getMsg("Maximize");
+        i18n_79 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_79;
       } else {
         i18n_79 = $localize`:kendo.signature.maximize|The message for the Maximize button.:Maximize`;
       }
       let i18n_80;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_80 = goog.getMsg("Minimize");
-        i18n_80 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_80;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_80 = goog.getMsg("Minimize");
+        i18n_80 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_80;
       } else {
         i18n_80 = $localize`:kendo.signature.minimize|The message for the Minimize button.:Minimize`;
       }
       let i18n_81;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_81 = goog.getMsg("Signature canvas");
-        i18n_81 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_81;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_81 = goog.getMsg("Signature canvas");
+        i18n_81 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_81;
       } else {
         i18n_81 = $localize`:kendo.signature.canvasLabel|The message for the Canvas element aria-label.:Signature canvas`;
       }
@@ -29760,7 +26648,7 @@ var TextAreaComponent = class _TextAreaComponent extends TextFieldsBase {
     this.renderer = renderer;
     this.injector = injector;
     this.hostElement = hostElement;
-    A(packageMetadata3);
+    A(packageMetadata2);
     this.direction = localizationService.rtl ? "rtl" : "ltr";
   }
   ngAfterContentInit() {
@@ -29821,7 +26709,7 @@ var TextAreaComponent = class _TextAreaComponent extends TextFieldsBase {
       }
     }
     if (changes.cols) {
-      if (isPresent4(changes.cols.currentValue)) {
+      if (isPresent3(changes.cols.currentValue)) {
         this.renderer.setStyle(hostElement, "width", "auto");
       } else {
         this.renderer.removeStyle(hostElement, "width");
@@ -31284,14 +28172,14 @@ var OTPInputComponent = class _OTPInputComponent {
     consts: () => {
       let i18n_82;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_82 = goog.getMsg("{$interpolation}", {
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_82 = goog.getMsg("{$interpolation}", {
           "interpolation": "�0�"
         }, {
           original_code: {
             "interpolation": "{{ 'Input {currentInput} of {totalInputs}, current value {value}' }}"
           }
         });
-        i18n_82 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_82;
+        i18n_82 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_INPUTS_FESM2022_PROGRESS_KENDO_ANGULAR_INPUTS_MJS_82;
       } else {
         i18n_82 = $localize`:kendo.otpinput.ariaLabel|The value of the aria-label attribute of the input fields.:${"�0�"}:INTERPOLATION:`;
       }
@@ -31594,8 +28482,8 @@ var FormComponent = class _FormComponent {
     this.cdr = cdr;
     this.formService = formService;
     this.localizationService = localizationService;
-    const isValid = A(packageMetadata3);
-    this.licenseMessage = getLicenseMessage(packageMetadata3);
+    const isValid = A(packageMetadata2);
+    this.licenseMessage = getLicenseMessage(packageMetadata2);
     this.showLicenseWatermark = shouldShowValidationUI(isValid);
     this.direction = localizationService.rtl ? "rtl" : "ltr";
     this.subscriptions.add(this.localizationService.changes.subscribe(({
@@ -31782,7 +28670,7 @@ var FormSeparatorComponent = class _FormSeparatorComponent {
     this.renderer = renderer;
     this.hostElement = hostElement;
     this.formService = formService;
-    A(packageMetadata3);
+    A(packageMetadata2);
     this.subscriptions.add(this.formService.formWidth.pipe(filter((width) => width !== null)).subscribe((width) => {
       this._formWidth = width;
       this.updateColSpanClass();
@@ -31909,7 +28797,7 @@ var FormFieldSetComponent = class _FormFieldSetComponent {
     this.formService = formService;
     this.cdr = cdr;
     this.localizationService = localizationService;
-    A(packageMetadata3);
+    A(packageMetadata2);
     this.direction = localizationService.rtl ? "rtl" : "ltr";
     this.subs.add(this.localizationService.changes.subscribe(({
       rtl
@@ -32092,7 +28980,7 @@ var KENDO_TEXTAREA = [TextAreaComponent, TextAreaDirective, TextAreaPrefixCompon
 var KENDO_CHECKBOX = [CheckBoxComponent, CheckBoxDirective];
 var KENDO_RADIOBUTTON = [RadioButtonComponent, RadioButtonDirective];
 var KENDO_SWITCH = [SwitchComponent, SwitchCustomMessagesComponent];
-var KENDO_FORMFIELD = [FormFieldComponent, HintComponent2, ErrorComponent];
+var KENDO_FORMFIELD = [FormFieldComponent, HintComponent, ErrorComponent];
 var KENDO_FORM = [FormComponent, FormSeparatorComponent, FormFieldSetComponent, ...KENDO_FORMFIELD];
 var KENDO_SLIDER = [SliderComponent, SliderCustomMessagesComponent, LabelTemplateDirective];
 var KENDO_RANGESLIDER = [RangeSliderComponent, RangeSliderCustomMessagesComponent, LabelTemplateDirective];
@@ -32109,8 +28997,8 @@ var InputsModule = class _InputsModule {
   };
   static ɵmod = ɵɵdefineNgModule({
     type: _InputsModule,
-    imports: [TextBoxDirective, TextBoxComponent, InputSeparatorComponent, InputSpacerComponent, TextBoxSuffixTemplateDirective, TextBoxPrefixTemplateDirective, TextBoxCustomMessagesComponent, PrefixTemplateDirective, SuffixTemplateDirective, SeparatorComponent, NumericTextBoxComponent, NumericTextBoxCustomMessagesComponent, PrefixTemplateDirective, SuffixTemplateDirective, SeparatorComponent, MaskedTextBoxComponent, PrefixTemplateDirective, SuffixTemplateDirective, SeparatorComponent, TextAreaComponent, TextAreaDirective, TextAreaPrefixComponent, TextAreaSuffixComponent, SeparatorComponent, CheckBoxComponent, CheckBoxDirective, RadioButtonComponent, RadioButtonDirective, SwitchComponent, SwitchCustomMessagesComponent, FormComponent, FormSeparatorComponent, FormFieldSetComponent, FormFieldComponent, HintComponent2, ErrorComponent, FormFieldComponent, HintComponent2, ErrorComponent, SliderComponent, SliderCustomMessagesComponent, LabelTemplateDirective, RangeSliderComponent, RangeSliderCustomMessagesComponent, LabelTemplateDirective, RatingComponent, RatingItemTemplateDirective, RatingHoveredItemTemplateDirective, RatingSelectedItemTemplateDirective, SignatureComponent, SignatureCustomMessagesComponent, ColorPickerComponent, ColorPickerCustomMessagesComponent, FlatColorPickerComponent, ColorPickerCustomMessagesComponent, ColorGradientComponent, ColorPickerCustomMessagesComponent, ColorPaletteComponent, ColorPickerCustomMessagesComponent, OTPInputComponent, OTPInputCustomMessagesComponent, PrefixTemplateDirective, SuffixTemplateDirective, SeparatorComponent],
-    exports: [TextBoxDirective, TextBoxComponent, InputSeparatorComponent, InputSpacerComponent, TextBoxSuffixTemplateDirective, TextBoxPrefixTemplateDirective, TextBoxCustomMessagesComponent, PrefixTemplateDirective, SuffixTemplateDirective, SeparatorComponent, NumericTextBoxComponent, NumericTextBoxCustomMessagesComponent, PrefixTemplateDirective, SuffixTemplateDirective, SeparatorComponent, MaskedTextBoxComponent, PrefixTemplateDirective, SuffixTemplateDirective, SeparatorComponent, TextAreaComponent, TextAreaDirective, TextAreaPrefixComponent, TextAreaSuffixComponent, SeparatorComponent, CheckBoxComponent, CheckBoxDirective, RadioButtonComponent, RadioButtonDirective, SwitchComponent, SwitchCustomMessagesComponent, FormComponent, FormSeparatorComponent, FormFieldSetComponent, FormFieldComponent, HintComponent2, ErrorComponent, FormFieldComponent, HintComponent2, ErrorComponent, SliderComponent, SliderCustomMessagesComponent, LabelTemplateDirective, RangeSliderComponent, RangeSliderCustomMessagesComponent, LabelTemplateDirective, RatingComponent, RatingItemTemplateDirective, RatingHoveredItemTemplateDirective, RatingSelectedItemTemplateDirective, SignatureComponent, SignatureCustomMessagesComponent, ColorPickerComponent, ColorPickerCustomMessagesComponent, FlatColorPickerComponent, ColorPickerCustomMessagesComponent, ColorGradientComponent, ColorPickerCustomMessagesComponent, ColorPaletteComponent, ColorPickerCustomMessagesComponent, OTPInputComponent, OTPInputCustomMessagesComponent, PrefixTemplateDirective, SuffixTemplateDirective, SeparatorComponent]
+    imports: [TextBoxDirective, TextBoxComponent, InputSeparatorComponent, InputSpacerComponent, TextBoxSuffixTemplateDirective, TextBoxPrefixTemplateDirective, TextBoxCustomMessagesComponent, PrefixTemplateDirective, SuffixTemplateDirective, SeparatorComponent, NumericTextBoxComponent, NumericTextBoxCustomMessagesComponent, PrefixTemplateDirective, SuffixTemplateDirective, SeparatorComponent, MaskedTextBoxComponent, PrefixTemplateDirective, SuffixTemplateDirective, SeparatorComponent, TextAreaComponent, TextAreaDirective, TextAreaPrefixComponent, TextAreaSuffixComponent, SeparatorComponent, CheckBoxComponent, CheckBoxDirective, RadioButtonComponent, RadioButtonDirective, SwitchComponent, SwitchCustomMessagesComponent, FormComponent, FormSeparatorComponent, FormFieldSetComponent, FormFieldComponent, HintComponent, ErrorComponent, FormFieldComponent, HintComponent, ErrorComponent, SliderComponent, SliderCustomMessagesComponent, LabelTemplateDirective, RangeSliderComponent, RangeSliderCustomMessagesComponent, LabelTemplateDirective, RatingComponent, RatingItemTemplateDirective, RatingHoveredItemTemplateDirective, RatingSelectedItemTemplateDirective, SignatureComponent, SignatureCustomMessagesComponent, ColorPickerComponent, ColorPickerCustomMessagesComponent, FlatColorPickerComponent, ColorPickerCustomMessagesComponent, ColorGradientComponent, ColorPickerCustomMessagesComponent, ColorPaletteComponent, ColorPickerCustomMessagesComponent, OTPInputComponent, OTPInputCustomMessagesComponent, PrefixTemplateDirective, SuffixTemplateDirective, SeparatorComponent],
+    exports: [TextBoxDirective, TextBoxComponent, InputSeparatorComponent, InputSpacerComponent, TextBoxSuffixTemplateDirective, TextBoxPrefixTemplateDirective, TextBoxCustomMessagesComponent, PrefixTemplateDirective, SuffixTemplateDirective, SeparatorComponent, NumericTextBoxComponent, NumericTextBoxCustomMessagesComponent, PrefixTemplateDirective, SuffixTemplateDirective, SeparatorComponent, MaskedTextBoxComponent, PrefixTemplateDirective, SuffixTemplateDirective, SeparatorComponent, TextAreaComponent, TextAreaDirective, TextAreaPrefixComponent, TextAreaSuffixComponent, SeparatorComponent, CheckBoxComponent, CheckBoxDirective, RadioButtonComponent, RadioButtonDirective, SwitchComponent, SwitchCustomMessagesComponent, FormComponent, FormSeparatorComponent, FormFieldSetComponent, FormFieldComponent, HintComponent, ErrorComponent, FormFieldComponent, HintComponent, ErrorComponent, SliderComponent, SliderCustomMessagesComponent, LabelTemplateDirective, RangeSliderComponent, RangeSliderCustomMessagesComponent, LabelTemplateDirective, RatingComponent, RatingItemTemplateDirective, RatingHoveredItemTemplateDirective, RatingSelectedItemTemplateDirective, SignatureComponent, SignatureCustomMessagesComponent, ColorPickerComponent, ColorPickerCustomMessagesComponent, FlatColorPickerComponent, ColorPickerCustomMessagesComponent, ColorGradientComponent, ColorPickerCustomMessagesComponent, ColorPaletteComponent, ColorPickerCustomMessagesComponent, OTPInputComponent, OTPInputCustomMessagesComponent, PrefixTemplateDirective, SuffixTemplateDirective, SeparatorComponent]
   });
   static ɵinj = ɵɵdefineInjector({
     providers: [IconsService, PopupService, ResizeBatchService, DialogContainerService, DialogService, WindowService, WindowContainerService, AdaptiveService],
@@ -32384,8 +29272,8 @@ var FormFieldModule = class _FormFieldModule {
   };
   static ɵmod = ɵɵdefineNgModule({
     type: _FormFieldModule,
-    imports: [FormFieldComponent, HintComponent2, ErrorComponent],
-    exports: [FormFieldComponent, HintComponent2, ErrorComponent]
+    imports: [FormFieldComponent, HintComponent, ErrorComponent],
+    exports: [FormFieldComponent, HintComponent, ErrorComponent]
   });
   static ɵinj = ɵɵdefineInjector({});
 };
@@ -32404,8 +29292,8 @@ var FormModule = class _FormModule {
   };
   static ɵmod = ɵɵdefineNgModule({
     type: _FormModule,
-    imports: [FormComponent, FormSeparatorComponent, FormFieldSetComponent, FormFieldComponent, HintComponent2, ErrorComponent],
-    exports: [FormComponent, FormSeparatorComponent, FormFieldSetComponent, FormFieldComponent, HintComponent2, ErrorComponent]
+    imports: [FormComponent, FormSeparatorComponent, FormFieldSetComponent, FormFieldComponent, HintComponent, ErrorComponent],
+    exports: [FormComponent, FormSeparatorComponent, FormFieldSetComponent, FormFieldComponent, HintComponent, ErrorComponent]
   });
   static ɵinj = ɵɵdefineInjector({
     imports: [FormComponent]
@@ -32470,7 +29358,7 @@ var RatingModule = class _RatingModule {
 })();
 
 // node_modules/@progress/kendo-angular-treeview/fesm2022/progress-kendo-angular-treeview.mjs
-var _c04 = ["kendoTreeViewGroup", ""];
+var _c03 = ["kendoTreeViewGroup", ""];
 var _c110 = (a0, a1) => ({
   $implicit: a0,
   index: a1
@@ -32731,7 +29619,7 @@ function DropHintComponent_Conditional_1_Template(rf, ctx) {
     ɵɵproperty("ngTemplateOutlet", ctx_r0.template)("ngTemplateOutletContext", ɵɵpureFunction3(2, _c610, ctx_r0.action, ctx_r0.sourceItem, ctx_r0.destinationItem));
   }
 }
-var packageMetadata4 = {
+var packageMetadata3 = {
   name: "@progress/kendo-angular-treeview",
   productName: "Kendo UI for Angular",
   productCode: "KENDOUIANGULAR",
@@ -32752,7 +29640,7 @@ var isDisabled = () => false;
 var hasCheckbox = () => true;
 var isExpanded = () => true;
 var isSelected = () => false;
-var isVisible3 = () => true;
+var isVisible2 = () => true;
 var trackBy = (_, item) => item;
 var ExpandStateService = class _ExpandStateService {
   changes = new Subject();
@@ -32853,9 +29741,9 @@ var closestWithMatch = (element, selector) => {
   }
   return null;
 };
-var noop5 = () => {
+var noop3 = () => {
 };
-var isPresent5 = (value) => value !== null && value !== void 0;
+var isPresent4 = (value) => value !== null && value !== void 0;
 var isBlank = (value) => value === null || value === void 0;
 var isArray = (value) => Array.isArray(value);
 var isNullOrEmptyString = (value) => isBlank(value) || value.trim().length === 0;
@@ -32871,7 +29759,7 @@ var closestNode = (element) => {
     return closestWithMatch(element, selector);
   }
 };
-var isFocusable3 = (element) => {
+var isFocusable2 = (element) => {
   if (element.tagName) {
     const tagName = element.tagName.toLowerCase();
     const tabIndex = element.getAttribute("tabIndex");
@@ -32907,7 +29795,7 @@ var isContent = (element) => {
   }
 };
 var getContentElement = (parent) => {
-  if (!isPresent5(parent)) {
+  if (!isPresent4(parent)) {
     return null;
   }
   const selector = ".k-treeview-leaf:not(.k-treeview-load-more-button)";
@@ -32917,7 +29805,7 @@ var getContentElement = (parent) => {
   return parent.querySelector(selector);
 };
 var isLoadMoreButton = (element) => {
-  return isPresent5(closestWithMatch(element, ".k-treeview-leaf.k-treeview-load-more-button"));
+  return isPresent4(closestWithMatch(element, ".k-treeview-leaf.k-treeview-load-more-button"));
 };
 var closest3 = (node, predicate) => {
   while (node && !predicate(node)) {
@@ -32932,13 +29820,13 @@ var focusableNode = (element) => element.nativeElement.querySelector('li[tabinde
 var nodeId = (node) => node ? node.getAttribute("data-treeindex") : "";
 var nodeIndex = (item) => (item || {}).index;
 var dataItemsEqual = (first, second) => {
-  if (!isPresent5(first) && !isPresent5(second)) {
+  if (!isPresent4(first) && !isPresent4(second)) {
     return true;
   }
-  return isPresent5(first) && isPresent5(second) && first.item.dataItem === second.item.dataItem;
+  return isPresent4(first) && isPresent4(second) && first.item.dataItem === second.item.dataItem;
 };
 var getDataItem = (lookup) => {
-  if (!isPresent5(lookup)) {
+  if (!isPresent4(lookup)) {
     return lookup;
   }
   return lookup.item.dataItem;
@@ -32973,12 +29861,12 @@ var filterTree = (items, term, {
   });
 };
 var setParentChain = (node) => {
-  if (!isPresent5(node)) {
+  if (!isPresent4(node)) {
     return;
   }
   node.containsMatches = true;
   node.visible = true;
-  if (isPresent5(node.parent) && !node.parent.containsMatches) {
+  if (isPresent4(node.parent) && !node.parent.containsMatches) {
     setParentChain(node.parent);
   }
 };
@@ -33006,10 +29894,10 @@ var matchByCase = (matcher, ignoreCase) => (a, b) => {
 };
 var matchByFieldAndCase = (field, operator, ignoreCase) => (dataItem, term) => matchByCase(operators[operator], ignoreCase)(getter(field)(dataItem), term);
 var buildTreeIndex = (parentIndex, itemIndex) => {
-  return [parentIndex, itemIndex].filter((part) => isPresent5(part)).join("_");
+  return [parentIndex, itemIndex].filter((part) => isPresent4(part)).join("_");
 };
 var buildTreeItem = (dataItem, currentLevelIndex, parentIndex) => {
-  if (!isPresent5(dataItem)) {
+  if (!isPresent4(dataItem)) {
     return null;
   }
   return {
@@ -33018,11 +29906,11 @@ var buildTreeItem = (dataItem, currentLevelIndex, parentIndex) => {
   };
 };
 var fetchLoadedDescendants = (lookup, filterExpression) => {
-  if (!isPresent5(lookup) || lookup.children.length === 0) {
+  if (!isPresent4(lookup) || lookup.children.length === 0) {
     return [];
   }
   let descendants = lookup.children;
-  if (isPresent5(filterExpression)) {
+  if (isPresent4(filterExpression)) {
     descendants = descendants.filter(filterExpression);
   }
   descendants.forEach((child) => descendants = descendants.concat(fetchLoadedDescendants(child, filterExpression)));
@@ -33066,10 +29954,10 @@ var NavigationModel = class {
   }
   lastVisibleNode() {
     let node = lastVisibleNode(this.nodes);
-    while (isPresent5(node) && safeChildren(node).length > 0) {
+    while (isPresent4(node) && safeChildren(node).length > 0) {
       const children = safeChildren(node);
       const lastVisibleChild = lastVisibleNode(children);
-      if (!isPresent5(lastVisibleChild)) {
+      if (!isPresent4(lastVisibleChild)) {
         return node;
       }
       node = lastVisibleChild;
@@ -33154,7 +30042,7 @@ var NavigationModel = class {
     children.splice(children.indexOf(node), 1);
   }
   childLevel(nodes) {
-    const children = nodes.filter((node) => isPresent5(node));
+    const children = nodes.filter((node) => isPresent4(node));
     if (!children || !children.length) {
       return 1;
     }
@@ -33185,7 +30073,7 @@ var NavigationModel = class {
     const container = this.container(parent);
     let nextItemIndex = container.indexOf(node) + offset2;
     let nextItem = container[nextItemIndex];
-    while (isPresent5(nextItem)) {
+    while (isPresent4(nextItem)) {
       if (nextItem.visible) {
         return nextItem;
       }
@@ -33314,7 +30202,7 @@ var NavigationService2 = class _NavigationService {
     }
   }
   notifyLoadMore(index) {
-    if (!isPresent5(index)) {
+    if (!isPresent4(index)) {
       return;
     }
     this.loadMore.next(index);
@@ -33336,7 +30224,7 @@ var NavigationService2 = class _NavigationService {
   }
   registerItem(id2, index, disabled, loadMoreButton = false, visible = true) {
     const itemAtIndex = this.model.findNode(index);
-    if (isPresent5(itemAtIndex)) {
+    if (isPresent4(itemAtIndex)) {
       this.model.unregisterItem(itemAtIndex.id, itemAtIndex.index);
       if (this.isActive(index)) {
         this.deactivate();
@@ -33346,7 +30234,7 @@ var NavigationService2 = class _NavigationService {
   }
   updateItem(index, disabled, visible = true) {
     const itemAtIndex = this.model.findNode(index);
-    if (isPresent5(itemAtIndex)) {
+    if (isPresent4(itemAtIndex)) {
       if (this.isActive(index)) {
         this.deactivate();
       }
@@ -34013,7 +30901,7 @@ var TreeViewItemDirective = class _TreeViewItemDirective {
       firstChange,
       previousValue
     } = indexChange;
-    if (!firstChange && isPresent5(currentValue) && isPresent5(previousValue)) {
+    if (!firstChange && isPresent4(currentValue) && isPresent4(previousValue)) {
       this.navigationService.unregisterItem(this.id, previousValue);
       this.navigationService.registerItem(this.id, currentValue, this.isDisabled, this.isButton);
     }
@@ -34040,7 +30928,7 @@ var TreeViewItemDirective = class _TreeViewItemDirective {
     this.setAttribute("tabIndex", this.isFocusable() ? "0" : "-1");
   }
   setAttribute(attr, value) {
-    if (!isPresent5(value)) {
+    if (!isPresent4(value)) {
       this.renderer.removeAttribute(this.element.nativeElement, attr);
       return;
     }
@@ -34204,13 +31092,13 @@ var TreeViewGroupComponent = class _TreeViewGroupComponent {
     return this.localization.rtl ? chevronLeftIcon : chevronRightIcon;
   }
   get moreNodesAvailable() {
-    if (!isPresent5(this.loadMoreService) || this.data.length === 0) {
+    if (!isPresent4(this.loadMoreService) || this.data.length === 0) {
       return false;
     }
     return this.pageSize < this.totalNodesCount || this.data.length < this.totalNodesCount && this.data.length <= this.pageSize;
   }
   get pageSize() {
-    if (!isPresent5(this.loadMoreService)) {
+    if (!isPresent4(this.loadMoreService)) {
       return null;
     }
     return this.loadMoreService.getGroupSize(this.parentDataItem);
@@ -34219,7 +31107,7 @@ var TreeViewGroupComponent = class _TreeViewGroupComponent {
     this.loadMoreService.setGroupSize(this.parentDataItem, pageSize);
   }
   get data() {
-    if (isPresent5(this.pageSize)) {
+    if (isPresent4(this.pageSize)) {
       const normalizedSizeValue = this.pageSize > 0 ? this.pageSize : 0;
       return this._data.slice(0, normalizedSizeValue);
     }
@@ -34270,7 +31158,7 @@ var TreeViewGroupComponent = class _TreeViewGroupComponent {
   children = () => of([]);
   hasChildren = () => false;
   get hasTemplate() {
-    return isPresent5(this.nodeTemplateRef);
+    return isPresent4(this.nodeTemplateRef);
   }
   expandNode(index, dataItem, expand) {
     if (expand) {
@@ -34308,10 +31196,10 @@ var TreeViewGroupComponent = class _TreeViewGroupComponent {
     };
   }
   ngOnDestroy() {
-    if (isPresent5(this.nodesSubscription)) {
+    if (isPresent4(this.nodesSubscription)) {
       this.nodesSubscription.unsubscribe();
     }
-    if (isPresent5(this.loadMoreNodesSubscription)) {
+    if (isPresent4(this.loadMoreNodesSubscription)) {
       this.loadMoreNodesSubscription.unsubscribe();
     }
     this.singleRecordSubscriptions.unsubscribe();
@@ -34350,7 +31238,7 @@ var TreeViewGroupComponent = class _TreeViewGroupComponent {
     return [this.textField];
   }
   loadMoreNodes() {
-    if (isPresent5(this.loadMoreService.loadMoreNodes)) {
+    if (isPresent4(this.loadMoreService.loadMoreNodes)) {
       this.fetchMoreNodes();
     } else {
       this.loadMoreLocalNodes();
@@ -34374,7 +31262,7 @@ var TreeViewGroupComponent = class _TreeViewGroupComponent {
       return;
     }
     this.loadingMoreNodes = true;
-    if (isPresent5(this.loadMoreNodesSubscription)) {
+    if (isPresent4(this.loadMoreNodesSubscription)) {
       this.loadMoreNodesSubscription.unsubscribe();
     }
     this.loadMoreNodesSubscription = this.loadMoreService.loadMoreNodes({
@@ -34426,7 +31314,7 @@ var TreeViewGroupComponent = class _TreeViewGroupComponent {
     });
   }
   reselectItemAt(index) {
-    if (!isPresent5(index)) {
+    if (!isPresent4(index)) {
       return;
     }
     this.navigationService.deactivate();
@@ -34480,7 +31368,7 @@ var TreeViewGroupComponent = class _TreeViewGroupComponent {
       hasChildren: "hasChildren"
     },
     features: [ɵɵNgOnChangesFeature],
-    attrs: _c04,
+    attrs: _c03,
     decls: 3,
     vars: 1,
     consts: [["checkbox", ""], ["kendoTreeViewItem", "", 1, "k-treeview-item", 3, "k-hidden", "dataItem", "index", "parentDataItem", "parentIndex", "loadOnDemand", "checkable", "isChecked", "isDisabled", "isVisible", "expandable", "isExpanded", "selectable", "isSelected"], ["kendoTreeViewItem", "", "role", "button", 1, "k-treeview-item", 3, "k-treeview-load-more-checkboxes-container", "selectable", "checkable", "expandable", "index", "parentDataItem", "parentIndex"], ["kendoTreeViewItem", "", 1, "k-treeview-item", 3, "dataItem", "index", "parentDataItem", "parentIndex", "loadOnDemand", "checkable", "isChecked", "isDisabled", "isVisible", "expandable", "isExpanded", "selectable", "isSelected"], ["kendoTreeViewItemContentWrapper", "", 1, "k-treeview-item-content", 3, "dataItem", "index", "initialSelection", "isSelected"], [1, "k-treeview-toggle", 3, "kendoTreeViewLoading"], [3, "disabled", "size", "checkedState", "tabindex", "inputAttributes"], [1, "k-treeview-leaf", 3, "id"], [1, "k-treeview-leaf-text"], [3, "ngTemplateOutlet", "ngTemplateOutletContext"], ["kendoTreeViewGroup", "", "role", "group", 3, "size", "nodes", "loadOnDemand", "checkboxes", "expandIcons", "selectable", "touchActions", "children", "hasChildren", "isChecked", "isDisabled", "hasCheckbox", "disabled", "expandDisabledNodes", "isExpanded", "isSelected", "isVisible", "nodeTemplateRef", "loadMoreButtonTemplateRef", "parentIndex", "parentDataItem", "textField", "loadMoreService", "trackBy", "disableParentNodesOnly"], [1, "k-treeview-toggle", 3, "click", "kendoTreeViewLoading"], [3, "name", "svgIcon"], [3, "checkedStateChange", "disabled", "size", "checkedState", "tabindex", "inputAttributes"], ["kendoTreeViewItem", "", "role", "button", 1, "k-treeview-item", 3, "selectable", "checkable", "expandable", "index", "parentDataItem", "parentIndex"], ["kendoTreeViewItemContentWrapper", "", 1, "k-treeview-item-content", 3, "index"], [1, "k-icon", "k-i-loading"], [1, "k-treeview-leaf", "k-treeview-load-more-button"]],
@@ -35104,7 +31992,7 @@ var TreeViewComponent = class _TreeViewComponent {
    * A callback that determines whether a TreeView node should be rendered as hidden. Uses the `.k-hidden` utility class. Useful for custom filtering.
    *
    */
-  isVisible = isVisible3;
+  isVisible = isVisible2;
   /**
    * Enables keyboard navigation for the TreeView.
    *
@@ -35141,10 +32029,10 @@ var TreeViewComponent = class _TreeViewComponent {
    * @default undefined
    */
   set size(size) {
-    if (isPresent5(this.size)) {
+    if (isPresent4(this.size)) {
       this.renderer.removeClass(this.element.nativeElement, getSizeClass("treeview", this.size));
     }
-    if (isPresent5(size)) {
+    if (isPresent4(size)) {
       this.renderer.addClass(this.element.nativeElement, getSizeClass("treeview", size));
     }
     this._size = size;
@@ -35203,7 +32091,7 @@ var TreeViewComponent = class _TreeViewComponent {
     this.renderer = renderer;
     this.dataChangeNotification = dataChangeNotification;
     this.localization = localization;
-    A(packageMetadata4);
+    A(packageMetadata3);
     nextId2++;
   }
   ngOnChanges(changes) {
@@ -35344,7 +32232,7 @@ var TreeViewComponent = class _TreeViewComponent {
     let focusItem;
     if (match(e.target, ".k-treeview-item")) {
       focusItem = e.target;
-    } else if (!isFocusable3(e.target)) {
+    } else if (!isFocusable2(e.target)) {
       focusItem = closestNode(e.target);
     }
     if (focusItem) {
@@ -35374,7 +32262,7 @@ var TreeViewComponent = class _TreeViewComponent {
   }
   clickHandler(e) {
     const target = e.target;
-    if (e.type === "contextmenu" && !hasObservers(this.nodeClick) || e.type === "click" && !hasObservers(this.nodeClick) && !hasObservers(this.selectionChange) && !isLoadMoreButton(target) || e.type === "dblclick" && !hasObservers(this.nodeDblClick) || isFocusable3(target) || !isContent(target) && !isLoadMoreButton(target) || !hasParent(target, this.element.nativeElement)) {
+    if (e.type === "contextmenu" && !hasObservers(this.nodeClick) || e.type === "click" && !hasObservers(this.nodeClick) && !hasObservers(this.selectionChange) && !isLoadMoreButton(target) || e.type === "dblclick" && !hasObservers(this.nodeDblClick) || isFocusable2(target) || !isContent(target) && !isLoadMoreButton(target) || !hasParent(target, this.element.nativeElement)) {
       return;
     }
     const index = nodeId(closestNode(target));
@@ -35408,17 +32296,17 @@ var TreeViewComponent = class _TreeViewComponent {
     }
   }
   verifyLoadMoreService() {
-    if (isDevMode() && !isPresent5(this.loadMoreService)) {
+    if (isDevMode() && !isPresent4(this.loadMoreService)) {
       throw new Error(`To use the TreeView paging functionality, you need to assign the \`kendoTreeViewLoadMore\` directive. See ${LOAD_MORE_DOC_LINK$1}.`);
     }
   }
   registerLookupItems(data, parentItem = null) {
-    if (!isPresent5(data) || data.length === 0) {
+    if (!isPresent4(data) || data.length === 0) {
       return;
     }
     const parentIndex = nodeIndex(parentItem);
     const treeItems = data.map((node, index) => buildTreeItem(node, index, parentIndex));
-    if (isPresent5(parentItem)) {
+    if (isPresent4(parentItem)) {
       this.treeViewLookupService.registerChildren(parentIndex, treeItems);
     }
     treeItems.forEach((item) => {
@@ -35514,8 +32402,8 @@ var TreeViewComponent = class _TreeViewComponent {
     consts: () => {
       let i18n_0;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_TREEVIEW_FESM2022_PROGRESS_KENDO_ANGULAR_TREEVIEW_MJS_0 = goog.getMsg("Load more...");
-        i18n_0 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_TREEVIEW_FESM2022_PROGRESS_KENDO_ANGULAR_TREEVIEW_MJS_0;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_TREEVIEW_FESM2022_PROGRESS_KENDO_ANGULAR_TREEVIEW_MJS_0 = goog.getMsg("Load more...");
+        i18n_0 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_TREEVIEW_FESM2022_PROGRESS_KENDO_ANGULAR_TREEVIEW_MJS_0;
       } else {
         i18n_0 = $localize`:kendo.treeview.loadMore|The title of the Load More button:Load more...`;
       }
@@ -35855,7 +32743,7 @@ var CheckDirective = class _CheckDirective {
       mode: "multiple",
       uncheckCollapsedChildren: false
     };
-    if (!isPresent5(this.checkable) || typeof this.checkable === "string") {
+    if (!isPresent4(this.checkable) || typeof this.checkable === "string") {
       return defaultOptions;
     }
     const checkSettings = isBoolean(this.checkable) ? {
@@ -35922,10 +32810,10 @@ var CheckDirective = class _CheckDirective {
     return "none";
   }
   itemKey(item) {
-    if (!isPresent5(this.checkKey)) {
+    if (!isPresent4(this.checkKey)) {
       return item.index;
     }
-    if (typeof this.checkKey === "string" && isPresent5(item.dataItem)) {
+    if (typeof this.checkKey === "string" && isPresent4(item.dataItem)) {
       return item.dataItem[this.checkKey];
     }
     if (typeof this.checkKey === "function") {
@@ -35937,7 +32825,7 @@ var CheckDirective = class _CheckDirective {
       enabled,
       mode
     } = this.options;
-    const performSelection = this.checkActions[mode] || noop5;
+    const performSelection = this.checkActions[mode] || noop3;
     if (!enabled) {
       return;
     }
@@ -35977,11 +32865,11 @@ var CheckDirective = class _CheckDirective {
     }
   }
   checkNode(node) {
-    if (!isPresent5(node.item.dataItem) || this.treeView.isDisabled(node.item.dataItem, node.item.index) || !this.treeView.hasCheckbox(node.item.dataItem, node.item.index)) {
+    if (!isPresent4(node.item.dataItem) || this.treeView.isDisabled(node.item.dataItem, node.item.index) || !this.treeView.hasCheckbox(node.item.dataItem, node.item.index)) {
       return;
     }
     const currentKey = this.itemKey(node.item);
-    if (!isPresent5(currentKey)) {
+    if (!isPresent4(currentKey)) {
       return;
     }
     const pendingCheck = [currentKey];
@@ -36023,7 +32911,7 @@ var CheckDirective = class _CheckDirective {
     }));
   }
   checkParents(parent) {
-    if (!isPresent5(parent)) {
+    if (!isPresent4(parent)) {
       return;
     }
     let currentParent = parent;
@@ -36051,7 +32939,7 @@ var CheckDirective = class _CheckDirective {
     this.checkedKeysChange.emit(this.lastChange);
   }
   addCheckedItemsChildren(lookups) {
-    if (!isPresent5(lookups) || lookups.length === 0) {
+    if (!isPresent4(lookups) || lookups.length === 0) {
       return;
     }
     const initiallyCheckedItemsCount = this.state.size;
@@ -36226,13 +33114,13 @@ var DragAndDropEditingDirective = class _DragAndDropEditingDirective {
     this.subscriptions.unsubscribe();
   }
   handleAdd(args) {
-    if (!isPresent5(this.treeview.editService)) {
+    if (!isPresent4(this.treeview.editService)) {
       throw new Error("No `editService` provided. Either provide your own implementation or use this directive in combination with one of the data binding directives (`kendoTreeViewHierarchyBinding` or `kendoTreeViewFlatDataBinding`).");
     }
     this.treeview.editService.add(args);
   }
   handleRemove(args) {
-    if (!isPresent5(this.treeview.editService)) {
+    if (!isPresent4(this.treeview.editService)) {
       throw new Error("No `editService` provided. Either provide your own implementation or use this directive in combination with one of the data binding directives (`kendoTreeViewHierarchyBinding` or `kendoTreeViewFlatDataBinding`).");
     }
     this.treeview.editService.remove(args);
@@ -36506,7 +33394,7 @@ var DragClueComponent = class _DragClueComponent {
 })();
 var DragAndDropAssetService = class _DragAndDropAssetService {
   get componentRef() {
-    if (!isPresent5(this._componentRef)) {
+    if (!isPresent4(this._componentRef)) {
       throw new Error("The `initalize` method must be called before calling other service methods.");
     }
     return this._componentRef;
@@ -36519,7 +33407,7 @@ var DragAndDropAssetService = class _DragAndDropAssetService {
   }
   _componentRef;
   ngOnDestroy() {
-    if (!isPresent5(this._componentRef)) {
+    if (!isPresent4(this._componentRef)) {
       return;
     }
     this.element.parentElement.removeChild(this.element);
@@ -36550,7 +33438,7 @@ var DragAndDropAssetService = class _DragAndDropAssetService {
   }], null, null);
 })();
 var hasRelativeStackingContext = memoize(() => {
-  if (!(isDocumentAvailable() && isPresent5(document.body))) {
+  if (!(isDocumentAvailable() && isPresent4(document.body))) {
     return false;
   }
   const top = 10;
@@ -36605,31 +33493,31 @@ var getContainerOffset = (element) => {
   };
 };
 var getDropAction = (dropPosition, dropTarget) => {
-  if (!(isPresent5(dropPosition) && isPresent5(dropTarget))) {
+  if (!(isPresent4(dropPosition) && isPresent4(dropTarget))) {
     return DropAction.Invalid;
   }
   switch (dropPosition) {
     case DropPosition.Over:
       return DropAction.Add;
     case DropPosition.Before:
-      return isPresent5(closestNode(dropTarget).previousElementSibling) ? DropAction.InsertMiddle : DropAction.InsertTop;
+      return isPresent4(closestNode(dropTarget).previousElementSibling) ? DropAction.InsertMiddle : DropAction.InsertTop;
     case DropPosition.After:
-      return isPresent5(closestNode(dropTarget).nextElementSibling) ? DropAction.InsertMiddle : DropAction.InsertBottom;
+      return isPresent4(closestNode(dropTarget).nextElementSibling) ? DropAction.InsertMiddle : DropAction.InsertBottom;
     default:
       return DropAction.Invalid;
   }
 };
 var getDropPosition = (draggedItem, target, clientY, targetTreeView, containerOffset) => {
-  if (!(isPresent5(draggedItem) && isPresent5(target) && isPresent5(targetTreeView) && isPresent5(containerOffset))) {
+  if (!(isPresent4(draggedItem) && isPresent4(target) && isPresent4(targetTreeView) && isPresent4(containerOffset))) {
     return;
   }
   const item = closestWithMatch(target, ".k-treeview-item-content");
-  if (!isPresent5(item)) {
+  if (!isPresent4(item)) {
     return;
   }
   const content = getContentElement(item);
   const targetChildOfDraggedItem = hasParent(item, closestNode(draggedItem));
-  if (!isPresent5(content) || content === draggedItem || targetChildOfDraggedItem) {
+  if (!isPresent4(content) || content === draggedItem || targetChildOfDraggedItem) {
     return;
   }
   const itemViewPortCoords = content.getBoundingClientRect();
@@ -36645,19 +33533,19 @@ var getDropPosition = (draggedItem, target, clientY, targetTreeView, containerOf
   return DropPosition.Over;
 };
 var treeItemFromEventTarget = (treeView, dropTarget) => {
-  if (!(isPresent5(treeView) && isPresent5(dropTarget))) {
+  if (!(isPresent4(treeView) && isPresent4(dropTarget))) {
     return null;
   }
   const node = closestNode(dropTarget);
   const index = nodeId(node);
   const lookup = treeView.itemLookup(index);
-  if (!(isPresent5(lookup) && isPresent5(lookup.item.dataItem))) {
+  if (!(isPresent4(lookup) && isPresent4(lookup.item.dataItem))) {
     return null;
   }
   return lookup;
 };
 var collapseEmptyParent = (parent, parentNodes, treeview) => {
-  if (isPresent5(parent) && parentNodes.length === 0 && treeview.isExpanded(parent.item.dataItem, parent.item.index)) {
+  if (isPresent4(parent) && parentNodes.length === 0 && treeview.isExpanded(parent.item.dataItem, parent.item.index)) {
     treeview.collapseNode(parent.item.dataItem, parent.item.index);
   }
 };
@@ -36667,7 +33555,7 @@ var expandDropTarget = (dropTarget, treeView) => {
   }
 };
 var getDropTarget = (event) => {
-  if (!(isDocumentAvailable() && isPresent5(document.elementFromPoint))) {
+  if (!(isDocumentAvailable() && isPresent4(document.elementFromPoint))) {
     return event.target;
   }
   return document.elementFromPoint(event.clientX, event.clientY);
@@ -36692,7 +33580,7 @@ var updateMovedItemIndex = (newIndex, originalIndex) => {
 };
 var SCROLLBAR_REG_EXP = new RegExp("(auto|scroll)");
 var getScrollableContainer = (node) => {
-  while (isPresent5(node) && node.nodeName !== "HTML") {
+  while (isPresent4(node) && node.nodeName !== "HTML") {
     const hasOverflow = node.scrollHeight > node.clientHeight;
     const hasScrollbar = SCROLLBAR_REG_EXP.test(getComputedStyle(node).overflowY);
     if (hasOverflow && hasScrollbar) {
@@ -36705,7 +33593,7 @@ var getScrollableContainer = (node) => {
 var isTopReached = (element) => Math.floor(element.scrollTop) <= 0;
 var isBottomReached = (element) => Math.ceil(element.scrollTop) >= element.scrollHeight - element.clientHeight;
 var scrollElementBy = (element, step, direction) => {
-  if (!(isPresent5(element) && isDocumentAvailable())) {
+  if (!(isPresent4(element) && isDocumentAvailable())) {
     return;
   }
   const initialScrollTop = element.scrollTop;
@@ -36726,7 +33614,7 @@ var DragClueService = class _DragClueService extends DragAndDropAssetService {
     super();
   }
   initialize(container, template) {
-    if (isPresent5(this._componentRef)) {
+    if (isPresent4(this._componentRef)) {
       this.ngOnDestroy();
     }
     this.componentRef = container.createComponent(DragClueComponent);
@@ -36743,7 +33631,7 @@ var DragClueService = class _DragClueService extends DragAndDropAssetService {
     super.move(left, top, CLUE_OFFSET);
   }
   animateDragClueToElementPosition(target) {
-    if (!(isPresent5(target) && isPresent5(this.element.animate))) {
+    if (!(isPresent4(target) && isPresent4(this.element.animate))) {
       this.hide();
       return;
     }
@@ -36757,7 +33645,7 @@ var DragClueService = class _DragClueService extends DragAndDropAssetService {
     this.returnAnimation.onfinish = () => this.hide();
   }
   cancelReturnAnimation() {
-    if (!isPresent5(this.returnAnimation)) {
+    if (!isPresent4(this.returnAnimation)) {
       return;
     }
     this.returnAnimation.cancel();
@@ -36790,7 +33678,7 @@ var DragClueService = class _DragClueService extends DragAndDropAssetService {
   }) {
     this.cancelScroll();
     const scrollableContainer = getScrollableContainer(this.element);
-    if (!isPresent5(scrollableContainer)) {
+    if (!isPresent4(scrollableContainer)) {
       return;
     }
     const containerRect = scrollableContainer.getBoundingClientRect();
@@ -36808,7 +33696,7 @@ var DragClueService = class _DragClueService extends DragAndDropAssetService {
    * Cancels out the on-going scroll animation, if present.
    */
   cancelScroll() {
-    if (isPresent5(this.scrollInterval)) {
+    if (isPresent4(this.scrollInterval)) {
       clearInterval(this.scrollInterval);
       this.scrollInterval = null;
     }
@@ -36938,7 +33826,7 @@ var DropHintService = class _DropHintService extends DragAndDropAssetService {
     super();
   }
   initialize(container, template) {
-    if (isPresent5(this._componentRef)) {
+    if (isPresent4(this._componentRef)) {
       this.ngOnDestroy();
     }
     this.componentRef = container.createComponent(DropHintComponent);
@@ -37141,7 +34029,7 @@ var DragAndDropDirective = class _DragAndDropDirective {
     })) {
       this.initiateDragStart();
     }
-    if (!isPresent5(this.draggedItem) || isPresent5(this.pendingDragStartEvent)) {
+    if (!isPresent4(this.draggedItem) || isPresent4(this.pendingDragStartEvent)) {
       return;
     }
     const dropTarget = getDropTarget(originalEvent);
@@ -37170,7 +34058,7 @@ var DragAndDropDirective = class _DragAndDropDirective {
     if (this.scrollSettings.enabled) {
       this.dragClueService.cancelScroll();
     }
-    if (!isPresent5(this.draggedItem) || isPresent5(this.pendingDragStartEvent)) {
+    if (!isPresent4(this.draggedItem) || isPresent4(this.pendingDragStartEvent)) {
       this.pendingDragStartEvent = null;
       this.draggedItem = null;
       return;
@@ -37181,7 +34069,7 @@ var DragAndDropDirective = class _DragAndDropDirective {
     const dropPosition = getDropPosition(this.draggedItem, dropTarget, clientY, this.getTargetTreeView(dropTarget), this.containerOffset);
     const sourceItem = treeItemFromEventTarget(sourceTree, this.draggedItem);
     const destinationItem = treeItemFromEventTarget(destinationTree, dropTarget);
-    if (isPresent5(destinationItem) && isPresent5(dropPosition)) {
+    if (isPresent4(destinationItem) && isPresent4(dropPosition)) {
       this.zone.run(() => this.notifyDrop({
         sourceItem,
         destinationItem,
@@ -37203,7 +34091,7 @@ var DragAndDropDirective = class _DragAndDropDirective {
     this.draggedItem = null;
   }
   updateDropHintState(dropPosition, dropHintAnchor, dropAction, sourceItem, destinationItem) {
-    if (!isPresent5(dropHintAnchor) || dropPosition === DropPosition.Over || !isPresent5(dropPosition)) {
+    if (!isPresent4(dropHintAnchor) || dropPosition === DropPosition.Over || !isPresent4(dropPosition)) {
       this.dropHintService.hide();
       return;
     }
@@ -37269,7 +34157,7 @@ var DragAndDropDirective = class _DragAndDropDirective {
   getTargetTreeView(dropTarget) {
     const treeViewTagName = this.treeview.element.nativeElement.tagName;
     const targetTreeView = closestWithMatch(dropTarget, treeViewTagName);
-    return [this.treeview, ...this.dropZoneTreeViews].find((treeView) => isPresent5(treeView) && treeView.element.nativeElement === targetTreeView);
+    return [this.treeview, ...this.dropZoneTreeViews].find((treeView) => isPresent4(treeView) && treeView.element.nativeElement === targetTreeView);
   }
   disableAnimationsForNextTick(treeView) {
     if (treeView.animate) {
@@ -37279,7 +34167,7 @@ var DragAndDropDirective = class _DragAndDropDirective {
     this.zone.runOutsideAngular(() => setTimeout(() => treeView.animate = true));
   }
   shouldInitiateDragStart(currentPointerCoords) {
-    if (!isPresent5(this.pendingDragStartEvent)) {
+    if (!isPresent4(this.pendingDragStartEvent)) {
       return false;
     }
     const distanceFromPointerDown = Math.sqrt(Math.pow(this.pendingDragStartEvent.clientX - currentPointerCoords.clientX, 2) + Math.pow(this.pendingDragStartEvent.clientY - currentPointerCoords.clientY, 2));
@@ -37643,21 +34531,21 @@ var ExpandDirective = class _ExpandDirective {
 })();
 var compose = (...args) => (data) => args.reduceRight((acc, curr) => curr(acc), data);
 var copyPageSize = (treeview, source, target) => {
-  if (!isPresent5(treeview.loadMoreService)) {
+  if (!isPresent4(treeview.loadMoreService)) {
     return;
   }
   const sourceGroupSize = treeview.getNodePageSize(source);
   treeview.setNodePageSize(target, sourceGroupSize);
 };
 var incrementPageSize = (treeview, dataItem) => {
-  if (!isPresent5(treeview.loadMoreService)) {
+  if (!isPresent4(treeview.loadMoreService)) {
     return;
   }
   const currentPageSize = treeview.getNodePageSize(dataItem);
   treeview.setNodePageSize(dataItem, currentPageSize + 1);
 };
 var decrementPageSize = (treeview, dataItem) => {
-  if (!isPresent5(treeview.loadMoreService)) {
+  if (!isPresent4(treeview.loadMoreService)) {
     return;
   }
   const currentPageSize = treeview.getNodePageSize(dataItem);
@@ -37762,7 +34650,7 @@ var FlatEditingService = class {
     return nodes;
   }
   getLastVisibleChildNodeIndex(treeview, data, node) {
-    if (!isPresent5(treeview.loadMoreService) || !treeview.hasChildren(node)) {
+    if (!isPresent4(treeview.loadMoreService) || !treeview.hasChildren(node)) {
       return data.length;
     }
     const visibleNodesCount = treeview.loadMoreService.getGroupSize(node);
@@ -37823,7 +34711,7 @@ var FilteringBase = class _FilteringBase {
       filterTree(this.filterData, term, this.filterSettings, this.component.textField);
     }
     this.updateVisibleNodes(this.filterData);
-    if (isPresent5(this.component.filterStateChange)) {
+    if (isPresent4(this.component.filterStateChange)) {
       this.component.filterStateChange.emit({
         nodes: this.filterData,
         matchCount: this.visibleNodes.size,
@@ -37938,7 +34826,7 @@ var FlatDataBindingDirective = class _FlatDataBindingDirective extends Filtering
    * @hidden
    */
   ngOnInit() {
-    if (isPresent5(this.parentIdField) && isPresent5(this.idField)) {
+    if (isPresent4(this.parentIdField) && isPresent4(this.idField)) {
       const fetchChildren2 = (node) => findChildren(getter(this.parentIdField), this.originalData || [], getter(this.idField)(node));
       this.component.hasChildren = (node) => fetchChildren2(node).length > 0;
       this.component.children = (node) => of(fetchChildren2(node));
@@ -37947,7 +34835,7 @@ var FlatDataBindingDirective = class _FlatDataBindingDirective extends Filtering
       if (this.component.filter) {
         this.handleFilterChange(this.component.filter);
       }
-      if (!this.loadOnDemand && isPresent5(this.component.preloadChildNodes)) {
+      if (!this.loadOnDemand && isPresent4(this.component.preloadChildNodes)) {
         this.component.preloadChildNodes();
       }
     }
@@ -37963,7 +34851,7 @@ var FlatDataBindingDirective = class _FlatDataBindingDirective extends Filtering
     if (isChanged("nodes", changes, false)) {
       this.updateNodes(changes["nodes"].currentValue);
     }
-    if (anyChanged(["nodes", "loadOnDemand"], changes) && !this.loadOnDemand && isPresent5(this.component.preloadChildNodes)) {
+    if (anyChanged(["nodes", "loadOnDemand"], changes) && !this.loadOnDemand && isPresent4(this.component.preloadChildNodes)) {
       this.component.preloadChildNodes();
     }
   }
@@ -38045,7 +34933,7 @@ var HierarchyEditingService = class {
     if (dropPosition === DropPosition.Over) {
       expandDropTarget(destinationItem, destinationTree);
       const destinationChildren = this.childrenFor(getDataItem(destinationItem));
-      const targetIndex = isPresent5(destinationTree.loadMoreService) ? Math.min(destinationTree.loadMoreService.getGroupSize(getDataItem(destinationItem)), destinationChildren.length) : (
+      const targetIndex = isPresent4(destinationTree.loadMoreService) ? Math.min(destinationTree.loadMoreService.getGroupSize(getDataItem(destinationItem)), destinationChildren.length) : (
         // the page size might be greater than the actual children array length
         destinationChildren.length
       );
@@ -38094,7 +34982,7 @@ var HierarchyEditingService = class {
     }
   }
   getParentNodes(node, treeView) {
-    return isPresent5(node.parent) ? this.childrenFor(getDataItem(node.parent)) : treeView.nodes;
+    return isPresent4(node.parent) ? this.childrenFor(getDataItem(node.parent)) : treeView.nodes;
   }
   childrenFor(dataItem) {
     return getter(this.hierarchyBinding.childrenField)(dataItem) || [];
@@ -38171,7 +35059,7 @@ var HierarchyBindingDirective = class _HierarchyBindingDirective extends Filteri
     this.component.isVisible = (node) => !this.currentFilterTerm || this.visibleNodes.has(node);
   }
   ngOnInit() {
-    if (isPresent5(this.childrenField)) {
+    if (isPresent4(this.childrenField)) {
       this.component.children = (item) => of(getter(this.childrenField)(item));
       this.component.hasChildren = (item) => {
         const children = getter(this.childrenField)(item);
@@ -38182,7 +35070,7 @@ var HierarchyBindingDirective = class _HierarchyBindingDirective extends Filteri
       if (this.component.filter) {
         this.handleFilterChange(this.component.filter);
       }
-      if (!this.loadOnDemand && isPresent5(this.component.preloadChildNodes)) {
+      if (!this.loadOnDemand && isPresent4(this.component.preloadChildNodes)) {
         this.component.preloadChildNodes();
       }
     }
@@ -38195,7 +35083,7 @@ var HierarchyBindingDirective = class _HierarchyBindingDirective extends Filteri
     if (isChanged("nodes", changes, false)) {
       this.updateNodes(changes["nodes"].currentValue);
     }
-    if (anyChanged(["nodes", "loadOnDemand"], changes) && !this.loadOnDemand && isPresent5(this.component.preloadChildNodes)) {
+    if (anyChanged(["nodes", "loadOnDemand"], changes) && !this.loadOnDemand && isPresent4(this.component.preloadChildNodes)) {
       this.component.preloadChildNodes();
     }
   }
@@ -38313,14 +35201,14 @@ var LoadMoreDirective = class _LoadMoreDirective {
     if (!isDevMode()) {
       return;
     }
-    if (!isPresent5(this.pageSize)) {
+    if (!isPresent4(this.pageSize)) {
       throw new Error(`To use the TreeView \`kendoTreeViewLoadMore\` directive, you need to assign a \`pageSize\` value. See ${LOAD_MORE_DOC_LINK}.`);
     }
     const loadMoreNodes = this.treeview.loadMoreService.loadMoreNodes;
-    if (isPresent5(loadMoreNodes) && typeof loadMoreNodes !== "function") {
+    if (isPresent4(loadMoreNodes) && typeof loadMoreNodes !== "function") {
       throw new Error(`The passed value to the \`kendoTreeViewLoadMore\` directive must be a function that retrieves additional nodes. See ${LOAD_MORE_DOC_LINK}.`);
     }
-    if (isPresent5(loadMoreNodes) && !isPresent5(this.totalField)) {
+    if (isPresent4(loadMoreNodes) && !isPresent4(this.totalField)) {
       throw new Error(`When a function to fetch additional nodes is provided to the \`kendoTreeViewLoadMore\` directive, the \`totalField\` and \`totalRootNodes\` values must also be provided. See ${LOAD_MORE_DOC_LINK}.`);
     }
   }
@@ -38334,9 +35222,9 @@ var LoadMoreDirective = class _LoadMoreDirective {
     this.pageSizes.set(itemKey, normalizedSizeValue);
   }
   getTotalNodesCount(dataItem, loadedNodesCount) {
-    if (isPresent5(dataItem) && isPresent5(this.totalField)) {
+    if (isPresent4(dataItem) && isPresent4(this.totalField)) {
       return dataItem[this.totalField];
-    } else if (!isPresent5(dataItem) && isPresent5(this.totalRootNodes)) {
+    } else if (!isPresent4(dataItem) && isPresent4(this.totalRootNodes)) {
       return this.totalRootNodes;
     } else {
       return loadedNodesCount;
@@ -38463,7 +35351,7 @@ var SelectDirective = class _SelectDirective {
       enabled: true,
       mode: "single"
     };
-    if (!isPresent5(this.selection) || typeof this.selection === "string") {
+    if (!isPresent4(this.selection) || typeof this.selection === "string") {
       return defaultOptions;
     }
     const selectionSettings = isBoolean(this.selection) ? {
@@ -38521,7 +35409,7 @@ var SelectDirective = class _SelectDirective {
       enabled,
       mode
     } = this.options;
-    const performSelection = this.selectActions[mode] || noop5;
+    const performSelection = this.selectActions[mode] || noop3;
     if (!enabled) {
       return;
     }
@@ -38538,7 +35426,7 @@ var SelectDirective = class _SelectDirective {
   selectMultiple(node) {
     const key = this.itemKey(node);
     const isSelected2 = this.state.has(key);
-    if (!isPresent5(key)) {
+    if (!isPresent4(key)) {
       return;
     }
     if (isSelected2) {
@@ -38638,7 +35526,7 @@ var TreeViewModule = class _TreeViewModule {
 })();
 
 // node_modules/@progress/kendo-angular-dropdowns/fesm2022/progress-kendo-angular-dropdowns.mjs
-var _c05 = ["kendoSearchbar", ""];
+var _c04 = ["kendoSearchbar", ""];
 var _c111 = ["content"];
 var _c211 = ["list"];
 var _c311 = ["virtualContainer"];
@@ -40794,7 +37682,7 @@ function MultiSelectTreeComponent_Conditional_13_Template(rf, ctx) {
     ɵɵelementEnd();
   }
 }
-var packageMetadata5 = {
+var packageMetadata4 = {
   name: "@progress/kendo-angular-dropdowns",
   productName: "Kendo UI for Angular",
   productCode: "KENDOUIANGULAR",
@@ -40803,13 +37691,13 @@ var packageMetadata5 = {
   version: "23.4.0",
   licensingDocsUrl: "https://www.telerik.com/kendo-angular-ui/my-license/"
 };
-var isPresent6 = (value) => value !== null && value !== void 0;
+var isPresent5 = (value) => value !== null && value !== void 0;
 var isNumber3 = (value) => !isNaN(value);
 var combineStr = (begin, end) => {
   return begin.concat(end.substr(end.toLowerCase().indexOf(begin.toLowerCase()) + begin.length));
 };
 var isArray2 = (value) => Array.isArray(value);
-var isObject2 = (value) => isPresent6(value) && typeof value === "object";
+var isObject2 = (value) => isPresent5(value) && typeof value === "object";
 var isEmptyString = (value) => typeof value === "string" && value.length === 0;
 var resolveValuesInArray = (values, data = [], valueField) => values.map((value) => {
   return data.find((item) => getter2(item, valueField) === value);
@@ -40827,10 +37715,10 @@ var isObjectArray = (values) => {
 };
 var selectedIndices = (values, data, valueField) => {
   const extractedValues = data.map((item) => {
-    return isPresent6(item) && isPresent6(getter2(item, valueField)) ? getter2(item, valueField) : item;
+    return isPresent5(item) && isPresent5(getter2(item, valueField)) ? getter2(item, valueField) : item;
   });
   return values.reduce((arr, item) => {
-    const value = isPresent6(item) && isPresent6(getter2(item, valueField)) ? getter2(item, valueField) : item;
+    const value = isPresent5(item) && isPresent5(getter2(item, valueField)) ? getter2(item, valueField) : item;
     const index = extractedValues.indexOf(value);
     if (index !== -1) {
       arr.push(index);
@@ -40839,10 +37727,10 @@ var selectedIndices = (values, data, valueField) => {
   }, []);
 };
 var getter2 = (dataItem, field) => {
-  if (!isPresent6(dataItem)) {
+  if (!isPresent5(dataItem)) {
     return null;
   }
-  if (!isPresent6(field) || !isObject2(dataItem)) {
+  if (!isPresent5(field) || !isObject2(dataItem)) {
     return dataItem;
   }
   const valueFrom2 = getter(field);
@@ -40864,7 +37752,7 @@ var shuffleData = (data, splitIndex, defaultItem) => {
   return result.slice(splitIndex).concat(result.slice(0, splitIndex));
 };
 var matchText = (text, word, ignoreCase) => {
-  if (!isPresent6(text)) {
+  if (!isPresent5(text)) {
     return false;
   }
   let temp = String(text);
@@ -40874,13 +37762,13 @@ var matchText = (text, word, ignoreCase) => {
   return temp.startsWith(word);
 };
 var hasProps = (obj, props) => {
-  if (!isPresent6(obj)) {
+  if (!isPresent5(obj)) {
     return false;
   }
   return props.every((prop) => obj.hasOwnProperty(prop));
 };
 var isUntouched2 = (element) => element.className.includes("ng-untouched");
-var noop6 = (_) => {
+var noop4 = (_) => {
 };
 var matches = (element, selector) => {
   const matcher = element.matches || element.msMatchesSelector || element.webkitMatchesSelector;
@@ -40910,11 +37798,11 @@ var getHierarchicalItemLevel = (index) => {
   return (index || "").split("_").length - 1;
 };
 var fetchDescendentNodes = (lookup, filterExpression) => {
-  if (!isPresent6(lookup) || lookup.children.length === 0) {
+  if (!isPresent5(lookup) || lookup.children.length === 0) {
     return [];
   }
   let descendants = lookup.children;
-  if (isPresent6(filterExpression)) {
+  if (isPresent5(filterExpression)) {
     descendants = descendants.filter((descendent) => filterExpression(descendent.item));
   }
   descendants.forEach((child) => descendants = descendants.concat(fetchDescendentNodes(child, filterExpression)));
@@ -40926,7 +37814,7 @@ var valueFrom = ({
   level
 }, valueField) => {
   const fields = Array.isArray(valueField) ? valueField : [valueField];
-  const valueLevel = isPresent6(level) ? level : getHierarchicalItemLevel(index);
+  const valueLevel = isPresent5(level) ? level : getHierarchicalItemLevel(index);
   const normalizedLevel = Math.min(valueLevel, fields.length - 1);
   const field = fields[normalizedLevel];
   return getter(field)(dataItem);
@@ -41305,7 +38193,7 @@ var SearchBarComponent = class _SearchBarComponent {
       onNavigate: "onNavigate"
     },
     features: [ɵɵNgOnChangesFeature],
-    attrs: _c05,
+    attrs: _c04,
     decls: 0,
     vars: 0,
     template: function SearchBarComponent_Template(rf, ctx) {
@@ -41575,7 +38463,7 @@ var DataService = class _DataService {
    * Used to get the actual items count, i.e. excluding the header items in case of grouping.
    */
   get itemsCount() {
-    if (!isPresent6(this.data) || this.data.length === 0) {
+    if (!isPresent5(this.data) || this.data.length === 0) {
       return 0;
     }
     const items = this.grouped ? this._flatData.filter((item) => !item.header) : this.data;
@@ -41586,7 +38474,7 @@ var DataService = class _DataService {
    * Used to determine if the component received grouped data.
    */
   isGrouped(data) {
-    return isPresent6(data) && data.length !== 0 && isPresent6(data[0]) && hasProps(data[0], ["aggregates", "field", "items", "value"]);
+    return isPresent5(data) && data.length !== 0 && isPresent5(data[0]) && hasProps(data[0], ["aggregates", "field", "items", "value"]);
   }
   /**
    * @hidden
@@ -41750,7 +38638,7 @@ var DataService = class _DataService {
   }
   flatten(data, group = void 0, offset2 = 0, groupIndex = 0) {
     let flat = [];
-    if (isPresent6(group)) {
+    if (isPresent5(group)) {
       flat.push({
         header: true,
         groupIndex,
@@ -41800,12 +38688,12 @@ var DisabledItemsService = class _DisabledItemsService {
   isIndexDisabled(index) {
     if (this.itemDisabled) {
       const item = this.dataService.itemAt(index);
-      if (isPresent6(item)) {
+      if (isPresent5(item)) {
         return this.itemDisabled({
           dataItem: item,
           index
         });
-      } else if (isPresent6(this.defaultItem)) {
+      } else if (isPresent5(this.defaultItem)) {
         return this.itemDisabled({
           dataItem: this.defaultItem,
           index: -1
@@ -41821,7 +38709,7 @@ var DisabledItemsService = class _DisabledItemsService {
           dataItem: item,
           index
         });
-      } else if (isPresent6(this.defaultItem)) {
+      } else if (isPresent5(this.defaultItem)) {
         return this.itemDisabled({
           dataItem: this.defaultItem,
           index: -1
@@ -41860,7 +38748,7 @@ var SelectionService2 = class _SelectionService {
     return this.total;
   }
   isSelected(index) {
-    return isPresent6(this.selectedIndices.find((current) => current === index));
+    return isPresent5(this.selectedIndices.find((current) => current === index));
   }
   isFocused(index) {
     return index === this.focused;
@@ -41880,7 +38768,7 @@ var SelectionService2 = class _SelectionService {
     this.focused = index;
     this.onSelect.emit({
       indices: [index],
-      newSelection: isPresent6(index)
+      newSelection: isPresent5(index)
     });
   }
   add(index, preventClosingPopup) {
@@ -41936,7 +38824,7 @@ var SelectionService2 = class _SelectionService {
     this.indicesToBeRemoved = indices.slice();
   }
   change(index) {
-    const newSelection = isPresent6(index) && !this.isSelected(index);
+    const newSelection = isPresent5(index) && !this.isSelected(index);
     this.selectedIndices = [index];
     this.focused = index;
     this.onChange.emit({
@@ -42163,9 +39051,9 @@ var NavigationService3 = class _NavigationService {
       end,
       step
     } = args;
-    const nextIndex = !isPresent6(current) ? start : this.clampIndex(current + step, start, end);
+    const nextIndex = !isPresent5(current) ? start : this.clampIndex(current + step, start, end);
     const firstFocusableIndex = this.firstFocusableIndex(nextIndex, start, end, step);
-    if (isPresent6(firstFocusableIndex)) {
+    if (isPresent5(firstFocusableIndex)) {
       return firstFocusableIndex;
     }
     if (this.selectionService.isSelected(current) && current >= start) {
@@ -42175,7 +39063,7 @@ var NavigationService3 = class _NavigationService {
     return this.firstFocusableIndex(nextIndex, start, end, inversedStep);
   }
   clampIndex(index, min, max) {
-    if (!isPresent6(index) || index < min) {
+    if (!isPresent5(index) || index < min) {
       return min;
     }
     if (index > max) {
@@ -42540,7 +39428,7 @@ var ListComponent = class _ListComponent {
     return this.virtual.total * this.virtual.itemHeight;
   }
   get overflowY() {
-    if (isPresent6(this.virtual)) {
+    if (isPresent5(this.virtual)) {
       const overflow = this.hasVirtualScrollbar() ? "scroll" : "hidden";
       return overflow;
     }
@@ -42727,7 +39615,7 @@ var ListComponent = class _ListComponent {
     return `${this.optionPrefix}-${dataItem.groupIndex}-${dataItem.value.toString().split(" ").join("")}`;
   }
   isDisabled(index) {
-    if (isPresent6(this.virtual) && !this.dataService.grouped) {
+    if (isPresent5(this.virtual) && !this.dataService.grouped) {
       index += this.virtual.skip;
     }
     return this.disabledItemsService.isIndexDisabled(index);
@@ -42745,7 +39633,7 @@ var ListComponent = class _ListComponent {
       return;
     }
     const items = this.items.toArray();
-    if (isPresent6(items[flatIndex]) && flatIndex !== -1) {
+    if (isPresent5(items[flatIndex]) && flatIndex !== -1) {
       this.scroll(items[flatIndex].element);
     }
   }
@@ -42794,10 +39682,10 @@ var ListComponent = class _ListComponent {
    * Indicates whether a scrollbar is currently rendered in the list.
    */
   hasScrollbar() {
-    if (!(isPresent6(this.items) && this.items.length && isPresent6(this.list) && isPresent6(this.content))) {
+    if (!(isPresent5(this.items) && this.items.length && isPresent5(this.list) && isPresent5(this.content))) {
       return false;
     }
-    const hasVirtualScroll = isPresent6(this.virtual) && this.hasVirtualScrollbar();
+    const hasVirtualScroll = isPresent5(this.virtual) && this.hasVirtualScrollbar();
     return hasVirtualScroll || this.list.nativeElement.scrollHeight > this.content.nativeElement.offsetHeight;
   }
   isItemSelected(index) {
@@ -42842,7 +39730,7 @@ var ListComponent = class _ListComponent {
     if (this.type === "dropdowngrid") {
       this.renderer.setStyle(this.wrapper.nativeElement, "overflow-y", "scroll");
     }
-    if (isPresent6(this.virtual)) {
+    if (isPresent5(this.virtual)) {
       this.renderer.addClass(this.wrapper.nativeElement, this.listVirtualClass);
     }
   }
@@ -43610,8 +40498,8 @@ var SharedDropDownEventsDirective = class _SharedDropDownEventsDirective {
         const element = args.target;
         const adornmentContainer = element.closest(".k-input-prefix") || element.closest(".k-input-suffix");
         if (adornmentContainer) {
-          const isFocusable4 = hasFocusableParent(element, adornmentContainer);
-          if (!isFocusable4) {
+          const isFocusable3 = hasFocusableParent(element, adornmentContainer);
+          if (!isFocusable3) {
             this.handleBlur.emit();
           }
         }
@@ -43883,7 +40771,7 @@ var AutoCompleteComponent = class _AutoCompleteComponent {
   }
   get height() {
     const popupHeight = this.popupSettings.height;
-    return isPresent6(popupHeight) ? `${popupHeight}px` : "auto";
+    return isPresent5(popupHeight) ? `${popupHeight}px` : "auto";
   }
   get listContainerClasses() {
     const containerClasses = ["k-list-container", "k-autocomplete-popup"];
@@ -43948,7 +40836,7 @@ var AutoCompleteComponent = class _AutoCompleteComponent {
    */
   toggle(open) {
     Promise.resolve(null).then(() => {
-      const shouldOpen = isPresent6(open) ? open : !this._open;
+      const shouldOpen = isPresent5(open) ? open : !this._open;
       this._toggle(shouldOpen);
     });
   }
@@ -43982,7 +40870,7 @@ var AutoCompleteComponent = class _AutoCompleteComponent {
     }
   }
   get activeDescendant() {
-    if (!this.isOpen || !isPresent6(this.selectionService.focused) || this.selectionService.focused === -1) {
+    if (!this.isOpen || !isPresent5(this.selectionService.focused) || this.selectionService.focused === -1) {
       return null;
     }
     return this.optionPrefix + "-" + this.selectionService.focused;
@@ -44352,8 +41240,8 @@ var AutoCompleteComponent = class _AutoCompleteComponent {
     const ngControl = this.injector.get(NgControl, null);
     return ngControl?.control || null;
   }
-  onChangeCallback = noop6;
-  onTouchedCallback = noop6;
+  onChangeCallback = noop4;
+  onTouchedCallback = noop4;
   constructor(localization, dataService, popupService, selectionService, navigationService, disabledItemsService, _zone, cdr, renderer, hostElement, injector, adaptiveService) {
     this.localization = localization;
     this.dataService = dataService;
@@ -44367,7 +41255,7 @@ var AutoCompleteComponent = class _AutoCompleteComponent {
     this.hostElement = hostElement;
     this.injector = injector;
     this.adaptiveService = adaptiveService;
-    A(packageMetadata5);
+    A(packageMetadata4);
     this.direction = localization.rtl ? "rtl" : "ltr";
     this.wrapper = this.hostElement.nativeElement;
     this.data = [];
@@ -44463,7 +41351,7 @@ var AutoCompleteComponent = class _AutoCompleteComponent {
    */
   focusItemAt(index) {
     const isInRange = index >= 0 && index < this.data.length;
-    if (isPresent6(index) && isInRange && !this.disabledItemsService.isIndexDisabled(index)) {
+    if (isPresent5(index) && isInRange && !this.disabledItemsService.isIndexDisabled(index)) {
       this.selectionService.focus(index);
     } else {
       this.selectionService.focus(-1);
@@ -44515,7 +41403,7 @@ var AutoCompleteComponent = class _AutoCompleteComponent {
     if (!isDevMode()) {
       return;
     }
-    if (isPresent6(newValue) && typeof newValue !== "string") {
+    if (isPresent5(newValue) && typeof newValue !== "string") {
       throw new Error("Expected value of type string. See https://www.telerik.com/kendo-angular-ui/components/dropdowns/autocomplete/value-binding/");
     }
   }
@@ -44596,7 +41484,7 @@ var AutoCompleteComponent = class _AutoCompleteComponent {
    * @hidden
    */
   searchBarChange(text) {
-    const currentTextLength = isPresent6(this.text) ? this.text.length : 0;
+    const currentTextLength = isPresent5(this.text) ? this.text.length : 0;
     this.backspacePressed = Boolean(text.length < currentTextLength);
     this.text = text;
     this.togglePopup(text.length > 0);
@@ -44768,7 +41656,7 @@ var AutoCompleteComponent = class _AutoCompleteComponent {
   handleItemChange(event) {
     const index = event.indices.length ? event.indices[0] : void 0;
     this.selectionService.resetSelection([-1]);
-    if (!isPresent6(index)) {
+    if (!isPresent5(index)) {
       return;
     }
     const text = getter2(this.dataService.itemAt(index), this.valueField);
@@ -44877,13 +41765,13 @@ var AutoCompleteComponent = class _AutoCompleteComponent {
     if (this.dataService.grouped) {
       return (item) => {
         let itemText = getter2(item.value, this.valueField);
-        itemText = !isPresent6(itemText) ? "" : itemText.toString().toLowerCase();
+        itemText = !isPresent5(itemText) ? "" : itemText.toString().toLowerCase();
         return itemText.startsWith(text.toLowerCase());
       };
     } else {
       return (item) => {
         let itemText = getter2(item, this.valueField);
-        itemText = !isPresent6(itemText) ? "" : itemText.toString().toLowerCase();
+        itemText = !isPresent5(itemText) ? "" : itemText.toString().toLowerCase();
         return itemText.startsWith(text.toLowerCase());
       };
     }
@@ -45040,29 +41928,29 @@ var AutoCompleteComponent = class _AutoCompleteComponent {
     consts: () => {
       let i18n_0;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_0 = goog.getMsg("NO DATA FOUND");
-        i18n_0 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_0;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_0 = goog.getMsg("NO DATA FOUND");
+        i18n_0 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_0;
       } else {
         i18n_0 = $localize`:kendo.autocomplete.noDataText|The text displayed in the popup when there are no items:NO DATA FOUND`;
       }
       let i18n_1;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_1 = goog.getMsg("clear");
-        i18n_1 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_1;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_1 = goog.getMsg("clear");
+        i18n_1 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_1;
       } else {
         i18n_1 = $localize`:kendo.autocomplete.clearTitle|The title of the clear button:clear`;
       }
       let i18n_2;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_2 = goog.getMsg("Options list");
-        i18n_2 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_2;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_2 = goog.getMsg("Options list");
+        i18n_2 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_2;
       } else {
         i18n_2 = $localize`:kendo.autocomplete.popupLabel|The label of the popup element that contains the list of options when its role is 'region':Options list`;
       }
       let i18n_3;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_3 = goog.getMsg("Close");
-        i18n_3 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_3;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_3 = goog.getMsg("Close");
+        i18n_3 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_3;
       } else {
         i18n_3 = $localize`:kendo.autocomplete.adaptiveCloseButtonTitle|The title of the Close button of the ActionSheet that is rendered instead of the Popup when using small screen devices in adaptive mode:Close`;
       }
@@ -45666,7 +42554,7 @@ var ComboBoxComponent = class _ComboBoxComponent extends MultiTabStop {
    */
   caretAltDownIcon = caretAltDownIcon;
   set text(text) {
-    this._text = isPresent6(text) ? text.toString() : "";
+    this._text = isPresent5(text) ? text.toString() : "";
   }
   get text() {
     return this._text;
@@ -45698,7 +42586,7 @@ var ComboBoxComponent = class _ComboBoxComponent extends MultiTabStop {
     }
   }
   get activeDescendant() {
-    if (!this.isOpen || !isPresent6(this.selectionService.focused) || this.selectionService.focused === -1) {
+    if (!this.isOpen || !isPresent5(this.selectionService.focused) || this.selectionService.focused === -1) {
       return null;
     }
     return this.optionPrefix + "-" + this.selectionService.focused;
@@ -45796,8 +42684,8 @@ var ComboBoxComponent = class _ComboBoxComponent extends MultiTabStop {
     this._valuePrimitive = isPrimitive;
   }
   get valuePrimitive() {
-    if (!isPresent6(this._valuePrimitive)) {
-      return !isPresent6(this.valueField);
+    if (!isPresent5(this._valuePrimitive)) {
+      return !isPresent5(this.valueField);
     }
     return this._valuePrimitive;
   }
@@ -46140,7 +43028,7 @@ var ComboBoxComponent = class _ComboBoxComponent extends MultiTabStop {
   }
   get popupHeight() {
     const popupHeight = this.popupSettings.height;
-    return isPresent6(popupHeight) ? `${popupHeight}px` : "auto";
+    return isPresent5(popupHeight) ? `${popupHeight}px` : "auto";
   }
   onChangeCallback = (_) => {
   };
@@ -46194,7 +43082,7 @@ var ComboBoxComponent = class _ComboBoxComponent extends MultiTabStop {
     this.injector = injector;
     this.hostElement = hostElement;
     this.adaptiveService = adaptiveService;
-    A(packageMetadata5);
+    A(packageMetadata4);
     this.direction = localization.rtl ? "rtl" : "ltr";
     this.data = [];
   }
@@ -46215,10 +43103,10 @@ var ComboBoxComponent = class _ComboBoxComponent extends MultiTabStop {
       const current = getter2(this.value, this.valueField);
       const newValue = getter2(candidate, this.valueField);
       let newText = getter2(candidate, this.textField);
-      if (!isPresent6(this.value) && !isPresent6(newValue)) {
+      if (!isPresent5(this.value) && !isPresent5(newValue)) {
         return false;
       }
-      if (isPresent6(newText)) {
+      if (isPresent5(newText)) {
         newText = newText.toString();
       }
       if (current === newValue && this.text === newText) {
@@ -46315,7 +43203,7 @@ var ComboBoxComponent = class _ComboBoxComponent extends MultiTabStop {
       this.direction = rtl ? "rtl" : "ltr";
       this.cdr.detectChanges();
     }));
-    this.subs.add(merge(this.navigationService.up, this.navigationService.down, this.navigationService.home, this.navigationService.end).pipe(filter((event) => isPresent6(event.index))).subscribe((event) => this.navigate(event.index)));
+    this.subs.add(merge(this.navigationService.up, this.navigationService.down, this.navigationService.home, this.navigationService.end).pipe(filter((event) => isPresent5(event.index))).subscribe((event) => this.navigate(event.index)));
     this.subs.add(this.navigationService.open.subscribe(this.handleNavigationOpen.bind(this)));
     this.subs.add(this.navigationService.close.subscribe(() => this.togglePopup(false)));
     this.subs.add(merge(this.navigationService.pagedown, this.navigationService.pageup).subscribe((event) => {
@@ -46350,7 +43238,7 @@ var ComboBoxComponent = class _ComboBoxComponent extends MultiTabStop {
   ngOnDestroy() {
     this.destroyPopup();
     this.subs.unsubscribe();
-    if (isPresent6(this.valueSubscription)) {
+    if (isPresent5(this.valueSubscription)) {
       this.valueSubscription.unsubscribe();
     }
     if (this.touchstartDisposeHandler) {
@@ -46385,7 +43273,7 @@ var ComboBoxComponent = class _ComboBoxComponent extends MultiTabStop {
    */
   focusItemAt(index) {
     const isInRange = index >= 0 && index < this.data.length;
-    if (isPresent6(index) && isInRange && !this.disabledItemsService.isIndexDisabled(index)) {
+    if (isPresent5(index) && isInRange && !this.disabledItemsService.isIndexDisabled(index)) {
       this.selectionService.focus(index);
     } else {
       this.selectionService.focus(-1);
@@ -46415,7 +43303,7 @@ var ComboBoxComponent = class _ComboBoxComponent extends MultiTabStop {
    */
   toggle(open) {
     Promise.resolve(null).then(() => {
-      const shouldOpen = isPresent6(open) ? open : !this._open;
+      const shouldOpen = isPresent5(open) ? open : !this._open;
       this._toggle(shouldOpen);
       this.cdr.markForCheck();
     });
@@ -46452,8 +43340,8 @@ var ComboBoxComponent = class _ComboBoxComponent extends MultiTabStop {
    * should be rendered in the input when the component is not focused.
    */
   isEmpty() {
-    const textEmpty = !isPresent6(this.text) || isEmptyString(this.text);
-    const valueEmpty = !isPresent6(this.value) || isEmptyString(this.value);
+    const textEmpty = !isPresent5(this.text) || isEmptyString(this.text);
+    const valueEmpty = !isPresent5(this.value) || isEmptyString(this.value);
     return textEmpty && valueEmpty;
   }
   /**
@@ -46532,13 +43420,13 @@ var ComboBoxComponent = class _ComboBoxComponent extends MultiTabStop {
     if (!isDevMode()) {
       return;
     }
-    if (this.valuePrimitive === true && isPresent6(this.value) && typeof this.value === "object") {
+    if (this.valuePrimitive === true && isPresent5(this.value) && typeof this.value === "object") {
       throw new Error(ComboBoxMessages.primitive);
     }
-    if (this.valuePrimitive === false && isPresent6(this.value) && typeof this.value !== "object") {
+    if (this.valuePrimitive === false && isPresent5(this.value) && typeof this.value !== "object") {
       throw new Error(ComboBoxMessages.object);
     }
-    const valueOrText = !isPresent6(this.valueField) !== !isPresent6(this.textField);
+    const valueOrText = !isPresent5(this.valueField) !== !isPresent5(this.textField);
     if (valueOrText) {
       throw new Error(ComboBoxMessages.textAndValue);
     }
@@ -46556,13 +43444,13 @@ var ComboBoxComponent = class _ComboBoxComponent extends MultiTabStop {
       valueField,
       value
     });
-    if (isPresent6(resolved.index) && resolved.index !== -1) {
+    if (isPresent5(resolved.index) && resolved.index !== -1) {
       this.updateState({
         dataItem: resolved.dataItem,
         confirm: true
       });
       this.resetSelection(resolved.index);
-    } else if (isPresent6(value) && this.allowCustom) {
+    } else if (isPresent5(value) && this.allowCustom) {
       this.updateState({
         dataItem: value
       });
@@ -46592,7 +43480,7 @@ var ComboBoxComponent = class _ComboBoxComponent extends MultiTabStop {
     this.dataItem = void 0;
   }
   resetSelection(index) {
-    const clear = !isPresent6(index) || index < 0;
+    const clear = !isPresent5(index) || index < 0;
     this.selectionService.resetSelection(clear ? [] : [index]);
     this.selectionService.focused = index;
   }
@@ -46608,13 +43496,13 @@ var ComboBoxComponent = class _ComboBoxComponent extends MultiTabStop {
     if (this.dataService.grouped) {
       return (item) => {
         let itemText = getter2(item.value, this.textField);
-        itemText = !isPresent6(itemText) ? "" : itemText.toString().toLowerCase();
+        itemText = !isPresent5(itemText) ? "" : itemText.toString().toLowerCase();
         return itemText.startsWith(text.toLowerCase());
       };
     } else {
       return (item) => {
         let itemText = getter2(item, this.textField);
-        itemText = !isPresent6(itemText) ? "" : itemText.toString().toLowerCase();
+        itemText = !isPresent5(itemText) ? "" : itemText.toString().toLowerCase();
         return itemText.startsWith(text.toLowerCase());
       };
     }
@@ -46674,7 +43562,7 @@ var ComboBoxComponent = class _ComboBoxComponent extends MultiTabStop {
    * @hidden
    */
   handleNavigate(event) {
-    const hasSelected = isPresent6(this.selectionService.selected[0]);
+    const hasSelected = isPresent5(this.selectionService.selected[0]);
     const focused = isNaN(this.selectionService.focused) ? this.firstFocusableIndex(0) : this.selectionService.focused;
     let offset2 = 0;
     if (this.disabled || this.readonly) {
@@ -46710,7 +43598,7 @@ var ComboBoxComponent = class _ComboBoxComponent extends MultiTabStop {
   handleEnter() {
     const text = this.text;
     const focused = this.selectionService.focused;
-    const hasFocused = isPresent6(focused) && focused !== -1;
+    const hasFocused = isPresent5(focused) && focused !== -1;
     const previousText = getter2(this._previousDataItem, this.textField) || "";
     const focusedItemText = getter2(this.dataService.itemAt(focused), this.textField);
     const textHasChanged = text !== previousText;
@@ -46765,7 +43653,7 @@ var ComboBoxComponent = class _ComboBoxComponent extends MultiTabStop {
       if (runInZone) {
         this.zone.run(() => {
           if (valueHasChanged) {
-            const lowerCaseMatch = isPresent6(this.focusedItemText) && this.focusedItemText.toLowerCase() === currentText.toLowerCase();
+            const lowerCaseMatch = isPresent5(this.focusedItemText) && this.focusedItemText.toLowerCase() === currentText.toLowerCase();
             if (lowerCaseMatch || unresolvedSelection) {
               this.selectionService.change(this.selectionService.focused);
             } else {
@@ -46887,17 +43775,17 @@ var ComboBoxComponent = class _ComboBoxComponent extends MultiTabStop {
   }
   get focusedItemText() {
     const focused = this.selectionService.focused;
-    if (!isPresent6(focused) || focused === -1) {
+    if (!isPresent5(focused) || focused === -1) {
       return null;
     }
     const itemText = getter2(this.dataService.itemAt(focused), this.textField);
-    return !isPresent6(itemText) ? "" : itemText.toString();
+    return !isPresent5(itemText) ? "" : itemText.toString();
   }
   /**
    * Focuses the first match when there's text in the input field, but no focused item.
    */
   restoreItemFocus() {
-    const hasFocus = isPresent6(this.selectionService.focused) && this.selectionService.focused > -1;
+    const hasFocus = isPresent5(this.selectionService.focused) && this.selectionService.focused > -1;
     if (!hasFocus && this.text && this.dataService.itemsCount) {
       if (this.filterable) {
         this.selectionService.focused = this.firstFocusableIndex(0);
@@ -46907,12 +43795,12 @@ var ComboBoxComponent = class _ComboBoxComponent extends MultiTabStop {
     }
   }
   useSuggestion() {
-    if (!(this.suggest && isPresent6(this.searchbar.value))) {
+    if (!(this.suggest && isPresent5(this.searchbar.value))) {
       return false;
     }
     const focusedDataItem = this.dataService.itemAt(this.selectionService.focused);
     const focusedItemText = getter2(focusedDataItem, this.textField);
-    if (!isPresent6(focusedItemText)) {
+    if (!isPresent5(focusedItemText)) {
       return false;
     }
     return this.searchbar.value.toLowerCase() === focusedItemText.toLowerCase();
@@ -47079,7 +43967,7 @@ var ComboBoxComponent = class _ComboBoxComponent extends MultiTabStop {
     if (runInZone) {
       this.zone.run(() => {
         if (valueHasChanged) {
-          const lowerCaseMatch = isPresent6(this.focusedItemText) && this.focusedItemText.toLowerCase() === currentText.toLowerCase();
+          const lowerCaseMatch = isPresent5(this.focusedItemText) && this.focusedItemText.toLowerCase() === currentText.toLowerCase();
           if (lowerCaseMatch || unresolvedSelection) {
             this.selectionService.change(this.selectionService.focused);
           } else {
@@ -47215,36 +44103,36 @@ var ComboBoxComponent = class _ComboBoxComponent extends MultiTabStop {
     consts: () => {
       let i18n_4;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_4 = goog.getMsg("NO DATA FOUND");
-        i18n_4 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_4;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_4 = goog.getMsg("NO DATA FOUND");
+        i18n_4 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_4;
       } else {
         i18n_4 = $localize`:kendo.combobox.noDataText|The text displayed in the popup when there are no items:NO DATA FOUND`;
       }
       let i18n_5;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_5 = goog.getMsg("clear");
-        i18n_5 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_5;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_5 = goog.getMsg("clear");
+        i18n_5 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_5;
       } else {
         i18n_5 = $localize`:kendo.combobox.clearTitle|The title of the clear button:clear`;
       }
       let i18n_6;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_6 = goog.getMsg("Select");
-        i18n_6 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_6;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_6 = goog.getMsg("Select");
+        i18n_6 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_6;
       } else {
         i18n_6 = $localize`:kendo.combobox.selectButtonText|The text set as aria-label on the select button:Select`;
       }
       let i18n_7;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_7 = goog.getMsg("Options list");
-        i18n_7 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_7;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_7 = goog.getMsg("Options list");
+        i18n_7 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_7;
       } else {
         i18n_7 = $localize`:kendo.combobox.popupLabel|The label of the popup element that contains the list of options when its role is 'region':Options list`;
       }
       let i18n_8;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_8 = goog.getMsg("Close");
-        i18n_8 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_8;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_8 = goog.getMsg("Close");
+        i18n_8 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_8;
       } else {
         i18n_8 = $localize`:kendo.combobox.adaptiveCloseButtonTitle|The title of the Close button of the ActionSheet that is rendered instead of the Popup when using small screen devices in adaptive mode:Close`;
       }
@@ -47958,7 +44846,7 @@ var DropDownListComponent = class _DropDownListComponent {
   }
   get height() {
     const popupHeight = this.popupSettings.height;
-    return isPresent6(popupHeight) ? `${popupHeight}px` : "auto";
+    return isPresent5(popupHeight) ? `${popupHeight}px` : "auto";
   }
   get widgetTabIndex() {
     if (this.disabled) {
@@ -47969,7 +44857,7 @@ var DropDownListComponent = class _DropDownListComponent {
     return !isNaN(providedTabIndex) ? providedTabIndex : defaultTabIndex;
   }
   get ariaActivedescendant() {
-    if (!isPresent6(this.dataItem) || !this.isOpen) {
+    if (!isPresent5(this.dataItem) || !this.isOpen) {
       return;
     }
     return this.optionPrefix + "-" + this.selectionService.focused;
@@ -48044,7 +44932,7 @@ var DropDownListComponent = class _DropDownListComponent {
    * All selected values not present in the source are ignored.
    */
   set value(newValue) {
-    if (!isPresent6(newValue)) {
+    if (!isPresent5(newValue)) {
       this._previousDataItem = void 0;
     }
     this._value = newValue;
@@ -48194,8 +45082,8 @@ var DropDownListComponent = class _DropDownListComponent {
     this._valuePrimitive = isPrimitive;
   }
   get valuePrimitive() {
-    if (!isPresent6(this._valuePrimitive)) {
-      return !isPresent6(this.valueField);
+    if (!isPresent5(this._valuePrimitive)) {
+      return !isPresent5(this.valueField);
     }
     return this._valuePrimitive;
   }
@@ -48397,7 +45285,7 @@ var DropDownListComponent = class _DropDownListComponent {
     if (input) {
       event.stopPropagation();
     }
-    const firstIndex = isPresent6(this.defaultItem) ? -1 : 0;
+    const firstIndex = isPresent5(this.defaultItem) ? -1 : 0;
     const focused = isNaN(this.selectionService.focused) ? this.firstFocusableIndex(firstIndex) : this.selectionService.focused;
     let offset2 = 0;
     if (this.disabled || this.readonly) {
@@ -48411,8 +45299,8 @@ var DropDownListComponent = class _DropDownListComponent {
     if (isFilterFocused && isHomeEnd) {
       return;
     }
-    const hasSelected = isPresent6(this.selectionService.selected[0]);
-    const focusedItemNotSelected = isPresent6(this.selectionService.focused) && !this.selectionService.isSelected(this.selectionService.focused);
+    const hasSelected = isPresent5(this.selectionService.selected[0]);
+    const focusedItemNotSelected = isPresent5(this.selectionService.focused) && !this.selectionService.isSelected(this.selectionService.focused);
     if (!hasSelected || focusedItemNotSelected) {
       if (code === Keys.ArrowDown || code === Keys.ArrowRight && this.leftRightArrowsNavigation) {
         offset2 = -1;
@@ -48510,7 +45398,7 @@ var DropDownListComponent = class _DropDownListComponent {
     this.cdr = cdr;
     this.injector = injector;
     this.adaptiveService = adaptiveService;
-    A(packageMetadata5);
+    A(packageMetadata4);
     this.direction = localization.rtl ? "rtl" : "ltr";
     this.data = [];
     this.subscribeEvents();
@@ -48597,9 +45485,9 @@ var DropDownListComponent = class _DropDownListComponent {
    * Focuses a specific item of the `DropDownListComponent` based on the provided index. If there is a default item, it is positioned at index `-1`. If `null` or an invalid index is provided, the focus is removed.
    */
   focusItemAt(index) {
-    const minIndex = isPresent6(this.defaultItem) ? -1 : 0;
+    const minIndex = isPresent5(this.defaultItem) ? -1 : 0;
     const isInRange = minIndex <= index && index < this.data.length;
-    if (isPresent6(index) && isInRange && !this.disabledItemsService.isIndexDisabled(index)) {
+    if (isPresent5(index) && isInRange && !this.disabledItemsService.isIndexDisabled(index)) {
       this.selectionService.focus(index);
     } else {
       this.selectionService.focus(null);
@@ -48629,7 +45517,7 @@ var DropDownListComponent = class _DropDownListComponent {
    */
   toggle(open) {
     Promise.resolve(null).then(() => {
-      const shouldOpen = isPresent6(open) ? open : !this._open;
+      const shouldOpen = isPresent5(open) ? open : !this._open;
       this._toggle(shouldOpen);
     });
   }
@@ -48831,7 +45719,7 @@ var DropDownListComponent = class _DropDownListComponent {
     this.dataItem = void 0;
   }
   resetSelection(index) {
-    const clear = !isPresent6(index);
+    const clear = !isPresent5(index);
     this.selectionService.resetSelection(clear ? [] : [index]);
     this.selectionService.focused = clear ? this.firstFocusableIndex(0) : index;
   }
@@ -48860,7 +45748,7 @@ var DropDownListComponent = class _DropDownListComponent {
           dataItem
         });
       }
-      const shouldUsePrevious = !isPresent6(dataItem) && this._previousDataItem;
+      const shouldUsePrevious = !isPresent5(dataItem) && this._previousDataItem;
       const shouldUseNewValue = newValue !== getter2(this.value, this.valueField);
       if (shouldUsePrevious) {
         this.updateState({
@@ -48956,7 +45844,7 @@ var DropDownListComponent = class _DropDownListComponent {
   itemFromEvent(event) {
     const index = event.indices[0];
     let dataItem = this.dataService.itemAt(index);
-    dataItem = isPresent6(dataItem) ? dataItem : this.currentOrDefault(index);
+    dataItem = isPresent5(dataItem) ? dataItem : this.currentOrDefault(index);
     const value = getter2(dataItem, this.valueField);
     const newSelection = event.newSelection;
     return {
@@ -48968,7 +45856,7 @@ var DropDownListComponent = class _DropDownListComponent {
   }
   currentOrDefault(selectedIndex) {
     const defaultItemIndex = -1;
-    if (isPresent6(this.dataItem) && selectedIndex !== defaultItemIndex) {
+    if (isPresent5(this.dataItem) && selectedIndex !== defaultItemIndex) {
       return this.dataItem;
     } else {
       return this.defaultItem;
@@ -48991,7 +45879,7 @@ var DropDownListComponent = class _DropDownListComponent {
     }
   }
   handleEscape() {
-    if (isPresent6(this.selectionService.selected[0])) {
+    if (isPresent5(this.selectionService.selected[0])) {
       this.selectionService.change(this.selectionService.selected[0]);
     } else {
       this.togglePopup(false);
@@ -49014,13 +45902,13 @@ var DropDownListComponent = class _DropDownListComponent {
     if (this.defaultItem && this.valueField && typeof this.defaultItem !== "object") {
       throw new Error(DropDownListMessages.defaultItem);
     }
-    if (this.valuePrimitive === true && isPresent6(this.value) && typeof this.value === "object") {
+    if (this.valuePrimitive === true && isPresent5(this.value) && typeof this.value === "object") {
       throw new Error(DropDownListMessages.primitive);
     }
-    if (this.valuePrimitive === false && isPresent6(this.value) && typeof this.value !== "object") {
+    if (this.valuePrimitive === false && isPresent5(this.value) && typeof this.value !== "object") {
       throw new Error(DropDownListMessages.object);
     }
-    const valueOrText = !isPresent6(this.valueField) !== !isPresent6(this.textField);
+    const valueOrText = !isPresent5(this.valueField) !== !isPresent5(this.textField);
     if (valueOrText) {
       throw new Error(DropDownListMessages.textAndValue);
     }
@@ -49028,7 +45916,7 @@ var DropDownListComponent = class _DropDownListComponent {
   componentBlur() {
     if (!this.isActionSheetExpanded) {
       this.isFocused = false;
-      const selectionPresent = isPresent6(this.selectionService.selected[0]);
+      const selectionPresent = isPresent5(this.selectionService.selected[0]);
       const valueHasChanged = selectionPresent && getter2(this.value, this.valueField) !== getter2(this.dataService.itemAt(this.selectionService.selected[0]), this.valueField);
       if (valueHasChanged || hasObservers(this.close) || hasObservers(this.onBlur) || hasObservers(this.filterChange) || isUntouched2(this.wrapper.nativeElement) || this.formControl?.updateOn === "blur") {
         this._zone.run(() => {
@@ -49080,7 +45968,7 @@ var DropDownListComponent = class _DropDownListComponent {
     }
   }
   selectNext() {
-    let data = this.dataService.filter((item) => isPresent6(item) && !item.header && !this.disabledItemsService.isItemDisabled(item)).map((item) => {
+    let data = this.dataService.filter((item) => isPresent5(item) && !item.header && !this.disabledItemsService.isItemDisabled(item)).map((item) => {
       if (this.dataService.grouped) {
         return {
           item: item.value,
@@ -49160,7 +46048,7 @@ var DropDownListComponent = class _DropDownListComponent {
     if (this.defaultItem) {
       const defaultValue = getter2(this.defaultItem, valueField);
       const currentValue = getter2(value, valueField);
-      if (!isPresent6(value) || currentValue === defaultValue) {
+      if (!isPresent5(value) || currentValue === defaultValue) {
         this.updateState({
           dataItem: this.defaultItem,
           confirm: true
@@ -49183,7 +46071,7 @@ var DropDownListComponent = class _DropDownListComponent {
         confirm: true
       });
       this.resetSelection(resolved.index);
-    } else if (isPresent6(value) && ofSameType) {
+    } else if (isPresent5(value) && ofSameType) {
       this.updateState({
         dataItem: value
       });
@@ -49384,36 +46272,36 @@ var DropDownListComponent = class _DropDownListComponent {
     consts: () => {
       let i18n_9;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_9 = goog.getMsg("NO DATA FOUND");
-        i18n_9 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_9;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_9 = goog.getMsg("NO DATA FOUND");
+        i18n_9 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_9;
       } else {
         i18n_9 = $localize`:kendo.dropdownlist.noDataText|The text displayed in the popup when there are no items:NO DATA FOUND`;
       }
       let i18n_10;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_10 = goog.getMsg("Select");
-        i18n_10 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_10;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_10 = goog.getMsg("Select");
+        i18n_10 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_10;
       } else {
         i18n_10 = $localize`:kendo.dropdownlist.selectButtonText|The text set as aria-label on the select button:Select`;
       }
       let i18n_11;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_11 = goog.getMsg("Filter");
-        i18n_11 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_11;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_11 = goog.getMsg("Filter");
+        i18n_11 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_11;
       } else {
         i18n_11 = $localize`:kendo.dropdownlist.filterInputLabel|The text set as aria-label on the filter input:Filter`;
       }
       let i18n_12;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_12 = goog.getMsg("Options list");
-        i18n_12 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_12;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_12 = goog.getMsg("Options list");
+        i18n_12 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_12;
       } else {
         i18n_12 = $localize`:kendo.dropdownlist.popupLabel|The label of the popup element that contains the list of options when its role is 'region':Options list`;
       }
       let i18n_13;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_13 = goog.getMsg("Close");
-        i18n_13 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_13;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_13 = goog.getMsg("Close");
+        i18n_13 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_13;
       } else {
         i18n_13 = $localize`:kendo.dropdownlist.adaptiveCloseButtonTitle|The title of the Close button of the ActionSheet that is rendered instead of the Popup when using small screen devices in adaptive mode:Close`;
       }
@@ -50088,7 +46976,7 @@ var TagListComponent = class _TagListComponent {
     return tag instanceof Array;
   }
   tagAriaHidden(index) {
-    return isPresent6(this.focused) && this.focused !== index;
+    return isPresent5(this.focused) && this.focused !== index;
   }
   getPropField(tag, prop, index) {
     const fieldsCount = prop.length - 1;
@@ -50375,7 +47263,7 @@ var MultiSelectComponent = class _MultiSelectComponent {
   focusItemAt(index) {
     const minIndex = this.allowCustom ? -1 : 0;
     const isInRange = minIndex <= 0 && index < this.data.length;
-    if (isPresent6(index) && isInRange && !this.disabledItemsService.isIndexDisabled(index)) {
+    if (isPresent5(index) && isInRange && !this.disabledItemsService.isIndexDisabled(index)) {
       this.selectionService.focus(index);
     } else {
       this.selectionService.focus(null);
@@ -50742,8 +47630,8 @@ var MultiSelectComponent = class _MultiSelectComponent {
     this._valuePrimitive = isPrimitive;
   }
   get valuePrimitive() {
-    if (!isPresent6(this._valuePrimitive)) {
-      return !isPresent6(this.valueField);
+    if (!isPresent5(this._valuePrimitive)) {
+      return !isPresent5(this.valueField);
     }
     return this._valuePrimitive;
   }
@@ -50928,7 +47816,7 @@ var MultiSelectComponent = class _MultiSelectComponent {
     this.injector = injector;
     this.hostElement = hostElement;
     this.adaptiveService = adaptiveService;
-    A(packageMetadata5);
+    A(packageMetadata4);
     this.popupPointerDownHandler = this.onPointerDown.bind(this);
     this.data = [];
     this.direction = this.localization.rtl ? "rtl" : "ltr";
@@ -50968,17 +47856,17 @@ var MultiSelectComponent = class _MultiSelectComponent {
   }
   get height() {
     const popupHeight = this.popupSettings.height;
-    return isPresent6(popupHeight) ? `${popupHeight}px` : "auto";
+    return isPresent5(popupHeight) ? `${popupHeight}px` : "auto";
   }
   get activeDescendant() {
     const focusedTagIndex = this.focusedTagIndex;
     const focusedListIndex = this.selectionService.focused;
     let prefix;
     let focusedIndex;
-    if (isPresent6(focusedTagIndex) && !this.isOpen) {
+    if (isPresent5(focusedTagIndex) && !this.isOpen) {
       focusedIndex = focusedTagIndex;
       prefix = this.tagPrefix;
-    } else if (isPresent6(focusedListIndex) && focusedListIndex !== -1 && this.isOpen) {
+    } else if (isPresent5(focusedListIndex) && focusedListIndex !== -1 && this.isOpen) {
       focusedIndex = focusedListIndex;
       prefix = this.optionPrefix;
     } else {
@@ -51007,7 +47895,7 @@ var MultiSelectComponent = class _MultiSelectComponent {
     if (this.valuePrimitive === false && !isObjectArray(this.value)) {
       throw new Error(MultiselectMessages.object);
     }
-    const valueOrText = !isPresent6(this.valueField) !== !isPresent6(this.textField);
+    const valueOrText = !isPresent5(this.valueField) !== !isPresent5(this.textField);
     if (valueOrText) {
       throw new Error(MultiselectMessages.textAndValue);
     }
@@ -51017,10 +47905,10 @@ var MultiSelectComponent = class _MultiSelectComponent {
    */
   change(event) {
     if (event.isMultipleSelection) {
-      if (isPresent6(event.added) && event.added.length > 0) {
+      if (isPresent5(event.added) && event.added.length > 0) {
         event.added.forEach((itemIndex) => {
           const dataItem = this.dataService.itemAt(itemIndex);
-          const newItem = this.valuePrimitive && isPresent6(dataItem) && isPresent6(getter2(dataItem, this.valueField)) ? getter2(dataItem, this.valueField) : dataItem;
+          const newItem = this.valuePrimitive && isPresent5(dataItem) && isPresent5(getter2(dataItem, this.valueField)) ? getter2(dataItem, this.valueField) : dataItem;
           if (newItem) {
             if (!this.isAdaptive || !this.isActionSheetExpanded) {
               this.value = [...this.value, newItem];
@@ -51030,7 +47918,7 @@ var MultiSelectComponent = class _MultiSelectComponent {
           }
         });
       }
-      if (isPresent6(event.removed) && event.removed.length > 0) {
+      if (isPresent5(event.removed) && event.removed.length > 0) {
         event.removed.forEach((itemIndex) => {
           const dataItem = this.dataService.itemAt(itemIndex);
           const filter2 = (item) => getter2(item, this.valueField) !== getter2(dataItem, this.valueField);
@@ -51043,21 +47931,21 @@ var MultiSelectComponent = class _MultiSelectComponent {
         this.cdr.detectChanges();
       }
     } else {
-      const isCustomItem = (isPresent6(event.added) || isPresent6(event.removed)) && (event.added === -1 || event.removed === -1);
+      const isCustomItem = (isPresent5(event.added) || isPresent5(event.removed)) && (event.added === -1 || event.removed === -1);
       if (isCustomItem) {
         this.addCustomValue(this.text);
         return;
       }
-      if (isPresent6(event.added)) {
+      if (isPresent5(event.added)) {
         const dataItem = this.dataService.itemAt(event.added);
-        const newItem = this.valuePrimitive && isPresent6(dataItem) && isPresent6(getter2(dataItem, this.valueField)) ? getter2(dataItem, this.valueField) : dataItem;
+        const newItem = this.valuePrimitive && isPresent5(dataItem) && isPresent5(getter2(dataItem, this.valueField)) ? getter2(dataItem, this.valueField) : dataItem;
         if (!this.isAdaptive || !this.isActionSheetExpanded) {
           this.value = [...this.value, newItem];
         } else {
           this._valueHolder = [...this._valueHolder, newItem];
         }
       }
-      if (isPresent6(event.removed)) {
+      if (isPresent5(event.removed)) {
         const dataItem = this.dataService.itemAt(event.removed);
         const filter2 = (item) => getter2(item, this.valueField) !== getter2(dataItem, this.valueField);
         if (!this.isAdaptive || !this.isActionSheetExpanded) {
@@ -51102,8 +47990,8 @@ var MultiSelectComponent = class _MultiSelectComponent {
     if (this.selectedDataItems.length < value.length) {
       this.selectedDataItems = value.map((current) => {
         const dataItem = this.selectedDataItems.find((item) => getter2(item, this.valueField) === getter2(current, this.valueField));
-        return isPresent6(dataItem) ? dataItem : this.resolveDataItemFromTags(current);
-      }).filter((dataItem) => isPresent6(dataItem));
+        return isPresent5(dataItem) ? dataItem : this.resolveDataItemFromTags(current);
+      }).filter((dataItem) => isPresent5(dataItem));
     }
     this.tags = this.tagMapper(this.selectedDataItems.slice(0));
     this.disabledIndices = this.disabledItemsMapper();
@@ -51289,7 +48177,7 @@ var MultiSelectComponent = class _MultiSelectComponent {
    */
   toggle(open) {
     Promise.resolve(null).then(() => {
-      const shouldOpen = isPresent6(open) ? open : !this._open;
+      const shouldOpen = isPresent5(open) ? open : !this._open;
       this._toggle(shouldOpen);
       this.cdr.markForCheck();
     });
@@ -51515,7 +48403,7 @@ var MultiSelectComponent = class _MultiSelectComponent {
     })).subscribe((normalizedValue) => {
       this.loading = false;
       this.disabled = false;
-      if (isPresent6(normalizedValue)) {
+      if (isPresent5(normalizedValue)) {
         const newValue = this.valuePrimitive ? getter2(normalizedValue, this.valueField) : normalizedValue;
         const itemIndex = this.dataService.indexOf(newValue);
         const customItem = itemIndex === -1;
@@ -51676,7 +48564,7 @@ var MultiSelectComponent = class _MultiSelectComponent {
   }
   handleSelectUpDown(event) {
     const focusedIndex = this.selectionService.focused;
-    if (!isPresent6(focusedIndex)) {
+    if (!isPresent5(focusedIndex)) {
       return;
     }
     let indexToSelect;
@@ -51685,7 +48573,7 @@ var MultiSelectComponent = class _MultiSelectComponent {
     } else {
       indexToSelect = focusedIndex < this.dataService.data.length - 1 ? focusedIndex + 1 : focusedIndex;
     }
-    if (!isPresent6(this.selectionService.lastClickedIndex)) {
+    if (!isPresent5(this.selectionService.lastClickedIndex)) {
       this.selectionService.lastClickedIndex = focusedIndex;
     }
     this.selectRangeFromTo(indexToSelect);
@@ -51758,7 +48646,7 @@ var MultiSelectComponent = class _MultiSelectComponent {
       } else {
         itemText = getter2(item, this.textField);
       }
-      itemText = !isPresent6(itemText) ? "" : itemText.toString().toLowerCase();
+      itemText = !isPresent5(itemText) ? "" : itemText.toString().toLowerCase();
       return text && itemText.startsWith(text);
     }, startsFrom);
     if (this.disabledItemsService.isIndexDisabled(index)) {
@@ -51888,7 +48776,7 @@ var MultiSelectComponent = class _MultiSelectComponent {
     this.valueChange.emit(this.value);
   }
   resolveDataItemFromTags(value) {
-    if (!(this.tags && this.tags.length && isPresent6(value))) {
+    if (!(this.tags && this.tags.length && isPresent5(value))) {
       return void 0;
     }
     const tags = this.tags.reduce((acc, tag) => {
@@ -52083,42 +48971,42 @@ var MultiSelectComponent = class _MultiSelectComponent {
     consts: () => {
       let i18n_14;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_14 = goog.getMsg("NO DATA FOUND");
-        i18n_14 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_14;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_14 = goog.getMsg("NO DATA FOUND");
+        i18n_14 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_14;
       } else {
         i18n_14 = $localize`:kendo.multiselect.noDataText|The text displayed in the popup when there are no items:NO DATA FOUND`;
       }
       let i18n_15;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_15 = goog.getMsg("clear");
-        i18n_15 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_15;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_15 = goog.getMsg("clear");
+        i18n_15 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_15;
       } else {
         i18n_15 = $localize`:kendo.multiselect.clearTitle|The title of the clear button:clear`;
       }
       let i18n_16;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_16 = goog.getMsg("Options list");
-        i18n_16 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_16;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_16 = goog.getMsg("Options list");
+        i18n_16 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_16;
       } else {
         i18n_16 = $localize`:kendo.multiselect.popupLabel|The label of the popup element that contains the list of options when its role is 'region':Options list`;
       }
       let i18n_17;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_17 = goog.getMsg("Close");
-        i18n_17 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_17;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_17 = goog.getMsg("Close");
+        i18n_17 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_17;
       } else {
         i18n_17 = $localize`:kendo.multiselect.adaptiveCloseButtonTitle|The title of the Close button of the ActionSheet that is rendered instead of the Popup when using small screen devices in adaptive mode.:Close`;
       }
       let i18n_18;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_18 = goog.getMsg("{$interpolation}", {
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_18 = goog.getMsg("{$interpolation}", {
           "interpolation": "�0�"
         }, {
           original_code: {
             "interpolation": "{{ 'Use &quot;{customValue}&quot;' }}"
           }
         });
-        i18n_18 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_18;
+        i18n_18 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_18;
       } else {
         i18n_18 = $localize`:kendo.multiselect.useCustomValueText|The text displayed when the user types a custom value that is not in the list of options.:${"�0�"}:INTERPOLATION:`;
       }
@@ -52903,7 +49791,7 @@ var ComboBoxColumnComponent = class _ComboBoxColumnComponent {
   });
 })();
 var allColumnsWidthsSet = (columns) => {
-  if (!isPresent6(columns) || columns.length === 0) {
+  if (!isPresent5(columns) || columns.length === 0) {
     return false;
   }
   return columns.toArray().every((column) => !isNaN(column.width) && column.width > 0);
@@ -52993,7 +49881,7 @@ var MultiColumnComboBoxComponent = class _MultiColumnComboBoxComponent extends C
     };
   }
   _headerTable;
-  removeWindowResizeListener = noop6;
+  removeWindowResizeListener = noop4;
   columnsChangeSubscription = new Subscription();
   /**
    * @hidden
@@ -53054,7 +49942,7 @@ var MultiColumnComboBoxComponent = class _MultiColumnComboBoxComponent extends C
    * When the container has a scrollbar, the padding style is added, and when there is none - it is removed.
    */
   updateHeaderPadding(header) {
-    if (!isPresent6(header)) {
+    if (!isPresent5(header)) {
       return;
     }
     const headerPaddingPosition = this.localization.rtl ? "padding-left" : "padding-right";
@@ -53078,10 +49966,10 @@ var MultiColumnComboBoxComponent = class _MultiColumnComboBoxComponent extends C
     if (!isDevMode()) {
       return;
     }
-    if (isPresent6(this.data) && this.data.length > 0 && this.data.some((item) => !isObject2(item))) {
+    if (isPresent5(this.data) && this.data.length > 0 && this.data.some((item) => !isObject2(item))) {
       throw new Error(MultiColumnComboBoxMessages.data);
     }
-    if (!isPresent6(this.valueField) || !isPresent6(this.textField)) {
+    if (!isPresent5(this.valueField) || !isPresent5(this.textField)) {
       throw new Error(MultiColumnComboBoxMessages.textAndValue);
     }
     super.verifySettings();
@@ -53093,7 +49981,7 @@ var MultiColumnComboBoxComponent = class _MultiColumnComboBoxComponent extends C
     this.zone.runOutsideAngular(() => this.removeWindowResizeListener = this.renderer.listen(window, "resize", this.updateColumnsMediaState.bind(this)));
   }
   updateColumnsMediaState() {
-    if (!(isPresent6(this.columns) && isDocumentAvailable()) || this.isActionSheetExpanded) {
+    if (!(isPresent5(this.columns) && isDocumentAvailable()) || this.isActionSheetExpanded) {
       return;
     }
     this.columns.forEach((column) => {
@@ -53168,37 +50056,37 @@ var MultiColumnComboBoxComponent = class _MultiColumnComboBoxComponent extends C
     consts: () => {
       let i18n_19;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_19 = goog.getMsg("NO DATA FOUND");
-        i18n_19 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_19;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_19 = goog.getMsg("NO DATA FOUND");
+        i18n_19 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_19;
       } else {
         i18n_19 = $localize`:kendo.multicolumncombobox.noDataText|The text displayed in the popup when there are no items:NO DATA FOUND`;
       }
       let i18n_20;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_20 = goog.getMsg("clear");
-        i18n_20 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_20;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_20 = goog.getMsg("clear");
+        i18n_20 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_20;
       } else {
         i18n_20 = $localize`:kendo.multicolumncombobox.clearTitle|The title of the clear button:clear`;
       }
       let i18n_21;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_21 = goog.getMsg("Select");
-        i18n_21 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_21;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_21 = goog.getMsg("Select");
+        i18n_21 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_21;
       } else {
         i18n_21 = $localize`:kendo.multicolumncombobox.selectButtonText|The title of the select button:Select`;
       }
       let i18n_22;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_22 = goog.getMsg("Options list");
-        i18n_22 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_22;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_22 = goog.getMsg("Options list");
+        i18n_22 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_22;
       } else {
         i18n_22 = $localize`:kendo.multicolumncombobox.popupLabel|The label of the popup element that contains the list of options
                 when its role is 'region':Options list`;
       }
       let i18n_23;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_23 = goog.getMsg("Close");
-        i18n_23 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_23;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_23 = goog.getMsg("Close");
+        i18n_23 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_23;
       } else {
         i18n_23 = $localize`:kendo.multicolumncombobox.adaptiveCloseButtonTitle|The title of the Close button of the ActionSheet that is rendered instead of the Popup when using small screen devices in adaptive mode:Close`;
       }
@@ -54074,13 +50962,13 @@ var DropDownTreeComponent = class _DropDownTreeComponent {
   }
   get height() {
     const popupHeight = this.popupSettings.height;
-    return isPresent6(popupHeight) ? `${popupHeight}px` : "auto";
+    return isPresent5(popupHeight) ? `${popupHeight}px` : "auto";
   }
   /**
    * Returns the current open state. Returns `true` if the popup or actionSheet is open.
    */
   get isOpen() {
-    return isTruthy2(isPresent6(this.popupRef) || this.isActionSheetExpanded);
+    return isTruthy2(isPresent5(this.popupRef) || this.isActionSheetExpanded);
   }
   get clearButtonVisibility() {
     if (this.touchEnabled) {
@@ -54435,7 +51323,7 @@ var DropDownTreeComponent = class _DropDownTreeComponent {
   focusItemAt(index) {
     if (this.treeview) {
       const lookup = this.treeview.itemLookup(index);
-      const isItemDisabled = !isPresent6(lookup) || this.treeview.isDisabled(lookup.item.dataItem, lookup.item.index);
+      const isItemDisabled = !isPresent5(lookup) || this.treeview.isDisabled(lookup.item.dataItem, lookup.item.index);
       if (!isItemDisabled) {
         this.treeview.focus(index);
       }
@@ -54475,7 +51363,7 @@ var DropDownTreeComponent = class _DropDownTreeComponent {
    */
   toggle(open) {
     Promise.resolve(null).then(() => {
-      const shouldOpen = isPresent6(open) ? open : !isPresent6(this.popupRef);
+      const shouldOpen = isPresent5(open) ? open : !isPresent5(this.popupRef);
       this.destroyPopup();
       if (shouldOpen) {
         this.createPopup();
@@ -54551,11 +51439,11 @@ var DropDownTreeComponent = class _DropDownTreeComponent {
    * @hidden
    */
   writeValue(value) {
-    if (!isPresent6(value) && isPresent6(this.value)) {
+    if (!isPresent5(value) && isPresent5(this.value)) {
       this.dataItem = null;
     }
     this.value = value === null ? void 0 : value;
-    if (isPresent6(this.value) && !this.valuePrimitive) {
+    if (isPresent5(this.value) && !this.valuePrimitive) {
       this.dataItem = this.value;
     }
   }
@@ -54604,25 +51492,25 @@ var DropDownTreeComponent = class _DropDownTreeComponent {
   get filterInputClasses() {
     return `${this.size ? getSizeClass2("input", this.size) : ""} ${this.fillMode ? "k-input-" + this.fillMode : ""} ${this.rounded ? getRoundedClass(this.rounded) : ""}`;
   }
-  onTouchedCallback = noop6;
-  onChangeCallback = noop6;
+  onTouchedCallback = noop4;
+  onChangeCallback = noop4;
   verifySettings() {
     if (!isDevMode()) {
       return;
     }
-    if (this.valuePrimitive === true && isPresent6(this.value) && typeof this.value === "object") {
+    if (this.valuePrimitive === true && isPresent5(this.value) && typeof this.value === "object") {
       throw new Error(DropDownTreeMessages.primitive);
     }
-    if (this.valuePrimitive === true && isPresent6(this.value) && typeof this.dataItem !== "object") {
+    if (this.valuePrimitive === true && isPresent5(this.value) && typeof this.dataItem !== "object") {
       throw new Error(DropDownTreeMessages.dataItem);
     }
-    if (this.valuePrimitive === false && isPresent6(this.value) && typeof this.value !== "object") {
+    if (this.valuePrimitive === false && isPresent5(this.value) && typeof this.value !== "object") {
       throw new Error(DropDownTreeMessages.object);
     }
-    if (!isPresent6(this.valueField) || !isPresent6(this.textField)) {
+    if (!isPresent5(this.valueField) || !isPresent5(this.textField)) {
       throw new Error(DropDownTreeMessages.textAndValue);
     }
-    if ((isArray2(this.valueField) || isArray2(this.textField)) && isPresent6(this.value) && !isPresent6(this.valueDepth)) {
+    if ((isArray2(this.valueField) || isArray2(this.textField)) && isPresent5(this.value) && !isPresent5(this.valueDepth)) {
       throw new Error(DropDownTreeMessages.valueDepth);
     }
   }
@@ -54631,7 +51519,7 @@ var DropDownTreeComponent = class _DropDownTreeComponent {
     this.valueChange.emit(value);
   }
   getText(textField, dataItem) {
-    if (isPresent6(dataItem) && isPresent6(textField)) {
+    if (isPresent5(dataItem) && isPresent5(textField)) {
       const field = this.getField(textField, dataItem);
       return getter(field)(dataItem);
     }
@@ -54661,7 +51549,7 @@ var DropDownTreeComponent = class _DropDownTreeComponent {
     const fieldsCount = field.length - 1;
     if (typeof field === "string") {
       return field;
-    } else if (isPresent6(this.valueDepth)) {
+    } else if (isPresent5(this.valueDepth)) {
       return fieldsCount < this.valueDepth ? field[fieldsCount] : field[this.valueDepth];
     } else if (value && typeof value === "object") {
       return field.find((item) => item in value);
@@ -54766,7 +51654,7 @@ var DropDownTreeComponent = class _DropDownTreeComponent {
     this.focus();
   }
   setState() {
-    if (isPresent6(this.value) && isPresent6(this.dataItem) && isPresent6(this.valueField)) {
+    if (isPresent5(this.value) && isPresent5(this.dataItem) && isPresent5(this.valueField)) {
       this.text = this.getText(this.textField, this.dataItem);
       const valueField = this.getField(this.valueField, this.dataItem);
       this.selectBy = valueField;
@@ -55040,50 +51928,50 @@ var DropDownTreeComponent = class _DropDownTreeComponent {
     consts: () => {
       let i18n_24;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_24 = goog.getMsg("NO DATA FOUND");
-        i18n_24 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_24;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_24 = goog.getMsg("NO DATA FOUND");
+        i18n_24 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_24;
       } else {
         i18n_24 = $localize`:kendo.dropdowntree.noDataText|The text displayed in the popup when there are no items:NO DATA FOUND`;
       }
       let i18n_25;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_25 = goog.getMsg("clear");
-        i18n_25 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_25;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_25 = goog.getMsg("clear");
+        i18n_25 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_25;
       } else {
         i18n_25 = $localize`:kendo.dropdowntree.clearTitle|The title of the clear button:clear`;
       }
       let i18n_26;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_26 = goog.getMsg("Select");
-        i18n_26 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_26;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_26 = goog.getMsg("Select");
+        i18n_26 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_26;
       } else {
         i18n_26 = $localize`:kendo.dropdowntree.selectButtonText|The text set as aria-label on the select button:Select`;
       }
       let i18n_27;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_27 = goog.getMsg("Filter");
-        i18n_27 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_27;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_27 = goog.getMsg("Filter");
+        i18n_27 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_27;
       } else {
         i18n_27 = $localize`:kendo.dropdowntree.filterInputLabel|The text set as aria-label on the filter input:Filter`;
       }
       let i18n_28;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_28 = goog.getMsg("Options list");
-        i18n_28 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_28;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_28 = goog.getMsg("Options list");
+        i18n_28 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_28;
       } else {
         i18n_28 = $localize`:kendo.dropdowntree.popupLabel|The label of the popup element that contains the list of options when its role is 'region':Options list`;
       }
       let i18n_29;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_29 = goog.getMsg("Close");
-        i18n_29 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_29;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_29 = goog.getMsg("Close");
+        i18n_29 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_29;
       } else {
         i18n_29 = $localize`:kendo.dropdowntree.adaptiveCloseButtonTitle|The title of the Close button of the ActionSheet that is rendered instead of the Popup when using small screen devices in adaptive mode:Close`;
       }
       let i18n_30;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_30 = goog.getMsg("Filter");
-        i18n_30 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_30;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_30 = goog.getMsg("Filter");
+        i18n_30 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_30;
       } else {
         i18n_30 = $localize`:kendo.dropdowntree.filterInputPlaceholder|The text for the input's placeholder when filtering is enabled:Filter`;
       }
@@ -55642,7 +52530,7 @@ var DropDownTreeComponent = class _DropDownTreeComponent {
 })();
 var nodeIndex2 = (item) => (item || {}).key;
 var buildTreeItem2 = (dataItem, valueField, currentLevelIndex) => {
-  if (!isPresent6(dataItem)) {
+  if (!isPresent5(dataItem)) {
     return null;
   }
   return {
@@ -55830,10 +52718,10 @@ var CheckDirective2 = class _CheckDirective extends BaseCheckDirective {
     this.treeView.isChecked = this.getCheckedState.bind(this);
   }
   ngOnChanges(changes) {
-    if (isPresent6(changes["checkable"])) {
+    if (isPresent5(changes["checkable"])) {
       this.toggleCheckOnClick();
     }
-    if (isPresent6(changes["checkedItems"])) {
+    if (isPresent5(changes["checkedItems"])) {
       this.updateItems();
     }
   }
@@ -55914,7 +52802,7 @@ var CheckDirective2 = class _CheckDirective extends BaseCheckDirective {
     }
     let index = 0;
     let child = children[index];
-    while (isPresent6(child)) {
+    while (isPresent5(child)) {
       if (this.isItemChecked(child.item) || this.isItemIndeterminate(child)) {
         return true;
       }
@@ -56024,7 +52912,7 @@ var CheckAllDirective = class _CheckAllDirective extends BaseCheckDirective {
     this.renderer = renderer;
   }
   ngOnChanges(changes) {
-    if (isPresent6(changes["checkedItems"])) {
+    if (isPresent5(changes["checkedItems"])) {
       this.updateItems();
       this.renderer.setProperty(this.element.nativeElement, "checked", this.isChecked);
       this.renderer.setProperty(this.element.nativeElement, "indeterminate", this.isIndeterminate);
@@ -56688,7 +53576,7 @@ var MultiSelectTreeComponent = class _MultiSelectTreeComponent {
    * @hidden
    */
   get focusedTagId() {
-    if (!isPresent6(this.focusedTagIndex) || this.isOpen) {
+    if (!isPresent5(this.focusedTagIndex) || this.isOpen) {
       return null;
     }
     return this.tagPrefix + "-" + this.focusedTagIndex;
@@ -56704,7 +53592,7 @@ var MultiSelectTreeComponent = class _MultiSelectTreeComponent {
    * Returns the current open state. Returns `true` if the popup or actionSheet is open.
    */
   get isOpen() {
-    return isTruthy2(isPresent6(this.popupRef) || this.isActionSheetExpanded);
+    return isTruthy2(isPresent5(this.popupRef) || this.isActionSheetExpanded);
   }
   get width() {
     const wrapperWidth = this.wrapper.nativeElement.offsetWidth;
@@ -56718,7 +53606,7 @@ var MultiSelectTreeComponent = class _MultiSelectTreeComponent {
   }
   get height() {
     const popupHeight = this.popupSettings.height;
-    return isPresent6(popupHeight) ? `${popupHeight}px` : "auto";
+    return isPresent5(popupHeight) ? `${popupHeight}px` : "auto";
   }
   get appendTo() {
     const {
@@ -56992,7 +53880,7 @@ var MultiSelectTreeComponent = class _MultiSelectTreeComponent {
    * should be rendered inside the input when the component is not focused.
    */
   isEmpty() {
-    return !this.placeholder && (!isPresent6(this.value) || this.value.length === 0);
+    return !this.placeholder && (!isPresent5(this.value) || this.value.length === 0);
   }
   /**
    * Sets focus to the component.
@@ -57020,7 +53908,7 @@ var MultiSelectTreeComponent = class _MultiSelectTreeComponent {
   focusItemAt(index) {
     if (this.treeview) {
       const lookup = this.treeview.itemLookup(index);
-      const isItemDisabled = !isPresent6(lookup) || this.treeview.isDisabled(lookup.item.dataItem, lookup.item.index);
+      const isItemDisabled = !isPresent5(lookup) || this.treeview.isDisabled(lookup.item.dataItem, lookup.item.index);
       if (!isItemDisabled) {
         this.treeview.focus(index);
       }
@@ -57042,7 +53930,7 @@ var MultiSelectTreeComponent = class _MultiSelectTreeComponent {
    */
   toggle(open) {
     Promise.resolve(null).then(() => {
-      const shouldOpen = isPresent6(open) ? open : !isPresent6(this.popupRef);
+      const shouldOpen = isPresent5(open) ? open : !isPresent5(this.popupRef);
       this.destroyPopup();
       if (shouldOpen) {
         this.createPopup();
@@ -57212,10 +54100,10 @@ var MultiSelectTreeComponent = class _MultiSelectTreeComponent {
    * @hidden
    */
   writeValue(value) {
-    if (!this.valuePrimitive && isPresent6(value)) {
+    if (!this.valuePrimitive && isPresent5(value)) {
       this.dataItems = value;
     }
-    if (!isPresent6(value) && isPresent6(this.value)) {
+    if (!isPresent5(value) && isPresent5(this.value)) {
       this.dataItems = null;
     }
     this.value = value || [];
@@ -57265,13 +54153,13 @@ var MultiSelectTreeComponent = class _MultiSelectTreeComponent {
     this.checkAllInput.nativeElement.focus();
     this.checkAllInput.nativeElement.click();
   }
-  onTouchedCallback = noop6;
-  onChangeCallback = noop6;
+  onTouchedCallback = noop4;
+  onChangeCallback = noop4;
   verifySettings() {
     if (!isDevMode()) {
       return;
     }
-    if (!isPresent6(this.valueField) || !isPresent6(this.textField)) {
+    if (!isPresent5(this.valueField) || !isPresent5(this.textField)) {
       throw new Error(MultiSelectTreeMessages.textAndValue);
     }
     if (!isArray2(this.value)) {
@@ -57563,7 +54451,7 @@ var MultiSelectTreeComponent = class _MultiSelectTreeComponent {
     });
   }
   setState() {
-    if (isPresent6(this.dataItems) && isPresent6(this.valueField)) {
+    if (isPresent5(this.dataItems) && isPresent5(this.valueField)) {
       this.setTags();
       this.checkedItems = this.dataItems.slice();
     }
@@ -57635,12 +54523,12 @@ var MultiSelectTreeComponent = class _MultiSelectTreeComponent {
    * to retrieve the item's children/parent and determine the checked sate
    */
   registerLookupItems(data, parentItem = null, levelIndex = 0) {
-    if (!isPresent6(data) || data.length === 0) {
+    if (!isPresent5(data) || data.length === 0) {
       return;
     }
     const parentIndex = nodeIndex2(parentItem);
     const treeItems = data.map((node) => buildTreeItem2(node, this.valueField, levelIndex));
-    if (isPresent6(parentItem)) {
+    if (isPresent5(parentItem)) {
       this.lookup.registerChildren(parentIndex, treeItems);
     }
     treeItems.forEach((item) => {
@@ -57796,50 +54684,50 @@ var MultiSelectTreeComponent = class _MultiSelectTreeComponent {
     consts: () => {
       let i18n_31;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_31 = goog.getMsg("NO DATA FOUND");
-        i18n_31 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_31;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_31 = goog.getMsg("NO DATA FOUND");
+        i18n_31 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_31;
       } else {
         i18n_31 = $localize`:kendo.multiselecttree.noDataText|The text displayed in the popup when there are no items:NO DATA FOUND`;
       }
       let i18n_32;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_32 = goog.getMsg("clear");
-        i18n_32 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_32;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_32 = goog.getMsg("clear");
+        i18n_32 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_32;
       } else {
         i18n_32 = $localize`:kendo.multiselecttree.clearTitle|The title of the clear button:clear`;
       }
       let i18n_33;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_33 = goog.getMsg("Check all");
-        i18n_33 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_33;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_33 = goog.getMsg("Check all");
+        i18n_33 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_33;
       } else {
         i18n_33 = $localize`:kendo.multiselecttree.checkAllText|The text displayed for the check-all checkbox:Check all`;
       }
       let i18n_34;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_34 = goog.getMsg("Filter");
-        i18n_34 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_34;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_34 = goog.getMsg("Filter");
+        i18n_34 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_34;
       } else {
         i18n_34 = $localize`:kendo.multiselecttree.filterInputLabel|The text set as aria-label on the filter input:Filter`;
       }
       let i18n_35;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_35 = goog.getMsg("Options list");
-        i18n_35 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_35;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_35 = goog.getMsg("Options list");
+        i18n_35 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_35;
       } else {
         i18n_35 = $localize`:kendo.multiselecttree.popupLabel|The label of the popup element that contains the list of options when its role is 'region':Options list`;
       }
       let i18n_36;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_36 = goog.getMsg("Close");
-        i18n_36 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_36;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_36 = goog.getMsg("Close");
+        i18n_36 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_36;
       } else {
         i18n_36 = $localize`:kendo.multiselecttree.adaptiveCloseButtonTitle|The title of the Close button of the ActionSheet that is rendered instead of the Popup when using small screen devices in adaptive mode:Close`;
       }
       let i18n_37;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_37 = goog.getMsg("Filter");
-        i18n_37 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_37;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_37 = goog.getMsg("Filter");
+        i18n_37 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_DROPDOWNS_FESM2022_PROGRESS_KENDO_ANGULAR_DROPDOWNS_MJS_37;
       } else {
         i18n_37 = $localize`:kendo.multiselecttree.filterInputPlaceholder|The text for the input's placeholder when filtering is enabled:Filter`;
       }
@@ -58760,7 +55648,7 @@ var FilterDirective = class _FilterDirective {
     this.filterChangeSubscription = this.component.filterChange.subscribe(this.handleFilterChange.bind(this));
   }
   ngOnDestroy() {
-    if (isPresent6(this.filterChangeSubscription)) {
+    if (isPresent5(this.filterChangeSubscription)) {
       this.filterChangeSubscription.unsubscribe();
     }
   }
@@ -58786,7 +55674,7 @@ var FilterDirective = class _FilterDirective {
     }
   }
   normalizeValue(value) {
-    const normalizedValue = isPresent6(value) ? value.toString() : "";
+    const normalizedValue = isPresent5(value) ? value.toString() : "";
     return this.filterSettings.caseSensitive ? normalizedValue : normalizedValue.toLowerCase();
   }
   getFilterFields(providedFields) {
@@ -58802,7 +55690,7 @@ var FilterDirective = class _FilterDirective {
   }
   get filterSettings() {
     const settings = this.rawSettings;
-    const providedFields = isPresent6(settings) && typeof settings === "object" ? settings.fields : [];
+    const providedFields = isPresent5(settings) && typeof settings === "object" ? settings.fields : [];
     return Object.assign({}, DEFAULT_FILTER_SETTINGS2, settings, {
       fields: this.getFilterFields(providedFields)
     });
@@ -58897,7 +55785,7 @@ var SummaryTagDirective = class _SummaryTagDirective {
     this.createTagMapper();
   }
   ngOnChanges(changes) {
-    if (isPresent6(changes.showAfter)) {
+    if (isPresent5(changes.showAfter)) {
       this.createTagMapper();
       this.multiSelectComponent.onTagMapperChange();
     }
@@ -58955,7 +55843,7 @@ var MultiSelectTreeSummaryTagDirective = class _MultiSelectTreeSummaryTagDirecti
     this.createTagMapper();
   }
   ngOnChanges(changes) {
-    if (isPresent6(changes.showAfter)) {
+    if (isPresent5(changes.showAfter)) {
       this.createTagMapper();
       this.multiSelectTreeComponent.handleTagMapperChange(this.showAfter);
     }
@@ -59151,3072 +56039,7 @@ var DropDownListModule = class _DropDownListModule {
   }], null, null);
 })();
 
-// node_modules/@progress/kendo-angular-pager/fesm2022/progress-kendo-angular-pager.mjs
-var _c06 = ["dropdownlist"];
-function PagerPageSizesComponent_Conditional_2_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵtext(0);
-  }
-  if (rf & 2) {
-    const ctx_r2 = ɵɵnextContext();
-    ɵɵtextInterpolate1(" ", ctx_r2.textFor("itemsPerPage"), " ");
-  }
-}
-var _c113 = ["select"];
-var _c213 = ["numbers"];
-function PagerNumericButtonsComponent_Conditional_2_Template(rf, ctx) {
-  if (rf & 1) {
-    const _r1 = ɵɵgetCurrentView();
-    ɵɵelementStart(0, "button", 4);
-    ɵɵlistener("click", function PagerNumericButtonsComponent_Conditional_2_Template_button_click_0_listener() {
-      ɵɵrestoreView(_r1);
-      const ctx_r1 = ɵɵnextContext();
-      return ɵɵresetView(ctx_r1.changePage(ctx_r1.start - 2));
-    });
-    ɵɵtext(1, "...");
-    ɵɵelementEnd();
-  }
-  if (rf & 2) {
-    const ctx_r1 = ɵɵnextContext();
-    ɵɵproperty("size", ctx_r1.size);
-    ɵɵattribute("aria-label", ctx_r1.pageLabel(ctx_r1.start - 1))("title", ctx_r1.pageLabel(ctx_r1.start - 1));
-  }
-}
-function PagerNumericButtonsComponent_For_4_Template(rf, ctx) {
-  if (rf & 1) {
-    const _r3 = ɵɵgetCurrentView();
-    ɵɵelementStart(0, "button", 5);
-    ɵɵlistener("click", function PagerNumericButtonsComponent_For_4_Template_button_click_0_listener() {
-      const num_r4 = ɵɵrestoreView(_r3).$implicit;
-      const ctx_r1 = ɵɵnextContext();
-      return ɵɵresetView(ctx_r1.currentPage === num_r4 ? false : ctx_r1.changePage(num_r4 - 1));
-    });
-    ɵɵtext(1);
-    ɵɵelementEnd();
-  }
-  if (rf & 2) {
-    const num_r4 = ctx.$implicit;
-    const ctx_r1 = ɵɵnextContext();
-    ɵɵproperty("size", ctx_r1.size)("selected", ctx_r1.currentPage === num_r4);
-    ɵɵattribute("aria-label", ctx_r1.pageLabel(num_r4))("title", ctx_r1.pageLabel(num_r4))("aria-current", ctx_r1.currentPage === num_r4 ? "page" : void 0);
-    ɵɵadvance();
-    ɵɵtextInterpolate1(" ", num_r4, " ");
-  }
-}
-function PagerNumericButtonsComponent_Conditional_5_Template(rf, ctx) {
-  if (rf & 1) {
-    const _r5 = ɵɵgetCurrentView();
-    ɵɵelementStart(0, "button", 4);
-    ɵɵlistener("click", function PagerNumericButtonsComponent_Conditional_5_Template_button_click_0_listener() {
-      ɵɵrestoreView(_r5);
-      const ctx_r1 = ɵɵnextContext();
-      return ɵɵresetView(ctx_r1.changePage(ctx_r1.end));
-    });
-    ɵɵtext(1, "...");
-    ɵɵelementEnd();
-  }
-  if (rf & 2) {
-    const ctx_r1 = ɵɵnextContext();
-    ɵɵproperty("size", ctx_r1.size);
-    ɵɵattribute("aria-label", ctx_r1.pageLabel(ctx_r1.end + 1))("title", ctx_r1.pageLabel(ctx_r1.end + 1));
-  }
-}
-var _c312 = (a0) => ({
-  "aria-label": a0
-});
-var _c412 = (a0, a1) => ({
-  keydown: a0,
-  focusout: a1
-});
-function PagerInputComponent_Conditional_1_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵtext(0);
-  }
-  if (rf & 2) {
-    const ctx_r0 = ɵɵnextContext();
-    ɵɵtextInterpolate1(" ", ctx_r0.textFor("page"), " ");
-  }
-}
-var _c512 = (a0) => ({
-  opacity: a0
-});
-function PagerComponent_Conditional_2_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵelementContainer(0, 2);
-  }
-  if (rf & 2) {
-    const ctx_r0 = ɵɵnextContext();
-    ɵɵproperty("ngTemplateOutlet", ctx_r0.template.first == null ? null : ctx_r0.template.first.templateRef)("ngTemplateOutletContext", ctx_r0.templateContext);
-  }
-}
-function PagerComponent_Conditional_3_Conditional_1_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵelement(0, "kendo-pager-prev-buttons", 4);
-  }
-  if (rf & 2) {
-    const ctx_r0 = ɵɵnextContext(2);
-    ɵɵproperty("size", ctx_r0.size);
-  }
-}
-function PagerComponent_Conditional_3_Conditional_2_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵelement(0, "kendo-pager-numeric-buttons", 5);
-  }
-  if (rf & 2) {
-    const ctx_r0 = ɵɵnextContext(2);
-    ɵɵproperty("size", ctx_r0.size)("buttonCount", ctx_r0.buttonCount);
-  }
-}
-function PagerComponent_Conditional_3_Conditional_3_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵelement(0, "kendo-pager-input", 4);
-  }
-  if (rf & 2) {
-    const ctx_r0 = ɵɵnextContext(2);
-    ɵɵproperty("size", ctx_r0.size);
-  }
-}
-function PagerComponent_Conditional_3_Conditional_4_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵelement(0, "kendo-pager-next-buttons", 4);
-  }
-  if (rf & 2) {
-    const ctx_r0 = ɵɵnextContext(2);
-    ɵɵproperty("size", ctx_r0.size);
-  }
-}
-function PagerComponent_Conditional_3_Conditional_5_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵelement(0, "kendo-pager-page-sizes", 6);
-  }
-  if (rf & 2) {
-    const ctx_r0 = ɵɵnextContext(2);
-    ɵɵproperty("ngStyle", ɵɵpureFunction1(4, _c512, ctx_r0.initialized ? null : "0"))("size", ctx_r0.size)("pageSizes", ctx_r0._pageSizeValues)("adaptiveMode", ctx_r0.adaptiveMode);
-  }
-}
-function PagerComponent_Conditional_3_Conditional_6_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵelement(0, "kendo-pager-info", 7);
-  }
-  if (rf & 2) {
-    const ctx_r0 = ɵɵnextContext(2);
-    ɵɵproperty("ngStyle", ɵɵpureFunction1(1, _c512, ctx_r0.initialized ? null : "0"));
-  }
-}
-function PagerComponent_Conditional_3_Template(rf, ctx) {
-  if (rf & 1) {
-    ɵɵelementStart(0, "div", 3);
-    ɵɵtemplate(1, PagerComponent_Conditional_3_Conditional_1_Template, 1, 1, "kendo-pager-prev-buttons", 4)(2, PagerComponent_Conditional_3_Conditional_2_Template, 1, 2, "kendo-pager-numeric-buttons", 5)(3, PagerComponent_Conditional_3_Conditional_3_Template, 1, 1, "kendo-pager-input", 4)(4, PagerComponent_Conditional_3_Conditional_4_Template, 1, 1, "kendo-pager-next-buttons", 4);
-    ɵɵelementEnd();
-    ɵɵtemplate(5, PagerComponent_Conditional_3_Conditional_5_Template, 1, 6, "kendo-pager-page-sizes", 6)(6, PagerComponent_Conditional_3_Conditional_6_Template, 1, 3, "kendo-pager-info", 7);
-  }
-  if (rf & 2) {
-    const ctx_r0 = ɵɵnextContext();
-    ɵɵproperty("ngStyle", ɵɵpureFunction1(7, _c512, ctx_r0.initialized ? null : "0"));
-    ɵɵadvance();
-    ɵɵconditional(ctx_r0.previousNext ? 1 : -1);
-    ɵɵadvance();
-    ɵɵconditional(ctx_r0.type === "numeric" && ctx_r0.buttonCount > 0 ? 2 : -1);
-    ɵɵadvance();
-    ɵɵconditional(ctx_r0.showInput ? 3 : -1);
-    ɵɵadvance();
-    ɵɵconditional(ctx_r0.previousNext ? 4 : -1);
-    ɵɵadvance();
-    ɵɵconditional(ctx_r0._pageSizeValues.length ? 5 : -1);
-    ɵɵadvance();
-    ɵɵconditional(ctx_r0.info ? 6 : -1);
-  }
-}
-function PagerComponent_Conditional_4_Template(rf, ctx) {
-  if (rf & 1) {
-    const _r2 = ɵɵgetCurrentView();
-    ɵɵelementStart(0, "kendo-resize-sensor", 8);
-    ɵɵlistener("resize", function PagerComponent_Conditional_4_Template_kendo_resize_sensor_resize_0_listener() {
-      ɵɵrestoreView(_r2);
-      const ctx_r0 = ɵɵnextContext();
-      return ɵɵresetView(ctx_r0.resizeHandler());
-    });
-    ɵɵelementEnd();
-  }
-}
-var PreventableEvent5 = class {
-  prevented = false;
-  /**
-   * Prevents the default action for a specified event.
-   * In this way, the source component suppresses the built-in behavior that follows the event.
-   */
-  preventDefault() {
-    this.prevented = true;
-  }
-  /**
-   * If the event is prevented by any of its subscribers, returns `true`.
-   *
-   * @returns `true` if the default action was prevented. Otherwise, returns `false`.
-   */
-  isDefaultPrevented() {
-    return this.prevented;
-  }
-};
-var PageSizeChangeEvent = class extends PreventableEvent5 {
-  /**
-   * Gets the newly selected page size.
-   */
-  newPageSize;
-  /**
-   * Constructs the event arguments for the `pageSizeChange` event.
-   * @param newPageSize - The newly selected page size.
-   * @hidden
-   */
-  constructor(newPageSize) {
-    super();
-    this.newPageSize = newPageSize;
-  }
-};
-var Messages4 = class _Messages extends ComponentMessages {
-  /**
-   * The label of the pager. Follows the pattern **Page navigation, page {currentPage} of {totalPages}** by default.
-   * Тhe default label text when the current page is 1, and the total number of pages is 10 will be
-   * **Page navigation, page 1 of 10**.
-   *
-   * The message consists of several parts - the current page number, the total number of pages, and a localizable string.
-   * To allow for reordering its parts, the `ariaLabel` input accepts a string with placeholders for the current page
-   * and total number of pages. The `{currentPage}` and `{totalPages}` placeholders will be replaced
-   * internally with the respective actual values.
-   */
-  ariaLabel;
-  /**
-   * The label for the **First page** button.
-   */
-  firstPage;
-  /**
-   * The label for the **Last page** button.
-   */
-  lastPage;
-  /**
-   * The label for the **Previous page** button.
-   */
-  previousPage;
-  /**
-   * The label for the **Next page** button.
-   */
-  nextPage;
-  /**
-   * The label displayed before the pager input.
-   */
-  page;
-  /**
-   * The title attribute of the page number input element.
-   */
-  pageNumberInputTitle;
-  /**
-   * The label displayed after the page-size selector.
-   */
-  itemsPerPage;
-  /**
-   * The label before the total-page number.
-   */
-  of;
-  /**
-   * The label after the total-page number.
-   */
-  items;
-  /**
-   * The text of the title and aria-label attributes applied to the page chooser.
-   */
-  selectPage;
-  /**
-   * The text of the aria-label attribute applied to the input element for entering the page number."
-   */
-  inputLabel;
-  static ɵfac = /* @__PURE__ */ (() => {
-    let ɵMessages_BaseFactory;
-    return function Messages_Factory(__ngFactoryType__) {
-      return (ɵMessages_BaseFactory || (ɵMessages_BaseFactory = ɵɵgetInheritedFactory(_Messages)))(__ngFactoryType__ || _Messages);
-    };
-  })();
-  static ɵdir = ɵɵdefineDirective({
-    type: _Messages,
-    selectors: [["kendoPagerMessages"]],
-    inputs: {
-      ariaLabel: "ariaLabel",
-      firstPage: "firstPage",
-      lastPage: "lastPage",
-      previousPage: "previousPage",
-      nextPage: "nextPage",
-      page: "page",
-      pageNumberInputTitle: "pageNumberInputTitle",
-      itemsPerPage: "itemsPerPage",
-      of: "of",
-      items: "items",
-      selectPage: "selectPage",
-      inputLabel: "inputLabel"
-    },
-    features: [ɵɵInheritDefinitionFeature]
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(Messages4, [{
-    type: Directive,
-    args: [{
-      selector: "kendoPagerMessages"
-    }]
-  }], null, {
-    ariaLabel: [{
-      type: Input
-    }],
-    firstPage: [{
-      type: Input
-    }],
-    lastPage: [{
-      type: Input
-    }],
-    previousPage: [{
-      type: Input
-    }],
-    nextPage: [{
-      type: Input
-    }],
-    page: [{
-      type: Input
-    }],
-    pageNumberInputTitle: [{
-      type: Input
-    }],
-    itemsPerPage: [{
-      type: Input
-    }],
-    of: [{
-      type: Input
-    }],
-    items: [{
-      type: Input
-    }],
-    selectPage: [{
-      type: Input
-    }],
-    inputLabel: [{
-      type: Input
-    }]
-  });
-})();
-var CustomMessagesComponent4 = class _CustomMessagesComponent extends Messages4 {
-  service;
-  constructor(service) {
-    super();
-    this.service = service;
-  }
-  get override() {
-    return true;
-  }
-  static ɵfac = function CustomMessagesComponent_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _CustomMessagesComponent)(ɵɵdirectiveInject(LocalizationService));
-  };
-  static ɵcmp = ɵɵdefineComponent({
-    type: _CustomMessagesComponent,
-    selectors: [["kendo-datapager-messages"], ["kendo-pager-messages"]],
-    features: [ɵɵProvidersFeature([{
-      provide: Messages4,
-      useExisting: forwardRef(() => _CustomMessagesComponent)
-    }]), ɵɵInheritDefinitionFeature],
-    decls: 0,
-    vars: 0,
-    template: function CustomMessagesComponent_Template(rf, ctx) {
-    },
-    encapsulation: 2
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(CustomMessagesComponent4, [{
-    type: Component,
-    args: [{
-      providers: [{
-        provide: Messages4,
-        useExisting: forwardRef(() => CustomMessagesComponent4)
-      }],
-      selector: "kendo-datapager-messages, kendo-pager-messages",
-      template: ``,
-      standalone: true
-    }]
-  }], () => [{
-    type: LocalizationService
-  }], null);
-})();
-var LocalizedMessagesDirective4 = class _LocalizedMessagesDirective extends Messages4 {
-  service;
-  constructor(service) {
-    super();
-    this.service = service;
-  }
-  static ɵfac = function LocalizedMessagesDirective_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _LocalizedMessagesDirective)(ɵɵdirectiveInject(LocalizationService));
-  };
-  static ɵdir = ɵɵdefineDirective({
-    type: _LocalizedMessagesDirective,
-    selectors: [["", "kendoPagerLocalizedMessages", ""]],
-    features: [ɵɵProvidersFeature([{
-      provide: Messages4,
-      useExisting: forwardRef(() => _LocalizedMessagesDirective)
-    }]), ɵɵInheritDefinitionFeature]
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(LocalizedMessagesDirective4, [{
-    type: Directive,
-    args: [{
-      providers: [{
-        provide: Messages4,
-        useExisting: forwardRef(() => LocalizedMessagesDirective4)
-      }],
-      selector: "[kendoPagerLocalizedMessages]",
-      standalone: true
-    }]
-  }], () => [{
-    type: LocalizationService
-  }], null);
-})();
-var PagerContextService = class {
-  total;
-  skip;
-  pageSize;
-  isAllSelected = false;
-  localization;
-  changes = new Subject();
-  pageChange = new Subject();
-  pageSizeChange = new Subject();
-  get currentPage() {
-    return this.skip / this.pageSize;
-  }
-  notifyChanges(changes) {
-    this.total = changes.total;
-    this.skip = changes.skip;
-    this.pageSize = changes.pageSize;
-    this.isAllSelected = changes.isAllSelected || false;
-    this.changes.next(changes);
-  }
-  changePage(page) {
-    this.pageChange.next({
-      skip: page * this.pageSize,
-      take: this.pageSize
-    });
-  }
-  changePageSize(event) {
-    this.pageSizeChange.next(event);
-  }
-  nextPage() {
-    const nextPage = this.currentPage + 1;
-    if (nextPage * this.pageSize < this.total) {
-      this.changePage(nextPage);
-    }
-  }
-  prevPage() {
-    const prevPage = this.currentPage - 1;
-    if (prevPage * this.pageSize >= 0) {
-      this.changePage(prevPage);
-    }
-  }
-};
-var PagerElementComponent = class _PagerElementComponent {
-  localization;
-  pagerContext;
-  cd;
-  total;
-  skip;
-  pageSize;
-  caretAltLeftIcon = caretAltLeftIcon;
-  caretAltToLeftIcon = caretAltToLeftIcon;
-  caretAltRightIcon = caretAltRightIcon;
-  caretAltToRightIcon = caretAltToRightIcon;
-  /**
-   * @hidden
-   *
-   * @readonly
-   * @type {number}
-   * @memberOf PagerElementComponent
-   */
-  get currentPage() {
-    return Math.floor((this.skip || 0) / this.pageSize) + 1;
-  }
-  /**
-   * @hidden
-   *
-   * @readonly
-   * @type {number}
-   * @memberOf PagerElementComponent
-   */
-  get totalPages() {
-    return Math.ceil((this.total || 0) / this.pageSize);
-  }
-  subscriptions;
-  constructor(localization, pagerContext, cd) {
-    this.localization = localization;
-    this.pagerContext = pagerContext;
-    this.cd = cd;
-    this.total = pagerContext.total;
-    this.skip = pagerContext.skip;
-    this.pageSize = pagerContext.pageSize;
-  }
-  /**
-   * @hidden
-   *
-   * @param {string} key
-   * @returns {string}
-   *
-   * @memberOf PagerElementComponent
-   */
-  textFor(key) {
-    const isPagerLocalization = this.localization.prefix === "kendo.pager";
-    return this.localization.get(isPagerLocalization ? key : `pager${key[0].toLocaleUpperCase()}${key.slice(1)}`);
-  }
-  /**
-   * @hidden
-   *
-   * @param {number} page
-   *
-   * @memberOf PagerElementComponent
-   */
-  changePage(page) {
-    this.pagerContext.changePage(page);
-    return false;
-  }
-  /**
-   * @hidden
-   *
-   * @memberOf PagerElementComponent
-   */
-  ngOnInit() {
-    this.subscriptions = this.pagerContext.changes.subscribe(this.onChanges.bind(this));
-    this.subscriptions.add(this.localization.changes.subscribe(() => this.cd.markForCheck()));
-  }
-  ngOnDestroy() {
-    if (this.subscriptions) {
-      this.subscriptions.unsubscribe();
-    }
-  }
-  get prevArrowIcons() {
-    return !this.localization.rtl ? ["caret-alt-to-left", "caret-alt-left"] : ["caret-alt-to-right", "caret-alt-right"];
-  }
-  get prevArrowSVGIcons() {
-    return !this.localization.rtl ? [this.caretAltToLeftIcon, this.caretAltLeftIcon] : [this.caretAltToRightIcon, this.caretAltRightIcon];
-  }
-  get nextArrowIcons() {
-    return !this.localization.rtl ? ["caret-alt-right", "caret-alt-to-right"] : ["caret-alt-left", "caret-alt-to-left"];
-  }
-  get nextArrowSVGIcons() {
-    return !this.localization.rtl ? [this.caretAltRightIcon, this.caretAltToRightIcon] : [this.caretAltLeftIcon, this.caretAltToLeftIcon];
-  }
-  static ɵfac = function PagerElementComponent_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _PagerElementComponent)(ɵɵdirectiveInject(LocalizationService), ɵɵdirectiveInject(PagerContextService), ɵɵdirectiveInject(ChangeDetectorRef));
-  };
-  static ɵcmp = ɵɵdefineComponent({
-    type: _PagerElementComponent,
-    selectors: [["kendo-pager-element"]],
-    decls: 0,
-    vars: 0,
-    template: function PagerElementComponent_Template(rf, ctx) {
-    },
-    encapsulation: 2
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(PagerElementComponent, [{
-    type: Component,
-    args: [{
-      selector: "kendo-pager-element",
-      template: ``
-    }]
-  }], () => [{
-    type: LocalizationService
-  }, {
-    type: PagerContextService
-  }, {
-    type: ChangeDetectorRef
-  }], null);
-})();
-var DEFAULT_PAGE_SIZE_VALUES = [5, 10, 20].map((n) => ({
-  text: String(n),
-  value: n
-}));
-var focusableDirectiveSelector = "[kendoPagerFocusable]";
-var getAllFocusableChildren = (parent) => {
-  return Array.from(parent.querySelectorAll(focusableDirectiveSelector))?.filter(isVisible);
-};
-var focusableSelector2 = ['a[href]:not([disabled]):not([aria-hidden="true"])', 'area[href]:not([disabled]):not([aria-hidden="true"])', 'input:not([disabled]):not([aria-hidden="true"])', 'select:not([disabled]):not([aria-hidden="true"])', 'textarea:not([disabled]):not([aria-hidden="true"])', 'button:not([aria-hidden="true"])', "iframe:not([disabled])", "object:not([disabled])", "embed:not([disabled])", '*[tabindex]:not([disabled]):not([aria-hidden="true"])', '*[contenteditable]:not([disabled]):not([contenteditable="false"])'].join(",");
-var SIZES = {
-  small: "sm",
-  medium: "md",
-  large: "lg"
-};
-var getStylingClasses2 = (componentType, stylingOption, previousValue, newValue) => {
-  switch (stylingOption) {
-    case "size": {
-      return {
-        toRemove: previousValue ? `k-${componentType}-${SIZES[previousValue]}` : null,
-        toAdd: newValue ? `k-${componentType}-${SIZES[newValue]}` : null
-      };
-    }
-    default:
-      break;
-  }
-};
-var calculatePadding = (element) => {
-  if (!element || !isDocumentAvailable()) {
-    return {
-      padding: 0,
-      gapNumbersSizes: 0,
-      gapSizesInfo: 0
-    };
-  }
-  const computedStyle = window.getComputedStyle(element);
-  const paddingLeft = parseInt(computedStyle.paddingLeft, 10) || 0;
-  const paddingRight = parseInt(computedStyle.paddingRight, 10) || 0;
-  const padding = (paddingLeft + paddingRight) * 1.2;
-  const style2 = getComputedStyle(document.documentElement);
-  const gapNumbersSizes = 2 * (parseFloat(style2.getPropertyValue("--kendo-spacing-3\\.5") || "0.875rem") * (parseFloat(getComputedStyle(document.documentElement).fontSize) || 16));
-  const gapSizesInfo = gapNumbersSizes;
-  return {
-    padding,
-    gapNumbersSizes,
-    gapSizesInfo
-  };
-};
-var calculateGap = (element) => {
-  if (!element || !isDocumentAvailable()) {
-    return 0;
-  }
-  const computedStyle = window.getComputedStyle(element);
-  return parseFloat(computedStyle.gap) || 0;
-};
-var createMeasurementSpan = (renderer, container, className) => {
-  const span = renderer.createElement("span");
-  renderer.appendChild(container, span);
-  renderer.addClass(span, className);
-  return span;
-};
-var copyComputedStyles = (renderer, source, destination) => {
-  const computedStyle = getComputedStyle(source);
-  const importantStyles = ["font-family", "font-size", "font-weight", "font-style", "letter-spacing", "text-transform", "white-space", "word-spacing", "padding-left", "padding-right", "margin-left", "margin-right", "border-left-width", "border-right-width", "box-sizing"];
-  importantStyles.forEach((style2) => {
-    renderer.setStyle(destination, style2, computedStyle.getPropertyValue(style2));
-  });
-};
-var positionOffScreen = (renderer, element) => {
-  renderer.setStyle(element, "position", "absolute");
-  renderer.setStyle(element, "visibility", "hidden");
-  renderer.setStyle(element, "left", "-9999px");
-  renderer.setStyle(element, "top", "-9999px");
-  renderer.setStyle(element, "display", "flex");
-};
-var PagerNavigationService = class {
-  isNavigable = true;
-  innerNavigationChange = new Subject();
-  toggleInnerNavigation(value) {
-    this.innerNavigationChange.next(value);
-  }
-  keepFocusWithinComponent(wrapper, target, event) {
-    const [firstFocusable, lastFocusable] = this.getFirstAndLastFocusable(wrapper);
-    const tabAfterLastFocusable = !event.shiftKey && target === lastFocusable;
-    const shiftTabAfterFirstFocusable = event.shiftKey && target === firstFocusable;
-    if (tabAfterLastFocusable) {
-      event.preventDefault();
-      firstFocusable.focus();
-    }
-    if (shiftTabAfterFirstFocusable) {
-      event.preventDefault();
-      lastFocusable.focus();
-    }
-  }
-  getFirstAndLastFocusable(wrapper) {
-    const all = getAllFocusableChildren(wrapper);
-    const firstFocusable = all.length > 0 ? all[0] : wrapper;
-    const lastFocusable = all.length > 0 ? all[all.length - 1] : wrapper;
-    return [isFocusable(firstFocusable) ? firstFocusable : firstFocusable.querySelector(focusableSelector2), isFocusable(lastFocusable) ? lastFocusable : lastFocusable.querySelector(focusableSelector2)];
-  }
-};
-var PagerFocusableDirective = class _PagerFocusableDirective {
-  navigationService;
-  element;
-  renderer;
-  subscriptions = new Subscription();
-  constructor(navigationService, element, renderer) {
-    this.navigationService = navigationService;
-    this.element = element;
-    this.renderer = renderer;
-  }
-  ngOnInit() {
-    if (!(this.nativeElement instanceof HTMLElement)) {
-      return;
-    }
-    this.subscriptions.add(this.navigationService.innerNavigationChange.subscribe(this.innerNavigationChange.bind(this)));
-  }
-  ngOnDestroy() {
-    this.subscriptions.unsubscribe();
-  }
-  get nativeElement() {
-    return this.element.nativeElement;
-  }
-  innerNavigationChange(value) {
-    if (!this.navigationService.isNavigable) {
-      return;
-    }
-    const index = value ? "0" : "-1";
-    if (this.nativeElement.matches(focusableSelector2)) {
-      this.renderer.setAttribute(this.nativeElement, "tabindex", index);
-    }
-    const focusableElements = this.nativeElement.querySelectorAll(focusableSelector2);
-    focusableElements.forEach((el) => {
-      if (el.getAttribute("unselectable") === "on" && this.nativeElement.closest("kendo-pager-page-sizes")) {
-        return;
-      }
-      this.renderer.setAttribute(el, "tabindex", index);
-    });
-  }
-  static ɵfac = function PagerFocusableDirective_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _PagerFocusableDirective)(ɵɵdirectiveInject(PagerNavigationService), ɵɵdirectiveInject(ElementRef), ɵɵdirectiveInject(Renderer2));
-  };
-  static ɵdir = ɵɵdefineDirective({
-    type: _PagerFocusableDirective,
-    selectors: [["", "kendoPagerFocusable", ""]],
-    exportAs: ["kendoPagerFocusable"]
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(PagerFocusableDirective, [{
-    type: Directive,
-    args: [{
-      selector: "[kendoPagerFocusable]",
-      exportAs: "kendoPagerFocusable",
-      standalone: true
-    }]
-  }], () => [{
-    type: PagerNavigationService
-  }, {
-    type: ElementRef
-  }, {
-    type: Renderer2
-  }], null);
-})();
-var PagerPrevButtonsComponent = class _PagerPrevButtonsComponent extends PagerElementComponent {
-  constructor(localization, pagerContext, cd) {
-    super(localization, pagerContext, cd);
-  }
-  /**
-   * Specifies the padding of the navigation buttons. The default value is set by the Kendo theme.
-   */
-  size;
-  /**
-   * @hidden
-   *
-   * @readonly
-   * @type {boolean}
-   * @memberOf PagerPrevButtonsComponent
-   */
-  get disabled() {
-    return this.currentPage === 1 || !this.total;
-  }
-  /**
-   * @hidden
-   */
-  onClick(isFirst = false) {
-    if (this.disabled) {
-      return false;
-    }
-    const targetPage = isFirst ? 0 : this.currentPage - 2;
-    return this.currentPage !== 1 ? this.changePage(targetPage) : false;
-  }
-  onChanges({
-    total,
-    skip: skip2,
-    pageSize
-  }) {
-    this.total = total;
-    this.skip = skip2;
-    this.pageSize = pageSize;
-    this.cd.markForCheck();
-  }
-  static ɵfac = function PagerPrevButtonsComponent_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _PagerPrevButtonsComponent)(ɵɵdirectiveInject(LocalizationService), ɵɵdirectiveInject(PagerContextService), ɵɵdirectiveInject(ChangeDetectorRef));
-  };
-  static ɵcmp = ɵɵdefineComponent({
-    type: _PagerPrevButtonsComponent,
-    selectors: [["kendo-datapager-prev-buttons"], ["kendo-pager-prev-buttons"]],
-    inputs: {
-      size: "size"
-    },
-    features: [ɵɵInheritDefinitionFeature],
-    decls: 2,
-    vars: 16,
-    consts: [["type", "button", "kendoButton", "", "kendoPagerFocusable", "", "fillMode", "flat", 1, "k-pager-nav", "k-pager-first", 3, "click", "icon", "svgIcon", "size", "title"], ["type", "button", "kendoButton", "", "kendoPagerFocusable", "", "fillMode", "flat", 1, "k-pager-nav", 3, "click", "icon", "svgIcon", "size", "title"]],
-    template: function PagerPrevButtonsComponent_Template(rf, ctx) {
-      if (rf & 1) {
-        ɵɵelementStart(0, "button", 0);
-        ɵɵlistener("click", function PagerPrevButtonsComponent_Template_button_click_0_listener() {
-          return ctx.onClick(true);
-        });
-        ɵɵelementEnd();
-        ɵɵelementStart(1, "button", 1);
-        ɵɵlistener("click", function PagerPrevButtonsComponent_Template_button_click_1_listener() {
-          return ctx.onClick();
-        });
-        ɵɵelementEnd();
-      }
-      if (rf & 2) {
-        ɵɵclassProp("k-disabled", ctx.disabled);
-        ɵɵproperty("icon", ctx.prevArrowIcons[0])("svgIcon", ctx.prevArrowSVGIcons[0])("size", ctx.size)("title", ctx.textFor("firstPage"));
-        ɵɵattribute("aria-label", ctx.textFor("firstPage"))("aria-disabled", ctx.disabled);
-        ɵɵadvance();
-        ɵɵclassProp("k-disabled", ctx.disabled);
-        ɵɵproperty("icon", ctx.prevArrowIcons[1])("svgIcon", ctx.prevArrowSVGIcons[1])("size", ctx.size)("title", ctx.textFor("previousPage"));
-        ɵɵattribute("aria-label", ctx.textFor("previousPage"))("aria-disabled", ctx.disabled);
-      }
-    },
-    dependencies: [ButtonComponent, PagerFocusableDirective],
-    encapsulation: 2,
-    changeDetection: 0
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(PagerPrevButtonsComponent, [{
-    type: Component,
-    args: [{
-      changeDetection: ChangeDetectionStrategy.OnPush,
-      selector: "kendo-datapager-prev-buttons, kendo-pager-prev-buttons",
-      template: `
-        <button
-            type="button" kendoButton
-            kendoPagerFocusable
-            class="k-pager-nav k-pager-first"
-            [class.k-disabled]="disabled"
-            [icon]="prevArrowIcons[0]"
-            [svgIcon]="prevArrowSVGIcons[0]"
-            fillMode="flat"
-            [size]="size"
-            [title]="textFor('firstPage')"
-            [attr.aria-label]="textFor('firstPage')"
-            [attr.aria-disabled]="disabled"
-            (click)="onClick(true)">
-        </button>
-        <button
-            type="button" kendoButton
-            kendoPagerFocusable
-            class="k-pager-nav"
-            [class.k-disabled]="disabled"
-            [icon]="prevArrowIcons[1]"
-            [svgIcon]="prevArrowSVGIcons[1]"
-            fillMode="flat"
-            [size]="size"
-            [title]="textFor('previousPage')"
-            [attr.aria-label]="textFor('previousPage')"
-            [attr.aria-disabled]="disabled"
-            (click)="onClick()">
-        </button>
-    `,
-      standalone: true,
-      imports: [ButtonComponent, PagerFocusableDirective]
-    }]
-  }], () => [{
-    type: LocalizationService
-  }, {
-    type: PagerContextService
-  }, {
-    type: ChangeDetectorRef
-  }], {
-    size: [{
-      type: Input
-    }]
-  });
-})();
-var PagerPageSizesComponent = class _PagerPageSizesComponent extends PagerElementComponent {
-  pagerContext;
-  element;
-  ngZone;
-  dropDownList;
-  _showItemsText = true;
-  /**
-   * Controls the visibility of the page text label.
-   * @hidden
-   */
-  get showItemsText() {
-    return this._showItemsText;
-  }
-  set showItemsText(value) {
-    this._showItemsText = value;
-    this.cd.markForCheck();
-  }
-  /**
-   * Specifies the page sizes collection. You can include numbers and [`PageSizeItem`](https://www.telerik.com/kendo-angular-ui/components/pager/api/pagesizeitem) objects.
-   *
-   * @example
-   * ```html
-   * <kendo-pager [skip]="0" [pageSize]="10" [total]="100">
-   *   <ng-template kendoPagerTemplate>
-   *     <kendo-pager-page-sizes [pageSizes]="[5, 10, 20, { text: 'All', value: 'all' }]"></kendo-pager-page-sizes>
-   *   </ng-template>
-   * </kendo-pager>
-   * ```
-   */
-  set pageSizes(pageSizes) {
-    let normalizedItems = [];
-    if (Array.isArray(pageSizes)) {
-      pageSizes.forEach((item) => {
-        if (typeof item === "number") {
-          normalizedItems.push({
-            text: item.toString(),
-            value: item
-          });
-        } else {
-          normalizedItems.push(item);
-        }
-      });
-    } else {
-      normalizedItems = DEFAULT_PAGE_SIZE_VALUES;
-    }
-    if (this.pageSize && !normalizedItems.some((item) => item.value === this.pageSize)) {
-      normalizedItems = [{
-        text: this.pageSize.toString(),
-        value: this.pageSize
-      }, ...normalizedItems];
-    }
-    this._pageSizes = normalizedItems;
-  }
-  /**
-   * Specifies the padding of the DropDownList component. The default value is set by the Kendo theme.
-   */
-  size;
-  /**
-   * Specifies the adaptive mode of the internal `DropDownList` component.
-   *
-   * @default 'none'
-   */
-  adaptiveMode = "none";
-  /**
-   * @hidden
-   *
-   * @readonly
-   */
-  get classes() {
-    return true;
-  }
-  _pageSizes = [];
-  constructor(localization, cd, pagerContext, element, ngZone) {
-    super(localization, pagerContext, cd);
-    this.pagerContext = pagerContext;
-    this.element = element;
-    this.ngZone = ngZone;
-  }
-  ngAfterViewInit() {
-    this.ngZone.runOutsideAngular(() => {
-      this.element.nativeElement.addEventListener("keydown", this.keyDownHandler.bind(this), true);
-    });
-  }
-  ngOnDestroy() {
-    this.element.nativeElement.removeEventListener("keydown", this.keyDownHandler);
-  }
-  /**
-   * @hidden
-   */
-  pageSizeChange(value, dropdownlist) {
-    const event = new PageSizeChangeEvent(value);
-    this.pagerContext.changePageSize(event);
-    if (event.isDefaultPrevented()) {
-      dropdownlist.writeValue(this.pageSize);
-    }
-  }
-  onChanges({
-    total,
-    skip: skip2,
-    pageSize,
-    isAllSelected
-  }) {
-    this.total = total;
-    this.skip = skip2;
-    const normalizedPageSize = typeof pageSize === "number" ? pageSize : this.total;
-    this.pageSize = isAllSelected ? "all" : normalizedPageSize;
-    this.cd.markForCheck();
-  }
-  keyDownHandler(ev) {
-    if (ev.code === Keys.Escape && this.dropDownList.isOpen) {
-      ev.stopPropagation();
-      this.dropDownList.toggle(false);
-    }
-  }
-  static ɵfac = function PagerPageSizesComponent_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _PagerPageSizesComponent)(ɵɵdirectiveInject(LocalizationService), ɵɵdirectiveInject(ChangeDetectorRef), ɵɵdirectiveInject(PagerContextService), ɵɵdirectiveInject(ElementRef), ɵɵdirectiveInject(NgZone));
-  };
-  static ɵcmp = ɵɵdefineComponent({
-    type: _PagerPageSizesComponent,
-    selectors: [["kendo-datapager-page-sizes"], ["kendo-pager-page-sizes"]],
-    viewQuery: function PagerPageSizesComponent_Query(rf, ctx) {
-      if (rf & 1) {
-        ɵɵviewQuery(_c06, 7);
-      }
-      if (rf & 2) {
-        let _t;
-        ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx.dropDownList = _t.first);
-      }
-    },
-    hostVars: 2,
-    hostBindings: function PagerPageSizesComponent_HostBindings(rf, ctx) {
-      if (rf & 2) {
-        ɵɵclassProp("k-pager-sizes", ctx.classes);
-      }
-    },
-    inputs: {
-      showItemsText: "showItemsText",
-      pageSizes: "pageSizes",
-      size: "size",
-      adaptiveMode: "adaptiveMode"
-    },
-    features: [ɵɵInheritDefinitionFeature],
-    decls: 3,
-    vars: 7,
-    consts: [["dropdownlist", ""], ["kendoPagerFocusable", "", "textField", "text", "valueField", "value", 3, "valueChange", "size", "data", "valuePrimitive", "value", "adaptiveMode"]],
-    template: function PagerPageSizesComponent_Template(rf, ctx) {
-      if (rf & 1) {
-        const _r1 = ɵɵgetCurrentView();
-        ɵɵelementStart(0, "kendo-dropdownlist", 1, 0);
-        ɵɵlistener("valueChange", function PagerPageSizesComponent_Template_kendo_dropdownlist_valueChange_0_listener($event) {
-          ɵɵrestoreView(_r1);
-          const dropdownlist_r2 = ɵɵreference(1);
-          return ɵɵresetView(ctx.pageSizeChange($event, dropdownlist_r2));
-        });
-        ɵɵelementEnd();
-        ɵɵtemplate(2, PagerPageSizesComponent_Conditional_2_Template, 1, 1);
-      }
-      if (rf & 2) {
-        ɵɵproperty("size", ctx.size)("data", ctx._pageSizes)("valuePrimitive", true)("value", ctx.pageSize)("adaptiveMode", ctx.adaptiveMode);
-        ɵɵattribute("aria-label", ctx.textFor("itemsPerPage"));
-        ɵɵadvance(2);
-        ɵɵconditional(ctx.showItemsText ? 2 : -1);
-      }
-    },
-    dependencies: [DropDownListComponent, PagerFocusableDirective],
-    encapsulation: 2,
-    changeDetection: 0
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(PagerPageSizesComponent, [{
-    type: Component,
-    args: [{
-      changeDetection: ChangeDetectionStrategy.OnPush,
-      selector: "kendo-datapager-page-sizes, kendo-pager-page-sizes",
-      template: `
-        <kendo-dropdownlist kendoPagerFocusable
-          #dropdownlist
-          [size]="size"
-          [data]="_pageSizes"
-          textField="text"
-          valueField="value"
-          [valuePrimitive]="true"
-          [value]="pageSize"
-          (valueChange)="pageSizeChange($event, dropdownlist)"
-          [adaptiveMode]="adaptiveMode"
-          [attr.aria-label]="textFor('itemsPerPage')">
-        </kendo-dropdownlist>
-        @if (showItemsText) {
-          {{ textFor('itemsPerPage') }}
-        }
-        `,
-      standalone: true,
-      imports: [DropDownListComponent, PagerFocusableDirective]
-    }]
-  }], () => [{
-    type: LocalizationService
-  }, {
-    type: ChangeDetectorRef
-  }, {
-    type: PagerContextService
-  }, {
-    type: ElementRef
-  }, {
-    type: NgZone
-  }], {
-    dropDownList: [{
-      type: ViewChild,
-      args: ["dropdownlist", {
-        static: true
-      }]
-    }],
-    showItemsText: [{
-      type: Input
-    }],
-    pageSizes: [{
-      type: Input
-    }],
-    size: [{
-      type: Input
-    }],
-    adaptiveMode: [{
-      type: Input
-    }],
-    classes: [{
-      type: HostBinding,
-      args: ["class.k-pager-sizes"]
-    }]
-  });
-})();
-var PagerTemplateDirective = class _PagerTemplateDirective {
-  templateRef;
-  constructor(templateRef) {
-    this.templateRef = templateRef;
-  }
-  static ɵfac = function PagerTemplateDirective_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _PagerTemplateDirective)(ɵɵdirectiveInject(TemplateRef, 8));
-  };
-  static ɵdir = ɵɵdefineDirective({
-    type: _PagerTemplateDirective,
-    selectors: [["", "kendoDataPagerTemplate", ""], ["", "kendoPagerTemplate", ""]]
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(PagerTemplateDirective, [{
-    type: Directive,
-    args: [{
-      selector: "[kendoDataPagerTemplate], [kendoPagerTemplate]",
-      standalone: true
-    }]
-  }], () => [{
-    type: TemplateRef,
-    decorators: [{
-      type: Optional
-    }]
-  }], null);
-})();
-var PagerNumericButtonsComponent = class _PagerNumericButtonsComponent extends PagerElementComponent {
-  pagerContext;
-  renderer;
-  selectElement;
-  numbersElement;
-  /**
-   * Specifies the count of the displayed buttons.
-   *
-   * @type {number}
-   * @memberOf PagerNumericButtonsComponent
-   */
-  buttonCount;
-  /**
-   * Specifies the padding of the numeric buttons. The default value is set by the Kendo theme.
-   */
-  set size(size) {
-    this.handleClasses(size, "size");
-    this._size = size;
-  }
-  get size() {
-    return this._size;
-  }
-  /**
-   * @hidden
-   *
-   * @readonly
-   * @type {number[]}
-   * @memberOf PagerNumericButtonsComponent
-   */
-  get buttons() {
-    const result = [];
-    for (let idx = this.start; idx <= this.end; idx++) {
-      result.push(idx);
-    }
-    return result;
-  }
-  /**
-   * @hidden
-   */
-  get end() {
-    return Math.min(this.start + this.buttonCount - 1, this.totalPages);
-  }
-  /**
-   * @hidden
-   */
-  get start() {
-    const page = this.currentPage;
-    const buttonCount = this.buttonCount;
-    if (page > buttonCount) {
-      const reminder = page % buttonCount;
-      return reminder === 0 ? page - buttonCount + 1 : page - reminder + 1;
-    }
-    return 1;
-  }
-  constructor(localization, cd, pagerContext, renderer) {
-    super(localization, pagerContext, cd);
-    this.pagerContext = pagerContext;
-    this.renderer = renderer;
-  }
-  _size;
-  ngAfterViewInit() {
-    this.handleClasses(this.size, "size");
-  }
-  /**
-   * @hidden
-   */
-  pageLabel(num) {
-    const pageText = this.textFor("page");
-    if (pageText) {
-      return pageText + " " + num;
-    }
-    return num.toString();
-  }
-  /**
-   * @hidden
-   */
-  onSelectChange(e) {
-    const target = e.target;
-    const valueAsNumber = Number(target.value);
-    if (!Number.isNaN(valueAsNumber)) {
-      this.changePage(valueAsNumber - 1);
-    } else {
-      if (target.value === "previousButtons") {
-        this.changePage(this.start - 2);
-      } else {
-        this.changePage(this.end);
-      }
-    }
-  }
-  onChanges({
-    total,
-    skip: skip2,
-    pageSize
-  }) {
-    this.total = total;
-    this.skip = skip2;
-    this.pageSize = pageSize;
-    this.cd.markForCheck();
-  }
-  get pageChooserLabel() {
-    return this.textFor("selectPage");
-  }
-  handleClasses(value, input) {
-    const elem = this.selectElement?.nativeElement;
-    const classes = getStylingClasses2("picker", input, this[input], value);
-    if (!elem) {
-      return;
-    }
-    if (classes.toRemove) {
-      this.renderer.removeClass(elem, classes.toRemove);
-    }
-    if (classes.toAdd) {
-      this.renderer.addClass(elem, classes.toAdd);
-    }
-  }
-  static ɵfac = function PagerNumericButtonsComponent_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _PagerNumericButtonsComponent)(ɵɵdirectiveInject(LocalizationService), ɵɵdirectiveInject(ChangeDetectorRef), ɵɵdirectiveInject(PagerContextService), ɵɵdirectiveInject(Renderer2));
-  };
-  static ɵcmp = ɵɵdefineComponent({
-    type: _PagerNumericButtonsComponent,
-    selectors: [["kendo-datapager-numeric-buttons"], ["kendo-pager-numeric-buttons"]],
-    viewQuery: function PagerNumericButtonsComponent_Query(rf, ctx) {
-      if (rf & 1) {
-        ɵɵviewQuery(_c113, 5, ElementRef);
-        ɵɵviewQuery(_c213, 5, ElementRef);
-      }
-      if (rf & 2) {
-        let _t;
-        ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx.selectElement = _t.first);
-        ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx.numbersElement = _t.first);
-      }
-    },
-    inputs: {
-      buttonCount: "buttonCount",
-      size: "size"
-    },
-    features: [ɵɵInheritDefinitionFeature],
-    decls: 6,
-    vars: 2,
-    consts: [["numbers", ""], [1, "k-pager-numbers"], ["type", "button", "kendoPagerFocusable", "", "kendoButton", "", "fillMode", "flat", "themeColor", "primary", 3, "size"], ["type", "button", "kendoPagerFocusable", "", "kendoButton", "", "fillMode", "flat", "themeColor", "primary", 3, "size", "selected"], ["type", "button", "kendoPagerFocusable", "", "kendoButton", "", "fillMode", "flat", "themeColor", "primary", 3, "click", "size"], ["type", "button", "kendoPagerFocusable", "", "kendoButton", "", "fillMode", "flat", "themeColor", "primary", 3, "click", "size", "selected"]],
-    template: function PagerNumericButtonsComponent_Template(rf, ctx) {
-      if (rf & 1) {
-        ɵɵelementStart(0, "div", 1, 0);
-        ɵɵtemplate(2, PagerNumericButtonsComponent_Conditional_2_Template, 2, 3, "button", 2);
-        ɵɵrepeaterCreate(3, PagerNumericButtonsComponent_For_4_Template, 2, 6, "button", 3, ɵɵrepeaterTrackByIdentity);
-        ɵɵtemplate(5, PagerNumericButtonsComponent_Conditional_5_Template, 2, 3, "button", 2);
-        ɵɵelementEnd();
-      }
-      if (rf & 2) {
-        ɵɵadvance(2);
-        ɵɵconditional(ctx.start > 1 ? 2 : -1);
-        ɵɵadvance();
-        ɵɵrepeater(ctx.buttons);
-        ɵɵadvance(2);
-        ɵɵconditional(ctx.end < ctx.totalPages ? 5 : -1);
-      }
-    },
-    dependencies: [PagerFocusableDirective, ButtonComponent],
-    encapsulation: 2,
-    changeDetection: 0
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(PagerNumericButtonsComponent, [{
-    type: Component,
-    args: [{
-      changeDetection: ChangeDetectionStrategy.OnPush,
-      selector: "kendo-datapager-numeric-buttons, kendo-pager-numeric-buttons",
-      template: `
-        <div class="k-pager-numbers" #numbers>
-          @if (start > 1) {
-            <button
-              type="button"
-              kendoPagerFocusable
-              kendoButton
-              [size]="size"
-              fillMode="flat"
-              themeColor="primary"
-              [attr.aria-label]="pageLabel(start - 1)"
-              [attr.title]="pageLabel(start - 1)"
-            (click)="changePage(start - 2)">...</button>
-          }
-          @for (num of buttons; track num) {
-            <button
-              type="button"
-              kendoPagerFocusable
-              kendoButton
-              [size]="size"
-              fillMode="flat"
-              themeColor="primary"
-              [attr.aria-label]="pageLabel(num)"
-              [attr.title]="pageLabel(num)"
-              [attr.aria-current]="currentPage === num ? 'page' : undefined"
-              [selected]="currentPage === num"
-              (click)="currentPage === num ? false : changePage(num - 1)">
-              {{num}}
-            </button>
-          }
-          @if (end < totalPages) {
-            <button
-              type="button"
-              kendoPagerFocusable
-              kendoButton
-              [size]="size"
-              fillMode="flat"
-              themeColor="primary"
-              [attr.aria-label]="pageLabel(end + 1)"
-              [attr.title]="pageLabel(end + 1)"
-            (click)="changePage(end)">...</button>
-          }
-        </div>
-        `,
-      standalone: true,
-      imports: [PagerFocusableDirective, ButtonComponent]
-    }]
-  }], () => [{
-    type: LocalizationService
-  }, {
-    type: ChangeDetectorRef
-  }, {
-    type: PagerContextService
-  }, {
-    type: Renderer2
-  }], {
-    selectElement: [{
-      type: ViewChild,
-      args: ["select", {
-        read: ElementRef
-      }]
-    }],
-    numbersElement: [{
-      type: ViewChild,
-      args: ["numbers", {
-        read: ElementRef
-      }]
-    }],
-    buttonCount: [{
-      type: Input
-    }],
-    size: [{
-      type: Input
-    }]
-  });
-})();
-var PagerNextButtonsComponent = class _PagerNextButtonsComponent extends PagerElementComponent {
-  /**
-   * @hidden
-   *
-   * @readonly
-   * @type {boolean}
-   * @memberOf PagerNextButtonsComponent
-   */
-  get disabled() {
-    return this.currentPage === this.totalPages || !this.total;
-  }
-  /**
-   * Specifies the padding of the navigation buttons. The default value is set by the Kendo theme.
-   */
-  size;
-  constructor(localization, pagerContext, cd) {
-    super(localization, pagerContext, cd);
-  }
-  /**
-   * @hidden
-   */
-  onClick(isLast = false) {
-    if (this.disabled) {
-      return false;
-    }
-    const targetPage = isLast ? this.totalPages - 1 : this.currentPage;
-    return this.currentPage !== this.totalPages ? this.changePage(targetPage) : false;
-  }
-  onChanges({
-    total,
-    skip: skip2,
-    pageSize
-  }) {
-    this.total = total;
-    this.skip = skip2;
-    this.pageSize = pageSize;
-    this.cd.markForCheck();
-  }
-  static ɵfac = function PagerNextButtonsComponent_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _PagerNextButtonsComponent)(ɵɵdirectiveInject(LocalizationService), ɵɵdirectiveInject(PagerContextService), ɵɵdirectiveInject(ChangeDetectorRef));
-  };
-  static ɵcmp = ɵɵdefineComponent({
-    type: _PagerNextButtonsComponent,
-    selectors: [["kendo-datapager-next-buttons"], ["kendo-pager-next-buttons"]],
-    inputs: {
-      size: "size"
-    },
-    features: [ɵɵInheritDefinitionFeature],
-    decls: 2,
-    vars: 16,
-    consts: [["kendoButton", "", "kendoPagerFocusable", "", "type", "button", "fillMode", "flat", 1, "k-pager-nav", 3, "click", "size", "icon", "svgIcon", "title"], ["kendoButton", "", "kendoPagerFocusable", "", "type", "button", "fillMode", "flat", 1, "k-pager-nav", "k-pager-last", 3, "click", "size", "icon", "svgIcon", "title"]],
-    template: function PagerNextButtonsComponent_Template(rf, ctx) {
-      if (rf & 1) {
-        ɵɵelementStart(0, "button", 0);
-        ɵɵlistener("click", function PagerNextButtonsComponent_Template_button_click_0_listener() {
-          return ctx.onClick();
-        });
-        ɵɵelementEnd();
-        ɵɵelementStart(1, "button", 1);
-        ɵɵlistener("click", function PagerNextButtonsComponent_Template_button_click_1_listener() {
-          return ctx.onClick(true);
-        });
-        ɵɵelementEnd();
-      }
-      if (rf & 2) {
-        ɵɵclassProp("k-disabled", ctx.disabled);
-        ɵɵproperty("size", ctx.size)("icon", ctx.nextArrowIcons[0])("svgIcon", ctx.nextArrowSVGIcons[0])("title", ctx.textFor("nextPage"));
-        ɵɵattribute("aria-label", ctx.textFor("nextPage"))("aria-disabled", ctx.disabled);
-        ɵɵadvance();
-        ɵɵclassProp("k-disabled", ctx.disabled);
-        ɵɵproperty("size", ctx.size)("icon", ctx.nextArrowIcons[1])("svgIcon", ctx.nextArrowSVGIcons[1])("title", ctx.textFor("lastPage"));
-        ɵɵattribute("aria-label", ctx.textFor("lastPage"))("aria-disabled", ctx.disabled);
-      }
-    },
-    dependencies: [ButtonComponent, PagerFocusableDirective],
-    encapsulation: 2,
-    changeDetection: 0
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(PagerNextButtonsComponent, [{
-    type: Component,
-    args: [{
-      changeDetection: ChangeDetectionStrategy.OnPush,
-      selector: "kendo-datapager-next-buttons, kendo-pager-next-buttons",
-      template: `
-        <button kendoButton kendoPagerFocusable
-            type="button"
-            [size]="size"
-            [icon]="nextArrowIcons[0]"
-            [svgIcon]="nextArrowSVGIcons[0]"
-            fillMode="flat"
-            class="k-pager-nav"
-            [class.k-disabled]="disabled"
-            [title]="textFor('nextPage')"
-            [attr.aria-label]="textFor('nextPage')"
-            [attr.aria-disabled]="disabled"
-            (click)="onClick()">
-        </button>
-        <button kendoButton kendoPagerFocusable
-            type="button"
-            [size]="size"
-            [icon]="nextArrowIcons[1]"
-            [svgIcon]="nextArrowSVGIcons[1]"
-            fillMode="flat"
-            class="k-pager-nav k-pager-last"
-            [class.k-disabled]="disabled"
-            [title]="textFor('lastPage')"
-            [attr.aria-label]="textFor('lastPage')"
-            [attr.aria-disabled]="disabled"
-            (click)="onClick(true)">
-        </button>
-    `,
-      standalone: true,
-      imports: [ButtonComponent, PagerFocusableDirective]
-    }]
-  }], () => [{
-    type: LocalizationService
-  }, {
-    type: PagerContextService
-  }, {
-    type: ChangeDetectorRef
-  }], {
-    size: [{
-      type: Input
-    }]
-  });
-})();
-var PagerInputComponent = class _PagerInputComponent extends PagerElementComponent {
-  pagerContext;
-  zone;
-  renderer;
-  numericInput;
-  /**
-   * Controls the visibility of the page text label.
-   * @hidden
-   */
-  showPageText = true;
-  /**
-   * Specifies the padding of the internal `NumericTextBox` component. The default value is set by the Kendo theme.
-   */
-  size;
-  constructor(localization, pagerContext, zone, cd, renderer) {
-    super(localization, pagerContext, cd);
-    this.pagerContext = pagerContext;
-    this.zone = zone;
-    this.renderer = renderer;
-  }
-  onChanges({
-    total,
-    skip: skip2,
-    pageSize
-  }) {
-    this.total = total;
-    this.skip = skip2;
-    this.pageSize = pageSize;
-    this.cd.markForCheck();
-  }
-  /**
-   * @hidden
-   *
-   * @param {string} value
-   *
-   * @memberOf PagerInputComponent
-   */
-  handleKeyDown = (event) => {
-    const incomingValue = this.numericInput.value || this.current;
-    if (event.code === Keys.Enter || event.code === Keys.NumpadEnter) {
-      event.preventDefault();
-      if (incomingValue !== this.current) {
-        this.zone.run(() => {
-          this.changePage(incomingValue - 1);
-        });
-      }
-    }
-  };
-  /**
-   * @hidden
-   *
-   * @param {string} value
-   *
-   * @memberOf PagerInputComponent
-   */
-  handleBlur = () => {
-    const inputValue = this.numericInput.value;
-    if (!inputValue) {
-      this.numericInput.writeValue(this.current);
-      return;
-    }
-    if (inputValue !== this.current) {
-      this.zone.run(() => {
-        this.changePage(inputValue - 1);
-      });
-    }
-  };
-  /**
-   * @hidden
-   */
-  get current() {
-    return this.hasPages ? this.currentPage : 0;
-  }
-  /**
-   * @hidden
-   */
-  get hasPages() {
-    return this.totalPages !== 0;
-  }
-  static ɵfac = function PagerInputComponent_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _PagerInputComponent)(ɵɵdirectiveInject(LocalizationService), ɵɵdirectiveInject(PagerContextService), ɵɵdirectiveInject(NgZone), ɵɵdirectiveInject(ChangeDetectorRef), ɵɵdirectiveInject(Renderer2));
-  };
-  static ɵcmp = ɵɵdefineComponent({
-    type: _PagerInputComponent,
-    selectors: [["kendo-datapager-input"], ["kendo-pager-input"]],
-    viewQuery: function PagerInputComponent_Query(rf, ctx) {
-      if (rf & 1) {
-        ɵɵviewQuery(NumericTextBoxComponent, 7);
-      }
-      if (rf & 2) {
-        let _t;
-        ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx.numericInput = _t.first);
-      }
-    },
-    inputs: {
-      showPageText: "showPageText",
-      size: "size"
-    },
-    features: [ɵɵInheritDefinitionFeature],
-    decls: 4,
-    vars: 19,
-    consts: [[1, "k-pager-input"], ["kendoPagerFocusable", "", "format", "n0", 3, "spinners", "decimals", "size", "disabled", "value", "min", "max", "autoCorrect", "inputAttributes", "title", "kendoEventsOutsideAngular"]],
-    template: function PagerInputComponent_Template(rf, ctx) {
-      if (rf & 1) {
-        ɵɵelementStart(0, "span", 0);
-        ɵɵtemplate(1, PagerInputComponent_Conditional_1_Template, 1, 1);
-        ɵɵelement(2, "kendo-numerictextbox", 1);
-        ɵɵtext(3);
-        ɵɵelementEnd();
-      }
-      if (rf & 2) {
-        ɵɵadvance();
-        ɵɵconditional(ctx.showPageText ? 1 : -1);
-        ɵɵadvance();
-        ɵɵproperty("spinners", false)("decimals", 0)("size", ctx.size)("disabled", !ctx.hasPages)("value", ctx.current)("min", ctx.hasPages ? 1 : 0)("max", ctx.totalPages)("autoCorrect", true)("inputAttributes", ɵɵpureFunction1(14, _c312, ctx.textFor("inputLabel")))("title", ctx.textFor("pageNumberInputTitle"))("kendoEventsOutsideAngular", ɵɵpureFunction2(16, _c412, ctx.handleKeyDown, ctx.handleBlur));
-        ɵɵadvance();
-        ɵɵtextInterpolate2(" ", ctx.textFor("of"), " ", ctx.totalPages, " ");
-      }
-    },
-    dependencies: [NumericTextBoxComponent, PagerFocusableDirective, EventsOutsideAngularDirective],
-    encapsulation: 2
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(PagerInputComponent, [{
-    type: Component,
-    args: [{
-      selector: "kendo-datapager-input, kendo-pager-input",
-      template: `
-     <span class="k-pager-input">
-       @if (showPageText) {
-         {{textFor('page')}}
-       }
-       <kendo-numerictextbox kendoPagerFocusable
-         [spinners]="false"
-         [decimals]="0"
-         format="n0"
-         [size]="size"
-         [disabled]="!hasPages"
-         [value]="current"
-         [min]="hasPages ? 1 : 0"
-         [max]="totalPages"
-         [autoCorrect]="true"
-            [inputAttributes]="{
-                'aria-label': textFor('inputLabel')
-            }"
-         [title]="textFor('pageNumberInputTitle')"
-            [kendoEventsOutsideAngular]="{
-                keydown: handleKeyDown,
-                focusout: handleBlur
-            }">
-       </kendo-numerictextbox>
-       {{textFor('of')}} {{totalPages}}
-     </span>
-     `,
-      standalone: true,
-      imports: [NumericTextBoxComponent, PagerFocusableDirective, EventsOutsideAngularDirective]
-    }]
-  }], () => [{
-    type: LocalizationService
-  }, {
-    type: PagerContextService
-  }, {
-    type: NgZone
-  }, {
-    type: ChangeDetectorRef
-  }, {
-    type: Renderer2
-  }], {
-    numericInput: [{
-      type: ViewChild,
-      args: [NumericTextBoxComponent, {
-        static: true
-      }]
-    }],
-    showPageText: [{
-      type: Input
-    }],
-    size: [{
-      type: Input
-    }]
-  });
-})();
-var PagerInfoComponent = class _PagerInfoComponent extends PagerElementComponent {
-  /**
-   * @hidden
-   *
-   * @readonly
-   * @type {number}
-   * @memberOf PagerInfoComponent
-   */
-  get maxItems() {
-    return Math.min(this.currentPage * this.pageSize, this.total);
-  }
-  /**
-   * @hidden
-   *
-   * @readonly
-   * @type {number}
-   * @memberOf PagerInfoComponent
-   */
-  get currentPageText() {
-    return this.total ? (this.currentPage - 1) * this.pageSize + 1 : 0;
-  }
-  /**
-   * @hidden
-   *
-   * @readonly
-   * @type {boolean}
-   * @memberOf PagerInfoComponent
-   */
-  hostClass = true;
-  constructor(localization, cd, pagerContext) {
-    super(localization, pagerContext, cd);
-  }
-  onChanges({
-    total,
-    skip: skip2,
-    pageSize
-  }) {
-    this.total = total;
-    this.skip = skip2;
-    this.pageSize = pageSize;
-    this.cd.markForCheck();
-  }
-  static ɵfac = function PagerInfoComponent_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _PagerInfoComponent)(ɵɵdirectiveInject(LocalizationService), ɵɵdirectiveInject(ChangeDetectorRef), ɵɵdirectiveInject(PagerContextService));
-  };
-  static ɵcmp = ɵɵdefineComponent({
-    type: _PagerInfoComponent,
-    selectors: [["kendo-datapager-info"], ["kendo-pager-info"]],
-    hostVars: 2,
-    hostBindings: function PagerInfoComponent_HostBindings(rf, ctx) {
-      if (rf & 2) {
-        ɵɵclassProp("k-pager-info", ctx.hostClass);
-      }
-    },
-    features: [ɵɵInheritDefinitionFeature],
-    decls: 1,
-    vars: 5,
-    template: function PagerInfoComponent_Template(rf, ctx) {
-      if (rf & 1) {
-        ɵɵtext(0);
-      }
-      if (rf & 2) {
-        ɵɵtextInterpolate5("", ctx.currentPageText, " - ", ctx.maxItems, " ", ctx.textFor("of"), " ", ctx.total, " ", ctx.textFor("items"), "");
-      }
-    },
-    encapsulation: 2,
-    changeDetection: 0
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(PagerInfoComponent, [{
-    type: Component,
-    args: [{
-      changeDetection: ChangeDetectionStrategy.OnPush,
-      selector: "kendo-datapager-info, kendo-pager-info",
-      template: `{{currentPageText}} - {{maxItems}} {{textFor('of')}} {{total}} {{textFor('items')}}`,
-      standalone: true
-    }]
-  }], () => [{
-    type: LocalizationService
-  }, {
-    type: ChangeDetectorRef
-  }, {
-    type: PagerContextService
-  }], {
-    hostClass: [{
-      type: HostBinding,
-      args: ["class.k-pager-info"]
-    }]
-  });
-})();
-var packageMetadata6 = {
-  name: "@progress/kendo-angular-pager",
-  productName: "Kendo UI for Angular",
-  productCode: "KENDOUIANGULAR",
-  productCodes: ["KENDOUIANGULAR"],
-  publishDate: 1777036942,
-  version: "23.4.0",
-  licensingDocsUrl: "https://www.telerik.com/kendo-angular-ui/my-license/"
-};
-var PagerComponent = class _PagerComponent {
-  pagerContext;
-  element;
-  localization;
-  renderer;
-  ngZone;
-  cdr;
-  navigationService;
-  /**
-   * Represents the collection of pager template directives.
-   */
-  template;
-  set numericButtons(buttons) {
-    const newWidth = buttons ? buttons.nativeElement?.offsetWidth : 0;
-    if (buttons && newWidth !== this.pagerDimensions.numericButtonsWidth) {
-      this.pagerDimensions.numericButtonsWidth = newWidth;
-    }
-  }
-  set pagerInput(input) {
-    const newWidth = input ? input.nativeElement?.offsetWidth : 0;
-    if (input && newWidth !== this.pagerDimensions.inputWidth) {
-      this.pagerDimensions.inputWidth = newWidth;
-    }
-    if (input?.nativeElement && !this.pagerDimensions.gapPageText) {
-      const innerStyledElement = input.nativeElement.querySelector(".k-pager-input");
-      this.pagerDimensions.gapPageText = calculateGap(innerStyledElement);
-    }
-  }
-  pagerInputComponent;
-  set pageSizes(sizes) {
-    const newWidth = sizes ? sizes.nativeElement?.offsetWidth : 0;
-    if (sizes && newWidth !== this.pagerDimensions.pageSizesWidth) {
-      this.pagerDimensions.pageSizesWidth = newWidth;
-    }
-  }
-  pageSizesComponent;
-  /**
-   * @hidden
-   */
-  externalTemplate;
-  /**
-   * Specifies the total number of data items in the collection.
-   *
-   * @default 0
-   */
-  total = 0;
-  /**
-   * Specifies the number of data items to skip.
-   *
-   * @default 0
-   */
-  skip = 0;
-  /**
-   * Specifies the number of data items per page.
-   */
-  pageSize;
-  /**
-   * Specifies the maximum number of numeric buttons before the buttons are collapsed.
-   *
-   * @default 10
-   */
-  buttonCount = 10;
-  /**
-   * Determines whether to display information about the current page and the total number of records.
-   *
-   * @default true
-   */
-  info = true;
-  /**
-   * Specifies the type of the Pager.
-   *
-   * @default 'numeric'
-   */
-  type = "numeric";
-  /**
-   * Displays a dropdown for selecting the page size.
-   * When set to `true`, the dropdown contains the default list of options - 5, 10, 20.
-   * To customize the list of options, set `pageSizeValues` to an array of the desired values.
-   * The array can contain numbers and [PageSizeItem](https://www.telerik.com/kendo-angular-ui/components/pager/api/pagesizeitem) objects.
-   */
-  set pageSizeValues(value) {
-    if (typeof value === "boolean") {
-      this._pageSizeValues = value ? DEFAULT_PAGE_SIZE_VALUES : [];
-    } else {
-      this._pageSizeValues = value;
-    }
-  }
-  get pageSizeValues() {
-    return this._pageSizeValues;
-  }
-  /**
-   * Determines whether to display the **Previous** and **Next** buttons.
-   *
-   * @default true
-   */
-  previousNext = true;
-  /**
-   * Determines whether users can use dedicated shortcuts to interact with the Pager ([see example](https://www.telerik.com/kendo-angular-ui/components/pager/keyboard-navigation)).
-   * By default, navigation is enabled. To disable it and make the Pager content accessible in the normal tab sequence, set the property to `false`.
-   * @default true
-   *
-   * @remarks
-   * This property is related to accessibility.
-   */
-  set navigable(value) {
-    this._navigable = value;
-    this.navigationService.isNavigable = value;
-  }
-  get navigable() {
-    return this._navigable;
-  }
-  /**
-   * Specifies the padding of all Pager elements. The default value is set by the Kendo theme.
-   */
-  set size(size) {
-    this.handleClasses(size, "size");
-    this._size = size;
-  }
-  get size() {
-    return this._size;
-  }
-  /**
-   * Determines whether the Pager responsive functionality is enabled ([see example](https://www.telerik.com/kendo-angular-ui/components/pager/responsive-design)).
-   *
-   * @default true
-   */
-  responsive = true;
-  /**
-   * Determines whether the Pager adaptiveness functionality is enabled ([see example](https://www.telerik.com/kendo-angular-ui/components/pager/adaptiveness)).
-   *
-   * @default 'none'
-   */
-  adaptiveMode = "none";
-  /**
-   * Fires when the current page of the Pager changes ([see example](https://www.telerik.com/kendo-angular-ui/components/pager)).
-   * You have to handle the event and page the data.
-   */
-  pageChange = new EventEmitter();
-  /**
-   * Fires when the page size of the Pager changes.
-   * You have to handle the event and page the data.
-   * If the event is prevented, the page size remains unchanged ([see example](https://www.telerik.com/kendo-angular-ui/components/pager/events)).
-   */
-  pageSizeChange = new EventEmitter();
-  /**
-   * @hidden
-   */
-  pagerInputVisibilityChange = new EventEmitter();
-  /**
-   * @hidden
-   */
-  pageTextVisibilityChange = new EventEmitter();
-  /**
-   * @hidden
-   */
-  itemsTextVisibilityChange = new EventEmitter();
-  pagerClass = true;
-  get responsiveClass() {
-    return this.responsive;
-  }
-  widgetRole = "application";
-  roleDescription = "pager";
-  keyShortcuts = "Enter ArrowRight ArrowLeft";
-  get hostTabindex() {
-    return this.navigable ? "0" : "-1";
-  }
-  get dir() {
-    return this.direction;
-  }
-  /**
-   * @hidden
-   */
-  focusHandler(ev) {
-    const isInnerNavigationEnabled = ev.target !== this.element.nativeElement;
-    this.navigationService.toggleInnerNavigation(isInnerNavigationEnabled);
-  }
-  get totalPages() {
-    return Math.ceil((this.total || 0) / this.pageSize);
-  }
-  get currentPage() {
-    return Math.floor((this.skip || 0) / this.pageSize) + 1;
-  }
-  get templateContext() {
-    const context = this._templateContext;
-    context.totalPages = this.totalPages;
-    context.total = this.total;
-    context.skip = this.skip;
-    context.pageSize = this.pageSize;
-    context.currentPage = this.currentPage;
-    return context;
-  }
-  /**
-   * @hidden
-   */
-  get showPageText() {
-    return this._showPageText;
-  }
-  set showPageText(value) {
-    this._showPageText = value;
-    if (this.pagerInputComponent) {
-      this.pagerInputComponent.showPageText = value;
-    }
-    this.pageTextVisibilityChange.emit(value);
-  }
-  /**
-   * @hidden
-   */
-  get showItemsText() {
-    return this._showItemsText;
-  }
-  set showItemsText(value) {
-    this._showItemsText = value;
-    if (this.pageSizesComponent) {
-      this.pageSizesComponent.showItemsText = value;
-    }
-    this.itemsTextVisibilityChange.emit(value);
-  }
-  /**
-   * @hidden
-   */
-  get showInput() {
-    return this._showInput;
-  }
-  set showInput(value) {
-    this._showInput = value;
-    this.pagerInputVisibilityChange.emit(value);
-  }
-  /**
-   * @hidden
-   */
-  initialized = false;
-  subscriptions = new Subscription();
-  _templateContext = {};
-  _pageSizeValues = DEFAULT_PAGE_SIZE_VALUES;
-  direction;
-  isInnerNavigationEnabled = false;
-  _navigable = true;
-  _size;
-  _showInput = true;
-  _showPageText = true;
-  _showItemsText = true;
-  _isAllSelected = false;
-  /**
-   * Stores the measurements of various Pager elements.
-   * These dimensions are used for responsive layout calculations.
-   * @hidden
-   */
-  pagerDimensions = {
-    padding: 0,
-    numericButtonsWidth: 0,
-    inputWidth: 0,
-    pageSizesWidth: 0,
-    sizesTextWidth: 0,
-    pageTextWidth: 0,
-    infoTextWidth: 0,
-    gapNumbersSizes: 0,
-    gapSizesInfo: 0,
-    gapPageText: 0,
-    width: 0
-  };
-  constructor(pagerContext, element, localization, renderer, ngZone, cdr, navigationService) {
-    this.pagerContext = pagerContext;
-    this.element = element;
-    this.localization = localization;
-    this.renderer = renderer;
-    this.ngZone = ngZone;
-    this.cdr = cdr;
-    this.navigationService = navigationService;
-    A(packageMetadata6);
-    this.direction = localization.rtl ? "rtl" : "ltr";
-    if (!navigationService) {
-      this.navigationService = inject(PagerNavigationService);
-    }
-    if (!pagerContext) {
-      this.pagerContext = inject(PagerContextService);
-    }
-    this.pagerContext.localization = localization;
-  }
-  ngOnInit() {
-    this.subscriptions.add(this.pagerContext.pageChange.subscribe(this.changePage.bind(this)));
-    this.subscriptions.add(this.pagerContext.pageSizeChange.subscribe(this.changePageSize.bind(this)));
-    this.subscriptions.add(this.localization.changes.subscribe(({
-      rtl
-    }) => {
-      this.direction = rtl ? "rtl" : "ltr";
-      this.measureAllTextWidths();
-      if (this.responsive) {
-        this.resizeHandler();
-      }
-    }));
-    this.subscriptions.add(this.navigationService.innerNavigationChange.subscribe(this.innerNavigationChange.bind(this)));
-    if (this.navigable) {
-      const wrapper = this.element.nativeElement;
-      this.ngZone.runOutsideAngular(() => {
-        this.subscriptions.add(this.renderer.listen(wrapper, "keydown", this.keyDownHandler.bind(this)));
-      });
-    }
-  }
-  /**
-   * Gets the maximum number of items displayed on the current page.
-   */
-  get maxItems() {
-    return Math.min(this.currentPage * this.pageSize, this.total);
-  }
-  ngAfterViewInit() {
-    this.renderer.setAttribute(this.element.nativeElement, "aria-label", this.ariaLabel);
-    this.subscriptions.add(this.template.changes.subscribe(() => {
-      this.measureAllTextWidths();
-      if (this.responsive) {
-        this.resizeHandler(false);
-      }
-    }));
-    this.handleClasses(this.size, "size");
-    this.setPagerDimensions();
-    this.ngZone.onStable.pipe(take(1)).subscribe(() => {
-      if (this.type !== "input") {
-        this.showInput = false;
-      }
-      this.responsive && this.resizeHandler();
-    });
-    if (!isDocumentAvailable()) {
-      this.initialized = true;
-      return;
-    }
-    this.ngZone.runOutsideAngular(() => {
-      setTimeout(() => {
-        this.initialized = true;
-        this.cdr.markForCheck();
-      }, 0);
-    });
-  }
-  ngOnChanges(changes) {
-    if (anyChanged(["pageSize", "skip", "total"], changes, false)) {
-      const previousTotal = changes["total"]?.previousValue;
-      const currentTotal = this.total;
-      let pageSizeAdjusted = false;
-      if (this._isAllSelected && previousTotal && currentTotal !== previousTotal && this.pageSize === previousTotal) {
-        this.pageSize = currentTotal;
-        pageSizeAdjusted = true;
-      }
-      const previousButtonCount = Math.min(this.buttonCount, (changes["total"]?.previousValue || this.total) / (changes["pageSize"]?.previousValue || this.pageSize));
-      this.pagerContext.notifyChanges({
-        pageSize: this.pageSize,
-        skip: this.skip,
-        total: this.total,
-        isAllSelected: this._isAllSelected
-      });
-      this.pagerDimensions.numericButtonsWidth = this.pagerDimensions.numericButtonsWidth * Math.min(this.buttonCount, this.total / this.pageSize) / previousButtonCount;
-      this.renderer.setAttribute(this.element.nativeElement, "aria-label", this.ariaLabel);
-      if (this.responsive) {
-        this.resizeHandler(false);
-      }
-      if (pageSizeAdjusted) {
-        Promise.resolve().then(() => {
-          this.pageChange.emit({
-            skip: this.skip,
-            take: currentTotal
-          });
-          this.cdr.detectChanges();
-        });
-      }
-    }
-    if (anyChanged(["pageSizeValues", "previousNext", "buttonCount"], changes, true)) {
-      if (this.responsive) {
-        this.resizeHandler(false);
-      }
-    }
-    if (isChanged("responsive", changes, true)) {
-      if (changes["responsive"].currentValue && !changes["responsive"].previousValue) {
-        this.measureAllTextWidths();
-        this.resizeHandler(false);
-      }
-      if (!this.responsive) {
-        this.showInput = this.type === "input";
-        this.showElements(this.element.nativeElement.offsetWidth, this.pagerDimensions.width);
-      }
-    }
-    if (isChanged("type", changes, true)) {
-      this.showNumericButtonsResponsive();
-      if (this.responsive) {
-        this.resizeHandler(false);
-      }
-    }
-  }
-  ngOnDestroy() {
-    this.subscriptions.unsubscribe();
-  }
-  /**
-   * @hidden
-   */
-  changePage(event) {
-    this.pageChange.emit(event);
-  }
-  /**
-   * @hidden
-   */
-  changePageSize(event) {
-    this.pageSizeChange.emit(event);
-    if (!event.isDefaultPrevented()) {
-      if (event.newPageSize === "all") {
-        this._isAllSelected = true;
-        this.pageChange.emit({
-          skip: 0,
-          take: this.total
-        });
-      } else {
-        this._isAllSelected = false;
-        this.pageChange.emit({
-          skip: 0,
-          take: event.newPageSize
-        });
-      }
-    }
-  }
-  /**
-   * @hidden
-   */
-  onPageSizeChange(event) {
-    this.pageSizeChange.emit(event);
-    if (!event.isDefaultPrevented()) {
-      this.pageChange.emit({
-        skip: this.skip,
-        take: event.newPageSize
-      });
-    }
-  }
-  /**
-   * @hidden
-   */
-  resizeHandler = (compareWidth = true) => {
-    if (this.template?.first && !this.responsive) {
-      return;
-    }
-    if (!isDocumentAvailable() || !this.element?.nativeElement) {
-      this.initialized = true;
-      return;
-    }
-    let pagerWidth = this.element.nativeElement.offsetWidth;
-    if (pagerWidth <= 0) {
-      return;
-    }
-    if (compareWidth && pagerWidth === this.pagerDimensions.width) {
-      return;
-    } else {
-      this.pagerDimensions.width = pagerWidth;
-    }
-    this.ngZone.runOutsideAngular(() => {
-      setTimeout(() => {
-        if (this.template?.first && !this.responsive) {
-          return;
-        }
-        const numericButtonsWrapperElement = this.element.nativeElement.querySelector(".k-pager-numbers-wrap");
-        const pagerInfoElement = this.pagerInfoElement();
-        const pagerPageSizes = this.sizesDropDownElement();
-        let elementsWidths = numericButtonsWrapperElement?.offsetWidth + (pagerPageSizes?.offsetWidth || 0) + (pagerInfoElement?.offsetWidth > 0 ? Math.min(this.pagerDimensions.infoTextWidth) : 0);
-        if (this.isElementVisible(pagerInfoElement)) {
-          elementsWidths += this.pagerDimensions.gapSizesInfo;
-        }
-        pagerWidth -= this.pagerDimensions.padding;
-        if (this.isElementVisible(pagerPageSizes)) {
-          pagerWidth -= this.pagerDimensions.gapNumbersSizes;
-        }
-        if (pagerWidth < 0) {
-          return;
-        }
-        this.showElements(pagerWidth, elementsWidths);
-        if (!this.initialized) {
-          this.ngZone.onStable.pipe(take(1)).subscribe(() => this.initialized = true);
-        }
-      });
-    });
-  };
-  // use selectors to get the element even when used in a template
-  sizesDropDownElement = () => this.element.nativeElement.querySelector(".k-pager-sizes");
-  pagerInputElement = () => this.element.nativeElement.querySelector(".k-pager-input");
-  pagerInfoElement = () => this.element.nativeElement.querySelector(".k-pager-info");
-  numericButtonsElement = () => this.element.nativeElement.querySelector("kendo-datapager-numeric-buttons, kendo-pager-numeric-buttons");
-  responsiveDropDownElement = {
-    name: "sizeDropDown",
-    isEnabled: () => this.showPageSizes,
-    isVisible: () => this.isElementVisible(this.sizesDropDownElement()),
-    width: () => this.pagerDimensions.pageSizesWidth + this.pagerDimensions.gapNumbersSizes - this.pagerDimensions.sizesTextWidth,
-    show: () => {
-      this.ngZone.run(() => this.showItemsText = false);
-      this.showElement(this.sizesDropDownElement());
-    },
-    hide: () => {
-      this.hideElement(this.sizesDropDownElement());
-    }
-  };
-  responsiveDropDownTextElement = {
-    name: "itemsDropDownText",
-    isEnabled: () => this.showPageSizes,
-    isVisible: () => this.isElementVisible(this.sizesDropDownElement()) && this.showItemsText,
-    width: () => this.pagerDimensions.sizesTextWidth + this.pagerDimensions.gapPageText,
-    show: () => this.ngZone.run(() => this.showItemsText = true),
-    hide: () => this.ngZone.run(() => this.showItemsText = false)
-  };
-  responsivePageTextElement = {
-    name: "pageText",
-    isEnabled: () => this.isElementVisible(this.pagerInputElement()),
-    isVisible: () => this.showPageText,
-    width: () => this.pagerDimensions.pageTextWidth + this.pagerDimensions.gapPageText,
-    show: () => this.ngZone.run(() => this.showPageText = true),
-    hide: () => this.ngZone.run(() => this.showPageText = false)
-  };
-  responsiveInfoTextElement = {
-    name: "infoText",
-    isEnabled: () => this.info,
-    isVisible: () => this.isElementVisible(this.pagerInfoElement()),
-    width: () => this.pagerDimensions.infoTextWidth + this.pagerDimensions.gapSizesInfo,
-    show: () => {
-      this.ngZone.run(() => {
-        this.showElement(this.pagerInfoElement());
-      });
-    },
-    hide: () => {
-      this.ngZone.run(() => {
-        this.hideElement(this.pagerInfoElement());
-      });
-    }
-  };
-  responsiveNumericButtonsElement = {
-    name: "numericButtons",
-    isEnabled: () => this.type === "numeric",
-    isVisible: () => this.isElementVisible(this.numericButtonsElement()),
-    width: () => this.pagerDimensions.numericButtonsWidth - this.pagerDimensions.inputWidth,
-    show: () => {
-      this.showElement(this.numericButtonsElement());
-      this.ngZone.run(() => {
-        this.showInput = false;
-        this.cdr.markForCheck();
-      });
-    },
-    hide: () => {
-      this.hideElement(this.numericButtonsElement());
-      this.ngZone.run(() => {
-        this.showInput = true;
-        this.showPageText = true;
-        this.cdr.markForCheck();
-      });
-    }
-  };
-  /**
-   * Contains all elements that are subject to responsive toggling.
-   * These elements will be shown or hidden based on the available space.
-   * The order of elements in the array defines the priority of visibility.
-   * This array allows us to work with the elements without performing element-specific logic in other methods.
-   */
-  responsiveElements = [this.responsiveDropDownElement, this.responsiveDropDownTextElement, this.responsivePageTextElement, this.responsiveInfoTextElement, this.responsiveNumericButtonsElement];
-  get ariaLabel() {
-    const localizationMsg = this.localization.get("ariaLabel") || "";
-    return replaceMessagePlaceholder(replaceMessagePlaceholder(localizationMsg, "currentPage", this.currentPage.toString()), "totalPages", this.totalPages.toString());
-  }
-  keyDownHandler(e) {
-    const target = e.target;
-    const wrapper = this.element.nativeElement;
-    const code = normalizeKeys(e);
-    const isArrowLeftOrPageUp = code === Keys.ArrowLeft || code === Keys.PageUp;
-    const isArrowRightOrPageDown = code === Keys.ArrowRight || code === Keys.PageDown;
-    const isEnter = code === Keys.Enter || code === Keys.NumpadEnter;
-    const isHome = code === Keys.Home;
-    const isEnd = code === Keys.End;
-    const isEsc = code === Keys.Escape;
-    const isTab = code === Keys.Tab;
-    const isFirstPage = this.currentPage === 1;
-    const isLastPage = this.currentPage === this.totalPages;
-    this.ngZone.run(() => {
-      if (isHome) {
-        if (e.target !== wrapper) {
-          return;
-        }
-        e.preventDefault();
-        if (!isFirstPage) {
-          this.pagerContext.changePage(0);
-        }
-      } else if (isEnd) {
-        e.preventDefault();
-        if (e.target !== wrapper) {
-          return;
-        }
-        if (!isLastPage) {
-          this.pagerContext.changePage(this.totalPages - 1);
-        }
-      } else if (this.isInnerNavigationEnabled) {
-        if (isEsc) {
-          this.navigationService.toggleInnerNavigation(false);
-          wrapper.focus();
-        } else if (isTab) {
-          this.navigationService.keepFocusWithinComponent(wrapper, target, e);
-        }
-      } else {
-        if (e.target !== wrapper) {
-          return;
-        }
-        if (isArrowLeftOrPageUp) {
-          e.preventDefault();
-          if (!isFirstPage) {
-            this.pagerContext.prevPage();
-          }
-        } else if (isArrowRightOrPageDown) {
-          e.preventDefault();
-          if (!isLastPage) {
-            this.pagerContext.nextPage();
-          }
-        } else if (isEnter) {
-          e.preventDefault();
-          let [firstFocusable] = this.navigationService.getFirstAndLastFocusable(wrapper);
-          if (firstFocusable.getAttribute("aria-disabled") === "true") {
-            firstFocusable = Array.from(getAllFocusableChildren(wrapper)).find((el) => !el.getAttribute("aria-disabled"));
-            const input = firstFocusable.querySelector("input");
-            if (input) {
-              firstFocusable = input;
-            }
-          }
-          this.navigationService.toggleInnerNavigation(true);
-          firstFocusable?.focus();
-        }
-      }
-    });
-  }
-  innerNavigationChange(value) {
-    this.isInnerNavigationEnabled = value;
-  }
-  handleClasses(value, input) {
-    const elem = this.element.nativeElement;
-    const classes = getStylingClasses2("pager", input, this[input], value);
-    if (classes.toRemove) {
-      this.renderer.removeClass(elem, classes.toRemove);
-    }
-    if (classes.toAdd) {
-      this.renderer.addClass(elem, classes.toAdd);
-    }
-  }
-  showElements(availableWidth, currentWidth) {
-    let index = 0;
-    while (index < this.responsiveElements.length) {
-      const element = this.responsiveElements[index];
-      if (!element.isEnabled() || element.isVisible()) {
-        index++;
-        continue;
-      }
-      const elementWidth = element.width();
-      if (this.responsive && currentWidth + elementWidth > availableWidth) {
-        index++;
-        break;
-      }
-      element.show();
-      currentWidth += elementWidth;
-      index++;
-    }
-    if (!this.responsive || currentWidth <= availableWidth) {
-      return;
-    }
-    let hideIndex = Math.min(index - 1, this.responsiveElements.length - 1);
-    while (hideIndex >= 0 && currentWidth > availableWidth) {
-      const element = this.responsiveElements[hideIndex];
-      if (!element.isEnabled() || !element.isVisible()) {
-        hideIndex--;
-        continue;
-      }
-      const elementWidth = element.width();
-      element.hide();
-      currentWidth -= elementWidth;
-      hideIndex--;
-    }
-  }
-  isElementVisible(element) {
-    return element && !element?.classList.contains("k-hidden");
-  }
-  hideElement(element) {
-    if (element) {
-      this.renderer.addClass(element, "k-hidden");
-    }
-  }
-  showElement(element) {
-    if (element) {
-      this.renderer.removeClass(element, "k-hidden");
-    }
-  }
-  measureAllTextWidths() {
-    if (!isDocumentAvailable()) {
-      return;
-    }
-    const existingInfo = this.pagerInfoElement();
-    const existingInput = this.pagerInputElement();
-    const existingSizes = this.sizesDropDownElement();
-    const measureContainer = this.renderer.createElement("div");
-    positionOffScreen(this.renderer, measureContainer);
-    this.renderer.appendChild(this.element.nativeElement, measureContainer);
-    const infoSpan = createMeasurementSpan(this.renderer, measureContainer, "k-pager-info");
-    const pageSpan = createMeasurementSpan(this.renderer, measureContainer, "k-pager-input");
-    const sizesSpan = createMeasurementSpan(this.renderer, measureContainer, "k-pager-sizes");
-    const infoText = `${this.currentPage} - ${this.maxItems} ${this.localization.get("of")} ${this.total} ${this.localization.get("items")}`;
-    this.renderer.setProperty(infoSpan, "textContent", infoText);
-    this.renderer.setProperty(pageSpan, "textContent", this.localization.get("page"));
-    this.renderer.setProperty(sizesSpan, "textContent", this.localization.get("itemsPerPage"));
-    if (existingInfo) copyComputedStyles(this.renderer, existingInfo, infoSpan);
-    if (existingInput) copyComputedStyles(this.renderer, existingInput, pageSpan);
-    if (existingSizes) copyComputedStyles(this.renderer, existingSizes, sizesSpan);
-    measureContainer.getBoundingClientRect();
-    this.pagerDimensions.infoTextWidth = infoSpan?.offsetWidth;
-    if (this.pagerDimensions.inputWidth && this.pagerDimensions.pageTextWidth) {
-      this.pagerDimensions.inputWidth = this.pagerDimensions.inputWidth - this.pagerDimensions.pageTextWidth + pageSpan.offsetWidth;
-    }
-    this.pagerDimensions.pageTextWidth = pageSpan?.offsetWidth;
-    if (this.pagerDimensions.pageSizesWidth && this.pagerDimensions.sizesTextWidth) {
-      this.pagerDimensions.pageSizesWidth = this.pagerDimensions.pageSizesWidth - this.pagerDimensions.sizesTextWidth + sizesSpan.offsetWidth;
-    }
-    this.pagerDimensions.sizesTextWidth = sizesSpan?.offsetWidth;
-    this.renderer.removeChild(this.element.nativeElement, measureContainer);
-  }
-  showNumericButtonsResponsive() {
-    if (!isDocumentAvailable() || !this.element?.nativeElement) {
-      return;
-    }
-    const numericButtonsElement = this.numericButtonsElement();
-    const hasNumericButtons = this.numericButtons || numericButtonsElement;
-    const hasInput = this.pagerInput || this.pagerInputElement();
-    if (!this.responsive || !hasNumericButtons && !hasInput) {
-      this.showInput = this.type === "input";
-      return;
-    }
-    const pagerInfoElement = this.pagerInfoElement();
-    if (this.type === "input" || !this.isElementVisible(pagerInfoElement)) {
-      this.showInput = true;
-      return;
-    }
-    if (this.isElementVisible(numericButtonsElement)) {
-      this.showInput = false;
-      return;
-    }
-    const pagerWidth = this.element.nativeElement?.offsetWidth;
-    const numericButtonsWrapperElement = this.element.nativeElement.querySelector(".k-pager-numbers-wrap");
-    const elementsWidths = numericButtonsWrapperElement?.offsetWidth + this.pagerDimensions.pageSizesWidth + this.pagerDimensions.infoTextWidth + this.pagerDimensions.gapSizesInfo;
-    const hasAvailableWidth = pagerWidth > elementsWidths - this.pagerDimensions.inputWidth + this.pagerDimensions.numericButtonsWidth;
-    this.showInput = !hasAvailableWidth;
-  }
-  get showPageSizes() {
-    if (typeof this.pageSizeValues === "boolean") {
-      return this.pageSizeValues;
-    }
-    return this.pageSizeValues?.length > 0;
-  }
-  setPagerDimensions() {
-    this.measureAllTextWidths();
-    !this.numericButtons && (this.pagerDimensions.numericButtonsWidth = this.element.nativeElement.querySelector(".k-pager-numbers")?.offsetWidth ?? 0);
-    !this.pagerInput && (this.pagerDimensions.inputWidth = this.element.nativeElement.querySelector("kendo-pager-input")?.offsetWidth ?? 0);
-    !this.pageSizes && (this.pagerDimensions.pageSizesWidth = this.sizesDropDownElement()?.offsetWidth ?? 0);
-    const padding = calculatePadding(this.element.nativeElement);
-    this.pagerDimensions.padding = padding.padding;
-    this.pagerDimensions.gapNumbersSizes = padding.gapNumbersSizes;
-    this.pagerDimensions.gapSizesInfo = padding.gapSizesInfo;
-    const innerStyledElement = this.pagerInputElement();
-    !this.pagerDimensions.gapPageText && (this.pagerDimensions.gapPageText = calculateGap(innerStyledElement));
-  }
-  static ɵfac = function PagerComponent_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _PagerComponent)(ɵɵdirectiveInject(PagerContextService, 12), ɵɵdirectiveInject(ElementRef), ɵɵdirectiveInject(LocalizationService), ɵɵdirectiveInject(Renderer2), ɵɵdirectiveInject(NgZone), ɵɵdirectiveInject(ChangeDetectorRef), ɵɵdirectiveInject(PagerNavigationService, 12));
-  };
-  static ɵcmp = ɵɵdefineComponent({
-    type: _PagerComponent,
-    selectors: [["kendo-datapager"], ["kendo-pager"]],
-    contentQueries: function PagerComponent_ContentQueries(rf, ctx, dirIndex) {
-      if (rf & 1) {
-        ɵɵcontentQuery(dirIndex, PagerTemplateDirective, 4);
-      }
-      if (rf & 2) {
-        let _t;
-        ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx.template = _t);
-      }
-    },
-    viewQuery: function PagerComponent_Query(rf, ctx) {
-      if (rf & 1) {
-        ɵɵviewQuery(PagerNumericButtonsComponent, 5, ElementRef);
-        ɵɵviewQuery(PagerInputComponent, 5, ElementRef);
-        ɵɵviewQuery(PagerInputComponent, 5);
-        ɵɵviewQuery(PagerPageSizesComponent, 5, ElementRef);
-        ɵɵviewQuery(PagerPageSizesComponent, 5);
-      }
-      if (rf & 2) {
-        let _t;
-        ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx.numericButtons = _t.first);
-        ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx.pagerInput = _t.first);
-        ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx.pagerInputComponent = _t.first);
-        ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx.pageSizes = _t.first);
-        ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx.pageSizesComponent = _t.first);
-      }
-    },
-    hostVars: 9,
-    hostBindings: function PagerComponent_HostBindings(rf, ctx) {
-      if (rf & 1) {
-        ɵɵlistener("focusin", function PagerComponent_focusin_HostBindingHandler($event) {
-          return ctx.focusHandler($event);
-        });
-      }
-      if (rf & 2) {
-        ɵɵattribute("role", ctx.widgetRole)("aria-roledescription", ctx.roleDescription)("aria-keyshortcuts", ctx.keyShortcuts)("tabindex", ctx.hostTabindex)("dir", ctx.dir);
-        ɵɵclassProp("k-pager", ctx.pagerClass)("k-pager-responsive", ctx.responsiveClass);
-      }
-    },
-    inputs: {
-      externalTemplate: "externalTemplate",
-      total: "total",
-      skip: "skip",
-      pageSize: "pageSize",
-      buttonCount: "buttonCount",
-      info: "info",
-      type: "type",
-      pageSizeValues: "pageSizeValues",
-      previousNext: "previousNext",
-      navigable: "navigable",
-      size: "size",
-      responsive: "responsive",
-      adaptiveMode: "adaptiveMode"
-    },
-    outputs: {
-      pageChange: "pageChange",
-      pageSizeChange: "pageSizeChange",
-      pagerInputVisibilityChange: "pagerInputVisibilityChange",
-      pageTextVisibilityChange: "pageTextVisibilityChange",
-      itemsTextVisibilityChange: "itemsTextVisibilityChange"
-    },
-    exportAs: ["kendoDataPager", "kendoPager"],
-    features: [ɵɵProvidersFeature([LocalizationService, PagerContextService, PagerNavigationService, {
-      provide: L10N_PREFIX,
-      useValue: "kendo.pager"
-    }]), ɵɵNgOnChangesFeature],
-    decls: 5,
-    vars: 3,
-    consts: () => {
-      let i18n_0;
-      if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_PAGER_FESM2022_PROGRESS_KENDO_ANGULAR_PAGER_MJS_0 = goog.getMsg("Go to the first page");
-        i18n_0 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_PAGER_FESM2022_PROGRESS_KENDO_ANGULAR_PAGER_MJS_0;
-      } else {
-        i18n_0 = $localize`:kendo.pager.firstPage|The label for the first page button in the Pager:Go to the first page`;
-      }
-      let i18n_1;
-      if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_PAGER_FESM2022_PROGRESS_KENDO_ANGULAR_PAGER_MJS_1 = goog.getMsg("Go to the previous page");
-        i18n_1 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_PAGER_FESM2022_PROGRESS_KENDO_ANGULAR_PAGER_MJS_1;
-      } else {
-        i18n_1 = $localize`:kendo.pager.previousPage|The label for the previous page button in the Pager:Go to the previous page`;
-      }
-      let i18n_2;
-      if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_PAGER_FESM2022_PROGRESS_KENDO_ANGULAR_PAGER_MJS_2 = goog.getMsg("Go to the next page");
-        i18n_2 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_PAGER_FESM2022_PROGRESS_KENDO_ANGULAR_PAGER_MJS_2;
-      } else {
-        i18n_2 = $localize`:kendo.pager.nextPage|The label for the next page button in the Pager:Go to the next page`;
-      }
-      let i18n_3;
-      if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_PAGER_FESM2022_PROGRESS_KENDO_ANGULAR_PAGER_MJS_3 = goog.getMsg("Go to the last page");
-        i18n_3 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_PAGER_FESM2022_PROGRESS_KENDO_ANGULAR_PAGER_MJS_3;
-      } else {
-        i18n_3 = $localize`:kendo.pager.lastPage|The label for the last page button in the Pager:Go to the last page`;
-      }
-      let i18n_4;
-      if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_PAGER_FESM2022_PROGRESS_KENDO_ANGULAR_PAGER_MJS_4 = goog.getMsg("Page");
-        i18n_4 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_PAGER_FESM2022_PROGRESS_KENDO_ANGULAR_PAGER_MJS_4;
-      } else {
-        i18n_4 = $localize`:kendo.pager.page|The label before the current page number in the Pager:Page`;
-      }
-      let i18n_5;
-      if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_PAGER_FESM2022_PROGRESS_KENDO_ANGULAR_PAGER_MJS_5 = goog.getMsg("of");
-        i18n_5 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_PAGER_FESM2022_PROGRESS_KENDO_ANGULAR_PAGER_MJS_5;
-      } else {
-        i18n_5 = $localize`:kendo.pager.of|The label before the total pages number in the Pager:of`;
-      }
-      let i18n_6;
-      if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_PAGER_FESM2022_PROGRESS_KENDO_ANGULAR_PAGER_MJS_6 = goog.getMsg("Page Number");
-        i18n_6 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_PAGER_FESM2022_PROGRESS_KENDO_ANGULAR_PAGER_MJS_6;
-      } else {
-        i18n_6 = $localize`:kendo.pager.pageNumberInputTitle|The label for the pager input in the Pager:Page Number`;
-      }
-      let i18n_7;
-      if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_PAGER_FESM2022_PROGRESS_KENDO_ANGULAR_PAGER_MJS_7 = goog.getMsg("items");
-        i18n_7 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_PAGER_FESM2022_PROGRESS_KENDO_ANGULAR_PAGER_MJS_7;
-      } else {
-        i18n_7 = $localize`:kendo.pager.items|The label after the total pages number in the Pager:items`;
-      }
-      let i18n_8;
-      if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_PAGER_FESM2022_PROGRESS_KENDO_ANGULAR_PAGER_MJS_8 = goog.getMsg("items per page");
-        i18n_8 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_PAGER_FESM2022_PROGRESS_KENDO_ANGULAR_PAGER_MJS_8;
-      } else {
-        i18n_8 = $localize`:kendo.pager.itemsPerPage|The label for the page size chooser in the Pager:items per page`;
-      }
-      let i18n_9;
-      if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_PAGER_FESM2022_PROGRESS_KENDO_ANGULAR_PAGER_MJS_9 = goog.getMsg("Select page");
-        i18n_9 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_PAGER_FESM2022_PROGRESS_KENDO_ANGULAR_PAGER_MJS_9;
-      } else {
-        i18n_9 = $localize`:kendo.pager.selectPage|The text of the title and aria-label attributes applied to the page chooser in the Pager:Select page`;
-      }
-      let i18n_10;
-      if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_PAGER_FESM2022_PROGRESS_KENDO_ANGULAR_PAGER_MJS_10 = goog.getMsg("Type a page number");
-        i18n_10 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_PAGER_FESM2022_PROGRESS_KENDO_ANGULAR_PAGER_MJS_10;
-      } else {
-        i18n_10 = $localize`:kendo.pager.inputLabel|The text of the aria-label attribute applied to the input element for entering the page number.:Type a page number`;
-      }
-      let i18n_11;
-      if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_PAGER_FESM2022_PROGRESS_KENDO_ANGULAR_PAGER_MJS_11 = goog.getMsg("{$interpolation}", {
-          "interpolation": "�0�"
-        }, {
-          original_code: {
-            "interpolation": "{{ 'Page navigation, page {currentPage} of {totalPages}' }}"
-          }
-        });
-        i18n_11 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_PAGER_FESM2022_PROGRESS_KENDO_ANGULAR_PAGER_MJS_11;
-      } else {
-        i18n_11 = $localize`:kendo.pager.ariaLabel|The value of the aria-label attribute of the Pager:${"�0�"}:INTERPOLATION:`;
-      }
-      return [["ariaLabel", i18n_11], ["kendoPagerLocalizedMessages", "", "firstPage", i18n_0, "previousPage", i18n_1, "nextPage", i18n_2, "lastPage", i18n_3, "page", i18n_4, "of", i18n_5, "pageNumberInputTitle", i18n_6, "items", i18n_7, "itemsPerPage", i18n_8, "selectPage", i18n_9, "inputLabel", i18n_10, 6, "ariaLabel"], [3, "ngTemplateOutlet", "ngTemplateOutletContext"], [1, "k-pager-numbers-wrap", 3, "ngStyle"], [3, "size"], [3, "size", "buttonCount"], [3, "ngStyle", "size", "pageSizes", "adaptiveMode"], [3, "ngStyle"], [3, "resize"]];
-    },
-    template: function PagerComponent_Template(rf, ctx) {
-      if (rf & 1) {
-        ɵɵelementContainerStart(0, 1);
-        ɵɵi18nAttributes(1, 0);
-        ɵɵelementContainerEnd();
-        ɵɵtemplate(2, PagerComponent_Conditional_2_Template, 1, 2, "ng-container", 2)(3, PagerComponent_Conditional_3_Template, 7, 9)(4, PagerComponent_Conditional_4_Template, 1, 0, "kendo-resize-sensor");
-      }
-      if (rf & 2) {
-        ɵɵi18nExp("Page navigation, page {currentPage} of {totalPages}");
-        ɵɵi18nApply(1);
-        ɵɵadvance(2);
-        ɵɵconditional((ctx.template.first == null ? null : ctx.template.first.templateRef) ? 2 : 3);
-        ɵɵadvance(2);
-        ɵɵconditional(ctx.responsive ? 4 : -1);
-      }
-    },
-    dependencies: [LocalizedMessagesDirective4, NgTemplateOutlet, PagerPrevButtonsComponent, PagerNumericButtonsComponent, PagerInputComponent, PagerNextButtonsComponent, PagerPageSizesComponent, PagerInfoComponent, ResizeSensorComponent, NgStyle],
-    encapsulation: 2
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(PagerComponent, [{
-    type: Component,
-    args: [{
-      selector: "kendo-datapager, kendo-pager",
-      exportAs: "kendoDataPager, kendoPager",
-      providers: [LocalizationService, PagerContextService, PagerNavigationService, {
-        provide: L10N_PREFIX,
-        useValue: "kendo.pager"
-      }],
-      template: `
-        <ng-container kendoPagerLocalizedMessages
-          i18n-ariaLabel="kendo.pager.ariaLabel|The value of the aria-label attribute of the Pager"
-          ariaLabel="{{ 'Page navigation, page {currentPage} of {totalPages}' }}"
-
-          i18n-firstPage="kendo.pager.firstPage|The label for the first page button in the Pager"
-          firstPage="Go to the first page"
-
-          i18n-previousPage="kendo.pager.previousPage|The label for the previous page button in the Pager"
-          previousPage="Go to the previous page"
-
-          i18n-nextPage="kendo.pager.nextPage|The label for the next page button in the Pager"
-          nextPage="Go to the next page"
-
-          i18n-lastPage="kendo.pager.lastPage|The label for the last page button in the Pager"
-          lastPage="Go to the last page"
-
-          i18n-page="kendo.pager.page|The label before the current page number in the Pager"
-          page="Page"
-
-          i18n-of="kendo.pager.of|The label before the total pages number in the Pager"
-          of="of"
-
-          i18n-pageNumberInputTitle="kendo.pager.pageNumberInputTitle|The label for the pager input in the Pager"
-          pageNumberInputTitle="Page Number"
-
-          i18n-items="kendo.pager.items|The label after the total pages number in the Pager"
-          items="items"
-
-          i18n-itemsPerPage="kendo.pager.itemsPerPage|The label for the page size chooser in the Pager"
-          itemsPerPage="items per page"
-
-          i18n-selectPage="kendo.pager.selectPage|The text of the title and aria-label attributes applied to the page chooser in the Pager"
-          selectPage="Select page"
-
-          i18n-inputLabel="kendo.pager.inputLabel|The text of the aria-label attribute applied to the input element for entering the page number."
-          inputLabel="Type a page number"
-          >
-        </ng-container>
-        @if (template.first?.templateRef) {
-          <ng-container
-            [ngTemplateOutlet]="template.first?.templateRef"
-            [ngTemplateOutletContext]="templateContext">
-          </ng-container>
-        } @else {
-          <div class="k-pager-numbers-wrap" [ngStyle]="{opacity: initialized ? null : '0'}">
-            @if (previousNext) {
-              <kendo-pager-prev-buttons [size]="size"></kendo-pager-prev-buttons>
-            }
-            @if (type === 'numeric' && buttonCount > 0) {
-              <kendo-pager-numeric-buttons
-                [size]="size"
-                [buttonCount]="buttonCount">
-              </kendo-pager-numeric-buttons>
-            }
-            @if (showInput) {
-              <kendo-pager-input [size]="size"></kendo-pager-input>
-            }
-            @if (previousNext) {
-              <kendo-pager-next-buttons [size]="size"></kendo-pager-next-buttons>
-            }
-          </div>
-          @if (_pageSizeValues.length) {
-            <kendo-pager-page-sizes
-              [ngStyle]="{opacity: initialized ? null : '0'}"
-              [size]="size"
-              [pageSizes]="_pageSizeValues"
-              [adaptiveMode]="adaptiveMode">
-            </kendo-pager-page-sizes>
-          }
-          @if (info) {
-            <kendo-pager-info [ngStyle]="{opacity: initialized ? null : '0'}">
-            </kendo-pager-info>
-          }
-        }
-        @if (responsive) {
-          <kendo-resize-sensor (resize)="resizeHandler()"></kendo-resize-sensor>
-        }
-        `,
-      standalone: true,
-      imports: [LocalizedMessagesDirective4, NgTemplateOutlet, PagerPrevButtonsComponent, PagerNumericButtonsComponent, PagerInputComponent, PagerNextButtonsComponent, PagerPageSizesComponent, PagerInfoComponent, ResizeSensorComponent, NgStyle]
-    }]
-  }], () => [{
-    type: PagerContextService,
-    decorators: [{
-      type: Optional
-    }, {
-      type: SkipSelf
-    }]
-  }, {
-    type: ElementRef
-  }, {
-    type: LocalizationService
-  }, {
-    type: Renderer2
-  }, {
-    type: NgZone
-  }, {
-    type: ChangeDetectorRef
-  }, {
-    type: PagerNavigationService,
-    decorators: [{
-      type: Optional
-    }, {
-      type: SkipSelf
-    }]
-  }], {
-    template: [{
-      type: ContentChildren,
-      args: [PagerTemplateDirective]
-    }],
-    numericButtons: [{
-      type: ViewChild,
-      args: [PagerNumericButtonsComponent, {
-        read: ElementRef
-      }]
-    }],
-    pagerInput: [{
-      type: ViewChild,
-      args: [PagerInputComponent, {
-        read: ElementRef
-      }]
-    }],
-    pagerInputComponent: [{
-      type: ViewChild,
-      args: [PagerInputComponent]
-    }],
-    pageSizes: [{
-      type: ViewChild,
-      args: [PagerPageSizesComponent, {
-        read: ElementRef
-      }]
-    }],
-    pageSizesComponent: [{
-      type: ViewChild,
-      args: [PagerPageSizesComponent]
-    }],
-    externalTemplate: [{
-      type: Input
-    }],
-    total: [{
-      type: Input
-    }],
-    skip: [{
-      type: Input
-    }],
-    pageSize: [{
-      type: Input
-    }],
-    buttonCount: [{
-      type: Input
-    }],
-    info: [{
-      type: Input
-    }],
-    type: [{
-      type: Input
-    }],
-    pageSizeValues: [{
-      type: Input
-    }],
-    previousNext: [{
-      type: Input
-    }],
-    navigable: [{
-      type: Input
-    }],
-    size: [{
-      type: Input
-    }],
-    responsive: [{
-      type: Input
-    }],
-    adaptiveMode: [{
-      type: Input
-    }],
-    pageChange: [{
-      type: Output
-    }],
-    pageSizeChange: [{
-      type: Output
-    }],
-    pagerInputVisibilityChange: [{
-      type: Output
-    }],
-    pageTextVisibilityChange: [{
-      type: Output
-    }],
-    itemsTextVisibilityChange: [{
-      type: Output
-    }],
-    pagerClass: [{
-      type: HostBinding,
-      args: ["class.k-pager"]
-    }],
-    responsiveClass: [{
-      type: HostBinding,
-      args: ["class.k-pager-responsive"]
-    }],
-    widgetRole: [{
-      type: HostBinding,
-      args: ["attr.role"]
-    }],
-    roleDescription: [{
-      type: HostBinding,
-      args: ["attr.aria-roledescription"]
-    }],
-    keyShortcuts: [{
-      type: HostBinding,
-      args: ["attr.aria-keyshortcuts"]
-    }],
-    hostTabindex: [{
-      type: HostBinding,
-      args: ["attr.tabindex"]
-    }],
-    dir: [{
-      type: HostBinding,
-      args: ["attr.dir"]
-    }],
-    focusHandler: [{
-      type: HostListener,
-      args: ["focusin", ["$event"]]
-    }]
-  });
-})();
-var PagerSpacerComponent = class _PagerSpacerComponent {
-  /**
-   * Gets the CSS class for the spacer.
-   */
-  hostClass = true;
-  /**
-   * Gets the CSS class for sized spacers.
-   */
-  get sizedClass() {
-    return isPresent(this.width);
-  }
-  /**
-   * Gets the flex-basis style for the spacer width.
-   */
-  get flexBasisStyle() {
-    return this.width;
-  }
-  /**
-   * Specifies the width of the `PagerSpacer` component.
-   * Accepts the [string values of the CSS `flex-basis` property](https://developer.mozilla.org/en-US/docs/Web/CSS/flex-basis).
-   *
-   * If you do not set this property, the `PagerSpacer` takes all the available space.
-   */
-  width;
-  static ɵfac = function PagerSpacerComponent_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _PagerSpacerComponent)();
-  };
-  static ɵcmp = ɵɵdefineComponent({
-    type: _PagerSpacerComponent,
-    selectors: [["kendo-pager-spacer"]],
-    hostVars: 6,
-    hostBindings: function PagerSpacerComponent_HostBindings(rf, ctx) {
-      if (rf & 2) {
-        ɵɵstyleProp("flex-basis", ctx.flexBasisStyle);
-        ɵɵclassProp("k-spacer", ctx.hostClass)("k-spacer-sized", ctx.sizedClass);
-      }
-    },
-    inputs: {
-      width: "width"
-    },
-    decls: 0,
-    vars: 0,
-    template: function PagerSpacerComponent_Template(rf, ctx) {
-    },
-    encapsulation: 2
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(PagerSpacerComponent, [{
-    type: Component,
-    args: [{
-      selector: "kendo-pager-spacer",
-      template: ``,
-      standalone: true
-    }]
-  }], null, {
-    hostClass: [{
-      type: HostBinding,
-      args: ["class.k-spacer"]
-    }],
-    sizedClass: [{
-      type: HostBinding,
-      args: ["class.k-spacer-sized"]
-    }],
-    flexBasisStyle: [{
-      type: HostBinding,
-      args: ["style.flexBasis"]
-    }],
-    width: [{
-      type: Input
-    }]
-  });
-})();
-var KENDO_PAGER = [CustomMessagesComponent4, PagerFocusableDirective, PagerInfoComponent, PagerInputComponent, PagerNextButtonsComponent, PagerNumericButtonsComponent, PagerPageSizesComponent, PagerPrevButtonsComponent, PagerTemplateDirective, PagerComponent, PagerSpacerComponent];
-var PagerModule = class _PagerModule {
-  static ɵfac = function PagerModule_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _PagerModule)();
-  };
-  static ɵmod = ɵɵdefineNgModule({
-    type: _PagerModule,
-    imports: [CustomMessagesComponent4, PagerFocusableDirective, PagerInfoComponent, PagerInputComponent, PagerNextButtonsComponent, PagerNumericButtonsComponent, PagerPageSizesComponent, PagerPrevButtonsComponent, PagerTemplateDirective, PagerComponent, PagerSpacerComponent],
-    exports: [CustomMessagesComponent4, PagerFocusableDirective, PagerInfoComponent, PagerInputComponent, PagerNextButtonsComponent, PagerNumericButtonsComponent, PagerPageSizesComponent, PagerPrevButtonsComponent, PagerTemplateDirective, PagerComponent, PagerSpacerComponent]
-  });
-  static ɵinj = ɵɵdefineInjector({
-    providers: [IconsService, PopupService, ResizeBatchService],
-    imports: [PagerInputComponent, PagerNextButtonsComponent, PagerNumericButtonsComponent, PagerPageSizesComponent, PagerPrevButtonsComponent, PagerComponent]
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(PagerModule, [{
-    type: NgModule,
-    args: [{
-      exports: [...KENDO_PAGER],
-      imports: [...KENDO_PAGER],
-      providers: [IconsService, PopupService, ResizeBatchService]
-    }]
-  }], null, null);
-})();
-
 export {
-  DragTargetContainerDirective,
-  DropTargetContainerDirective,
-  AdaptiveService,
   DialogActionsComponent,
   DialogRef,
   DialogContentBase,
@@ -62230,7 +56053,7 @@ export {
   TextBoxPrefixTemplateDirective,
   TextBoxComponent,
   ErrorComponent,
-  HintComponent2 as HintComponent,
+  HintComponent,
   FormFieldComponent,
   RadioButtonComponent,
   TextAreaPrefixComponent,
@@ -62241,28 +56064,66 @@ export {
   KENDO_TEXTAREA,
   KENDO_CHECKBOX,
   KENDO_FORMFIELD,
+  SearchBarComponent,
+  ItemTemplateDirective,
+  HeaderTemplateDirective,
+  FooterTemplateDirective,
+  GroupTemplateDirective,
+  FixedGroupTemplateDirective,
   DataService,
   DisabledItemsService,
   SelectionService2 as SelectionService,
   NavigationService3 as NavigationService,
+  NoDataTemplateDirective,
+  PreventableEvent4 as PreventableEvent,
+  FilterableComponent,
+  ListItemDirective,
+  SelectableDirective,
+  CustomItemTemplateDirective,
+  ListComponent,
+  AdaptiveRendererComponent2 as AdaptiveRendererComponent,
+  LocalizedMessagesDirective3 as LocalizedMessagesDirective,
   AutoCompleteComponent,
+  ComboBoxComponent,
+  ValueTemplateDirective,
+  FilterInputDirective,
   DropDownListComponent,
-  PageSizeChangeEvent,
-  CustomMessagesComponent4 as CustomMessagesComponent,
-  LocalizedMessagesDirective4 as LocalizedMessagesDirective,
-  PagerContextService,
-  PagerNavigationService,
-  PagerFocusableDirective,
-  PagerPrevButtonsComponent,
-  PagerPageSizesComponent,
-  PagerTemplateDirective,
-  PagerNumericButtonsComponent,
-  PagerNextButtonsComponent,
-  PagerInputComponent,
-  PagerInfoComponent,
-  PagerComponent,
-  PagerSpacerComponent,
-  KENDO_PAGER,
-  PagerModule
+  TagTemplateDirective,
+  GroupTagTemplateDirective,
+  RemoveTagEvent,
+  TagListComponent,
+  MultiSelectComponent,
+  ColumnCellTemplateDirective,
+  ColumnHeaderTemplateDirective,
+  ComboBoxColumnComponent,
+  MultiColumnComboBoxComponent,
+  NodeTemplateDirective2 as NodeTemplateDirective,
+  DropDownTreeComponent,
+  CheckDirective2 as CheckDirective,
+  CheckAllDirective,
+  MultiSelectTreeComponent,
+  DropDownTreeFlatBindingDirective,
+  DropDownTreeHierarchyBindingDirective,
+  MultiSelectTreeFlatBindingDirective,
+  MultiSelectTreeHierarchyBindingDirective,
+  DropDownTreesExpandDirective,
+  FilterDirective,
+  CustomMessagesComponent3 as CustomMessagesComponent,
+  SummaryTagDirective,
+  MultiSelectTreeSummaryTagDirective,
+  KENDO_AUTOCOMPLETE,
+  KENDO_COMBOBOX,
+  KENDO_MULTICOLUMNCOMBOBOX,
+  KENDO_DROPDOWNLIST,
+  KENDO_MULTISELECT,
+  KENDO_DROPDOWNTREE,
+  KENDO_MULTISELECTTREE,
+  KENDO_DROPDOWNS,
+  DropDownTreesModule,
+  DropDownsModule,
+  MultiSelectModule,
+  AutoCompleteModule,
+  ComboBoxModule,
+  DropDownListModule
 };
-//# sourceMappingURL=chunk-VSDCNNTB.js.map
+//# sourceMappingURL=chunk-UH5IMQCL.js.map

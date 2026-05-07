@@ -11,12 +11,12 @@
     </div>
     <div class="header-right">
       <div class="period-group">
-        <button kendoButton [toggleable]="true" [selected]="selectedPeriod==='weekly'"
-          (click)="selectedPeriod='weekly'" fillMode="flat" class="period-btn">Semana</button>
+        <button kendoButton [toggleable]="true" [selected]="selectedPeriod==='weekly'" (click)="selectedPeriod='weekly'"
+          fillMode="flat" class="period-btn">Semana</button>
         <button kendoButton [toggleable]="true" [selected]="selectedPeriod==='monthly'"
           (click)="selectedPeriod='monthly'" fillMode="flat" class="period-btn">Mensal</button>
-        <button kendoButton [toggleable]="true" [selected]="selectedPeriod==='yearly'"
-          (click)="selectedPeriod='yearly'" fillMode="flat" class="period-btn">Anual</button>
+        <button kendoButton [toggleable]="true" [selected]="selectedPeriod==='yearly'" (click)="selectedPeriod='yearly'"
+          fillMode="flat" class="period-btn">Anual</button>
       </div>
       <div class="last-update">Atualizado agora</div>
     </div>
@@ -59,11 +59,11 @@
           </kendo-chart-category-axis-item>
         </kendo-chart-category-axis>
         <kendo-chart-series>
-          <kendo-chart-series-item type="area" [data]="revenueSeries" name="Receita"
-            color="#7C6FFF" [opacity]="0.15" [line]="{ color: '#7C6FFF', width: 2 }">
+          <kendo-chart-series-item type="area" [data]="revenueSeries" name="Receita" color="#7C6FFF" [opacity]="0.15"
+            [line]="{ color: '#7C6FFF', width: 2 }">
           </kendo-chart-series-item>
-          <kendo-chart-series-item type="line" [data]="metaSeries" name="Meta"
-            color="#FFA94D" [dashType]="'dash'" [width]="2">
+          <kendo-chart-series-item type="line" [data]="metaSeries" name="Meta" color="#FFA94D" [dashType]="'dash'"
+            [width]="2">
           </kendo-chart-series-item>
         </kendo-chart-series>
       </kendo-chart>
@@ -79,10 +79,8 @@
         <kendo-chart-legend position="bottom" orientation="vertical"></kendo-chart-legend>
         <kendo-chart-tooltip format="{0}%"></kendo-chart-tooltip>
         <kendo-chart-series>
-          <kendo-chart-series-item type="donut" [data]="categoryData"
-            field="value" categoryField="category"
-            [holeSize]="60"
-            >
+          <kendo-chart-series-item type="donut" [data]="categoryData" field="value" categoryField="category"
+            [holeSize]="60">
           </kendo-chart-series-item>
         </kendo-chart-series>
       </kendo-chart>
@@ -106,8 +104,8 @@
           </kendo-chart-category-axis-item>
         </kendo-chart-category-axis>
         <kendo-chart-series>
-          <kendo-chart-series-item type="column" [data]="weekdaySales"
-            color="#00C6A2" [border]="{ width: 0 }" [gap]="0.4">
+          <kendo-chart-series-item type="column" [data]="weekdaySales" color="#00C6A2" [border]="{ width: 0 }"
+            [gap]="0.4">
           </kendo-chart-series-item>
         </kendo-chart-series>
       </kendo-chart>
@@ -116,61 +114,108 @@
   </section>
 
   <!-- GRID -->
-  <section class="grid-section">
-    <div class="card-header grid-header">
+  <div class="card-header grid-header">
+
+    <div class="grid-title">
       <h2>Top Vendedores</h2>
       <span class="badge">Dezembro 2024</span>
     </div>
 
-    <kendo-grid [data]="topSellers" [rowClass]="rowCallback" [height]="380">
+    <div class="grid-actions">
 
-      <kendo-grid-column field="rank" title="#" [width]="55">
-        <ng-template kendoGridCellTemplate let-dataItem>
-          <span class="rank-badge" [ngClass]="'rank-' + dataItem.rank">{{ dataItem.rank }}</span>
-        </ng-template>
-      </kendo-grid-column>
+      <span class="filter-label">
+        <h3>Filtrar por Região</h3>
+      </span>
 
-      <kendo-grid-column field="name" title="Vendedor" [width]="200">
-        <ng-template kendoGridCellTemplate let-dataItem>
-          <div class="seller-cell">
-            <div class="avatar">{{ dataItem.name[0] }}</div>
-            <span>{{ dataItem.name }}</span>
-          </div>
-        </ng-template>
-      </kendo-grid-column>
+      <kendo-dropdownlist class="grid-filter" [data]="region" [(value)]="regiaoSelecionada"
+        (valueChange)="filtrarPorRegiao()">
+      </kendo-dropdownlist>
 
-      <kendo-grid-column field="region" title="Região" [width]="160">
-      </kendo-grid-column>
+    </div>
 
-      <kendo-grid-column field="vendas" title="Vendas" [width]="100">
-        <ng-template kendoGridCellTemplate let-dataItem>
-          <strong>{{ dataItem.vendas }}</strong>
-        </ng-template>
-      </kendo-grid-column>
+  </div>
 
-      <kendo-grid-column field="receita" title="Receita" [width]="140">
-        <ng-template kendoGridCellTemplate let-dataItem>
-          <span class="revenue-cell">{{ dataItem.receita }}</span>
-        </ng-template>
-      </kendo-grid-column>
+  <kendo-grid [data]="topSellers" [rowClass]="rowCallback" [height]="380">
 
-      <kendo-grid-column field="meta" title="Meta %" [width]="180">
-        <ng-template kendoGridCellTemplate let-dataItem>
-          <div class="progress-cell">
-            <div class="progress-track">
-              <div class="progress-fill"
-                [style.width.%]="dataItem.meta"
-                [style.background]="getMetaColor(dataItem.meta)">
-              </div>
+    <kendo-grid-column field="rank" title="#" [width]="55">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <span class="rank-badge" [ngClass]="'rank-' + dataItem.rank">{{ dataItem.rank }}</span>
+      </ng-template>
+    </kendo-grid-column>
+
+    <kendo-grid-column field="name" title="Vendedor" [width]="200">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <div class="seller-cell">
+          <div class="avatar">{{ dataItem.name[0] }}</div>
+          <span>{{ dataItem.name }}</span>
+        </div>
+      </ng-template>
+    </kendo-grid-column>
+
+    <kendo-grid-column field="region" title="Região" [width]="160">
+    </kendo-grid-column>
+
+    <kendo-grid-column field="vendas" title="Vendas" [width]="100">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <strong>{{ dataItem.vendas }}</strong>
+      </ng-template>
+    </kendo-grid-column>
+
+    <kendo-grid-column field="receita" title="Receita" [width]="140">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <span class="revenue-cell">{{ dataItem.receita }}</span>
+      </ng-template>
+    </kendo-grid-column>
+
+    <kendo-grid-column field="meta" title="Meta %" [width]="180">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <div class="progress-cell">
+          <div class="progress-track">
+            <div class="progress-fill" [style.width.%]="dataItem.meta" [style.background]="getMetaColor(dataItem.meta)">
             </div>
-            <span class="progress-label" [style.color]="getMetaColor(dataItem.meta)">
-              {{ dataItem.meta }}%
-            </span>
           </div>
+          <span class="progress-label" [style.color]="getMetaColor(dataItem.meta)">
+            {{ dataItem.meta }}%
+          </span>
+        </div>
+      </ng-template>
+    </kendo-grid-column>
+
+  </kendo-grid>
+
+  <section class="grid-section">
+
+    <div class="card-header grid-header">
+      <h2>Pedidos Recentes</h2>
+      <span class="badge">Últimos pedidos</span>
+    </div>
+
+    <kendo-grid [data]="recentOrders" [height]="320">
+
+      <kendo-grid-column field="pedido" title="Pedido" [width]="120">
+      </kendo-grid-column>
+
+      <kendo-grid-column field="cliente" title="Cliente">
+      </kendo-grid-column>
+
+      <kendo-grid-column field="status" title="Status" [width]="140">
+
+        <ng-template kendoGridCellTemplate let-dataItem>
+
+          <span class="status-badge" [ngClass]="dataItem.status.toLowerCase()">
+
+            {{ dataItem.status }}
+
+          </span>
+
         </ng-template>
+
+      </kendo-grid-column>
+
+      <kendo-grid-column field="valor" title="Valor" [width]="140">
       </kendo-grid-column>
 
     </kendo-grid>
-  </section>
 
+  </section>
 </div>

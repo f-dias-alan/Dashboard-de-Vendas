@@ -1,17 +1,17 @@
 import {
-  DomSanitizer,
-  HttpClient,
-  HttpEventType,
-  HttpHeaders,
-  HttpRequest
-} from "./chunk-DTBDDRYO.js";
-import {
   animate,
   query,
   sequence,
   stagger,
   style
 } from "./chunk-666KVM5K.js";
+import {
+  DomSanitizer,
+  HttpClient,
+  HttpEventType,
+  HttpHeaders,
+  HttpRequest
+} from "./chunk-DTBDDRYO.js";
 import {
   EventsOutsideAngularDirective,
   KENDO_RESIZESENSOR,
@@ -16955,21 +16955,21 @@ var SplitButtonComponent = class _SplitButtonComponent extends ListButton {
     consts: () => {
       let i18n_0;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_BUTTONS_FESM2022_PROGRESS_KENDO_ANGULAR_BUTTONS_MJS_0 = goog.getMsg("Toggle options");
-        i18n_0 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_BUTTONS_FESM2022_PROGRESS_KENDO_ANGULAR_BUTTONS_MJS_0;
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_BUTTONS_FESM2022_PROGRESS_KENDO_ANGULAR_BUTTONS_MJS_0 = goog.getMsg("Toggle options");
+        i18n_0 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_BUTTONS_FESM2022_PROGRESS_KENDO_ANGULAR_BUTTONS_MJS_0;
       } else {
         i18n_0 = $localize`:kendo.splitbutton.toggleButtonLabel|The text for the SplitButton toggle button aria-label:Toggle options`;
       }
       let i18n_1;
       if (typeof ngI18nClosureMode !== "undefined" && ngI18nClosureMode) {
-        const MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_BUTTONS_FESM2022_PROGRESS_KENDO_ANGULAR_BUTTONS_MJS_1 = goog.getMsg("{$interpolation}", {
+        const MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_BUTTONS_FESM2022_PROGRESS_KENDO_ANGULAR_BUTTONS_MJS_1 = goog.getMsg("{$interpolation}", {
           "interpolation": "�0�"
         }, {
           original_code: {
             "interpolation": "{{ '{buttonText} splitbutton' }}"
           }
         });
-        i18n_1 = MSG__HOME_FADOD_DOWNLOADS_SALES_DASHBOARD_ANGULAR_NODE_MODULES__PROGRESS_KENDO_ANGULAR_BUTTONS_FESM2022_PROGRESS_KENDO_ANGULAR_BUTTONS_MJS_1;
+        i18n_1 = MSG__HOME_FADOD_DOWNLOADS_DASHBOARD_ANGULAR_KENDOUI_NODE_MODULES__PROGRESS_KENDO_ANGULAR_BUTTONS_FESM2022_PROGRESS_KENDO_ANGULAR_BUTTONS_MJS_1;
       } else {
         i18n_1 = $localize`:kendo.splitbutton.splitButtonLabel|The text for the SplitButton aria-label:${"�0�"}:INTERPOLATION:`;
       }
@@ -19310,4 +19310,4 @@ export {
    * License: MIT
    *)
 */
-//# sourceMappingURL=chunk-N6QNG3E2.js.map
+//# sourceMappingURL=chunk-ISGH2VDR.js.map

@@ -53,7 +53,10 @@
     "@progress/kendo-data-query": "^1.7.4",
     "@progress/kendo-drawing": "^1.25.1",
     "@progress/kendo-licensing": "^1.11.1",
+    "@progress/kendo-theme-bootstrap": "^13.1.1",
     "@progress/kendo-theme-default": "^13.1.1",
+    "@progress/kendo-theme-fluent": "^13.1.1",
+    "@progress/kendo-theme-material": "^13.1.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"

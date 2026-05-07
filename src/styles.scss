@@ -1,8 +1,12 @@
-@use "@progress/kendo-theme-default/dist/all.css";
+@import "@progress/kendo-theme-default/dist/all.css";
+//@import "@progress/kendo-theme-bootstrap/dist/all.scss";
+//@import "@progress/kendo-theme-material/dist/all.scss";
+//@import "@pogress/kendo-theme-fluent/dist/all.scss";
+
 
 html, body {
   margin: 0;
   padding: 0;
-  background: #0E0E14;
+  background: #c8c8da;
   font-family: 'Sora', sans-serif;
 }

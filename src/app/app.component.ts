@@ -6,6 +6,8 @@ import { GridModule } from '@progress/kendo-angular-grid';
 import { LayoutModule, CardModule } from '@progress/kendo-angular-layout';
 import { IndicatorsModule } from '@progress/kendo-angular-indicators';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
+import { DateInputModule, DatePickerComponent } from '@progress/kendo-angular-dateinputs';
+import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +20,9 @@ import { ButtonsModule } from '@progress/kendo-angular-buttons';
     CardModule,
     IndicatorsModule,
     ButtonsModule,
-  ],
+    DateInputModule,
+    DropDownsModule,
+],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
@@ -44,7 +48,7 @@ export class AppComponent {
     { category: 'Outros',        value: 11 },
   ];
 
-  topSellers = [
+  topSellersOriginal = [
     { rank: 1, name: 'Ana Paula Silva', region: 'São Paulo',      vendas: 412, receita: 'R$ 148.320', meta: 95 },
     { rank: 2, name: 'Carlos Henrique', region: 'Rio de Janeiro', vendas: 387, receita: 'R$ 132.540', meta: 88 },
     { rank: 3, name: 'Mariana Costa',   region: 'Belo Horizonte', vendas: 356, receita: 'R$ 121.890', meta: 82 },
@@ -55,8 +59,49 @@ export class AppComponent {
     { rank: 8, name: 'André Santos',    region: 'Recife',         vendas: 226, receita: 'R$ 76.980',  meta: 55 },
   ];
 
+  topSellers = [...this.topSellersOriginal];
+
   weekdayCategories = ['Seg','Ter','Qua','Qui','Sex','Sáb','Dom'];
   weekdaySales      = [142, 185, 167, 210, 243, 310, 198];
+
+  recentOrders = [
+    {
+      pedido: '#1024',
+      cliente: 'Mariana Costa',
+      status: 'Entregue',
+      valor: 'R$ 1.250,00',
+    },
+    {
+      pedido: '#1025',
+      cliente: 'Carlos Henrique',
+      status: 'Em Trânsito',
+      valor: 'R$ 980,00',
+    },
+    { 
+      pedido: '#1026',
+      cliente: 'Ana Paula Silva',
+      status: 'Pendente',
+      valor: 'R$ 1.500,00',
+    },
+    { 
+      pedido: '#1027',
+      cliente: 'Fernanda Souza',
+      status: 'Entregue',
+      valor: 'R$ 750,00',
+    },
+    {
+      pedido: '#1028',
+      cliente: 'Roberto Lima',
+      status: 'Em Trânsito',
+      valor: 'R$ 1.200,00',
+    },
+    {
+      pedido: '#1029',
+      cliente: 'Lucas Oliveira',
+      status: 'Pendente',
+      valor: 'R$ 900,00',
+    },
+  ]
 
   getMetaColor(value: number): string {
     if (value >= 85) return '#00C6A2';
@@ -67,4 +112,34 @@ export class AppComponent {
   rowCallback = (context: RowClassArgs) => ({
     'top-row': context.index === 0,
   });
+
+  startDate = new Date();
+
+  region = [
+    'Todas',
+    'São Paulo',
+    'Rio de Janeiro',
+    'Belo Horizonte',
+    'Curitiba',
+    'Porto Alegre',
+    'Brasília',
+    'Salvador',
+    'Recife'
+  ];
+
+  regiaoSelecionada: 'Todas' = 'Todas';
+
+  filtrarPorRegiao(): void {
+  if (
+    !this.regiaoSelecionada ||    
+    this.regiaoSelecionada === 'Todas'
+  ){
+    this.topSellers = [...this.topSellersOriginal];
+    return;
+  }
+
+  this.topSellers = this.topSellersOriginal.filter(
+    seller => seller.region === this.regiaoSelecionada
+  );
+  }
 }
